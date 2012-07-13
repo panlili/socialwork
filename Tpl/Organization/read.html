@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Organization.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/organization.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+
+            <table id="common_table" style="width: auto;clear:both">
+                <tr><td>单位名称：</td><td>{$data.name}</td></tr>
+                <tr><td>法人代表：</td><td>{$data.chairman}</td></tr>
+                <tr><td>单位地址：</td><td>{$data.address}</td></tr>
+                <tr><td>所在街道：</td><td>{$data.street.name}</td></tr>
+                <tr><td>组织机构代码：</td><td>{$data.code}</td></tr>
+                <tr><td>机构类型：</td><td>{$data.type}</td></tr>
+                <tr><td>商业营业执照号码：</td><td>{$data.license}</td></tr>
+                <tr><td>税务登记证号码：</td><td>{$data.taxcode}</td></tr>
+                <tr><td>用工人数：</td><td>{$data.employee}</td></tr>
+                <tr><td>邮编：</td><td>{$data.postcode}</td></tr>
+                <tr><td>联系人姓名：</td><td>{$data.contactor}</td></tr>
+                <tr><td>联系人电话：</td><td>{$data.telephone}</td></tr>
+                <tr><td>备注信息：</td><td>{$data.note}</td></tr>
+                <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
+                        <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                            删除</a>
+                    </td></tr>
+            </table>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

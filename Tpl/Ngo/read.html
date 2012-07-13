@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Ngo.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/ngo.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+            <table id="common_table" style="width: auto;clear:both">
+                <tr><td>组织名：</td><td>{$data.name}</td></tr>
+                <tr><td>负责人：</td><td>{$data.chairman}</td></tr>
+                <tr><td>负责人电话：</td><td>{$data.telephone}</td></tr>
+                <tr><td>成立日期：</td><td>{$data.register_date}</td></tr>
+                <tr><td>登记备案机关：</td><td>{$data.registerplace}</td></tr>
+                <tr><td>业务内容：</td><td>{$data.scope}</td></tr>
+                <tr><td>简介：</td><td>{$data.introduce}</td></tr>
+                <tr><td>数据录入时间：</td><td>{$data.create_time}</td></tr>
+                <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
+                        <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                            删除</a>
+                    </td></tr>
+            </table>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

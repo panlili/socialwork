@@ -1,0 +1,67 @@
+<meta charset="utf-8" />
+<style type="text/css">
+    table{border:1px solid black;}
+    th,td{border:1px solid black;}
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>身份证号码</th>
+            <th>性别</th>
+            <th>生日</th>
+            <th>年龄</th>
+            <th>民族</th>
+            <th>现住地</th>                    
+            <th>户籍地址</th>
+            <th>往来密切子女姓名</th>
+            <th>子女电话</th>
+            <th>往来密切亲友姓名</th>
+            <th>亲友电话</th>
+            <th>居住情况</th>
+            <th>收入来源</th>
+            <th>自理能力</th>
+            <th>日托服务</th>
+            <th>就餐</th>
+            <th>保洁服务</th>
+            <th>待购</th>
+            <th>日间护理</th>
+            <th>物业维修</th>
+            <th>上门洗衣</th>
+            <th>法律援助</th>
+            <th>服务点数</th>        
+        </tr>
+    </thead>
+    <tbody>
+    <volist name="list" id="each">
+        <tr>
+            <td>{$each.id}</td>
+            <td>{$each.name}</td>
+            <td>{$each.id_card}</td>
+            <td>{$each.sex}</td>
+            <td>{$each.birthday}</td>
+            <td>{$each.birthday|getAge}</td>
+            <td>{$each.nation}</td>
+            <td>{$each.address}</td>
+            <td>{$each.household_reg}</td>
+            <td>{$each.child}</td>
+            <td>{$each.child_tel}</td>
+            <td>{$each.friend}</td>
+            <td>{$each.friend_tel}</td>
+            <td>{$each.live}</td>
+            <td>{$each.income_source}</td>
+            <td>{$each.self_care}</td>
+            <td>{$each.daycare}</td>
+            <td>{$each.food}</td>
+            <td>{$each.clean}</td>
+            <td>{$each.buy_agent}</td>
+            <td>{$each.daynurse}</td>
+            <td>{$each.repair}</td>
+            <td>{$each.washing}</td>
+            <td>{$each.law}</td>
+            <td>{$each.ticket}</td>
+        </tr>
+    </volist>
+</tbody>
+</table>

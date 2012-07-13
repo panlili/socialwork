@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+        
+        <css href="__CSS__/common.css,__CSS__/camera.css" />
+        <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/camera.js" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div id="container">
+            <include file="Public:header" />
+            <include file="Public:menu" />
+            <div id="content">
+                <div id="page_place"><p>当前位置：{$page_place}</p></div>
+                <form action="__URL__/add" method="post">
+                    <table id="common_table" style="width: auto;clear:both">
+                        <tr><td>摄像头名称</td><td><input type="text" name="name" /></td></tr>
+                        <tr><td>型号</td><td><input type="text" name="model" /></td></tr>
+                        <tr><td>访问ip</td><td><input type="text" name="ip" /></td></tr>
+                        <tr><td>访问端口</td><td><input type="text" name="port" /></td></tr>
+                        <tr><td>通道数</td><td><input type="text" name="channels" /></td></tr>
+                        <tr><td>剩余通道数</td><td><input type="text" name="remain" /></td></tr>
+                        <tr><td>备注</td><td><input type="text" name="comment" /></td></tr>
+                        <tr><td>所属院落</td><td><select name="yard_id">
+                                <volist name="yardlist" id="yard"><option value="{$yard.id}">{$yard.name}</option></volist>                                  </volist>
+                            </select></td></tr>
+                        <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
+                    </table>
+                </form>
+            </div>
+            <include file="Public:footer" />
+        </div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/yard.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：设置地图相关参数</p></div>            
+
+            <form action="__URL__/setupdate" method="post">
+                <table id="common_table" style="width: auto;clear:both">
+                    <volist name="mapsetting" id="vo">
+                        <tr><td>地图原图宽度：</td><td><input type="text" name="mapWidth" value="{$vo.mapWidth}" disabled="sisabled"/></td><td>暂不允许修改</td></tr>
+                        <tr><td>地图原图高度：</td><td><input type="text" name="mapHeight" value="{$vo.mapHeight}" disabled="sisabled"/></td><td>暂不允许修改</td></tr>
+                        <tr><td>地图区域宽度：</td><td><input type="text" name="mapAreaWidth" value="{$vo.mapAreaWidth}"/></td><td>请不要大于1000</td></tr>
+                        <tr><td>地图区域高度：</td><td><input type="text" name="mapAreaHeight" value="{$vo.mapAreaHeight}"/></td><td></td></tr>
+                        <tr><td>切片宽度：</td><td><input type="text" name="pieceWidth" value="{$vo.pieceWidth}" disabled="sisabled"/></td><td>请勿随意修改</td></tr>
+                        <tr><td>切片高度：</td><td><input type="text" name="pieceHeight" value="{$vo.pieceHeight}" disabled="sisabled"/></td><td>请勿随意修改</td></tr>
+                        <tr><td>切片所在路径：</td><td><input type="text" name="piecePath" value="{$vo.piecePath}"/></td><td>请勿随意修改</td></tr>
+                        <tr><td>地图方法的路径：</td><td><input type="text" name="methodeAddress" value="{$vo.methodeAddress}"/></td><td>请勿随意修改</td></tr>
+                        <tr><td>地图基点初始X值：</td><td><input type="text" name="mapbaseX" value="{$vo.mapbaseX}"/></td><td></td></tr>
+                        <tr><td>地图基点初始Y值：</td><td><input type="text" name="mapbaseY" value="{$vo.mapbaseY}"/></td><td></td></tr>
+                        <tr><td></td><td><input type="submit" value="修改" name="submit" /><input type="reset" value="清空" />
+                                <input type="hidden" name="id" value="{$vo.id}" /></td></tr>
+                    </volist>
+                </table>
+            </form>
+        </div> 
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

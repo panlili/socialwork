@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css" />
+    <css href="__CSS__/statistic/basic.css,__CSS__/statistic/visualize.css,__CSS__/statistic/visualize-light.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/statistic/visualize.jQuery.js,__JS__/statistic/excanvas.js" />
+    <js href="__JS__/common.js,__JS__/statistic.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        #buttons p{
+            margin:10px;
+        }
+        #buttons p input{
+            padding:5px;
+            width: 150px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p style="font-size:13px;">当前位置：{$page_place}</p></div>
+            <div >
+                <div style="height:500px; float:left;margin:10px 5px auto 0;" id="buttons">
+                    <!-- 统计需求的位置 -->
+                    <p><input type="button" value="居民总数:{$total}" />
+                    <p><input type="button" value="婚姻情况统计" onclick="marryinfo();"/></p>
+                    <p><input type="button" value="居民性别统计" onclick="sexinfo();"/></p>
+                    <p><input type="button" value="居民民族统计" onclick="nationinfo();"/></p>
+                    <p><input type="button" value="居民文化程度统计" onclick="educationinfo();"/></p>
+                    <p><input type="button" value="政治面貌统计" onclick="politicalinfo();"/></p>
+                    <p><input type="button" value="就业情况统计" onclick="employeeinfo();"/></p>
+                    <p class="ploading" style="display:none;font-size:16px;">统计中......</p>
+                </div>
+                <div id="graph" style="float:left;">
+                    <!-- 统计表格和可视化图片的位置-->
+                </div>
+                <include file="Public:footer" />
+            </div>
+        </div>
+</body>
+</html>
+<!-- 
+<table id="test">
+    <caption>lijun test</caption>
+    <thead>
+        <td></td>
+        <th scope="col">firstcolumn</th>
+        <th scope="col">secondcolumn</th>
+    </thead>
+    <tbody>
+        <tr><th scope="row">firstrow</th><td>11</td><td>12</td></tr>
+        <tr><th scope="row">secondrow</th><td>21</td><td>22</td></tr>
+        <tr><th scope="row">thirdrow</th><td>91</td><td>32</td></tr>
+    </tbody>
+</table>
+-->

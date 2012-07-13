@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/old.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/old.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+
+            <table id="common_table" style="width: auto;clear:both">
+                <tr><td>姓名：</td><td>{$data.name}</td>
+                <td>服务点数：</td><td>{$data.ticket}</tr>
+                <tr><td>身份证号码：</td><td>{$data.id_card}</td>
+                <td>性别：</td><td>{$data.sex}</td></tr>
+                <tr><td>生日：</td><td>{$data.birthday}</td>
+                <td>年龄：</td><td>{$data.birthday|getAge}</td></tr>
+                <tr><td>民族：</td><td>{$data.nation}</td>
+                <td>现住地：</td><td>{$data.address}</td></tr>
+                <tr><td>户籍地址：</td><td>{$data.household_reg}</td>
+                <td>往来密切子女姓名：</td><td>{$data.child}</td></tr>
+                <tr><td>子女电话：</td><td>{$data.child_tel}</td>
+                <td>往来密切亲友姓名：</td><td>{$data.friend}</td></tr>                
+                <tr><td>亲友电话：</td><td>{$data.friend_tel}</td>
+               <!--- <tr><td>健康情况：</td><td>{$data.health}</td></tr>--->
+                <td>居住情况：</td><td>{$data.live}</td></tr>
+                <tr><td>收入来源：</td><td>{$data.income_source}</td>
+                <td>自理能力：</td><td>{$data.self_care}</td></tr>
+                <tr><td>日托服务：</td><td>{$data.daycare}</td>
+                <td>就餐：</td><td>{$data.food}</td></tr>
+                <tr><td>保洁服务：</td><td>{$data.clean}</td>
+                <td>代购：</td><td>{$data.buy_agent}</td></tr>
+                <tr><td>日间护理：</td><td>{$data.daynurse}</td>
+                <td>物业维修：</td><td>{$data.repair}</td></tr>
+                <tr><td>上门洗衣：</td><td>{$data.washing}</td>
+                <td>法律援助：</td><td>{$data.law}</td></tr>
+                <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
+                        <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                            删除</a>
+                    </td></tr>
+            </table>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

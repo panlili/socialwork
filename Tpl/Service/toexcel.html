@@ -1,0 +1,23 @@
+<meta charset="utf-8" />
+<style type="text/css">
+    table{border:1px solid black;}
+    th,td{border:1px solid black;}
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>服务类型</th><th>服务名</th><th>消耗点数</th>
+            <th>相关描述</th>     
+        </tr>
+    </thead>
+    <tbody>
+    <volist name="list" id="each">
+        <tr>
+            <td>{$each.id}</td>            
+            <td>{$each.type}</td><td>{$each.name}</td><td>{$each.cost}</td>
+            <td>{$each.desc}</td>
+        </tr>
+    </volist>
+</tbody>
+</table>

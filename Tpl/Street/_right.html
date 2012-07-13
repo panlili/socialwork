@@ -1,0 +1,70 @@
+<!-- street information页面点击yard数量渲染 -->
+<present name="yardlist">
+    <p>此街道下的院落列表：</p>
+    <table id="common_table2">
+        <thead>
+        <th>序号</th>
+        <th>院落名</th>
+        <th>地址</th>
+        <th>自治组织机构</th>
+        </thead>
+        <tbody>
+        <volist name="yardlist" id="each">
+            <tr>
+                <td class="number"></td>
+                <td><a target="_self" href="__APP__/Yard/{$each.id}">{$each.name}</a></td>
+                <td>{$each.address}</td>
+                <td>{$each.admin_org}</td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</present>
+
+<!-- street information页面点击Organization数量渲染 -->
+<present name="orglist">
+    <p>此街道下的单位列表：</p>
+    <table id="common_table2">
+        <thead>
+        <th>序号</th>
+        <th>单位名称</th>
+        <th>单位类型</th>
+        <th>地址</th>
+        <th>法人代表</th>
+        </thead>
+        <tbody>
+        <volist name="orglist" id="each">
+            <tr>
+                <td class="number"></td>
+                <td><a target="_self" href="__APP__/Organization/{$each.id}">{$each.name}</a></td>
+                <td>{$each.type}</td>
+                <td>{$each.address}</td>
+                <td>{$each.chairman}</td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</present>
+
+<!-- street information页面点击store数量渲染 -->
+<present name="storelist">
+    <p>此街道下的店铺列表：</p>
+    <table id="common_table2">
+        <thead>
+        <th>序号</th>
+        <th>店铺名称</th>
+        <th>店主</th>
+        <th>地址</th>
+        </thead>
+        <tbody>
+        <volist name="storelist" id="each">
+            <tr>
+                <td class="number"></td>
+                <td><a target="_self" href="__APP__/Store/{$each.id}">{$each.name}</a></td>
+                <td>{$each.owner}</td>
+                <td>{$each.address}</td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</present>

@@ -1,0 +1,58 @@
+<div id="menu">
+    <p>系统导航</p>
+    <ul> 
+        <li class="main">
+            <a href="{:U('Map/index')}"><img src="__IMAGE__/menu/menu_map.png"/>3D地图导航</a>
+        </li>
+        <li class="main">
+            <a href="{:U('Street/information')}"><img src="__IMAGE__/menu/menu_street.png"/>道路信息</a>
+        </li>
+        <li class="main">
+            <a href="{:U('Yard/information')}"><img src="__IMAGE__/menu/menu_yard.png"/>院落居民信息</a>
+        </li>
+        <li class="main">
+            <a href="{:U('Ngo/index')}"><img src="__IMAGE__/menu/menu_org.png"/>社会组织</a>
+        </li>
+        <li class="main">
+            <a href="{:U('Old/index')}"><img src="__IMAGE__/menu/menu_old.png"/>养老助残</a>
+            <ul>
+                <li><a href="{:U('Old/life')}">1.来宾刷卡</a></li>
+                <li><a href="{:U('Old/index')}">2.老人信息管理</a></li>
+                <li><a href="{:U('Service/index')}">3.服务信息管理</a></li>
+                
+            </ul>
+        </li>
+       <!--- <li class="main">
+            <a href="{:U('Ngo/index')}"><img src="__IMAGE__/menu/menu_help.png"/>邻里互助</a>
+        </li> --->       
+         <li class="main">
+            <a href="#"><img src="__IMAGE__/menu/menu_search.png"/>搜索统计</a>
+            <ul>
+                <li><a href="{:U('Search/citizen')}">1.居民（人）信息</a></li>
+                <li><a href="{:U('Search/house')}">2.房屋（户）信息</a></li>
+                <li><a href="{:U('Statistic/index')}">3.民生民情统计</a></li>
+            </ul>
+        </li>
+        <li class="main">
+            <a href="#"><img src="__IMAGE__/menu/menu_bim.png"/>基础信息管理</a>
+            <ul>
+                <li><a href="{:U('Ngo/index')}">1.社会组织</a></li>
+                <li><a href="{:U('Street/index')}">2.街道信息</a></li>
+                <li><a href="{:U('Organization/index')}">3.单位信息</a></li>
+                <li><a href="{:U('Store/index')}">4.商铺信息</a></li>
+                <li><a href="{:U('Yard/index')}">5.院落信息</a></li>
+                <li><a href="{:U('House/index')}">6.房屋信息</a></li>
+                <li><a href="{:U('Citizen/index')}">7.居民信息</a></li>
+                <li><a href="{:U('Camera/index')}">8.监控点位</a></li>
+
+            </ul>
+        </li>
+        <li class="main">
+            <a href="#"><img src="__IMAGE__/menu/menu_system.png"/>系统功能</a>
+            <ul>                
+                <?php if(1==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">1.用户管理</a></li>'; ?>
+                <li><a href="{:U('Map/mapset')}">2.地图参数设置</a></li>
+            </ul>
+        </li>        
+    </ul>   
+</div>

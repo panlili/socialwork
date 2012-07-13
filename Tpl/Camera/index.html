@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Camera.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/camera.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+            <div id="search">
+                <form name="camera_search" method="POST" action="__URL__/search">                    
+                    <select name="searchField"  >
+                        <option value="name" >摄像头名称</option>
+                        <option value="ip">摄像头ip</option>                        
+                    </select>
+                    <input type="text" name="searchKey" value="" size="30" />
+                    <input type="submit" value="查询" />
+                </form>
+            </div>
+            <table id="common_table">
+                <thead>
+                    <tr>
+                        <!-- 6列 -->
+                        <th>序号</th>
+                        <th>录像机名称</th><th>型号</th><th>访问ip</th><th>端口</th><th>所属院落</th><th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <volist name="list" id="each">
+                    <tr>
+                        <td class="number"></td>
+                        <td>{$each.name}</td><td>{$each.model}</td><td>{$each.ip}</td><td>{$each.port}</td>
+                        <td>{$each.yard.name}</td>
+                        <td><a href="__URL__/{$each.id}">详细信息</a></td>            
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <p><span class="newdata"><a href="{:U('Camera/newone')}">添加摄像头</a></span><span class="page">{$page}</span></p>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$title}</title>
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" media="all" href="css/videoocx.css" />
+<script type="text/javascript" language="javascript">
+<!--
+function Pause(obj,iMinSecond){    
+   if (window.eventList==null) window.eventList=new Array();    
+   var ind=-1;    
+   for (var i=0;i<window.eventList.length;i++){    
+       if (window.eventList[i]==null) {    
+         window.eventList[i]=obj;    
+         ind=i;    
+         break;    
+        }    
+    }    
+   if (ind==-1){    
+   ind=window.eventList.length;    
+   window.eventList[ind]=obj;    
+   }    
+  setTimeout("GoOn(" + ind + ")",iMinSecond);    
+}    
+  
+//js������   
+function GoOn(ind){    
+  var obj=window.eventList[ind];    
+  window.eventList[ind]=null;    
+  if (obj.NextStep) obj.NextStep();    
+  else obj();    
+}   
+
+function test() 
+{	
+  VIDEOOCX.StartRealPlay({$url});
+}
+
+function window.onbeforeunload()
+{
+	VIDEOOCX.StopRealPlay();
+}
+-->
+</script>
+</head>
+<body>
+<OBJECT classid="clsid:247468E7-BE8E-4278-BA81-21EA9FBA6D10" id="VIDEOOCX" name = "VIDEOOCX" STYLE="LEFT: 0px; TOP: 0px" width=640 height=480></OBJECT>
+<script type="text/javascript" language="javascript">
+function StopTime(){   
+ Pause(this,500);    
+ this.NextStep=function(){    
+  test();   
+ }   
+}
+StopTime();
+
+</script>
+</body>                  
+</html>

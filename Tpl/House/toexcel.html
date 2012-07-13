@@ -1,0 +1,55 @@
+<meta charset="utf-8" />
+<style type="text/css">
+    table{border:1px solid black;}
+    th,td{border:1px solid black;}
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>房屋地址</th>
+            <th>所在院落</th>
+            <th>人户是否一致</th>
+            <th>是否空闲</th>
+            <th>是否平房</th>
+            <th>是否廉租房</th>
+            <th>是否购买经济适用房</th>
+            <th>是否台属</th>
+            <th>是否军属</th>
+            <th>是否领取燃油补贴</th>
+            <th>家庭人口数</th>
+            <th>联系人</th>
+            <th>联系电话</th>
+            <th>楼栋号</th>
+            <th>单元号</th>
+            <th>楼层</th>
+            <th>房屋号</th>
+            <th>平房附号</th>
+        </tr>
+    </thead>
+    <tbody>
+    <volist name="list" id="each">
+        <tr>
+            <td>{$each.id}</td>
+            <td>{$each.address}</td>
+            <td>{$each.yard.name}</td>
+            <td>{$each.is_fit}</td>
+            <td>{$each.is_free}</td>
+            <td>{$each.is_floor}</td>
+            <td>{$each.is_lowrent}</td>
+            <td>{$each.is_afford}</td>
+            <td>{$each.is_taiwan}</td>
+            <td>{$each.is_army}</td>
+            <td>{$each.is_fuel}</td>
+            <td><php>echo count($each['citizen'])</php></td>
+        <td>{$each.contactor}</td>
+        <td>{$each.telephone}</td>
+        <td>{$each.address_1}</td>
+        <td>{$each.address_2}</td>
+        <td>{$each.address_3}</td>
+        <td>{$each.address_4}</td>
+        <td>{$each.address_other}</td>
+        </tr>
+    </volist>
+</tbody>
+</table>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Admin.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/admin.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <table id="common_table"><thead><th>序号</th><th>用户名</th><th>权限</th><th>真实姓名</th><th>删除用户</th></thead>
+                <volist name="userlist" id="each">
+                    <tr id="{$each.id}">
+                        <td class="number"></td>
+                        <td>{$each.username}</td>
+                        <td><if condition="$each.right eq 1">超级用户<else/>一般用户</if></td>
+                    <td>{$each.truename}</td>
+                    <td><a href="javascript:delete_user({$each.id})"><img src="__IMAGE__/delete.png" /></a></td>
+                    </tr>
+                </volist> 
+            </table>      
+            <form name="adduser" method="POST" action="__URL__/add">
+                <table id="adduser">
+                    <tr><td>用户名*:</td><td><input type="text" name="username" /></td></tr>
+                    <tr><td>密码*:</td><td><input type="password" name="password" /></td></tr>
+                    <tr><td>用户权限:</td><td><select name="right">
+                                <option value="1">超级用户</option><option value="0">一般用户</option>
+                            </select></td></tr>
+                    <tr><td>姓名*:</td><td><input type="text" name="truename" value="" /></td></tr>
+                    <tr><td></td><td><input type="submit" value="增加用户" /></td></tr>
+                </table> 
+            </form>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

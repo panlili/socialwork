@@ -1,0 +1,17 @@
+#addstreet{
+    float: right;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#content_left{
+    float:left;
+    clear:left;
+    width: 45%;
+}
+
+#content_middle{
+    float: left;
+    width: 50%;
+    margin-left: 10px;
+}

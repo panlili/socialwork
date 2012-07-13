@@ -1,0 +1,61 @@
+<meta charset="utf-8" />
+<style type="text/css">
+    table{border:1px solid black;}
+    th,td{border:1px solid black;}
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>所在房屋</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>与户主关系</th>
+            <th>身份证号码</th>
+            <th>生日</th>
+            <th>民族</th>
+            <th>是否领取计划生育指标</th>
+            <th>是否特殊人群</th>
+            <th>是否低保</th>
+            <th>是否残疾</th>
+            <th>是否廉租房</th>
+            <th>是否长寿金</th>
+            <th>婚姻情况</th>
+            <th>文化程度</th>
+            <th>政治面貌</th>
+            <th>就业情况</th>
+            <th>户口地址</th>
+            <th>联系电话</th>
+            <th>采集日期</th>
+        </tr>
+    </thead>
+    <tbody>
+    <volist name="list" id="each">
+        <tr>
+            <td>{$each.id}</td>
+            <td>{$each.houseaddress}</td>
+            <td>{$each.name}</td>
+            <td>{$each.birthday|getAge}</td>
+            <td>{$each.sex}</td>
+            <td>{$each.relation_with_householder}</td>
+            <td>{$each.id_card}</td>
+            <td>{$each.birthday}</td>
+            <td>{$each.nation}</td>
+            <td>{$each.is_fertility}</td>
+            <td>{$each.is_special}</td>
+            <td>{$each.is_low_level}</td>
+            <td>{$each.is_disability}</td>
+            <td>{$each.is_low_rent}</td>
+            <td>{$each.is_long_live}</td>
+            <td>{$each.marry_info}</td>
+            <td>{$each.education}</td>
+            <td>{$each.political_status}</td>
+            <td>{$each.employee}</td>
+            <td>{$each.household}</td>
+            <td>{$each.telephone}</td>
+            <td>{$each.collection_data}</td>
+        </tr>
+    </volist>
+</tbody>
+</table>

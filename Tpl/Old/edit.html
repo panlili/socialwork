@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Old.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/old.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+
+            <form action="__URL__/update" method="POST">
+                <table id="common_table" style="width: auto;clear:both">
+                    <tr><td>
+                            <table>
+                                <tr><td>身份证号码：</td><td><input type="text" name="id_card" value="{$data.id_card}"/></td></tr>
+                                <tr><td>姓名：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>                  
+                                <tr><td>生日：</td><td><input type="text" name="birthday" value="{$data.birthday}"/></td></tr> 
+                                <tr><td>性别：</td><td>
+                                        <select name="sex" style="width:150px"> 
+                                            <option value="{$data.sex}" selected="selected">{$data.sex}</option>
+                                <option value="{$data.sex}">--修改请选择其他--</option>
+                                            <option value="男">男</option>
+                                            <option value="女">女</option></select>
+                                    </td></tr>
+                                <tr>
+                                    <td>民族：</td><td>
+                                        <select name="nation" style="width:150px">
+                                            <option value="{$data.nation}" selected="selected">{$data.nation}</option>
+                                <option value="{$data.nation}">--修改请选择其他--</option>
+                                            <option value="汉族">汉族</option>
+                                            <option value="蒙古族">蒙古族</option>
+                                            <option value="彝族">彝族</option>
+                                            <option value="侗族">侗族</option>
+                                            <option value="哈萨克族">哈萨克族</option>
+                                            <option value="畲族">畲族</option>
+                                            <option value="纳西族">纳西族</option>
+                                            <option value="仫佬族">仫佬族</option>
+                                            <option value="仡佬族">仡佬族</option>
+                                            <option value="怒族">怒族</option>
+                                            <option value="保安族">保安族</option>
+                                            <option value="鄂伦春族">鄂伦春族</option>
+                                            <option value="回族">回族</option>
+                                            <option value="壮族">壮族</option>
+                                            <option value="瑶族">瑶族</option>
+                                            <option value="傣族">傣族</option>
+                                            <option value="高山族">高山族</option>
+                                            <option value="景颇族">景颇族</option>
+                                            <option value="羌族">羌族</option>
+                                            <option value="锡伯族">锡伯族</option>
+                                            <option value="乌孜别克族">乌孜别克族</option>
+                                            <option value="裕固族">裕固族</option>
+                                            <option value="赫哲族">赫哲族</option>
+                                            <option value="藏族">藏族</option>
+                                            <option value="布依族">布依族</option>
+                                            <option value="白族">白族</option>
+                                            <option value="黎族">黎族</option>
+                                            <option value="拉祜族">拉祜族</option>
+                                            <option value="柯尔克孜族">柯尔克孜族</option>
+                                            <option value="布朗族">布朗族</option>
+                                            <option value="阿昌族">阿昌族</option>
+                                            <option value="俄罗斯族">俄罗斯族</option>
+                                            <option value="京族">京族</option>
+                                            <option value="门巴族">门巴族</option>
+                                            <option value="维吾尔族">维吾尔族</option>
+                                            <option value="朝鲜族">朝鲜族</option>
+                                            <option value="土家族">土家族</option>
+                                            <option value="傈僳族">傈僳族</option>
+                                            <option value="水族">水族</option>
+                                            <option value="土族">土族</option>
+                                            <option value="撒拉族">撒拉族</option>
+                                            <option value="普米族">普米族</option>
+                                            <option value="鄂温克族">鄂温克族</option>
+                                            <option value="塔塔尔族">塔塔尔族</option>
+                                            <option value="珞巴族">珞巴族</option>
+                                            <option value="苗族">苗族</option>
+                                            <option value="满族">满族</option>
+                                            <option value="哈尼族">哈尼族</option>
+                                            <option value="佤族">佤族</option>
+                                            <option value="东乡族">东乡族</option>
+                                            <option value="达斡尔族">达斡尔族</option>
+                                            <option value="毛南族">毛南族</option>
+                                            <option value="塔吉克族">塔吉克族</option>
+                                            <option value="德昂族">德昂族</option>
+                                            <option value="独龙族">独龙族</option>
+                                            <option value="基诺族">基诺族</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr><td>现住地：</td><td><input type="text" name="address" value="{$data.address}"/></td></tr>
+                                <tr><td>户籍地址：</td><td><input type="text" name="household_reg" value="{$data.household_reg}"/></td></tr>
+                                <tr><td>往来密切子女姓名：</td><td><input type="text" name="child" value="{$data.child}"/></td></tr>
+                                <tr><td>子女电话：</td><td><input type="text" name="child_tel" value="{$data.child_tel}"/></td></tr>
+                                <tr><td>往来密切亲友姓名：</td><td><input type="text" name="friend" value="{$data.friend}"/></td></tr>
+                                <tr><td>亲友电话：</td><td><input type="text" name="friend_tel" value="{$data.friend_tel}"/></td></tr>
+                                <!---<tr><td>健康情况：</td><td><select name="health"><option value="0">--------请选择--------</option><option></option></select></td></tr>--->
+                                <tr><td>自理能力：</td><td><select name="self_care" style="width:150px">
+                                            <option value="{$data.self_care}" selected="selected">{$data.self_care}</option>
+                                <option value="{$data.self_care}">--修改请选择其他--</option>
+                                            
+                                            <option value="完全自理">完全自理</option><option value="部分自理">部分自理</option><option value="依赖照顾">依赖照顾</option>
+                                        </select></td></tr>
+                                <tr><td>居住情况：</td><td><select name="live" style="width:150px">
+                                            <option value="{$data.live}" selected="selected">{$data.live}</option>
+                                <option value="{$data.live}">--修改请选择其他--</option>
+                                            <option value="独居">独居</option><option value="偶居">偶居</option><option value="孤老">孤老</option><option value="与子女居住">与子女居住</option>
+                                        </select></td></tr>
+                                <tr><td>收入来源：</td><td><select name="income_source" style="width:150px">
+                                            <option value="{$data.income_source}" selected="selected">{$data.income_source}</option>
+                                <option value="{$data.income_source}">--修改请选择其他--</option>
+                                            <option value="享受低保">享受低保</option><option value="社保，退休金，其他">社保，退休金，其他</option>
+                                        </select></td></tr>
+                                <tr><td>养老方式：</td><td><select size="1" name="retirement" id="p_ylfs" style="width:150px">
+                                            <option value="{$data.retirement}" selected="selected">{$data.retirement}</option>
+                                <option value="{$data.retirement}">--修改请选择其他--</option>
+                                            <option value="享受政府购买">享受政府购买</option><option value="自己购买服务">自己购买服务</option><option value="还未购买服务">还未购买服务</option><option value="4">机构养老</option>
+                                        </select>  	</td></tr>
+
+                                <tr><td>联系方式：</td><td><input type="text" name="contact" value="{$data.contact}" /></td></tr>
+                                
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr><td>养老需求：（次/月）</td></tr>
+                                <tr><td>
+                                        日托服务:</td><td><select name="daycare" style="width:40px">
+                                            <option value="{$data.daycare}" selected="selected">{$data.daycare}</option>
+                                <option value="{$data.daycare}">--修改请选择其他--</option>
+                                            <option value="0" >无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        就餐:</td><td><select name="food" style="width:40px">
+                                            <option value="{$data.food}" selected="selected">{$data.food}</option>
+                                <option value="{$data.food}">--修改请选择其他--</option>
+                                            <option value="0" >无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        保洁:</td><td><select name="clean" style="width:40px">
+                                            <option value="{$data.clean}" selected="selected">{$data.clean}</option>
+                                <option value="{$data.clean}">--修改请选择其他--</option>
+                                            <option value="0" >无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        代购:</td><td><select name="buy_agent" style="width:40px">
+                                            <option value="{$data.buy_agent}" selected="selected">{$data.buy_agent}</option>
+                                <option value="{$data.buy_agent}">--修改请选择其他--</option>
+                                            <option value="0" >无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        日间护理:</td><td><select size="1" name="daynurse" id="p_xuqiu_rjhl_times" style="width:40px">
+                                            <option value="{$data.daynurse}" selected="selected">{$data.daynurse}</option>
+                                <option value="{$data.daynurse}">--修改请选择其他--</option>
+                                            <option value="0">无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        物业维修:</td><td><select name="repair" style="width:40px">
+                                            <option value="{$data.repair}" selected="selected">{$data.repair}</option>
+                                <option value="{$data.repair}">--修改请选择其他--</option>
+                                            <option value="0">无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr><td>
+                                        心理疏导:</td><td><select name="talk" style="width:40px">
+                                            <option value="{$data.talk}" selected="selected">{$data.talk}</option>
+                                <option value="{$data.talk}">--修改请选择其他--</option>
+                                            <option value="0">无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        上门洗衣:</td><td><select name="washing" style="width:40px">
+                                            <option value="{$data.washing}" selected="selected">{$data.washing}</option>
+                                <option value="{$data.washing}">--修改请选择其他--</option>
+                                            <option value="0">无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>
+                                        法律援助:</td><td><select name="law" style="width:40px">
+                                            <option value="{$data.law}" selected="selected">{$data.law}</option>
+                                <option value="{$data.law}">--修改请选择其他--</option>
+                                            <option value="0">无</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td></tr>
+                                <tr><td>服务点数</td><td><input type="text" name="ticket" value="{$data.ticket}" /></td></tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr><td></td><td><input type="submit" value="更新" /><input type="reset" value="清空" />
+                            <input type="hidden" name="id" value="{$data.id}" /></td></tr>
+                </table>
+            </form>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>
+
+
+ 

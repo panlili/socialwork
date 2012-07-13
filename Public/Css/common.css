@@ -1,0 +1,269 @@
+﻿*{margin:0;padding:0;}
+img{border:0;}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    background-color: #F0F1F4;
+}
+
+/*div#container*/
+#container{
+    margin-top: 0px;
+    /*    width: 1400px;*/
+}
+
+/*div header*/
+#header {
+    width: 100%;
+    height: 80px;
+    clear: both;
+    padding: 0px;
+    border-bottom:  solid 2px rgb(82, 153, 0);
+    background-color: #EAF2D3;
+}
+#header p{
+    height: 80px;
+    line-height: 100px;
+    font-size: 26px;
+    font-family:  "黑体","宋体";
+}
+#header p img{
+    float: left;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/*div menu*/
+#menu{
+    float: left;
+    /*    width: 220px;  */
+    width: 15%;
+    background-color:  #A7C942;
+}
+#menu p{
+    font-family:  "黑体","宋体";
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+#menu ul{
+    width:100%;
+    padding: 0px;
+    margin: 0;
+    border-top: 1px solid #666;
+    list-style: none;
+}
+
+.main li{
+    /*    margin-left: 20px;*/
+    margin-left: 15%;
+}
+
+#menu a{
+    /*    padding-left: 40px;*/
+    padding-left: 18%;
+    padding-right: 15%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    display: block;
+    border-bottom: 1px dashed #666;
+    background-color:   #EAF2D3;
+    text-decoration: none;
+
+}
+#menu a img{
+    border:0;
+    margin-top: 10px;
+    margin-right: 8px;
+    float:left;
+}
+
+#menu .main ul{
+    display: none;
+}
+#menu .main ul li a{
+    font-size: 13px;
+}
+#menu a:hover {
+    font-size: 14px;
+    background: #e3e3e3;
+}
+
+/*div content*/
+#content{
+    width: 80%;
+    float: left;
+    margin-bottom: 30px;
+    padding: 10px 20px 40px 20px;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #006600;
+}
+
+#page_place{
+    /* float:left;*/
+    clear: right;
+    margin: 0 auto 5px auto;
+}
+
+#page_place p{
+    padding: 5px;
+    height: 25px;
+    line-height: 25px;
+    border: solid #006633 1px;
+    /*    display: block;*/
+    background-color: #EAF2D3;
+    text-align: left;
+    /*    width:auto;*/
+}
+
+fieldset {
+    border:1px solid green;
+    clear:left;
+}
+
+legend {
+    margin-left: 15px;
+    border:1px solid green;
+    color:green;
+    font-size:90%;
+    text-align:left;
+}
+
+.loading{
+    position: fixed;
+    top:5%;
+    left: 40%;
+}
+/*div footer*/
+#footer {
+    font-size: 15px;
+    width: 100%;
+    height: 35px;
+    line-height: 30px;
+    position: fixed;
+    bottom: -8px;
+    left: 0;
+    clear:both;
+    text-align: center;
+    border-top: solid 2px rgb(82, 153, 0);
+    background-image: url('../Image/subnav-gradient.png');
+    background-repeat: repeat-x;
+    z-index: 6000;
+}
+
+/* action message */
+#action_message {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    border:1px solid orange;
+    z-index: 12;  /*位于页面最上层，只要比0大都可以*/
+    text-align: center;
+    background-color: orange;
+}
+
+/* search form */
+div#search{
+    clear: both;
+    margin: 10px;
+    border-bottom: 1px;
+}
+
+/* 分页样式 */
+.newdata,.page{
+    float: right;
+    margin-top:10px;
+    padding:15px;
+    border:1px solid #e3e3e3;
+}
+
+/* table css */
+#common_table
+{
+    width:100%;
+    border-collapse:collapse;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#common_table td, #common_table th
+{
+    height: 30px;
+    font-size:13px;
+    border:1px solid #98bf21;
+    padding:3px 7px 2px 7px;
+}
+
+#common_table th
+{
+    font-size:13px;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:#A7C942;
+    color:#ffffff;
+}
+
+#common_table tr.alt td
+{
+
+    color:#000000;
+    background-color:#EAF2D3;
+}
+
+#common_table tr:hover
+{
+
+    color:#000000;
+    background-color:#EAF2D3;
+}
+
+#common_table2
+{
+    width:100%;
+    border-collapse:collapse;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#common_table2 td, #common_table2 th
+{
+    height: 20px;
+    font-size:13px;
+    border:1px solid #98bf21;
+    padding:3px 7px 2px 7px;
+}
+
+#common_table2 th
+{
+    font-size:13px;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:rgb(17, 142, 182);
+    color:#ffffff;
+}
+
+#common_table2 tr.alt td
+{
+
+    color:#000000;
+    background-color:#EAF2D3;
+}
+
+#common_table2 tr:hover
+{
+
+    color:#000000;
+    background-color:#EAF2D3;
+}
+
+.excel img{
+    border:none;
+    padding-left: 10px;
+}

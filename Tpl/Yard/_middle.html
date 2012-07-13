@@ -1,0 +1,50 @@
+<!--院落下房屋列表-->
+<present name="houselist">
+    <p>此院落下房屋列表:</p>
+    <!--ajax 分页，id=pages非常重要-->
+    <p id="pages">{$page}</p>
+    <table id="common_table2">
+        <thead>
+        <th>序号</th>  
+        <th>地址</th>
+        <th>居民数</th>
+        </thead>
+        <tbody>
+        <volist name="houselist" id="each">
+            <tr>
+                <td class="number"></td>
+                <td><a target="_blank" href="__APP__/House/{$each.id}">{$each.address}</a></td>
+                <td><a href="#" onclick="showCitizen('{$each.id}');return false;"><php>echo count($each['citizen']);</php></a>
+                 <a class="excel" href="__APP__/Citizen/toexcel/{$each.id}"><img src="__IMAGE__/icon_excel.gif" title="点击下载此房屋下的居民信息excel表格"/></a></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</present>
+
+<!--房屋下居民列表-->
+<present name="citizenlist">
+    <p>此房屋下居民列表:</p>
+    <table id="common_table2">
+        <thead>
+        <th>序号</th>  
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>成员关系</th>
+        <th>出生日期</th>
+        </thead>
+        <tbody>
+        <volist name="citizenlist" id="each">
+            <tr>
+                <td class="number"></td>
+                <td><a target="_blank" href="__APP__/Citizen/{$each.id}">{$each.name}</a></td>
+                <td>{$each.birthday|getAge}</td>
+                <td>{$each.sex}</td>
+                <td>{$each.relation_with_householder}</td>
+                <td>{$each.birthday}</td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</present>

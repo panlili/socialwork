@@ -1,0 +1,59 @@
+div#loginform{
+    margin: 5% auto;
+    width: 300px;
+    height: 250px;
+    padding-left: 190px;
+    padding-top: 20px;
+    font-family: 黑体,微软雅黑,宋体;
+    font-size: 17px;
+    color: #000;
+    background-image: url('../Image/login1.jpg');
+    background-repeat: no-repeat;
+    background-color:  #EAF2D3;
+    border:1px dashed #006633;
+}
+#loginform p{
+    height: 35px;
+    line-height: 34px;
+    margin-top: 10px;
+}
+#loginform pre{
+    
+    
+    height: 35px;
+    line-height: 34px;
+    margin-top:10px;
+    
+    text-align: center;
+}
+.submit{
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    width:100px;
+    height: 30px;
+    border: dashed #000 1px;
+    background-color: #95de93;
+
+}
+.submit:hover{
+    background-color: #95de00;
+    
+}
+label{
+    clear: both;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    float:left;
+    text-align: right;
+}
+.txtinput{
+    
+    border:0px;
+    border-bottom: 1px dashed #006633;
+    height: 28px;
+    width: 150px;
+    line-height: 28px;
+    background-color:  #EAF2D3;;
+}

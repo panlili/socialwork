@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Old.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/old.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+            <div id="search">
+                <form name="old_search" method="POST" action="__URL__/search">                    
+                    <select name="searchField"  >
+                        
+                        <option value="name">姓名</option>
+                        <option value="id_card">身份证号码</option>
+                        <option value="contact">联系电话</option>
+                        <option value="contact">子女联系电话</option>
+                        <option value="address" >地址</option>
+                    </select>
+                    <input type="text" name="searchKey" value="" size="30" />
+                    <input type="submit" value="查询" />
+                </form>
+            </div>
+            <table id="common_table">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        
+                        <th>身份证号</th>
+                        <th>性别</th>
+                        <th>民族</th>
+                        <th>生日</th>
+                        <th>联系电话</th>
+                        <th>子女联系电话</th>
+                        <th>亲友联系电话</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <volist name="list" id="each">
+                    <tr id="{$each.id}">
+                        <td class="number"></td>
+                        <td>{$each.name}</td>
+                        <td>{$each.birthday|getAge}</td>
+                        
+                        <td>{$each.id_card}</td>
+                        <td>{$each.sex}</td>
+                        <td>{$each.nation}</td>
+                        <td>{$each.birthday}</td>
+                        <td>{$each.contact}</td>
+                        <td>{$each.child_tel}</td>
+                        <td>{$each.friend_tel}</td>
+                        <td><a href="__URL__/{$each.id}">详细信息</a></td>
+                    </tr>
+                </volist>    
+                </tbody>
+            </table>
+            <p>
+                <span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span><span class="newdata"><a href="{:U('old/newone')}">添加老人信息</a></span>
+                <span class="page">{$page}</span></p>
+        </div>
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>

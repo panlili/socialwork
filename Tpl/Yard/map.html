@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/common.css,__CSS__/Yard.css,__CSS__/jquery.iviewer.css" />
+    <js href="__JS__/jquery-1.7.2.js,__JS__/jquery-ui-1.8.20.custom.min.js,__JS__/jquery.iviewer.js,__JS__/jquery.mousewheel.min.js,__JS__/common.js,__JS__/yard.js" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript">
+        $(document).ready(function(){                
+            $("#viewer2").iviewer(
+            {
+                src: "__IMAGE__/map.jpg"
+            });
+           
+            $("#viewer2 img").mousedown(function(event){
+                var t=$(this);
+                var xpercent;
+                var ypercent;
+                var xto;
+                var yto;
+                if (event.which==3) {
+                    event.preventDefault();
+                    xpercent=(event.pageX-t.offset().left)/parseInt(t.css("width"));
+                    ypercent=(event.pageY-t.offset().top)/parseInt(t.css("height"));
+                    alert(xpercent+" "+ypercent);
+                    
+                    xto=xpercent*parseInt(t.css("width"));
+                    yto=ypercent*parseInt(t.css("height"));
+                    alert(xto+" "+yto);
+                    //has to caluate the position in image
+                    //there are a good plugin jTag to do this
+                    var divt=$("<div>").css({left:xto,top:yto,"z-index":9999,"position":"absolute"});
+                    $("<img>").attr("src", "__IMAGE__/map/tag.png")
+                    .appendTo(divt);
+                    $("#viewer2 img").append(divt);
+                }
+               
+            });
+
+        });
+    </script>
+</head>
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        <div id="content">
+            <div class="wrapper">
+                <div id="viewer2" class="viewer"></div>
+            </div>
+        </div>
+        <include file="Public:footer" />
+</body>
+</html>

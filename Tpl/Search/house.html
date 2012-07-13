@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+        
+        <css href="__CSS__/common.css,__CSS__/Search.css" />
+        <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/search_house.js" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div id="container">
+            <include file="Public:header" />
+            <include file="Public:menu" />
+            <div id="content">
+                <div id="page_place"><p>当前位置：{$page_place}</p></div>
+                <div id="searchContainer">
+                    
+                        <form id="searchKey" action="" method="post">
+                            
+                            <table width="100%" border="0" id="common_table">
+                                
+                                <tr>
+                                    <th width="15%">条件连接方式</th>
+                                    <th width="25%">查询条件</th>
+                                    <th>查询词输入</th>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td><select class="skeyname" name="sKeyName0" ><option value="address">地址</option><option value="is_fit">人户一致@</option><option value="is_free">是否空闲@</option><option value="is_lowrent">是否廉租房@</option><option value="is_floor">是否是平房@</option><option value="is_afford">是否经济适用房@</option><option value="is_taiwan">是否台属@</option><option value="is_army">是否军属@</option><option value="is_fuel">是否燃油补贴</option><option value="contactor">联系人</option><option value="telephone">联系方式</option></select></td>
+                                    <td class="skeyvalue0"><input type="text" id="sValue0" name="sValue0"></input></td>
+                                </tr>
+                                
+                            </table> 
+                            <input type="button" id="addSearchKey" value="添加搜索条件"></input>
+                            <input type="button" id="delSearchKey" value="删除搜索条件"></input>
+                            <input type="button" id="dosearch" value="搜索"></input>
+                            <a href="__URL__/housetoexel"><img src="__IMAGE__/icon_excel.gif"></img>导出Excel</a>
+                            
+                        </form>
+                    
+                </div>
+                <div>搜索结果在页面最多显示50条，如果需要查看所有数据，请点击“导出excel”将查询结果另存为一个excel文件查看。</div>
+                <div id="searchResult"></div>
+                
+            </div>
+            <include file="Public:footer" />
+        </div>
+    </body>
+</html>
