@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <css href="__CSS__/common.css,__CSS__/{$Think.MODULE_NAME}.css" />
+    <!-- javascript library: jquery, self-defined library -->
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/map.js,__JS__/{$Think.MODULE_NAME}.js" />
+    <!-- end javascript -->
+</head>
+<body>
+    <div id="container">
+        <include file="Public:header" />
+        <include file="Public:menu" />
+        {__CONTENT__}
+        <include file="Public:footer" />
+    </div>
+</body>
+</html>
