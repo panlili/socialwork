@@ -1,50 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/Ngo.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/ngo.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
-            <div id="search">
-                <form name="ngo_search" method="POST" action="__URL__/search">                    
-                    <select name="searchField"  >
-                        <option value="name" >组织名</option>
-                        <option value="chairman">负责人</option>
-                        <option value="scope">业务内容</option>
-                        <option value="introduce">详细信息</option>
-                    </select>
-                    <input type="text" name="searchKey" value="" size="30" />
-                    <input type="submit" value="查询" />
-                </form>
-            </div>
-            <table id="common_table">
-                <thead>
-                    <tr>
-                        <!-- 6列 -->
-                        <th>序号</th><th>组织名</th><th>业务内容</th><th>负责人</th><th>成立日期</th><th>登记备案机关</th><th>详细信息</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <volist name="list" id="each">
-                    <tr>
-                        <td class="number"><!-- 行号 --></td>
-                        <td>{$each.name}</td><td>{$each.scope}</td><td>{$each.chairman}</td>
-                        <td>{$each.register_date}</td><td>{$each.registerplace}</td>
-                        <td><a href="__URL__/{$each.id}">详细信息</a></td>            
-                    </tr>
-                </volist>
-                </tbody>
-            </table>
-            <p><span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span><span class="newdata"><a href="{:U('Ngo/newone')}">添加新社会组织信息</a></span><span class="page">{$page}</span></p>
-        </div>
-        <include file="Public:footer" />
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+    <div id="search">
+        <form name="ngo_search" method="POST" action="__URL__/search">                    
+            <select name="searchField"  >
+                <option value="name" >组织名</option>
+                <option value="chairman">负责人</option>
+                <option value="scope">业务内容</option>
+                <option value="introduce">详细信息</option>
+            </select>
+            <input type="text" name="searchKey" value="" size="30" />
+            <input type="submit" value="查询" />
+        </form>
     </div>
-</body>
-</html>
+    <table id="common_table">
+        <thead>
+            <tr>
+                <!-- 6列 -->
+                <th>序号</th><th>组织名</th><th>业务内容</th><th>负责人</th><th>成立日期</th><th>登记备案机关</th><th>详细信息</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="list" id="each">
+            <tr>
+                <td class="number"><!-- 行号 --></td>
+                <td>{$each.name}</td><td>{$each.scope}</td><td>{$each.chairman}</td>
+                <td>{$each.register_date}</td><td>{$each.registerplace}</td>
+                <td><a href="__URL__/{$each.id}">详细信息</a></td>            
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    <p><span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span><span class="newdata"><a href="{:U('Ngo/newone')}">添加新社会组织信息</a></span><span class="page">{$page}</span></p>
+</div>

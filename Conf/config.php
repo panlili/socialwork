@@ -1,6 +1,8 @@
 <?php
 
 return array(
+    'LAYOUT_ON' => true,
+    'LAYOUT_NAME' => 'layout',
     //'SHOW_PAGE_TRACE' => true, //开启页面跟踪
     'URL_CASE_INSENSITIVE' => true, //忽略URL中大小写
     'URL_MODEL' => 1, //PATHINFO模式
@@ -9,8 +11,8 @@ return array(
     'DB_HOST' => 'localhost',
     'DB_NAME' => 'socialwork',
     'DB_USER' => 'root',
-    'DB_PWD' => '57419',
-    //'DB_PWD' => 'root',
+    //'DB_PWD' => '57419',
+    'DB_PWD' => 'root',
     //'DB_PWD' => 'cuitcuit',
     'DB_PORT' => '3306',
     'DB_PREFIX' => 'sjf_',
@@ -70,7 +72,6 @@ return array(
         '/^House\/ctable_(\d+)_(\d+)$/' => 'House/ctable?yardid=:1&address_1=:2',
         '/^House\/ctable_(\d+)_(\d+)_(\d+)$/' => 'House/ctable?yardid=:1&address_1=:2&address_2=:3',
         '/^House\/ctable_(\d+)_(\d+)_(\d+)_(\d+)$/' => 'House/ctable?yardid=:1&address_1=:2&address_2=:3&address_3=:4',
-
         //controller: Organization
         'Organization/:id\d' => 'Organization/read',
         'Organization/edit/:id\d' => 'Organization/edit',
@@ -102,7 +103,6 @@ return array(
         'Service/:id\d' => 'Service/read',
         'Service/edit/:id\d' => 'Service/edit',
         'Service/delete/:id\d' => 'Service/delete',
-
     ),
 );
 ?>
