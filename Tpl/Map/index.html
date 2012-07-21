@@ -20,40 +20,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <style type="text/css">
             #mapcontainer{
-    background-color: gray;
-/*    position: absolute;
-    display: block;*/
-    height: {$mapset['mapAreaHeight']}px;
-    width:{$mapset['mapAreaWidth']}px;
-    overflow: hidden;
-}
-#map{
-/*    background-color: green;*/
-   position: relative;
-/*    display: block;*/
-    height: {$mapset['mapAreaHeight']}px;
-    width:{$mapset['mapAreaWidth']}px;
-    top:0;
-    left:0;
-    z-index: 2;
-}
-#dragmap{
-/*    background-color: red;*/
-    background-image: url('../Image/drag-back.png');
-    position: absolute;
-    height: {$mapset['mapAreaHeight']}px;
-    width:{$mapset['mapAreaWidth']}px;
-    top:0;
-    left: 0;
-/*    display: block; 
-    line-height: 300px;*/
-    z-index: 999;
-    cursor: pointer;
-    
-}
+                background-color: gray;
+                height: {$mapset['mapAreaHeight']}px;
+            width:{$mapset['mapAreaWidth']}px;
+            overflow: hidden;
+            }
+            #map{
+                position: relative;
+                height: {$mapset['mapAreaHeight']}px;
+            width:{$mapset['mapAreaWidth']}px;
+            top:0;
+            left:0;
+            z-index: 2;
+            }
+            #dragmap{
+                background-image: url('../Image/drag-back.png');
+                position: absolute;
+                height: {$mapset['mapAreaHeight']}px;
+            width:{$mapset['mapAreaWidth']}px;
+            top:0;
+            left: 0;
+            z-index: 999;
+            cursor: pointer;
+            }
         </style>
     </head>
-    <body>
+    <body onload="init();">
         <div id="container">
             <include file="Public:header" />
             <include file="Public:menu" />
