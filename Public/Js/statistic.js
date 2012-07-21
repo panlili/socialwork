@@ -1,12 +1,3 @@
-$(function(){
-    //$("#test").visualize({type:'pie'});
-    $("#test").visualize({
-        type:'bar'
-    });
-//$("#test").visualize({type:'area'});
-//$("#test").visualize({type:'line'});
-});
-
 // 婚姻情况统计
 function marryinfo() {
     $(".ploading").show();

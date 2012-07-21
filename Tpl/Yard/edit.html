@@ -1,45 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/yard.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/yard.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>            
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>            
 
-            <form action="__URL__/update" method="post">
-                <table id="common_table" style="width: auto;clear:both">
-                    <tr><td>所在街道：</td>
-                        <td><select name="street_id">                                   
-                                <volist name="streetlist" id="street">
-                                    <eq name="street.id" value="$data.street.id">
-                                    <option value="{$data.street.id}" selected="selected">{$data.street.name}</option>
-                                    <else/>
-                                    <option value="{$street.id}">{$street.name}</option>
-                                    </eq>
-                                </volist>
-                            </select></td>
-                    </tr>
-                    <tr><td>院落名称*：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
-                    <tr><td>地址*：</td><td><input type="text" name="address" value="{$data.address}" /><br/>
-                        请删除前面对应的街道名，填写对应的地址，如125号</td></tr>
-                    <tr><td>地图关联号：</td><td><input type="text" name="mapMark_number" value="{$data.mapMark_number}"/></td></tr>
-                    <tr><td>楼栋数：</td><td><input type="text" name="building_count" value="{$data.building_count}"/></td></tr>
-                    <tr><td>建筑年代：</td><td><input type="text" name="building_age" value="{$data.building_age}"/></td></tr>
-                    <tr><td>建筑面积：</td><td><input type="text" name="area" value="{$data.area}"/></td></tr>
-                    <tr><td>自治管理机构：</td><td><input type="text" name="admin_org" value="{$data.admin_org}"/></td></tr>
-                    <tr><td></td><td><input type="submit" value="更新" name="submit" /><input type="reset" value="清空" />
-                            <input type="hidden" name="id" value="{$data.id}" /></td></tr>
-                </table>
-            </form>
-        </div>  
-        <include file="Public:footer" />
-    </div> 
-</body>
-</html>
+    <form action="__URL__/update" method="post">
+        <table id="common_table" style="width: auto;clear:both">
+            <tr><td>所在街道：</td>
+                <td><select name="street_id">                                   
+                        <volist name="streetlist" id="street">
+                            <eq name="street.id" value="$data.street.id">
+                            <option value="{$data.street.id}" selected="selected">{$data.street.name}</option>
+                            <else/>
+                            <option value="{$street.id}">{$street.name}</option>
+                            </eq>
+                        </volist>
+                    </select></td>
+            </tr>
+            <tr><td>院落名称*：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
+            <tr><td>地址*：</td><td><input type="text" name="address" value="{$data.address}" /><br/>
+                    请删除前面对应的街道名，填写对应的地址，如125号</td></tr>
+            <tr><td>地图关联号：</td><td><input type="text" name="mapMark_number" value="{$data.mapMark_number}"/></td></tr>
+            <tr><td>楼栋数：</td><td><input type="text" name="building_count" value="{$data.building_count}"/></td></tr>
+            <tr><td>建筑年代：</td><td><input type="text" name="building_age" value="{$data.building_age}"/></td></tr>
+            <tr><td>建筑面积：</td><td><input type="text" name="area" value="{$data.area}"/></td></tr>
+            <tr><td>自治管理机构：</td><td><input type="text" name="admin_org" value="{$data.admin_org}"/></td></tr>
+            <tr><td></td><td><input type="submit" value="更新" name="submit" /><input type="reset" value="清空" />
+                    <input type="hidden" name="id" value="{$data.id}" /></td></tr>
+        </table>
+    </form>
+</div>  

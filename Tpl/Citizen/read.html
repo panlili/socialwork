@@ -1,46 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/Citizen.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/citizen.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-            <table id="common_table" style="width: auto;clear:both">
-                <tr><td>姓名：</td><td>{$data.name}</td></tr>
-                <tr><td>与户主关系：</td><td>{$data.relation_with_householder}</td></tr>
-                <tr><td>身份证号码：</td><td>{$data.id_card}</td></tr>
-                <tr><td>性别：</td><td>{$data.sex}</td></tr>
-                <tr><td>生日：</td><td>{$data.birthday}</td></tr>
-                <tr><td>年龄：</td><td>{$data.birthday|getAge}</td></tr>
-                <tr><td>民族：</td><td>{$data.nation}</td></tr>
-                <tr><td>是否领取计划生育指标：</td><td>{$data.is_fertility}</td></tr>
-                <tr><td>是否特殊人群：</td><td>{$data.is_special}</td></tr>
-                <tr><td>是否低保：</td><td>{$data.is_low_level}</td></tr>
-                <tr><td>是否残疾：</td><td>{$data.is_disability}</td></tr>
-                <tr><td>是否廉租房：</td><td>{$data.is_low_rent}</td></tr>
-                <tr><td>是否长寿金：</td><td>{$data.is_long_live}</td></tr>
-                <tr><td>婚姻情况：</td><td>{$data.marry_info}</td></tr>
-                <tr><td>文化程度：</td><td>{$data.education}</td></tr>
-                <tr><td>政治面貌：</td><td>{$data.political_status}</td></tr>
-                <tr><td>就业情况：</td><td>{$data.employee}</td></tr>
-                <tr><td>户口地址：</td><td>{$data.household}</td></tr>
-                <tr><td>联系电话：</td><td>{$data.telephone}</td></tr>
-                <tr><td>采集日期：</td><td>{$data.collection_date}</td></tr>
-                <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
-                        <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
-                            删除</a>
-                    </td></tr>
-            </table>
-        </div>
-        <include file="Public:footer" />
-    </div>
-</body>
-</html>
+    <table id="common_table" style="width: auto;clear:both">
+        <tr><td>姓名：</td><td>{$data.name}</td></tr>
+        <tr><td>与户主关系：</td><td>{$data.relation_with_householder}</td></tr>
+        <tr><td>身份证号码：</td><td>{$data.id_card}</td></tr>
+        <tr><td>性别：</td><td>{$data.sex}</td></tr>
+        <tr><td>生日：</td><td>{$data.birthday}</td></tr>
+        <tr><td>年龄：</td><td>{$data.birthday|getAge}</td></tr>
+        <tr><td>民族：</td><td>{$data.nation}</td></tr>
+        <tr><td>是否领取计划生育指标：</td><td>{$data.is_fertility}</td></tr>
+        <tr><td>是否特殊人群：</td><td>{$data.is_special}</td></tr>
+        <tr><td>是否低保：</td><td>{$data.is_low_level}</td></tr>
+        <tr><td>是否残疾：</td><td>{$data.is_disability}</td></tr>
+        <tr><td>是否廉租房：</td><td>{$data.is_low_rent}</td></tr>
+        <tr><td>是否长寿金：</td><td>{$data.is_long_live}</td></tr>
+        <tr><td>婚姻情况：</td><td>{$data.marry_info}</td></tr>
+        <tr><td>文化程度：</td><td>{$data.education}</td></tr>
+        <tr><td>政治面貌：</td><td>{$data.political_status}</td></tr>
+        <tr><td>就业情况：</td><td>{$data.employee}</td></tr>
+        <tr><td>户口地址：</td><td>{$data.household}</td></tr>
+        <tr><td>联系电话：</td><td>{$data.telephone}</td></tr>
+        <tr><td>采集日期：</td><td>{$data.collection_date}</td></tr>
+        <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
+                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                    删除</a>
+            </td></tr>
+    </table>
+</div>

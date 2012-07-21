@@ -1,65 +1,49 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/Yard.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/yard.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
-            <div id="search">
-                <form name="yard_search" method="POST" action="__URL__/search">                    
-                    <select name="searchField"  >
-                        <option value="name" >院落名</option>
-                        <option value="number">院落编号</option>
-                        <option value="address">院落地址</option>
-                    </select>
-                    <input type="text" name="searchKey" value="" size="30" />
-                    <input type="submit" value="查询" />
-                </form>
-            </div>
-            <table id="common_table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>所属街道</th>
-                        <th>院落名</th>
-                        <!--  <th>院落编号</th> -->
-                        <th>院落地址</th>
-                        <th>院落楼栋数</th>
-                        <th>建筑年代</th>
-                        <th>建筑面积</thni>
-                        <th>自治组织机构</th>
-                        <!-- <th>管理员</th>-->
-                        <th>详细信息</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <volist name="list" id="each">
-                    <tr id="{$each.id}">
-                        <td class="number"></td>
-                        <td>{$each.street.name}</td>
-                        <td>{$each.name}</td>
-                        <!-- <td>{$each.number}</td> -->
-                        <td>{$each.address}</td>
-                        <td>{$each.building_count}</td>
-                        <td>{$each.building_age}</td>
-                        <td>{$each.area}</td>
-                        <td>{$each.admin_org}</td>
-                        <!--  <td>{$each.admin_name}</td>-->
-                        <td><a href="__URL__/{$each.id}">详细信息</a></td>
-                    </tr>
-                </volist>    
-                </tbody>
-            </table> 
-            <p><span class="newdata"><a href="{:U('Yard/newone')}">添加新院落信息</a></span><span class="page">{$page}</span></p>
-        </div>
-        <include file="Public:footer" />
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+    <div id="search">
+        <form name="yard_search" method="POST" action="__URL__/search">                    
+            <select name="searchField"  >
+                <option value="name" >院落名</option>
+                <option value="number">院落编号</option>
+                <option value="address">院落地址</option>
+            </select>
+            <input type="text" name="searchKey" value="" size="30" />
+            <input type="submit" value="查询" />
+        </form>
     </div>
-</body>
-</html>
+    <table id="common_table">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>所属街道</th>
+                <th>院落名</th>
+                <!--  <th>院落编号</th> -->
+                <th>院落地址</th>
+                <th>院落楼栋数</th>
+                <th>建筑年代</th>
+                <th>建筑面积</thni>
+                <th>自治组织机构</th>
+                <!-- <th>管理员</th>-->
+                <th>详细信息</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="list" id="each">
+            <tr id="{$each.id}">
+                <td class="number"></td>
+                <td>{$each.street.name}</td>
+                <td>{$each.name}</td>
+                <!-- <td>{$each.number}</td> -->
+                <td>{$each.address}</td>
+                <td>{$each.building_count}</td>
+                <td>{$each.building_age}</td>
+                <td>{$each.area}</td>
+                <td>{$each.admin_org}</td>
+                <!--  <td>{$each.admin_name}</td>-->
+                <td><a href="__URL__/{$each.id}">详细信息</a></td>
+            </tr>
+        </volist>    
+        </tbody>
+    </table> 
+    <p><span class="newdata"><a href="{:U('Yard/newone')}">添加新院落信息</a></span><span class="page">{$page}</span></p>
+</div>

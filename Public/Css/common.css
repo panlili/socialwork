@@ -1,5 +1,13 @@
-﻿*{margin:0;padding:0;}
-img{border:0;}
+#adduser{
+    margin-top: 10px;
+}
+
+*{
+    margin:0;padding:0;
+}
+img{
+    border:0;
+}
 body{
     margin: 0px;
     padding: 0px;

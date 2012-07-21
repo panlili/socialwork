@@ -1,47 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/Street.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/street.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">    
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
-            <div id="forierightadded">
-                <div id="content_left">
-                    <table id="common_table">
-                        <thead>
-                        <th>序号</th>
-                        <th>街道名</th>
-                        <th>院落</th>
-                        <th>国家机关</th>
-                        <th>企事业单位</th>
-                        <th>店铺</th>
-                        </thead>
-                        <tbody>
-                        <volist name="list" id="each">
-                            <tr id="{$each.id}">
-                                <td class="number"></td>
-                                <td>{$each.name}</td>
-                                <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
-                                <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
-                                <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
-                                <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
-                            </tr>
-                        </volist>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="content_middle"></div>
-                <div class="loading" style="display: none;"><img src="__IMAGE__/ajax-loading-biga.gif"></div>
-            </div>
+<div id="content">    
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+    <div id="forierightadded">
+        <div id="content_left">
+            <table id="common_table">
+                <thead>
+                <th>序号</th>
+                <th>街道名</th>
+                <th>院落</th>
+                <th>国家机关</th>
+                <th>企事业单位</th>
+                <th>店铺</th>
+                </thead>
+                <tbody>
+                <volist name="list" id="each">
+                    <tr id="{$each.id}">
+                        <td class="number"></td>
+                        <td>{$each.name}</td>
+                        <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
+                        <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
+                        <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
+                        <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
         </div>
-        <include file="Public:footer" />
+        <div id="content_middle"></div>
+        <div class="loading" style="display: none;"><img src="__IMAGE__/ajax-loading-biga.gif"></div>
     </div>
-</body>
-</html>
+</div>

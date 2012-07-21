@@ -1,72 +1,55 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/House.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/house.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
-            <div id="search">
-                <form name="house_search" method="POST" action="__URL__/search">                    
-                    <select name="searchField"  >
-                        <option value="address" >地址</option>
-                        <option value="contactor">联系人</option>
-                        <option value="telephone">联系人电话</option>
-                    </select>
-                    <input type="text" name="searchKey" value="" size="30" />
-                    <input type="submit" value="查询" />
-                </form>
-            </div>
-            <table id="common_table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>房屋地址</th>
-                        <th>是否空闲</th>
-                        <th>是否廉租房</th>
-                        <th>家庭人口数</th>
-                        <th>联系人</th>
-                        <th>联系人电话</th>
-                        <th>是否平房</th>
-                        <!--   <th>楼栋号</th>
-                           <th>单元号</th>
-                           <th>楼层</th>
-                           <th>房屋号</th>
-                           <th>平房号</th> -->
-                        <th colspan="2">操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <volist name="list" id="each">
-                    <tr id="{$each.id}">
-                        <td class="number"></td>
-                        <td>{$each.address}</td>
-                        <td>{$each.is_free}</td>
-                        <td>{$each.is_lowrent}</td>
-                        <td><php>echo count($each['citizen'])</php></td>
-                    <td>{$each.contactor}</td>
-                    <td>{$each.telephone}</td>
-                    <td>{$each.is_floor}</td>
-                    <!--  <td>{$each.address_1}</td>
-                      <td>{$each.address_2}</td>
-                      <td>{$each.address_3}</td>
-                      <td>{$each.address_4}</td>
-                      <td>{$each.address_other}</td> -->
-                    <td><a href="__URL__/{$each.id}">详情</a></td><td><a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td>
-                    </tr>
-                </volist>    
-                </tbody>
-            </table>
-            <p><span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a></span><span class="page">{$page}</span></p>
-        </div>
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+    <div id="search">
+        <form name="house_search" method="POST" action="__URL__/search">                    
+            <select name="searchField"  >
+                <option value="address" >地址</option>
+                <option value="contactor">联系人</option>
+                <option value="telephone">联系人电话</option>
+            </select>
+            <input type="text" name="searchKey" value="" size="30" />
+            <input type="submit" value="查询" />
+        </form>
     </div>
-<include file="Public:footer" />
+    <table id="common_table">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>房屋地址</th>
+                <th>是否空闲</th>
+                <th>是否廉租房</th>
+                <th>家庭人口数</th>
+                <th>联系人</th>
+                <th>联系人电话</th>
+                <th>是否平房</th>
+                <!--   <th>楼栋号</th>
+                   <th>单元号</th>
+                   <th>楼层</th>
+                   <th>房屋号</th>
+                   <th>平房号</th> -->
+                <th colspan="2">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="list" id="each">
+            <tr id="{$each.id}">
+                <td class="number"></td>
+                <td>{$each.address}</td>
+                <td>{$each.is_free}</td>
+                <td>{$each.is_lowrent}</td>
+                <td><php>echo count($each['citizen'])</php></td>
+            <td>{$each.contactor}</td>
+            <td>{$each.telephone}</td>
+            <td>{$each.is_floor}</td>
+            <!--  <td>{$each.address_1}</td>
+              <td>{$each.address_2}</td>
+              <td>{$each.address_3}</td>
+              <td>{$each.address_4}</td>
+              <td>{$each.address_other}</td> -->
+            <td><a href="__URL__/{$each.id}">详情</a></td><td><a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td>
+            </tr>
+        </volist>    
+        </tbody>
+    </table>
+    <p><span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a></span><span class="page">{$page}</span></p>
 </div>
-</body>
-</html>

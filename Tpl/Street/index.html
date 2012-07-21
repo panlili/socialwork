@@ -1,59 +1,43 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/Street.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/street.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">    
-            <div id="page_place"><p>当前位置：{$page_place} （点击街道名称修改街道名，使用回车提交修改，使用ESC键取消修改）</p></div>
-            <div id="search">
-                <form name="street_search" method="POST" action="__URL__/search">                    
-                    请输入街道名：
-                    <input type="text" name="searchKey" value="" size="30" />
-                    <input type="submit" value="查询"/>
-                </form>
-            </div>
-            <table id="common_table">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th style="width:30%;">街道名</th>
-                        <th>街道编码</th>
-                        <!-- <th>街道下属机构</th> -->
-                        <th>操作</th></tr>
-                </thead>
-                <tbody>
-                <volist name="list" id="each">
-                    <tr id="{$each.id}">
-                        <td class="number"></td>
-                        <td class="street_name">{$each.name}</td>
-                        <td>{$each.id}</td>
-                        <!-- 
-                        <td>
-                            <a href="__APP__/Organization/Street/{$each.id}">其下有单位 <php>echo count($each['organization'])</php> 家,</a>
-                            <a href="__APP__/Store/Street/{$each.id}">店铺 <php>echo count($each['store'])</php> 个</a>
-                        </td> 
-                        -->
-                        <td><a href="javascript:delete_street({$each.id})">删除</a></td>
-                    </tr>
-                </volist>    
-                </tbody>
-            </table>       
-            <p><span class="newdata"><a href="#">添加新街道</a></span><span class="page">{$page}</span></p>
-            <div id="addstreet">
-                <form name="addstreet" action="__URL__/insert" method="POST">
-                    街道名:<input type="text" name="name" value="" />
-                    <input type="submit" value="添加"/>
-                </form>
-            </div></p>
-        </div>
-        <include file="Public:footer" />
+<div id="content">    
+    <div id="page_place"><p>当前位置：{$page_place} （点击街道名称修改街道名，使用回车提交修改，使用ESC键取消修改）</p></div>
+    <div id="search">
+        <form name="street_search" method="POST" action="__URL__/search">                    
+            请输入街道名：
+            <input type="text" name="searchKey" value="" size="30" />
+            <input type="submit" value="查询"/>
+        </form>
     </div>
-</body>
-</html>
+    <table id="common_table">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th style="width:30%;">街道名</th>
+                <th>街道编码</th>
+                <!-- <th>街道下属机构</th> -->
+                <th>操作</th></tr>
+        </thead>
+        <tbody>
+        <volist name="list" id="each">
+            <tr id="{$each.id}">
+                <td class="number"></td>
+                <td class="street_name">{$each.name}</td>
+                <td>{$each.id}</td>
+                <!-- 
+                <td>
+                    <a href="__APP__/Organization/Street/{$each.id}">其下有单位 <php>echo count($each['organization'])</php> 家,</a>
+                    <a href="__APP__/Store/Street/{$each.id}">店铺 <php>echo count($each['store'])</php> 个</a>
+                </td> 
+                -->
+                <td><a href="javascript:delete_street({$each.id})">删除</a></td>
+            </tr>
+        </volist>    
+        </tbody>
+    </table>       
+    <p><span class="newdata"><a href="#">添加新街道</a></span><span class="page">{$page}</span></p>
+    <div id="addstreet">
+        <form name="addstreet" action="__URL__/insert" method="POST">
+            街道名:<input type="text" name="name" value="" />
+            <input type="submit" value="添加"/>
+        </form>
+    </div></p>
+</div>

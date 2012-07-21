@@ -1,31 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-        
-        <css href="__CSS__/common.css,__CSS__/Camera.css" />
-        <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/camera.js" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
-    <body>
-        <div id="container">
-            <include file="Public:header" />
-            <include file="Public:menu" />
-            <div id="content">
-                <div id="page_place"><p>当前位置：{$page_place}</p></div>
-                <table id="common_table" style="width: auto;clear:both">
-                    <tr><td>服务类型：</td><td>{$data.type}</td></tr>
-                    <tr><td>服务名：</td><td>{$data.name}</td></tr>
-                    <tr><td>消耗点数：</td><td>{$data.cost}</td></tr>
-                    <tr><td>服务描述：</td><td>{$data.desc}</td></tr>
-                    
-                    <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
-                        <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
-                            删除</a>
-                    </td></tr>
-                </table>
-            </div>
-            <include file="Public:footer" />
-        </div>
-    </body>
-</html>
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+    <table id="common_table" style="width: auto;clear:both">
+        <tr><td>服务类型：</td><td>{$data.type}</td></tr>
+        <tr><td>服务名：</td><td>{$data.name}</td></tr>
+        <tr><td>消耗点数：</td><td>{$data.cost}</td></tr>
+        <tr><td>服务描述：</td><td>{$data.desc}</td></tr>
+
+        <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
+                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                    删除</a>
+            </td></tr>
+    </table>
+</div>

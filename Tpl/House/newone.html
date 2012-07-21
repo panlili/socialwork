@@ -1,46 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/House.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/house.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-            <form action="__URL__/add" method="post">
-                <table id="common_table" style="width: auto;clear:both">
-                    <tr><td>所在院落：</td>
-                        <td><select name="yard_id">
-                                <volist name="yardList" id="yard"><option value="{$yard.id}">{$yard.name}</option></volist>                                  </volist>
-                            </select></td>
-                    </tr>
-                    <tr><td>房屋地址:</td><td><input type="text" name="address" value="根据楼栋、单元号等自动生成" disabled="disable" style="width:200px;"/></td></tr>
-                    <tr><td>人户是否一致:</td><td><input type="checkbox" name="is_fit" value="是"/></td></tr>
-                    <tr><td>是否空闲:</td><td><input type="checkbox" name="is_free" value="是"/></td></tr>
-                    <tr><td>是否廉租房:</td><td><input type="checkbox" name="is_lowrent" value="是"/></td></tr>
-                    <tr><td>是否购买经济适用房:</td><td><input type="checkbox" name="is_afford" value="是"/></td></tr>
-                    <tr><td>是否台属:</td><td><input type="checkbox" name="is_taiwan" value="是"/></td></tr>
-                    <tr><td>是否军属:</td><td><input type="checkbox" name="is_army" value="是"/></td></tr>
-                    <tr><td>是否领取燃油补贴:</td><td><input type="checkbox" name="is_fuel" value="是"/></td></tr>
-                    <tr><td>联系人:</td><td><input type="text" name="contactor" /></td></tr>
-                    <tr><td>联系人电话:</td><td><input type="text" name="telephone" /></td></tr>
-                    <tr><td>是否平房?:</td><td><input type="checkbox" name="is_floor" class="onefloor" /></td></tr>
-                    <tr><td>楼栋号:</td><td><input type="text" name="address_1" /></td></tr>
-                    <tr><td>单元号:</td><td><input type="text" name="address_2" /></td></tr>
-                    <tr><td>楼层:</td><td><input type="text" name="address_3" /></td></tr>
-                    <tr><td>房屋号:</td><td><input type="text" name="address_4" /></td></tr>
-                    <tr id="onefloor" style="display: none;"><td>平房（附</td><td><input type="text" name="address_other" />号）</td></tr>
-                    <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
-                </table>
-            </form>
-        </div>
-        <include file="Public:footer" />
-    </div>
-</body>
-</html>
+    <form action="__URL__/add" method="post">
+        <table id="common_table" style="width: auto;clear:both">
+            <tr><td>所在院落：</td>
+                <td><select name="yard_id">
+                        <volist name="yardList" id="yard"><option value="{$yard.id}">{$yard.name}</option></volist>                                  </volist>
+                    </select></td>
+            </tr>
+            <tr><td>房屋地址:</td><td><input type="text" name="address" value="根据楼栋、单元号等自动生成" disabled="disable" style="width:200px;"/></td></tr>
+            <tr><td>人户是否一致:</td><td><input type="checkbox" name="is_fit" value="是"/></td></tr>
+            <tr><td>是否空闲:</td><td><input type="checkbox" name="is_free" value="是"/></td></tr>
+            <tr><td>是否廉租房:</td><td><input type="checkbox" name="is_lowrent" value="是"/></td></tr>
+            <tr><td>是否购买经济适用房:</td><td><input type="checkbox" name="is_afford" value="是"/></td></tr>
+            <tr><td>是否台属:</td><td><input type="checkbox" name="is_taiwan" value="是"/></td></tr>
+            <tr><td>是否军属:</td><td><input type="checkbox" name="is_army" value="是"/></td></tr>
+            <tr><td>是否领取燃油补贴:</td><td><input type="checkbox" name="is_fuel" value="是"/></td></tr>
+            <tr><td>联系人:</td><td><input type="text" name="contactor" /></td></tr>
+            <tr><td>联系人电话:</td><td><input type="text" name="telephone" /></td></tr>
+            <tr><td>是否平房?:</td><td><input type="checkbox" name="is_floor" class="onefloor" /></td></tr>
+            <tr><td>楼栋号:</td><td><input type="text" name="address_1" /></td></tr>
+            <tr><td>单元号:</td><td><input type="text" name="address_2" /></td></tr>
+            <tr><td>楼层:</td><td><input type="text" name="address_3" /></td></tr>
+            <tr><td>房屋号:</td><td><input type="text" name="address_4" /></td></tr>
+            <tr id="onefloor" style="display: none;"><td>平房（附</td><td><input type="text" name="address_other" />号）</td></tr>
+            <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
+        </table>
+    </form>
+</div>

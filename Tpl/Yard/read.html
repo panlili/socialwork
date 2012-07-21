@@ -1,161 +1,145 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/common.css,__CSS__/Yard.css" />
-    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/yard.js" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-    <div id="container">
-        <include file="Public:header" />
-        <include file="Public:menu" />
-        <div id="content">
-            <div id="page_place"><p>当前位置：{$page_place}</p></div>
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-            <table id="common_table" style="width: auto;clear:both">
-                <tr><td>院落名称：</td><td>{$data.name}</td></tr>
-                <tr><td>院落编号：</td><td>{$data.number}</td></tr>
-                <tr><td>地址：</td><td>{$data.address}</td></tr>
-                <tr><td>所在街道：</td><td>{$data.street.name}</td></tr>
-                <tr><td>建筑年代：</td><td>{$data.building_age}</td></tr>
-                <tr><td>建筑面积：</td><td>{$data.area}</td></tr>
-                <tr><td>自治组织机构：</td><td>{$data.admin_org}</td></tr>
-                <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
-                        <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
-                            删除</a>
-                    </td></tr>
-                <tr><td><!--  end of yard basic information  --></td></tr> 
+    <table id="common_table" style="width: auto;clear:both">
+        <tr><td>院落名称：</td><td>{$data.name}</td></tr>
+        <tr><td>院落编号：</td><td>{$data.number}</td></tr>
+        <tr><td>地址：</td><td>{$data.address}</td></tr>
+        <tr><td>所在街道：</td><td>{$data.street.name}</td></tr>
+        <tr><td>建筑年代：</td><td>{$data.building_age}</td></tr>
+        <tr><td>建筑面积：</td><td>{$data.area}</td></tr>
+        <tr><td>自治组织机构：</td><td>{$data.admin_org}</td></tr>
+        <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
+                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                    删除</a>
+            </td></tr>
+        <tr><td><!--  end of yard basic information  --></td></tr> 
 
-                <!-- 院落管理情况 begin-->
-                <tr><td><strong>院落管理情况：</strong></td><td><span id="addadminright" style="color:red;display: none;">添加成功！</span></td></tr>
-                <volist name="admindata" id="each">
-                    <tr id="{$each.id}"><td>{$each.job}</td><td>{$each.name}</td><td>{$each.telephone}</td><td><a class="delyardadmin" href="#">删除</a></td></tr>
-                </volist>
-                <!-- ajax add tr begin -->
-                <tr id="addadmintr">
-                <form id="yardadmin" method="post">
-                    <input name="yard_id" type="hidden" value="{$data.id}"/>
-                    <input name="type" type="hidden" value="院落管理"/>
-                    <td>职务:<select name="job">
-                            <option name="书记">书记</option>
-                            <option name="主任">主任</option>
-                            <option name="委员">委员</option>
-                            <option name="街道办事处负责人">街道办事处负责人</option>
-                            <option name="段管民警">段管民警</option>
-                            <option name="综治维稳负责人">综治维稳负责人</option>
-                            <option name="门卫保安">门卫保安</option>
-                            <option name="清洁保洁人员">清洁保洁人员</option>
-                        </select></td>
-                    <td>姓名：<input type="text" name="name"/></td>
-                    <td>联系电话：<input type="text" name="telephone"/></td>
-                    <td><input type="button" value="新增" class="addadmin"/></td>
-                </form>   
-                </tr>
-                <!-- ajax add tr end -->
-                <tr><td></td></tr>
-                <!-- 院落管理情况 end -->
+        <!-- 院落管理情况 begin-->
+        <tr><td><strong>院落管理情况：</strong></td><td><span id="addadminright" style="color:red;display: none;">添加成功！</span></td></tr>
+        <volist name="admindata" id="each">
+            <tr id="{$each.id}"><td>{$each.job}</td><td>{$each.name}</td><td>{$each.telephone}</td><td><a class="delyardadmin" href="#">删除</a></td></tr>
+        </volist>
+        <!-- ajax add tr begin -->
+        <tr id="addadmintr">
+        <form id="yardadmin" method="post">
+            <input name="yard_id" type="hidden" value="{$data.id}"/>
+            <input name="type" type="hidden" value="院落管理"/>
+            <td>职务:<select name="job">
+                    <option name="书记">书记</option>
+                    <option name="主任">主任</option>
+                    <option name="委员">委员</option>
+                    <option name="街道办事处负责人">街道办事处负责人</option>
+                    <option name="段管民警">段管民警</option>
+                    <option name="综治维稳负责人">综治维稳负责人</option>
+                    <option name="门卫保安">门卫保安</option>
+                    <option name="清洁保洁人员">清洁保洁人员</option>
+                </select></td>
+            <td>姓名：<input type="text" name="name"/></td>
+            <td>联系电话：<input type="text" name="telephone"/></td>
+            <td><input type="button" value="新增" class="addadmin"/></td>
+        </form>   
+        </tr>
+        <!-- ajax add tr end -->
+        <tr><td></td></tr>
+        <!-- 院落管理情况 end -->
 
-                <!-- 院落党支部 begin -->
-                <tr><td><strong>院落党支部：</strong></td><td><span id="addpartyright" style="color:red;display: none;">添加成功！</span></td></tr>
-                <volist name="partydata" id="each">
-                    <tr id="{$each.id}"><td>{$each.job}</td><td>{$each.name}</td><td>{$each.telephone}</td><td><a class="delyardadmin" href="#">删除</a></td></tr>
-                </volist>
-                <!-- ajax add tr begin -->
-                <tr id="addpartytr">
-                <form id="yardparty" method="post">
-                    <input name="yard_id" type="hidden" value="{$data.id}"/>
-                    <input name="type" type="hidden" value="院落党支部"/>
-                    <td>职务:<select name="job">
-                            <option name="书记">书记</option>
-                            <option name="主任">主任</option>
-                            <option name="委员">委员</option>
-                            <option name="街道办事处负责人">街道办事处负责人</option>
-                            <option name="段管民警">段管民警</option>
-                            <option name="综治维稳负责人">综治维稳负责人</option>
-                            <option name="门卫保安">门卫保安</option>
-                            <option name="清洁保洁人员">清洁保洁人员</option>
-                        </select></td>
-                    <td>姓名：<input type="text" name="name"/></td>
-                    <td>联系电话：<input type="text" name="telephone"/></td>
-                    <td><input type="button" value="新增" class="addparty"/></td>
-                </form>   
-                </tr>
-                <!-- ajax add tr end -->
-                <tr><td></td></tr>
-                <!-- 院落党支部 end -->
+        <!-- 院落党支部 begin -->
+        <tr><td><strong>院落党支部：</strong></td><td><span id="addpartyright" style="color:red;display: none;">添加成功！</span></td></tr>
+        <volist name="partydata" id="each">
+            <tr id="{$each.id}"><td>{$each.job}</td><td>{$each.name}</td><td>{$each.telephone}</td><td><a class="delyardadmin" href="#">删除</a></td></tr>
+        </volist>
+        <!-- ajax add tr begin -->
+        <tr id="addpartytr">
+        <form id="yardparty" method="post">
+            <input name="yard_id" type="hidden" value="{$data.id}"/>
+            <input name="type" type="hidden" value="院落党支部"/>
+            <td>职务:<select name="job">
+                    <option name="书记">书记</option>
+                    <option name="主任">主任</option>
+                    <option name="委员">委员</option>
+                    <option name="街道办事处负责人">街道办事处负责人</option>
+                    <option name="段管民警">段管民警</option>
+                    <option name="综治维稳负责人">综治维稳负责人</option>
+                    <option name="门卫保安">门卫保安</option>
+                    <option name="清洁保洁人员">清洁保洁人员</option>
+                </select></td>
+            <td>姓名：<input type="text" name="name"/></td>
+            <td>联系电话：<input type="text" name="telephone"/></td>
+            <td><input type="button" value="新增" class="addparty"/></td>
+        </form>   
+        </tr>
+        <!-- ajax add tr end -->
+        <tr><td></td></tr>
+        <!-- 院落党支部 end -->
 
-                <!-- 环治工作 begin -->
-                <tr><td><strong>环治工作：</strong></td><td><span id="addcleanright" style="color:red;display: none;">添加成功！</span></td></tr>
-                <volist name="cleandata" id="each">
-                    <tr id="{$each.id}"><td>{$each.job}</td><td>{$each.name}</td><td>{$each.telephone}</td><td><a class="delyardadmin" href="#">删除</a></td></tr>
-                </volist>
-                <!-- ajax add tr begin -->
-                <tr id="addcleantr">
-                <form id="yardclean" method="post">
-                    <input name="yard_id" type="hidden" value="{$data.id}"/>
-                    <input name="type" type="hidden" value="环治工作"/>
-                    <td>职务:<select name="job">
-                            <option name="书记">书记</option>
-                            <option name="主任">主任</option>
-                            <option name="委员">委员</option>
-                            <option name="街道办事处负责人">街道办事处负责人</option>
-                            <option name="段管民警">段管民警</option>
-                            <option name="综治维稳负责人">综治维稳负责人</option>
-                            <option name="门卫保安">门卫保安</option>
-                            <option name="清洁保洁人员">清洁保洁人员</option>
-                        </select></td>
-                    <td>姓名：<input type="text" name="name"/></td>
-                    <td>联系电话：<input type="text" name="telephone"/></td>
-                    <td><input type="button" value="新增" class="addclean"/></td>
-                </form>   
-                </tr>
-                <!-- ajax add tr end -->
-                <!-- 环治工作 end -->
-            </table>
-            <br/> <hr/>
+        <!-- 环治工作 begin -->
+        <tr><td><strong>环治工作：</strong></td><td><span id="addcleanright" style="color:red;display: none;">添加成功！</span></td></tr>
+        <volist name="cleandata" id="each">
+            <tr id="{$each.id}"><td>{$each.job}</td><td>{$each.name}</td><td>{$each.telephone}</td><td><a class="delyardadmin" href="#">删除</a></td></tr>
+        </volist>
+        <!-- ajax add tr begin -->
+        <tr id="addcleantr">
+        <form id="yardclean" method="post">
+            <input name="yard_id" type="hidden" value="{$data.id}"/>
+            <input name="type" type="hidden" value="环治工作"/>
+            <td>职务:<select name="job">
+                    <option name="书记">书记</option>
+                    <option name="主任">主任</option>
+                    <option name="委员">委员</option>
+                    <option name="街道办事处负责人">街道办事处负责人</option>
+                    <option name="段管民警">段管民警</option>
+                    <option name="综治维稳负责人">综治维稳负责人</option>
+                    <option name="门卫保安">门卫保安</option>
+                    <option name="清洁保洁人员">清洁保洁人员</option>
+                </select></td>
+            <td>姓名：<input type="text" name="name"/></td>
+            <td>联系电话：<input type="text" name="telephone"/></td>
+            <td><input type="button" value="新增" class="addclean"/></td>
+        </form>   
+        </tr>
+        <!-- ajax add tr end -->
+        <!-- 环治工作 end -->
+    </table>
+    <br/> <hr/>
 
-            <table id="common_table">
-                <caption style="text-align: left;font-size: 15px;">此院落下房屋列表：</caption>
-                <thead>
-                    <tr>
-                        <th>房屋地址</th>
-                        <th>是否空闲</th>
-                        <th>是否廉租房</th>
-                        <th>联系人</th>
-                        <th>联系人电话</th>
-                        <th>是否平房</th>
-                        <th>楼栋号</th>
-                        <th>单元号</th>
-                        <th>楼层</th>
-                        <th>房屋号</th>
-                        <th>平房号</th>
-                        <th colspan="1">操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <volist name="list" id="each">
-                    <tr id="{$each.id}">
-                        <td>{$each.yard.name}{$each.address}</td>
-                        <td>{$each.is_free}</td>
-                        <td>{$each.is_lowrent}</td>
-                    <td>{$each.contactor}</td>
-                    <td>{$each.telephone}</td>
-                    <td>{$each.is_floor}</td>
-                    <td>{$each.address_1}</td>
-                    <td>{$each.address_2}</td>
-                    <td>{$each.address_3}</td>
-                    <td>{$each.address_4}</td>
-                    <td>{$each.address_other}</td>
-                    <td><a href="__APP__/House/{$each.id}">详情</a></td><!--<td> <a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td> -->
-                    </tr>
-                </volist>    
-                </tbody>
-            </table>
-            <p><!-- <span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a> --></span><span class="page">{$page}</span></p>
+    <table id="common_table">
+        <caption style="text-align: left;font-size: 15px;">此院落下房屋列表：</caption>
+        <thead>
+            <tr>
+                <th>房屋地址</th>
+                <th>是否空闲</th>
+                <th>是否廉租房</th>
+                <th>联系人</th>
+                <th>联系人电话</th>
+                <th>是否平房</th>
+                <th>楼栋号</th>
+                <th>单元号</th>
+                <th>楼层</th>
+                <th>房屋号</th>
+                <th>平房号</th>
+                <th colspan="1">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="list" id="each">
+            <tr id="{$each.id}">
+                <td>{$each.yard.name}{$each.address}</td>
+                <td>{$each.is_free}</td>
+                <td>{$each.is_lowrent}</td>
+                <td>{$each.contactor}</td>
+                <td>{$each.telephone}</td>
+                <td>{$each.is_floor}</td>
+                <td>{$each.address_1}</td>
+                <td>{$each.address_2}</td>
+                <td>{$each.address_3}</td>
+                <td>{$each.address_4}</td>
+                <td>{$each.address_other}</td>
+                <td><a href="__APP__/House/{$each.id}">详情</a></td><!--<td> <a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td> -->
+            </tr>
+        </volist>    
+        </tbody>
+    </table>
+    <p><!-- <span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a> --></span><span class="page">{$page}</span></p>
 
-        </div>
-        <include file="Public:footer" />
-    </div>
-</body>
-</html>
+</div>
