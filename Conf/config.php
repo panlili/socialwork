@@ -84,6 +84,10 @@ return array(
         'Ngo/:id\d' => 'Ngo/read',
         'Ngo/edit/:id\d' => 'Ngo/edit',
         'Ngo/delete/:id\d' => 'Ngo/delete',
+        //controller: Party
+        'Party/:id\d' => 'Party/read',
+        'Party/edit/:id\d' => 'Party/edit',
+        'Party/delete/:id\d' => 'Party/delete',
         //controller: Citizen
         'Citizen/:id\d' => 'Citizen/read',
         'Citizen/edit/:id\d' => 'Citizen/edit',
