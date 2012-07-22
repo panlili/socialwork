@@ -25,13 +25,15 @@ class PartyAction extends BaseAction {
     public function read() {
         //router:'Party/:id\d' => 'Party/read',
         $Party = D("Party");
+        $Parter = D("Parter");
         $id = $this->_get("id");
         $data = $Party->where(array("id" => $id))->find();
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("Party/index");
         }
-        $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("数据详细信息", self::ACTION_NAME)));
+        $parter=$Parter->where(array("party_id"=>$id))->select();
+        $this->assign(array("data" => $data,"parter"=>$parter, "page_place" => $this->getPagePlace("数据详细信息", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -98,11 +100,47 @@ class PartyAction extends BaseAction {
     }
 
     public function information() {
-        $party=D("Party");
-        $partlist=$party->relation("parter")->select();
-        
-        $this->assign(array("partylist"=>$partlist,"page_place" => $this->getPagePlace("区域党建信息总览", self::ACTION_NAME)));
+        $party = D("Party");
+        $partlist = $party->relation("parter")->select();
+
+        $this->assign(array("partylist" => $partlist, "page_place" => $this->getPagePlace("区域党建信息总览", self::ACTION_NAME)));
         $this->display();
+    }
+
+    public function partyInformation() {
+        if ($this->isAjax()) {
+            $partyid = $this->_get("id");
+            $m_party = D("Party");
+            $m_parter = D("Parter");
+            $party = $m_party->where(array("id" => $partyid))->relation("parter")->find();
+            $shuji = $m_parter->where(array("party_id" => $partyid, "position" => "党支部书记"))->find();
+            $female = $m_parter->where(array("party_id" => $partyid, "sex" => "女"))->count();
+            $this->assign(array("party" => $party, "shuji" => $shuji, "female" => $female));
+            $content = $this->fetch("_right");
+            header("content-type:text/html;charset=utf-8");
+            echo $content;
+        } else {
+            $this->redirect("information");
+        }
+    }
+
+    public function showParter() {
+        if ($this->isAjax()) {
+            $partyid = $this->_get("id");
+            $category = $this->_get("category");
+            $m_parter = D("Parter");
+            if ($category == "all") {
+                $parter = $m_parter->where(array("party_id" => $partyid))->select();
+            } else {
+                $parter = $m_parter->where(array("party_id" => $partyid, "category" => $category))->order("position asc")->select();
+            }
+            $this->assign("parter", $parter);
+            $content = $this->fetch("_parterlist");
+            header("content-type:text/html;charset=utf-8");
+            echo $content;
+        } else {
+            $this->redirect("information");
+        }
     }
 
 }

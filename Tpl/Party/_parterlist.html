@@ -1,0 +1,11 @@
+{__NOLAYOUT__}
+<p>共<php>echo count($parter);</php>人</p>
+<volist name="parter" id="each">
+    <div>
+        <img src="__IMAGE__/face.jpg" />
+        <p><a href="__APP__/Parter/{$each.id}">{$each.name}</a></p>
+        <p>{$each.sex}</p>
+        <p>{$each.position}</p>
+    </div>
+</volist>
+

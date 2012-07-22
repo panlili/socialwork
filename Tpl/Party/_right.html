@@ -1,0 +1,23 @@
+{__NOLAYOUT__}
+<table id="common_table2">
+    <thead>
+    <th colspan="6">党支部信息总览：{$party.name}</th>
+</thead>
+<tbody>
+    <tr>
+        <td colspan="6"><p>党支部书记：{$shuji.name|default="无"}</p></td>
+    </tr>
+    <tr>
+        <td colspan="6"><p>目前共用党员：<php>echo count($party['parter']);</php>名，其中女党员{$female}名。</p></td>
+</tr>
+<tr style="text-align: center;">
+    <td><a href="#" onclick="showParter('{$party.id}','班子成员');return false;">班子成员</a></td>
+    <td><a href="#" onclick="showParter('{$party.id}','正式党员');return false;">正式党员</a></td>
+    <td><a href="#" onclick="showParter('{$party.id}','预备党员');return false;">预备党员</a></td>
+    <td><a href="#" onclick="showParter('{$party.id}','发展对象');return false;">发展对象</a></td>
+    <td><a href="#" onclick="showParter('{$party.id}','积极分子');return false;">积极分子</a></td>
+    <td><a href="#" onclick="showParter('{$party.id}','all');return false;">全部</a></td>
+</tr>
+<tr><td id="parterlist" colspan="6"></td></tr>
+</tbody>
+</table>

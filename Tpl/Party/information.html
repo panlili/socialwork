@@ -2,14 +2,17 @@
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="content_left">
         <table id="common_table">
-            <thead><th>党支部列表</th></thead>
+            <thead><th>序号</th><th>党支部列表</th></thead>
             <tbody>
             <volist name="partylist" id="each">
-                <tr><td>{$each.name}</td></tr>
+                <tr>
+                    <td class="number"></td>
+                    <td><a href="#" onclick="partyInformation('{$each.id}');return false;">
+                            {$each.name}【<php>echo count($each['parter']);</php>人】
+                        </a></td></tr>
             </volist>
             </tbody>
         </table>
     </div>
     <div id="content_middle"></div>
-
 </div>

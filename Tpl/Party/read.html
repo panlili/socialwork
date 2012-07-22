@@ -14,4 +14,24 @@
                     删除</a>
             </td></tr>
     </table>
+    <br/>
+    <p>支部党员列表：</p>
+    <table id="common_table2">
+        <thead>
+            <tr>
+                <!-- 6列 -->
+                <th>序号</th><th>姓名</th><th>类别</th><th>性别</th>
+                <th>出生日期</th><th>党内职务</th><th>详细信息</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="parter" id="each">
+            <tr>
+                <td class="number"><!-- 行号 --></td>
+                <td>{$each.name}</td><td>{$each.category}</td>
+                <td>{$each.sex}</td> <td>{$each.birthday}</td> <td>{$each.position}</td><td><a href="__APP__/Parter/{$each.id}">详细信息</a></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
 </div>
