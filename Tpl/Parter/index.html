@@ -3,10 +3,8 @@
     <div id="search">
         <form name="ngo_search" method="POST" action="__URL__/search">                    
             <select name="searchField"  >
-                <option value="name" >组织名</option>
-                <option value="information">单位信息</option>
-                <option value="address">通讯地址</option>
-                <option value="place">党组织属地关系</option>
+                <option value="name" >姓名</option>
+                <option value="idcard">身份证</option>
             </select>
             <input type="text" name="searchKey" value="" size="30" />
             <input type="submit" value="查询" />
@@ -16,18 +14,19 @@
         <thead>
             <tr>
                 <!-- 6列 -->
-                <th>序号</th><th>组织名</th><th>组织类型</th><th>党组织属地关系</th><th>批准建立日期</th><th>操作</th>
+                <th>序号</th><th>姓名</th><th>所在党支部</th><th>类别</th><th>性别</th>
+                <th>出生日期</th><th>党内职务</th><th>详细信息</th>
             </tr>
         </thead>
         <tbody>
         <volist name="list" id="each">
             <tr>
                 <td class="number"><!-- 行号 --></td>
-                <td>{$each.name}</td><td>{$each.type}</td><td>{$each.place}</td>
-                <td>{$each.found}</td><td><a href="__URL__/{$each.id}">详细信息</a></td>
+                <td>{$each.name}</td><td>{$each.party.name}</td><td>{$each.category}</td>
+                <td>{$each.sex}</td> <td>{$each.birthday}</td> <td>{$each.position}</td><td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
         </volist>
         </tbody>
     </table>
-    <p><span class="newdata"><a href="{:U('Party/newone')}">添加新党支部</a></span><span class="page">{$page}</span></p>
+    <p><span class="newdata"><a href="{:U('Parter/newone')}">添加新党员</a></span><span class="page">{$page}</span></p>
 </div>

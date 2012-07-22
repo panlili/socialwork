@@ -88,6 +88,10 @@ return array(
         'Party/:id\d' => 'Party/read',
         'Party/edit/:id\d' => 'Party/edit',
         'Party/delete/:id\d' => 'Party/delete',
+        //controller: Parter
+        'Parter/:id\d' => 'Parter/read',
+        'Parter/edit/:id\d' => 'Parter/edit',
+        'Parter/delete/:id\d' => 'Parter/delete',
         //controller: Citizen
         'Citizen/:id\d' => 'Citizen/read',
         'Citizen/edit/:id\d' => 'Citizen/edit',

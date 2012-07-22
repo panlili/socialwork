@@ -97,6 +97,14 @@ class PartyAction extends BaseAction {
         }
     }
 
+    public function information() {
+        $party=D("Party");
+        $partlist=$party->relation("parter")->select();
+        
+        $this->assign(array("partylist"=>$partlist,"page_place" => $this->getPagePlace("区域党建信息总览", self::ACTION_NAME)));
+        $this->display();
+    }
+
 }
 
 ?>

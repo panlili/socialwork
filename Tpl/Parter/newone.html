@@ -1,0 +1,61 @@
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+
+    <form action="__URL__/add" method="post">
+        <table id="common_table" style="width: auto;clear:both">
+            <tr><td>*姓名：</td><td><input type="text" name="name" /></td></tr>
+            <tr><td>所在党支部：</td><td>
+                    <select name="party_id">
+                        <volist name="partylist" id="party"><option value="{$party.id}">{$party.name}</option></volist>                                  </volist>
+                    </select></td>
+                </td></tr>
+            <tr><td>类型：</td><td>
+                    <select name="category">
+                        <option value="班子成员">班子成员</option>
+                        <option value="正式党员">正式党员</option>
+                        <option value="预备党员">预备党员</option>
+                        <option value="发展对象">发展对象</option>
+                        <option value="积极分子">积极分子</option></select>
+                </td></tr>
+            <tr><td>党支部职务：</td><td>
+                    <select name="position">
+                        <option value="党支部书记">党支部书记</option>
+                        <option value="党支部副书记">党支部副书记</option>
+                        <option value="党支部组织委员">党支部组织委员</option>
+                        <option value="党支部纪检委员">党支部纪检委员</option>
+                        <option value="党支部宣传委员">党支部宣传委员</option>
+                        <option value="党员">党员</option>
+                    </select>
+                </td></tr>
+            <tr><td>性别：</td><td>
+                    <select name="sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td></tr>
+            <tr><td>出生日期：</td><td><input type="text" name="birthday" /></td></tr>
+            <tr><td>民族：</td><td><input type="text" name="nation" /></td></tr>
+            <tr><td>籍贯：</td><td><input type="text" name="hometown" /></td></tr>
+            <tr><td>入党日期：</td><td><input type="text" name="joindate" /></td></tr>
+            <tr><td>学历：</td><td>
+                    <select name="education"> <option value="专科及以下">专科及以下</option>
+                        <option value="大学本科">大学本科</option>
+                        <option value="硕士研究生">硕士研究生</option>
+                        <option value="博士研究生">博士研究生</option>
+                    </select>
+                </td></tr>
+            <tr><td>学位：</td><td>
+                    <select name="degree"> <option value="学士">学士</option>
+                        <option value="硕士">硕士</option>
+                        <option value="博士">博士</option>
+                    </select>
+                </td></tr>
+            <tr><td>专业技术职务：</td><td><input type="text" name="level" /></td></tr>
+            <tr><td>身份证：</td><td><input type="text" name="idcard" /></td></tr>
+            <tr><td>联系电话：</td><td><input type="text" name="telephone" /></td></tr>
+            <tr><td>现居住地：</td><td><input type="text" name="liveplace" /></td></tr>
+            <tr><td>进入当前党支部日期：</td><td><input type="text" name="indate" /></td></tr>
+            <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
+        </table>
+    </form>
+</div>
