@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2012-07-23 13:58:10
+Date: 2012-07-23 14:52:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -12128,7 +12128,7 @@ CREATE TABLE `sjf_parter` (
   `indate` varchar(255) DEFAULT NULL COMMENT '进入当前党支部日期',
   PRIMARY KEY (`id`),
   KEY `id` (`id`,`party_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=471 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=545 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of sjf_parter
@@ -12373,6 +12373,7 @@ INSERT INTO `sjf_parter` VALUES ('249', '50', '正式党员', '刘志杰', '男'
 INSERT INTO `sjf_parter` VALUES ('250', '50', '正式党员', '黎昆', '男', '1976.05', '汉', '四川成都', '1996.1', '高中', '', '', '', '', '13308182516', '金泉街80号', '2012年6月29日');
 INSERT INTO `sjf_parter` VALUES ('251', '50', '正式党员', '龙杰成', '男', '1963.08', '汉', '四川成都', '2010.4', '大专', '', '', '', '', '84433637', '金泉街93号（拆）', '2012年6月29日');
 INSERT INTO `sjf_parter` VALUES ('252', '50', '班子成员', '陈钰', '女', '1963.04', '汉', '四川成都', '1986.5', '高中', '', '', '书记', '', '13982128450', '锦官驿街94号', '2012年6月29日');
+INSERT INTO `sjf_parter` VALUES ('472', '84', '正式党员', '牟忠杰', '男', '196410', '汉族', null, '19890303', '大专', null, null, null, null, null, null, null);
 INSERT INTO `sjf_parter` VALUES ('254', '76', '正式党员', '卢  东', '男', '1966-08-', '汉', null, '1989-08-', null, null, null, null, null, '68125038', '均隆街3号A座1-16-7', null);
 INSERT INTO `sjf_parter` VALUES ('255', '76', '正式党员', '王  霞', '女', '1970-12-', '汉', null, '1993-08-', null, null, null, null, null, '68125038', '均隆街3号A-16-7', null);
 INSERT INTO `sjf_parter` VALUES ('256', '76', '正式党员', '林述奎', '男', '1962-03-', '汉', null, '1987-07-', null, null, null, null, null, '', '均隆街3号', null);
@@ -12514,7 +12515,7 @@ INSERT INTO `sjf_parter` VALUES ('391', '73', '正式党员', '曾鑫晨', '女'
 INSERT INTO `sjf_parter` VALUES ('392', '73', '正式党员', '袁  斌', '男', '1975-', '汉', null, '2001-09-', null, null, null, null, null, '84439196', '点将台50号3-3-22', null);
 INSERT INTO `sjf_parter` VALUES ('393', '73', '正式党员', '杨光荣', '男', '1944-07-', '汉', null, '1968-07-', null, null, null, null, null, '84461119', '点将台横街1-3-6', null);
 INSERT INTO `sjf_parter` VALUES ('394', '73', '正式党员', '徐国红', '男', '1968.09.05', '汉', null, '1905-6-18 下午 02:24:00', null, null, null, null, null, '13183857643', '点将台横街51-2-1-7', null);
-INSERT INTO `sjf_parter` VALUES ('395', null, '正式党员', '杨玉梅', '女', '1957-04-', '汉', null, '1978-', null, null, null, null, null, '1368063531', '牛王庙上街32号', null);
+INSERT INTO `sjf_parter` VALUES ('395', '77', '正式党员', '杨玉梅', '女', '1957-04-', '汉', null, '1978-', null, null, null, null, null, '1368063531', '牛王庙上街32号', null);
 INSERT INTO `sjf_parter` VALUES ('396', '77', '正式党员', '王秀华', '女', '1973-4-1', '汉', null, '1992-01-', null, null, null, null, null, '84442093', '牛王庙上街79号', null);
 INSERT INTO `sjf_parter` VALUES ('397', '77', '正式党员', '黄友良', '男', '1946-11-13', '汉', null, '1980-07-', null, null, null, null, null, '84471360', '牛王庙后街53号', null);
 INSERT INTO `sjf_parter` VALUES ('398', '77', '正式党员', '王锡明', '男', '1958-3-18', '汉', null, '1997-06-', null, null, null, null, null, '84472629', '牛王庙后街48号', null);
@@ -12589,6 +12590,78 @@ INSERT INTO `sjf_parter` VALUES ('466', '77', '正式党员', '龚  横', '男',
 INSERT INTO `sjf_parter` VALUES ('467', '77', '正式党员', '黄  俊', '男', '1988.02.02', '汉', null, '09.12', null, null, null, null, null, '15108423625', '牛王庙后街28号3-3-5', null);
 INSERT INTO `sjf_parter` VALUES ('468', '77', '正式党员', '皇甫宇虹', '女', '1988.12.07', '汉', null, '2008.12', null, null, null, null, null, '13666120731', '光明路2（102）号1-1-8', null);
 INSERT INTO `sjf_parter` VALUES ('469', '77', '正式党员', '唐维力', '男', '1954.12.25', '汉', null, '1976.1', null, null, null, null, null, '13980036684', '龙泉阳光城', null);
+INSERT INTO `sjf_parter` VALUES ('473', '84', '正式党员', '杨云康', '男', '196502', '汉族', null, '19890901', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('474', '84', '正式党员', '帅小凤', '女', '196410', '汉族', null, '19891201', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('475', '84', '正式党员', '付伟', '男', '196908', '汉族', null, '19900501', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('476', '84', '正式党员', '刘军', '男', '197707', '汉族', null, '20020801', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('477', '84', '正式党员', '彭名琪', '女', '196903', '汉族', null, '20041201', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('478', '84', '正式党员', '郭顺山', '男', '19790326', '汉族', null, '200806', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('479', '85', '正式党员', '李红', '女', '195807', '汉族', null, '19830301', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('480', '85', '正式党员', '钟世明', '男', '196303', '汉族', null, '19850301', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('481', '85', '正式党员', '吴少艳', '男', '196411', '汉族', null, '19850401', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('482', '85', '正式党员', '许克理', '男', '196006', '汉族', null, '19850501', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('483', '85', '正式党员', '宋联华', '女', '195905', '汉族', null, '19850801', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('484', '85', '正式党员', '王邦勤', '男', '19660324', '汉族', null, '19860701', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('485', '85', '正式党员', '钱朝龙', '男', '19720919', '汉族', null, '19921201', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('486', '85', '正式党员', '朱烈', '男', '19680529', '汉族', null, '19950601', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('487', '85', '正式党员', '唐瑞', '男', '197412', '汉族', null, '19951001', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('488', '85', '正式党员', '张富泽', '男', '19711123', '汉族', null, '19960501', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('489', '85', '正式党员', '付贤柱', '男', '19701101', '汉族', null, '19961201', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('490', '85', '正式党员', '贺仲纯', '男', '195807', '汉族', null, '19961201', '普通高中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('491', '85', '正式党员', '李承宗', '男', '196008', '汉族', null, '19970601', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('492', '85', '正式党员', '但一', '男', '19770307', '汉族', null, '199910', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('493', '85', '正式党员', '杜跃华', '男', '195405', '汉族', null, '19991201', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('494', '85', '正式党员', '杨泓', '女', '196505', '汉族', null, '20001101', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('495', '85', '正式党员', '付冬', '男', '198111', '回族', null, '20011101', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('496', '85', '正式党员', '冯禾呈', '女', '196810', '汉族', null, '20020501', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('497', '85', '正式党员', '王闯', '男', '196706', '汉族', null, '200207', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('498', '85', '正式党员', '李红梅', '女', '196403', '汉族', null, '20020701', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('499', '85', '正式党员', '江华', '女', '197209', '汉族', null, '20030701', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('500', '85', '正式党员', '徐兴平', '男', '19820812', '汉族', null, '200403', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('501', '85', '正式党员', '刘志伟', '男', '19741217', '汉族', null, '200404', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('502', '85', '正式党员', '李昉', '女', '197312', '汉族', null, '20041201', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('503', '85', '正式党员', '罗辑', '男', '198302', '汉族', null, '20050501', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('504', '85', '正式党员', '王延松', '男', '19770621', '汉族', null, '200508', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('505', '85', '正式党员', '徐雪', '女', '19830719', '汉族', null, '20051228', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('506', '85', '正式党员', '梁益莉', '女', '19761016', '汉族', null, '20070618', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('507', '85', '正式党员', '罗华伟', '男', '19620510', '汉族', null, '20070618', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('508', '85', '正式党员', '王怡', '男', '19790625', '汉族', null, '20071122', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('509', '85', '正式党员', '刘奕峰', '男', '19840524', '汉族', null, '20090927', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('510', '86', '正式党员', '郭锦红', '女', '197002', '汉族', null, '20021201', '大学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('511', '86', '正式党员', '顾小林', '女', '19750612', '汉族', null, '20081015', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('512', '87', '正式党员', '刘春乾', '男', '193503', '汉族', null, '19540301', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('513', '87', '正式党员', '杨德荣', '男', '192904', '汉族', null, '19540501', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('514', '87', '正式党员', '徐尔俊', '男', '193012', '汉族', null, '19540601', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('515', '87', '正式党员', '万里成', '男', '192908', '汉族', null, '19560501', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('516', '87', '正式党员', '雷光洲', '女', '193509', '汉族', null, '19560601', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('517', '87', '正式党员', '钟烈君', '男', '193004', '汉族', null, '19560801', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('518', '87', '正式党员', '李廷彬', '男', '193207', '汉族', null, '19560901', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('519', '87', '正式党员', '牛应祥', '男', '192504', '汉族', null, '19561001', '小学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('520', '87', '正式党员', '庄高全', '男', '194302', '汉族', null, '19561001', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('521', '87', '正式党员', '李其清', '女', '193511', '汉族', null, '19580701', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('522', '87', '正式党员', '田崇福', '男', '194001', '汉族', null, '19641201', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('523', '87', '正式党员', '谭学美', '女', '194306', '汉族', null, '19650401', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('524', '87', '正式党员', '李子明', '男', '194405', '汉族', null, '19650501', '普通高中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('525', '87', '正式党员', '吴永惠', '女', '194402', '汉族', null, '19651001', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('526', '87', '正式党员', '袁世珍', '女', '193311', '汉族', null, '19651201', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('527', '87', '正式党员', '田仁炳', '男', '194801', '汉族', null, '19690501', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('528', '87', '正式党员', '黄坤华', '男', '194410', '汉族', null, '19690701', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('529', '87', '正式党员', '王以礼', '男', '194606', '汉族', null, '19711201', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('530', '87', '正式党员', '陈明秀', '女', '195004', '汉族', null, '19730701', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('531', '87', '正式党员', '贾成忠', '男', '193509', '汉族', null, '19750501', '小学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('532', '87', '正式党员', '罗代明', '男', '19490413', '汉族', null, '19750501', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('533', '87', '正式党员', '余海泉', '男', '194907', '汉族', null, '19750701', '普通高中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('534', '87', '正式党员', '李明辉', '男', '194201', '汉族', null, '19780601', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('535', '87', '正式党员', '汪全华', '女', '195004', '汉族', null, '19781201', '小学', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('536', '87', '正式党员', '郭继兰', '女', '194811', '汉族', null, '19800101', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('537', '87', '正式党员', '曾居全', '男', '193209', '汉族', null, '19820701', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('538', '87', '正式党员', '陈茂华', '女', '192609', '汉族', null, '19831101', '普通高中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('539', '87', '正式党员', '许辉', '女', '195206', '汉族', null, '19840701', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('540', '87', '正式党员', '张向群', '女', '195104', '汉族', null, '19860701', '大专', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('541', '87', '正式党员', '刘玉芳', '女', '194502', '汉族', null, '19861201', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('542', '87', '正式党员', '赵信陵', '男', '194904', '汉族', null, '19861201', '初中', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('543', '87', '正式党员', '胡体惠', '女', '194507', '汉族', null, '19951001', '中等专科', null, null, null, null, null, null, null);
+INSERT INTO `sjf_parter` VALUES ('544', '87', '正式党员', '刘长友', '男', '195311', '汉族', null, '20030101', '大专', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `sjf_party`
@@ -12607,7 +12680,7 @@ CREATE TABLE `sjf_party` (
   `community` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of sjf_party
@@ -12633,20 +12706,15 @@ INSERT INTO `sjf_party` VALUES ('65', '一环路东五段89号', '院落党支�
 INSERT INTO `sjf_party` VALUES ('66', '年丰巷53号院落党支部', '院落党支部', '水井坊社区党委', '2012-6-29', '书记：达文玲', '年丰巷53号', '84459459', null, '水井坊社区');
 INSERT INTO `sjf_party` VALUES ('67', '紫东楼段168号院落党支部', '院落党支部', '水井坊社区党委', '2012-6-29', '书记：郑爱玲', '紫东楼段168号', '84457921', null, '水井坊社区');
 INSERT INTO `sjf_party` VALUES ('83', '均隆街11号支部', '院落支部', '交子社区党委', '2011年', null, '交子社区', null, '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('69', '辉煌灯饰城党支部', '非公', '交子社区党委', '2005.1', '', '交子社区', '13608033772', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('70', '社会组织联合支部', '非公', '交子社区党委', '2011.12', '', '交子社区', '13348829298', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('71', '东方广场党支部', '非公', '交子社区党委', '2008.9', '', '交子社区', '13518171466', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('72', '金属材料公司党委', '非公', '交子社区党委', '', '', '交子社区', '13908177401', '610061', '交子社区');
 INSERT INTO `sjf_party` VALUES ('73', '点将台55号大院', '院落支部', '交子社区党委', '2009年', '', '交子社区', '13548189131', '610061', '交子社区');
 INSERT INTO `sjf_party` VALUES ('74', '较场坝67号东街支部', '院落支部', '交子社区党委', '2010年', '', '交子社区', '15719477899', '610061', '交子社区');
 INSERT INTO `sjf_party` VALUES ('75', '较场坝67号西街支部', '院落支部', '交子社区党委', '2010年', '', '交子社区', '15308089670', '610061', '交子社区');
 INSERT INTO `sjf_party` VALUES ('76', '均隆街13号支部', '院落支部', '交子社区党委', '2011年', '', '交子社区', '18980076906', '610061', '交子社区');
 INSERT INTO `sjf_party` VALUES ('77', '一环路东四段79号支部', '院落支部', '交子社区党委', '2011年', '', '交子社区', '13558778376', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('78', '交子社区党委第一支部', '', '交子社区党委', '2006年', '', '交子社区', '18080090321', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('79', '交子社区党委第二支部', '', '交子社区党委', '2006年', '', '交子社区', '18080090373', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('80', '交子社区党委第三支部', '', '交子社区党委', '2006年', '', '交子社区', '13056679579', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('81', '交子社区党委第四支部', '', '交子社区党委', '2006年', '', '交子社区', '18080090374', '610061', '交子社区');
-INSERT INTO `sjf_party` VALUES ('82', '交子社区党委第五支部', '', '交子社区党委', '2006年', '', '交子社区', '18080090376', '610061', '交子社区');
+INSERT INTO `sjf_party` VALUES ('84', '城管治安综合执法队党支部', '', '', '', '', '', '', '0', '街道');
+INSERT INTO `sjf_party` VALUES ('85', '机关党支部', '', '', '', '', '', '', '0', '街道');
+INSERT INTO `sjf_party` VALUES ('86', '社区公共服务站党支部', '', '', '', '', '', '', '0', '街道');
+INSERT INTO `sjf_party` VALUES ('87', '离退休党支部', '', '', '', '', '', '', '0', '街道');
 
 -- ----------------------------
 -- Table structure for `sjf_service`
