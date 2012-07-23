@@ -11,9 +11,9 @@ return array(
     'DB_HOST' => 'localhost',
     'DB_NAME' => 'socialwork',
     'DB_USER' => 'root',
-    'DB_PWD' => '57419',
+   // 'DB_PWD' => '57419',
     //'DB_PWD' => 'root',
-    //'DB_PWD' => 'cuitcuit',
+    'DB_PWD' => 'cuitcuit',
     'DB_PORT' => '3306',
     'DB_PREFIX' => 'sjf_',
     //默认模块与控制器为登陆页面
