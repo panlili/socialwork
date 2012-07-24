@@ -14,16 +14,16 @@ class AdminAction extends BaseAction {
 
     public function index() {
 
-        $Admin = D('Admin');
-        $userlist = $Admin->order("id desc")->select();
+        $User = D('User');
+        $userlist = $User->order("id desc")->select();
         $this->assign("userlist", $userlist);
         $this->display();
     }
 
     public function add() {
-        $Admin = D("Admin");
-        if ($Admin->create()) {
-            $data = $Admin->add();
+        $User = D("User");
+        if ($User->create()) {
+            $data = $User->add();
             if (false !== $data) {
                 session("action_message", "添加用户成功！");
                 $this->redirect("Admin/index");
@@ -32,19 +32,19 @@ class AdminAction extends BaseAction {
                 $this->redirect("Admin/index");
             }
         } else {
-            session("action_message", $Admin->getError());
+            session("action_message", $User->getError());
             $this->redirect("Admin/index");
         }
     }
 
     public function delete() {
         $id = $this->_post("id");
-        $Admin = D("Admin");
+        $User = D("User");
         if (!isset($id)) {
             //如果不是通过点击连接，而是url传递，则$id为null
             $this->redirect("Admin/index");
         } else {
-            if ($Admin->where("id='$id'")->delete()) {
+            if ($User->where("id='$id'")->delete()) {
                 $this->ajaxReturn($id, "deleted!", 1);
             } else {
                 $this->ajaxReturn(0, "something wrong!", 0);

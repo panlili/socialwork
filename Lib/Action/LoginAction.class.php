@@ -15,7 +15,6 @@ class LoginAction extends Action {
             $this->assign("loginMessage", $this->_session("loginMessage"));
             session("loginMessage", null);
         }
-        $this->assign("title", "潘杰你好");
         $this->display();
     }
 
@@ -32,14 +31,14 @@ class LoginAction extends Action {
         }
 
         //其次对用户验证
-        $admin = D('Admin');
+        $User = D('User');
         $username = $this->_post("username");
         $password = md5($this->_post("password"));
         //use array for where will be more safe
         $condition["username"] = $username;
         $condition["password"] = $password;
         $condition["_logic"] = "AND";
-        $result = $admin->where($condition)->find();
+        $result = $User->where($condition)->find();
         if ($result) {
             session("truename", $result["truename"]);
             session("right", $result["right"]);

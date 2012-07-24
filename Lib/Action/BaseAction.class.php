@@ -21,8 +21,8 @@ class BaseAction extends Action {
     }
 
     protected function getPagePlace($method, $action, $link = "index") {
-        $at=$this->getActionName();
-        return "<a href=__APP__/$at/$link>" . $action . "</a>--" . $method.
+        $at = $this->getActionName();
+        return "<a href=__APP__/$at/$link>" . $action . "</a>--" . $method .
                 "--<a href='#' onclick='javascript:window.history.back();return false;' />返回</a>";
     }
 
