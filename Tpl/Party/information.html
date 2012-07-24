@@ -8,11 +8,11 @@
                 <tr>
                     <td class="number"></td>
                     <td>
-                <if condition="$each.community eq '水井坊社区'">
+                <if condition="$each.place eq '水井坊社区党委'">
                     <img src="__IMAGE__/shuijingfang.gif" />
-                    <elseif condition="$each.community eq '交子社区'"/>
+                    <elseif condition="$each.place eq '交子社区党委'"/>
                     <img src="__IMAGE__/jiaozhi.gif" />
-                    <else /><!-- $each.community eq '街道' -->
+                    <else /><!-- $each.place eq '街道党委' -->
                     <img src="__IMAGE__/street.gif" />
                 </if>
                 <a href="#" onclick="partyInformation('{$each.id}');return false;">

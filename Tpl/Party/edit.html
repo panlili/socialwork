@@ -5,7 +5,15 @@
         <table id="common_table" style="width: auto;clear:both">
             <tr><td>*组织名：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
             <tr><td>组织类型：</td><td><input type="text" name="type" value="{$data.type}"/></td></tr>
-            <tr><td>党组织属地关系：</td><td><input type="text" name="place" value="{$data.place}"/></td></tr>
+            <tr><td>党组织属地关系：</td><td>
+                    <select name="place">
+                        <option value="{$data.place}"/>{$data.place}</option>
+                        <option value="{$data.place}"/>---请选择---</option>
+                        <option value="街道党委">街道党委</option>
+                        <option value="水井坊社区党委">水井坊社区党委</option>
+                        <option value="交子社区党委">交子社区党委</option>
+                    </select>
+                </td></tr>
             <tr><td>批准建立党组织日期：</td><td><input type="text" name="found" value="{$data.found}"/></td></tr>
             <tr><td>通讯地址：</td><td><input type="text" name="address" value="{$data.address}"/></td></tr>
             <tr><td>联系电话：</td><td><input type="text" name="telephone" value="{$data.telephone}"/></td></tr>
