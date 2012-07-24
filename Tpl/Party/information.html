@@ -7,9 +7,18 @@
             <volist name="partylist" id="each">
                 <tr>
                     <td class="number"></td>
-                    <td><a href="#" onclick="partyInformation('{$each.id}');return false;">
-                            {$each.name}【<php>echo count($each['parter']);</php>人】
-                        </a></td></tr>
+                    <td>
+                <if condition="$each.community eq '水井坊社区'">
+                    <img src="__IMAGE__/shuijingfang.gif" />
+                    <elseif condition="$each.community eq '交子社区'"/>
+                    <img src="__IMAGE__/jiaozhi.gif" />
+                    <else /><!-- $each.community eq '街道' -->
+                    <img src="__IMAGE__/street.gif" />
+                </if>
+                <a href="#" onclick="partyInformation('{$each.id}');return false;">
+                    {$each.name}【<php>echo count($each['parter']);</php>人】
+                </a></td>
+                </tr>
             </volist>
             </tbody>
         </table>
