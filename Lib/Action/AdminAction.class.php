@@ -13,10 +13,6 @@ class AdminAction extends BaseAction {
     }
 
     public function index() {
-        $model =D("Street");
-        $list=$model->table("sjf_street")->union(array("table"=>"jz_street"))->select();
-        dump($list);
-
         $User = D('User');
         $userlist = $User->order("id desc")->select();
         $this->assign("userlist", $userlist);

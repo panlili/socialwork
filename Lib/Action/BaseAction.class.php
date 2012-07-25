@@ -8,6 +8,13 @@ class BaseAction extends Action {
     public function _initialize() {
         if (!session("?truename"))
             $this->redirect("Login/login");
+
+        if (1 == $this->_session("right")) {
+            C("DB_PREFIX", "sjf_");
+        }
+        if (0 == $this->_session("right")) {
+            C("DB_PREFIX", "total_");
+        }
     }
 
     public function _empty() {
