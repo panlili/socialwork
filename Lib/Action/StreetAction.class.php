@@ -145,6 +145,27 @@ class StreetAction extends BaseAction {
         }
     }
 
+    public function pagea() {
+        $Street = D("Street");
+        import("@.ORG.Pagea");
+        $count = $Street->count();
+        $p = new Pagea($count, 5, 'type=1', 'test', 'pages');
+        $list = $Street->limit($p->firstRow . ',' . $p->listRows)->select();
+
+        $p->setConfig('header', '条数据');
+        $p->setConfig('prev', "<");
+        $p->setConfig('next', '>');
+        $p->setConfig('first', '<<');
+        $p->setConfig('last', '>>');
+        $page = $p->show();            //分页的导航条的输出变量
+        $this->assign("page", $page);
+        $this->assign("list", $list); //数据循环变量
+        if ($this->isAjax()) {//判断ajax请求
+            exit($this->fetch('_list'));
+        }
+        $this->display();
+    }
+
 }
 
 ?>

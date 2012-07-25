@@ -42,6 +42,7 @@ class LoginAction extends Action {
         if ($result) {
             session("truename", $result["truename"]);
             session("right", $result["right"]);
+            session("community", $result["community"]);
             //TODO: modify the first page to be enter
             $this->redirect("Map/index");
         } else {
