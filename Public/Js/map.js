@@ -116,6 +116,7 @@ $(function()
                 oldoffsetY=getY(e);
                 //$("div#tip").text(oldoffsetX+","+oldoffsetY);
                 $("div#tip").hide();
+                $("div#tip1").hide();
                 $("div#map").fadeTo("fast", 0.25);
                 break;
             case 3:

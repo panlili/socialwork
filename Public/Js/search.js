@@ -93,23 +93,25 @@ $(function(){
     $("input#dosearch").click(function(){
         var fo=$("form#searchKey").serializeArray();//alert(fo);
         $.post("/socialwork/index.php/search/dosearch",fo,function(data){
-            //alert(data);
-            $("div#searchResult").show();
-            //把数据填充给表格
-            var htmlstr="";
-            htmlstr+='<table id="common_table2" width="100%"><tr><th>姓名</th><th>身份证号</th><th>居住地址</th></tr>';
-            $("div#searchResult").empty();
-            var dataObj=eval("("+data+")");    //转换为json对象 用post方法获取的是一个字符串
-            //$("div#searchResult").append(data);
-            //alert(dataObj);
             
-            $.each(dataObj,function(i,item){
-                htmlstr+='<tr><td>'+item.name+'</td><td>'+item.id_card+'</td><td>'+item.house.address+'</td></tr>';
-            })
-            htmlstr+='</table>';
-            //alert(htmlstr);
-            $("div#searchResult").append(htmlstr);
-        //$("div#searchResult").show();
+//            $("div#searchResult").show();
+//            //把数据填充给表格
+//            var htmlstr="";
+//            htmlstr+='<table id="common_table2" width="100%"><tr><th>姓名</th><th>身份证号</th><th>居住地址</th></tr>';
+//            $("div#searchResult").empty();
+//            var dataObj=eval("("+data+")");    //转换为json对象 用post方法获取的是一个字符串
+//            //$("div#searchResult").append(data);
+//            //alert(dataObj);
+//            
+//            $.each(dataObj,function(i,item){
+//                htmlstr+='<tr><td>'+item.name+'</td><td>'+item.id_card+'</td><td>'+item.house.address+'</td></tr>';
+//            })
+//            htmlstr+='</table>';
+//            //alert(htmlstr);
+//            $("div#searchResult").append(htmlstr);
+//        $("div#searchResult").show();
+       $("div#searchResult").html(data);
+          $("div#searchResult").show();
         })
     
     })
