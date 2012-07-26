@@ -45,21 +45,11 @@ class SearchAction extends BaseAction {
                     }
 
                     //对查询条件为“生日”或者“年龄”进行特别处理
-                } else {
-                    switch ($searchkey[$i]) {
-                        case "age":
-                            break;
-                        case "birthday":
-                            $tmp = $tmp . $searchkey[$i] . " between '" . $searchkey[$y] . "' and '" . $searchkey[$y . '-1'] . $searchkey[$x] . "' ";
+                } 
 
-                            break;
-                        default :
-                            $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' ";
-                    }
-                }
             }
         }
-        dump($tmp);
+        //dump($tmp);
         $citizen = D("Citizen");
 
 
