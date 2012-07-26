@@ -1,16 +1,10 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class MapAction extends BaseAction {
 
     public function index() {
         $mapset = D("map_set");
-        $data = $mapset->where("id=1")->select();
-        //dump($data[0]);
+        $data = $mapset->select();
         $this->assign('mapset', $data[0]);
         $this->display();
     }
@@ -31,21 +25,19 @@ class MapAction extends BaseAction {
 
     //添加地图标记的方法
     public function addMapMark() {
-//        $markX=$_GET["_URL_"][2];
-//        $markY=$_GET["_URL_"][3];
         $MapMark = D("map_mark");
         if ($MapMark->create()) {
             $data = $MapMark->add();
             if (FALSE !== $data) {
-//                session("action_message", "添加数据成功");
-//                $this->redirect("map/index");
+                //session("action_message", "添加数据成功");
+                //$this->redirect("map/index");
             } else {
-//                session("action_message", "添加新数据失败！");
-//                $this->redirect("House/newone");
+                //session("action_message", "添加新数据失败！");
+                //$this->redirect("House/newone");
             }
         } else {
-//            session("action_message", $House->getError());
-//            $this->redirect("House/newone");
+            //session("action_message", $House->getError());
+            //$this->redirect("House/newone");
         }
     }
 
@@ -77,32 +69,18 @@ class MapAction extends BaseAction {
 
 //根据客户端发回的地图基点坐标和地图区域大小，从数据库选择范围内的标签，以json的形式发送给客户端    
     public function getTag() {
-        /* $baseX=  $this->_get("baseX");
-          $baseY=  $this->_get("baseY");
-          $mapW=  $this->_get("mapW");
-          $mapH=  $this->_get("mapH"); */
         $baseX = $_GET["_URL_"][2];
         $baseY = $_GET["_URL_"][3];
         $mapW = $_GET["_URL_"][4];
         $mapH = $_GET["_URL_"][5];
 
-//        echo $baseY;echo $mapW;
-        //if(is_numeric($mapH) && is_numeric($mapW) && is_numeric($baseX) && is_numeric($baseY)){
         $tagtmp = D("map_mark");
-//        $xx="$baseX,$mapW";
-//        echo $xx;
         $xtmp = $baseX + $mapW - 1;
         $ytmp = $baseY + $mapH - 1;
         $tmp['x'] = array('between', "$baseX,$xtmp");
         $tmp['y'] = array('between', "$baseY,$ytmp");
-//        $tmp['x']=array('between','50,200');
-//        $tmp['y']=array('between','50,200');
-        //$taglist=$tagtmp->relation("yard")->where($tmp)->select();
         $taglist = $tagtmp->where($tmp)->select();
-        //$tags=array(1 => array("id"=>1,"x"=>300,"y"=>300),2=>array("id"=>2,"x"=>350,"y"=>350));
-        //echo json_encode($tags);
         echo json_encode($taglist);
-        //}
     }
 
     //对地图进行切割的方法
@@ -123,7 +101,7 @@ class MapAction extends BaseAction {
         //按给定大小将图片分割
         for ($y = 0; $y < $mapHeight; $y+=$SplitHeight) {
             for ($x = 0; $x < $mapWidth; $x+=$SplitWidth) {
-                $exportFile = $piecePath . ($y/$SplitHeight+1) . "-" . ($x/$SplitWidth+1) . ".jpg";
+                $exportFile = $piecePath . ($y / $SplitHeight + 1) . "-" . ($x / $SplitWidth + 1) . ".jpg";
                 echo $exportFile;
                 echo '<br>';
                 $ex = @imagecreatetruecolor($SplitWidth, $SplitHeight);
@@ -138,11 +116,8 @@ class MapAction extends BaseAction {
     //修改设置的方法
     public function mapset() {
         $mapset = D("map_set");
-
-        $data = $mapset->where("id=1")->select();
-        //dump($data);
+        $data = $mapset->select();
         $this->assign('mapsetting', $data);
-        //dump($this);
         $this->display();
     }
 
@@ -155,10 +130,9 @@ class MapAction extends BaseAction {
 
     public function getmapset() {
         $mapset = D("map_set");
-        $data = $mapset->where("id=1")->select();
+        $data = $mapset->select();
         echo json_encode($data);
     }
-    
 
 }
 

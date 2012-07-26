@@ -190,9 +190,7 @@ $(function()
                 default:
                     ;
             }
-            
         }
-        
     })
     //填充地图
     function fillmap(){
@@ -328,10 +326,6 @@ $(function()
                 })
             })
         });
-    //        var tag="<img id=\"tag1\" src=\"\" class=\"tag\"></img>";
-    //        $("div#tag").append(tag);
-    //        $("img#tag1").css("top",250);
-    //        $("img#tag1").css("left",250);
     }
     //将院落列表添加到下拉列表
     var url=methodeAddress+"getYardList";
@@ -394,31 +388,18 @@ function setmap(){
         case 1:
             mapWidth=3573;
             mapHeight=2471;
-            //mapbaseX=800;
-           
-            //alert(mapbaseX);
-            //mapbaseY=800;
-            
             break;
         case 2:
             mapWidth=2600;
             mapHeight=1798;
-            //            mapbaseX=600;
-            //            mapbaseY=600;
-            
             break;
         case 3:
             mapWidth=1800;
             mapHeight=1245;
-            //            mapbaseX=400;
-            //            mapbaseY=400;
-           
             break;
         case 4:
             mapWidth=1000;
             mapHeight=692;
-            //            mapbaseX=0;
-            //            mapbaseY=0;
             break;
     }
 }
