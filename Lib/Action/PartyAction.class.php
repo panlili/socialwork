@@ -4,13 +4,6 @@ class PartyAction extends BaseAction {
 
     const ACTION_NAME = "区域党建";
 
-    public function _initialize() {
-        parent::_initialize();
-        if (1 == $this->_session("community") || 2 == $this->_session("community")) {
-            C("DB_PREFIX", "sjf_");
-        }
-    }
-
     public function index() {
         $Party = D("Party");
         import("ORG.Util.Page");

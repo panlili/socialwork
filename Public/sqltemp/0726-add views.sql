@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2012-07-26 11:42:21
+Date: 2012-07-26 12:48:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,11 +89,12 @@ CREATE TABLE `jz_citizen` (
   KEY `nation` (`nation`),
   KEY `bool` (`is_fertility`,`is_special`,`is_low_level`,`is_disability`,`is_low_rent`,`is_long_live`),
   KEY `enumtype` (`relation_with_householder`,`marry_info`,`education`,`political_status`,`employee`)
-) ENGINE=MyISAM AUTO_INCREMENT=2000000 DEFAULT CHARSET=utf8 COMMENT='居民信息表，对应其people表';
+) ENGINE=MyISAM AUTO_INCREMENT=2000001 DEFAULT CHARSET=utf8 COMMENT='居民信息表，对应其people表';
 
 -- ----------------------------
 -- Records of jz_citizen
 -- ----------------------------
+INSERT INTO `jz_citizen` VALUES ('2000000', '2000000', null, '交子房主', '户主', '321182198403014012', '男', '彝族', '1984-03-01', '是', '未婚', '文盲', '群众', '否', '就业', '否', '否', '是', '否', '', '', '2012-07-26');
 
 -- ----------------------------
 -- Table structure for `jz_house`
@@ -124,11 +125,12 @@ CREATE TABLE `jz_house` (
   UNIQUE KEY `id` (`id`),
   KEY `bool` (`is_free`,`is_fit`,`is_lowrent`,`is_floor`,`is_afford`,`is_taiwan`,`is_army`,`is_fuel`),
   KEY `address` (`yard_id`,`address_1`,`address_2`,`address_3`,`address_4`,`address_other`)
-) ENGINE=MyISAM AUTO_INCREMENT=2000000 DEFAULT CHARSET=utf8 COMMENT='房屋信息表，对应其house_base表';
+) ENGINE=MyISAM AUTO_INCREMENT=2000001 DEFAULT CHARSET=utf8 COMMENT='房屋信息表，对应其house_base表';
 
 -- ----------------------------
 -- Records of jz_house
 -- ----------------------------
+INSERT INTO `jz_house` VALUES ('2000000', '2000000', '交子院落11栋2单元3楼4号', '否', '是', '是', '否', '否', '否', '否', '2012-07-26', '1', '2', '3', '4', '0', '交子人员', '否', '', null);
 
 -- ----------------------------
 -- Table structure for `jz_map_mark`
@@ -349,7 +351,7 @@ CREATE TABLE `jz_street` (
 -- Records of jz_street
 -- ----------------------------
 INSERT INTO `jz_street` VALUES ('2000003', '交子街道2');
-INSERT INTO `jz_street` VALUES ('2000002', '交子街道1');
+INSERT INTO `jz_street` VALUES ('2000002', '交子街道3');
 
 -- ----------------------------
 -- Table structure for `jz_yard`
@@ -374,11 +376,12 @@ CREATE TABLE `jz_yard` (
   UNIQUE KEY `id` (`id`),
   KEY `street_id` (`street_id`),
   KEY `address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=2000000 DEFAULT CHARSET=utf8 COMMENT='院落信息表';
+) ENGINE=MyISAM AUTO_INCREMENT=2000001 DEFAULT CHARSET=utf8 COMMENT='院落信息表';
 
 -- ----------------------------
 -- Records of jz_yard
 -- ----------------------------
+INSERT INTO `jz_yard` VALUES ('2000000', '0', '2000003', '交子街道2模版接', null, '交子院落1', '0', '0000', '0', '', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `jz_yardadmin`
@@ -395,11 +398,14 @@ CREATE TABLE `jz_yardadmin` (
   UNIQUE KEY `id` (`id`),
   KEY `yard_id` (`yard_id`),
   KEY `man` (`job`,`name`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of jz_yardadmin
 -- ----------------------------
+INSERT INTO `jz_yardadmin` VALUES ('1', '2000000', '书记', '某某2', '', '院落管理');
+INSERT INTO `jz_yardadmin` VALUES ('2', '2000000', '主任', '某某3', '', '院落党支部');
+INSERT INTO `jz_yardadmin` VALUES ('3', '2000000', '街道办事处负责人', '某某以', '', '环治工作');
 
 -- ----------------------------
 -- Table structure for `sjf_camera`
@@ -12329,7 +12335,7 @@ CREATE TABLE `sjf_ngo` (
   `introduce` text COMMENT '简介',
   `create_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='非政府组织（Non-Governmental Organization），民间组织表，对应其pope_org\r\n';
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='非政府组织（Non-Governmental Organization），民间组织表，对应其pope_org\r\n';
 
 -- ----------------------------
 -- Records of sjf_ngo
@@ -12993,7 +12999,7 @@ CREATE TABLE `sjf_party` (
   `postcode` int(10) DEFAULT NULL COMMENT '邮政编码',
   PRIMARY KEY (`id`),
   KEY `id` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of sjf_party
@@ -13149,7 +13155,7 @@ CREATE TABLE `sjf_user` (
 -- ----------------------------
 -- Records of sjf_user
 -- ----------------------------
-INSERT INTO `sjf_user` VALUES ('167', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 'liyuan', '0000-00-00 00:00:00', '0', '办事员');
+INSERT INTO `sjf_user` VALUES ('167', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', '街道工作人员1', '0000-00-00 00:00:00', '0', '办事员');
 INSERT INTO `sjf_user` VALUES ('179', 'sjf', 'e01f3f68bdb4a5010fbdbfbbb6e3fa41', '1', '水井坊员工1', '2012-07-25 03:49:00', '1', '办事员');
 INSERT INTO `sjf_user` VALUES ('180', 'jz', 'dd305eab9b42cb3713d4f964ea53b642', '1', '交子工作人员1', '2012-07-25 03:49:23', '2', '办事员');
 
@@ -13287,7 +13293,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- View structure for `total_map_set`
 -- ----------------------------
 DROP VIEW IF EXISTS `total_map_set`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_map_set` AS select `sjf_map_set`.`id` AS `id`,`sjf_map_set`.`mapWidth` AS `mapWidth`,`sjf_map_set`.`mapHeight` AS `mapHeight`,`sjf_map_set`.`mapAreaWidth` AS `mapAreaWitdh`,`sjf_map_set`.`mapAreaHeight` AS `mapAreaHeight`,`sjf_map_set`.`pieceWidth` AS `pieceWidth`,`sjf_map_set`.`pieceHeight` AS `pieceHeight`,`sjf_map_set`.`piecePath` AS `piecePath`,`sjf_map_set`.`methodeAddress` AS `methodeAddress`,`sjf_map_set`.`mapbaseX` AS `mapbaseX`,`sjf_map_set`.`mapbaseY` AS `mapbaseY` from `sjf_map_set` union select `jz_map_set`.`id` AS `id`,`jz_map_set`.`mapWidth` AS `mapWidth`,`jz_map_set`.`mapHeight` AS `mapHeight`,`jz_map_set`.`mapAreaWidth` AS `mapAreaWitdh`,`jz_map_set`.`mapAreaHeight` AS `mapAreaHeight`,`jz_map_set`.`pieceWidth` AS `pieceWidth`,`jz_map_set`.`pieceHeight` AS `pieceHeight`,`jz_map_set`.`piecePath` AS `piecePath`,`jz_map_set`.`methodeAddress` AS `methodeAddress`,`jz_map_set`.`mapbaseX` AS `mapbaseX`,`jz_map_set`.`mapbaseY` AS `mapbaseY` from `jz_map_set`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `total_map_set` AS select `sjf_map_set`.`id` AS `id`,`sjf_map_set`.`mapWidth` AS `mapWidth`,`sjf_map_set`.`mapHeight` AS `mapHeight`,`sjf_map_set`.`mapAreaWidth` AS `mapAreaWidth`,`sjf_map_set`.`mapAreaHeight` AS `mapAreaHeight`,`sjf_map_set`.`pieceWidth` AS `pieceWidth`,`sjf_map_set`.`pieceHeight` AS `pieceHeight`,`sjf_map_set`.`piecePath` AS `piecePath`,`sjf_map_set`.`methodeAddress` AS `methodeAddress`,`sjf_map_set`.`mapbaseX` AS `mapbaseX`,`sjf_map_set`.`mapbaseY` AS `mapbaseY` from `sjf_map_set` union select `jz_map_set`.`id` AS `id`,`jz_map_set`.`mapWidth` AS `mapWidth`,`jz_map_set`.`mapHeight` AS `mapHeight`,`jz_map_set`.`mapAreaWidth` AS `mapAreaWitdh`,`jz_map_set`.`mapAreaHeight` AS `mapAreaHeight`,`jz_map_set`.`pieceWidth` AS `pieceWidth`,`jz_map_set`.`pieceHeight` AS `pieceHeight`,`jz_map_set`.`piecePath` AS `piecePath`,`jz_map_set`.`methodeAddress` AS `methodeAddress`,`jz_map_set`.`mapbaseX` AS `mapbaseX`,`jz_map_set`.`mapbaseY` AS `mapbaseY` from `jz_map_set`;
 
 -- ----------------------------
 -- View structure for `total_ngo`

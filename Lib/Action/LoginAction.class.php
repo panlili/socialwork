@@ -30,7 +30,7 @@ class LoginAction extends Action {
             $this->redirect("Login/login");
         }
 
-        //其次对用户验证
+        //其次对用户验证, 最开始使用的数据库是config.php中定义的sjf_为前缀的user库
         $User = D('User');
         $username = $this->_post("username");
         $password = md5($this->_post("password"));
