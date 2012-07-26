@@ -9,12 +9,13 @@ class BaseAction extends Action {
         if (!session("?truename"))
             $this->redirect("Login/login");
 
-        if (1 == $this->_session("community")) {
-            C("DB_PREFIX", "sjf_");
-        }
-
-        if (2 == $this->_session("community")) {
-            C("DB_PREFIX", "jz_");
+        switch ($this->_session("community")) {
+            case 0: C("DB_PREFIX", "sum_");
+                break;
+            case 1: C("DB_PREFIX", "sjf_");
+                break;
+            case 2: C("DB_PREFIX", "jz_");
+                break;
         }
     }
 

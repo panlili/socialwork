@@ -32,8 +32,8 @@ class PartyAction extends BaseAction {
             session("action_message", "数据不存在！");
             $this->redirect("Party/index");
         }
-        $parter=$Parter->where(array("party_id"=>$id))->select();
-        $this->assign(array("data" => $data,"parter"=>$parter, "page_place" => $this->getPagePlace("数据详细信息", self::ACTION_NAME)));
+        $parter = $Parter->where(array("party_id" => $id))->select();
+        $this->assign(array("data" => $data, "parter" => $parter, "page_place" => $this->getPagePlace("数据详细信息", self::ACTION_NAME)));
         $this->display();
     }
 
