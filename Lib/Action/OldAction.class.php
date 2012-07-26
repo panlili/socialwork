@@ -90,8 +90,6 @@ class OldAction extends BaseAction {
         $Old = D("Old");
         if ($newdata = $Old->create()) {
             //the boolean fields' check
-
-
             $newdata["birthday"] = $this->getBirthdayByIdCard(trim($this->_post("id_card")));
 
             $data = $Old->save($newdata);
