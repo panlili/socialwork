@@ -17,7 +17,7 @@ class SearchAction extends BaseAction {
         $this->display();
     }
 
-    //接收客户端提交的表单，建立查询语句，查询后返回json数据
+    //接收客户端提交的表单，建立查询语句，查询后渲染模版，然后返回html数据
     public function dosearch() {
         $searchkey = $_POST;
 
@@ -30,24 +30,52 @@ class SearchAction extends BaseAction {
                 $x = "sKeyRelation" . substr($i, -1);
                 if ($searchkey[$x] !== "") {
 
+                    switch ($searchkey[$i]) {
+                        case "age":
+                            $cunrrentYear = date("Y");
+                            $b1 = $cunrrentYear - $searchkey[$y];
+                            $b2 = $cunrrentYear - $searchkey[$y . '-1'];
+                            $tmp = $tmp . "birthday between '" . $b2 . "-0-0' and '" . $b1 . "-0-0' " . $searchkey[$x] . " ";
+                            break;
+                        case "birthday":
+                            $tmp = $tmp . $searchkey[$i] . " between '" . $searchkey[$y] . "' and '" . $searchkey[$y . '-1'] . "' " . $searchkey[$x] . " ";
+                            break;
+                        default :
+                            $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
+                    }
+
                     //对查询条件为“生日”或者“年龄”进行特别处理
-                    $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
                 } else {
-                    $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' ";
+                    switch ($searchkey[$i]) {
+                        case "age":
+                            break;
+                        case "birthday":
+                            $tmp = $tmp . $searchkey[$i] . " between '" . $searchkey[$y] . "' and '" . $searchkey[$y . '-1'] . $searchkey[$x] . "' ";
+
+                            break;
+                        default :
+                            $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' ";
+                    }
                 }
             }
         }
-
+        dump($tmp);
         $citizen = D("Citizen");
 
-        $count = $citizen->relation('house')->where($tmp)->count();  //计算记录总数
+
         //$count=100;
-        $_SESSION['sCitizenKey'] = $tmp;
+        if ($tmp != "") {
+            $_SESSION['sCitizenKey'] = $tmp;
+        }
+
+        $tmp1 = $_SESSION['sCitizenKey'];
+
+        $count = $citizen->relation('house')->where($tmp1)->count();  //计算记录总数
 
         import("@.ORG.Pagea");
         $p = new Pagea($count, 50, 'type=1', 'searchResult', 'pages');
-        $result = $citizen->relation('house')->where($tmp)->limit($p->firstRow . ',' . $p->listRows)->select();
-        
+        $result = $citizen->relation('house')->where($tmp1)->limit($p->firstRow . ',' . $p->listRows)->select();
+
         $p->setConfig('header', '条数据');
         $p->setConfig('prev', "<");
         $p->setConfig('next', '>');
@@ -87,15 +115,18 @@ class SearchAction extends BaseAction {
         }
 
         $house = D("House");
-
-        $count = $house->relation('house')->where($tmp)->count();  //计算记录总数
+        if ($tmp != "") {
+            $_SESSION['sHouseKey'] = $tmp;
+        }
+        $tmp1 = $_SESSION['sHouseKey'];
+        $count = $house->relation('house')->where($tmp1)->count();  //计算记录总数
         //$count=100;
-        $_SESSION['sCitizenKey'] = $tmp;
+
 
         import("@.ORG.Pagea");
         $p = new Pagea($count, 50, 'type=1', 'searchResult', 'pages');
-        $result = $house->relation('house')->where($tmp)->limit($p->firstRow . ',' . $p->listRows)->select();
-        
+        $result = $house->relation('house')->where($tmp1)->limit($p->firstRow . ',' . $p->listRows)->select();
+
         $p->setConfig('header', '条数据');
         $p->setConfig('prev', "<");
         $p->setConfig('next', '>');

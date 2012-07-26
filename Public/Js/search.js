@@ -1,12 +1,12 @@
 var s1=0;
 var s2=0;
 $(function(){
+    //$('#sValue0').datepicker();
+    
     $("div#searchResult").hide();
-    $("select#sKeyName"+s1).change(function(){
-        ////alert($(this).children('option:selected').val());
-        })
+    addoption();
+   
     $("input#addSearchKey").click(function(){
-        //var strHtml='<tr><td><select id="sKeyRelation1" ><option>并且</option></select></td><td><select id="sKeyName1" ><option>姓名</option><option>性别</option><option>身份证号</option><option>出生日期</option><option>年龄</option></select></td><td><input id="sValue1" name="sValue1" type="text"></input></td></tr>';
         
         var option1='<option value="AND">并且</option><option value="OR">或者</option>';
         var sKeyRelation='<select id="sKeyRelation'+s1+'" name="sKeyRelation'+s1+'">'+option1+'</select>';
@@ -16,6 +16,13 @@ $(function(){
         var sKeyValue='<input id="sValue'+s1+'" name="sValue'+s1+'" type="text"></input>';
         var strHtml='<tr>'+'<td>'+sKeyRelation+'</td>'+'<td>'+sKeyName+'</td>'+'<td class="skeyvalue'+s1+'">'+sKeyValue+'</td>'+'</tr>';
         $("table#common_table").append(strHtml);
+        addoption();
+    //alert($("form#searchKey").serialize());
+    //alert(s1);
+    })
+    
+    //动态添加查询值输入表单的方法
+    function addoption(){
         $(".skeyname").change(function(){
             //alert($(this).children('option:selected').val());
             //判断选择的值，根据值在后面添加相应的select元素
@@ -23,6 +30,16 @@ $(function(){
             s2=$(this).attr("name").charAt(8);
             var strX;
             switch(sKey){
+                case "age":
+                    strX='从<input id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>至<input id="sValue'+s2+'-1" name="sValue'+s2+'-1" type="text"></input>岁';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                break;
+                case "birthday":
+                    strX='从<input class="date-pick" id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>至<input class="date-pick" id="sValue'+s2+'-1" name="sValue'+s2+'-1" type="text"></input>';
+                    
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    $('.date-pick').datepicker();
+                break;
                 case "education":
                     strX='<select name="sValue'+s2+'"><option value="文盲">文盲</option><option value="小学">小学</option><option value="初中">初中</option><option value="高中">高中</option><option value="技校">技校</option><option value="中专">中专</option><option value="大专">大专</option><option value="本科">本科</option><option value="硕士">硕士</option><option value="博士">博士</option><option value="博士后">博士后</option><option value="教授">教授</option><option value="院士">院士</option></select>';
                     //$(".skeyvalue").empty().append(strX);
@@ -73,9 +90,7 @@ $(function(){
                     $(".skeyvalue"+s2).empty().append(strX);
             }
         })
-    //alert($("form#searchKey").serialize());
-    //alert(s1);
-    })
+    }
     $("input#delSearchKey").click(function(){
                
         if(s1>0){
@@ -83,33 +98,12 @@ $(function(){
             $("#common_table tr:last").remove();
         }
     })
-    //    $("button#dosearch").click(function(){
-    //        var fo=$("form#searchKey").serializeArray();//alert(fo);
-    //        $.post("/socialwork/index.php/search/dosearch",fo,function(data){
-    //            alert(data);
-    //        })
-    //    
-    //    })
+  
     $("input#dosearch").click(function(){
         var fo=$("form#searchKey").serializeArray();//alert(fo);
         $.post("/socialwork/index.php/search/dosearch",fo,function(data){
             
-//            $("div#searchResult").show();
-//            //把数据填充给表格
-//            var htmlstr="";
-//            htmlstr+='<table id="common_table2" width="100%"><tr><th>姓名</th><th>身份证号</th><th>居住地址</th></tr>';
-//            $("div#searchResult").empty();
-//            var dataObj=eval("("+data+")");    //转换为json对象 用post方法获取的是一个字符串
-//            //$("div#searchResult").append(data);
-//            //alert(dataObj);
-//            
-//            $.each(dataObj,function(i,item){
-//                htmlstr+='<tr><td>'+item.name+'</td><td>'+item.id_card+'</td><td>'+item.house.address+'</td></tr>';
-//            })
-//            htmlstr+='</table>';
-//            //alert(htmlstr);
-//            $("div#searchResult").append(htmlstr);
-//        $("div#searchResult").show();
+
        $("div#searchResult").html(data);
           $("div#searchResult").show();
         })
