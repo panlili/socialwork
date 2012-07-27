@@ -67,3 +67,15 @@ function init() {
         }
     });
 }
+
+function checkpassword(){
+    var pass1=$("#pass1").val().trim();
+    var pass2=$("#pass2").val().trim();
+    if(pass1!=pass2 || pass1==""){
+        alert("密码不一致！");
+        return false;
+    }
+    else{
+        return true;
+    }
+}

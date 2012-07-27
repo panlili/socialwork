@@ -4,6 +4,20 @@ class ParterAction extends BaseAction {
 
     const ACTION_NAME = "党员档案";
 
+    public function _initialize() {
+        if (!session("?truename"))
+            $this->redirect("Login/login");
+
+        switch ($this->_session("community")) {
+            case 0: C("DB_PREFIX", "sum_");
+                break;
+            case 1: C("DB_PREFIX", "sjf_");
+                break;
+            case 2: C("DB_PREFIX", "sjf_");
+                break;
+        }
+    }
+
     public function index() {
         $Parter = D("Parter");
         import("ORG.Util.Page");
@@ -18,7 +32,7 @@ class ParterAction extends BaseAction {
     }
 
     public function newone() {
-        $this->assign(array("partylist"=>D("Party")->select(),"page_place" => $this->getPagePlace("添加新数据", self::ACTION_NAME)));
+        $this->assign(array("partylist" => D("Party")->select(), "page_place" => $this->getPagePlace("添加新数据", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -62,7 +76,7 @@ class ParterAction extends BaseAction {
             $this->redirect("Parter/index");
         }
 
-        $this->assign(array("partylist"=>D("Party")->select(),"data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
+        $this->assign(array("partylist" => D("Party")->select(), "data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -96,7 +110,7 @@ class ParterAction extends BaseAction {
             $this->redirect("Parter/index");
         }
     }
-    
+
 }
 
 ?>

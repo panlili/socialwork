@@ -17,7 +17,7 @@
                 <li><a href="{:U('Party/index')}">2.支部管理</a></li>
                 <li><a href="{:U('Parter/index')}">3.党员管理</a></li>
                 <li><a href="#">4.发展党员</a></li>
-             </ul>
+            </ul>
         </li>
         <li class="main">
             <a href="{:U('Ngo/index')}"><img src="__IMAGE__/menu/menu_org.png"/>社会组织</a>
@@ -55,8 +55,10 @@
         <li class="main">
             <a href="#"><img src="__IMAGE__/menu/menu_system.png"/>系统功能</a>
             <ul>                
-                <?php if(1==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">1.用户管理</a></li>'; ?>
-                <li><a href="{:U('Map/mapset')}">2.地图参数设置</a></li>
+                <li><a href="{:U('Map/mapset')}">1.地图参数设置</a></li>
+                 <li><a href="{:U('Admin/edit')}">2.修改个人信息</a></li>
+                <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">3.用户管理</a></li>'; ?>
+               
             </ul>
         </li>        
     </ul>   

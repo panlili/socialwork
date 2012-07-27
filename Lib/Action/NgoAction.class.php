@@ -4,6 +4,20 @@ class NgoAction extends BaseAction {
 
     const ACTION_NAME = "社会组织";
 
+    public function _initialize() {
+        if (!session("?truename"))
+            $this->redirect("Login/login");
+
+        switch ($this->_session("community")) {
+            case 0: C("DB_PREFIX", "sum_");
+                break;
+            case 1: C("DB_PREFIX", "sjf_");
+                break;
+            case 2: C("DB_PREFIX", "sjf_");
+                break;
+        }
+    }
+
     public function index() {
         $Ngo = D("Ngo");
         import("ORG.Util.Page");
@@ -99,10 +113,10 @@ class NgoAction extends BaseAction {
     }
 
     public function toexcel() {
-        $list=  D("Ngo")->select();
+        $list = D("Ngo")->select();
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition:attachment;filename=ngo.xls");
-        $this->assign("list",$list);
+        $this->assign("list", $list);
         echo $this->fetch();
     }
 
