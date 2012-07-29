@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="citizen_search" method="POST" action="__URL__/search">                    
+        <form name="citizen_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="household" >户口地址</option>
                 <option value="name">姓名</option>
@@ -43,10 +43,12 @@
                 <td>{$each.collection_date}</td>
                 <td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
-        </volist>    
+        </volist>
         </tbody>
     </table>
     <p>
-        <span class="newdata"><a href="{:U('Citizen/newone')}">添加新居民信息【此处添加无房屋的居民,如新居民属于某一房屋，请去房屋管理添加居民】</a></span>
-        <span class="page">{$page}</span></p>
+    <php>cs();</php>
+    <span class="newdata"><a href="{:U('Citizen/newone')}">添加新居民信息【此处添加无房屋的居民,如新居民属于某一房屋，请去房屋管理添加居民】</a></span>
+    <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

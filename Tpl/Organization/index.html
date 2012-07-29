@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="organization_search" method="POST" action="__URL__/search">                    
+        <form name="organization_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="name" >单位名称</option>
                 <option value="chairman">法人代表</option>
@@ -26,10 +26,12 @@
                 <td class="number"></td>
                 <td>{$each.name}</td><td>{$each.type}</td><td>{$each.address}</td>
                 <td>{$each.chairman}</td><td>{$each.contactor}</td><td>{$each.telephone}</td>
-                <td><a href="__URL__/{$each.id}">详细信息</a></td>            
+                <td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
         </volist>
         </tbody>
     </table>
-    <p><span class="newdata"><a href="{:U('Organization/newone')}">添加新单位信息</a></span><span class="page">{$page}</span></p>
+    <p>
+       <php>cs();</php><span class="newdata"><a href="{:U('Organization/newone')}">添加新单位信息</a></span> <php>ce();</php>
+        <span class="page">{$page}</span></p>
 </div>

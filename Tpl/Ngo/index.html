@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="ngo_search" method="POST" action="__URL__/search">                    
+        <form name="ngo_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="name" >组织名</option>
                 <option value="chairman">负责人</option>
@@ -25,10 +25,12 @@
                 <td class="number"><!-- 行号 --></td>
                 <td>{$each.name}</td><td>{$each.scope}</td><td>{$each.chairman}</td>
                 <td>{$each.register_date}</td><td>{$each.registerplace}</td>
-                <td><a href="__URL__/{$each.id}">详细信息</a></td>            
+                <td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
         </volist>
         </tbody>
     </table>
-    <p><span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span><span class="newdata"><a href="{:U('Ngo/newone')}">添加新社会组织信息</a></span><span class="page">{$page}</span></p>
+    <p><span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span>
+    <php>cs();</php>  <span class="newdata"><a href="{:U('Ngo/newone')}">添加新社会组织信息</a></span> <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

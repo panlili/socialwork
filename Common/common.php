@@ -37,14 +37,14 @@ function getBirthdayByIdCard($idcard) {
     }
 }
 
-function comment_start() {
-    if (C("DB_PREFIX") == "sum_") {
+function cs() {
+    if (C("DB_PREFIX") === "sum_") {
         echo "<!--";
     }
 }
 
-function comment_end() {
-    if (C("DB_PREFIX") == "sum_") {
+function ce() {
+    if (C("DB_PREFIX") === "sum_") {
         echo "-->";
     }
 }

@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="yard_search" method="POST" action="__URL__/search">                    
+        <form name="yard_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="name" >院落名</option>
                 <option value="number">院落编号</option>
@@ -42,8 +42,10 @@
                 <!--  <td>{$each.admin_name}</td>-->
                 <td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
-        </volist>    
+        </volist>
         </tbody>
-    </table> 
-    <p><span class="newdata"><a href="{:U('Yard/newone')}">添加新院落信息</a></span><span class="page">{$page}</span></p>
+    </table>
+    <p>
+    <php>cs();</php><span class="newdata"><a href="{:U('Yard/newone')}">添加新院落信息</a></span> <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

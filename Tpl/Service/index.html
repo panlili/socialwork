@@ -1,10 +1,10 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="service_search" method="POST" action="__URL__/search">                    
+        <form name="service_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="name" >服务名</option>
-                <option value="type">服务类型</option>                        
+                <option value="type">服务类型</option>
             </select>
             <input type="text" name="searchKey" value="" size="30" />
             <input type="submit" value="查询" />
@@ -24,10 +24,12 @@
                 <td class="number"></td>
                 <td>{$each.type}</td><td>{$each.name}</td><td>{$each.cost}</td>
                 <td>{$each.desc}</td>
-                <td><a href="__URL__/{$each.id}">详细信息</a></td>            
+                <td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
         </volist>
         </tbody>
     </table>
-    <p><span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span><span class="newdata"><a href="{:U('Service/newone')}">添加服务</a></span><span class="page">{$page}</span></p>
+    <p><span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span>
+    <php>cs();</php> <span class="newdata"><a href="{:U('Service/newone')}">添加服务</a></span> <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

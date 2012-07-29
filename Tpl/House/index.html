@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="house_search" method="POST" action="__URL__/search">                    
+        <form name="house_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="address" >地址</option>
                 <option value="contactor">联系人</option>
@@ -46,10 +46,15 @@
               <td>{$each.address_3}</td>
               <td>{$each.address_4}</td>
               <td>{$each.address_other}</td> -->
-            <td><a href="__URL__/{$each.id}">详情</a></td><td><a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td>
+            <td><a href="__URL__/{$each.id}">详情</a></td>
+            <php>cs();</php><td><a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td> <php>ce();</php>
             </tr>
-        </volist>    
+        </volist>
         </tbody>
     </table>
-    <p><span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a></span><span class="page">{$page}</span></p>
+    <p>
+    <php>cs();</php>
+    <span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a></span>
+    <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

@@ -1,9 +1,8 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="old_search" method="POST" action="__URL__/search">                    
+        <form name="old_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
-
                 <option value="name">姓名</option>
                 <option value="id_card">身份证号码</option>
                 <option value="contact">联系电话</option>
@@ -20,7 +19,6 @@
                 <th>序号</th>
                 <th>姓名</th>
                 <th>年龄</th>
-
                 <th>身份证号</th>
                 <th>性别</th>
                 <th>民族</th>
@@ -37,7 +35,6 @@
                 <td class="number"></td>
                 <td>{$each.name}</td>
                 <td>{$each.birthday|getAge}</td>
-
                 <td>{$each.id_card}</td>
                 <td>{$each.sex}</td>
                 <td>{$each.nation}</td>
@@ -47,10 +44,11 @@
                 <td>{$each.friend_tel}</td>
                 <td><a href="__URL__/{$each.id}">详细信息</a></td>
             </tr>
-        </volist>    
+        </volist>
         </tbody>
     </table>
     <p>
-        <span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span><span class="newdata"><a href="{:U('old/newone')}">添加老人信息</a></span>
-        <span class="page">{$page}</span></p>
+        <span class="newdata"><a href="__URL__/toexcel"/>导出Excel</a></span>
+    <php>cs();</php><span class="newdata"><a href="{:U('old/newone')}">添加老人信息</a></span> <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

@@ -13,7 +13,7 @@
         <tr><td>户籍地址：</td><td>{$data.household_reg}</td>
             <td>往来密切子女姓名：</td><td>{$data.child}</td></tr>
         <tr><td>子女电话：</td><td>{$data.child_tel}</td>
-            <td>往来密切亲友姓名：</td><td>{$data.friend}</td></tr>                
+            <td>往来密切亲友姓名：</td><td>{$data.friend}</td></tr>
         <tr><td>亲友电话：</td><td>{$data.friend_tel}</td>
             <!--- <tr><td>健康情况：</td><td>{$data.health}</td></tr>--->
             <td>居住情况：</td><td>{$data.live}</td></tr>
@@ -27,9 +27,11 @@
             <td>物业维修：</td><td>{$data.repair}</td></tr>
         <tr><td>上门洗衣：</td><td>{$data.washing}</td>
             <td>法律援助：</td><td>{$data.law}</td></tr>
+        <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
                     删除</a>
             </td></tr>
+         <php>ce();</php>
     </table>
 </div>

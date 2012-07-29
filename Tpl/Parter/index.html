@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="search">
-        <form name="ngo_search" method="POST" action="__URL__/search">                    
+        <form name="ngo_search" method="POST" action="__URL__/search">
             <select name="searchField"  >
                 <option value="name" >姓名</option>
                 <option value="idcard">身份证</option>
@@ -28,5 +28,7 @@
         </volist>
         </tbody>
     </table>
-    <p><span class="newdata"><a href="{:U('Parter/newone')}">添加新党员</a></span><span class="page">{$page}</span></p>
+    <p>
+    <php>cs();</php><span class="newdata"><a href="{:U('Parter/newone')}">添加新党员</a></span> <php>ce();</php>
+    <span class="page">{$page}</span></p>
 </div>

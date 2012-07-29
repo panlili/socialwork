@@ -14,10 +14,10 @@
         <div id="content">
             <div id="page_place"><p>当前位置：{$page_place}</p></div>
             <div id="search">
-                <form name="camera_search" method="POST" action="__URL__/search">                    
+                <form name="camera_search" method="POST" action="__URL__/search">
                     <select name="searchField"  >
                         <option value="name" >摄像头名称</option>
-                        <option value="ip">摄像头ip</option>                        
+                        <option value="ip">摄像头ip</option>
                     </select>
                     <input type="text" name="searchKey" value="" size="30" />
                     <input type="submit" value="查询" />
@@ -37,12 +37,14 @@
                         <td class="number"></td>
                         <td>{$each.name}</td><td>{$each.model}</td><td>{$each.ip}</td><td>{$each.port}</td>
                         <td>{$each.yard.name}</td>
-                        <td><a href="__URL__/{$each.id}">详细信息</a></td>            
+                        <td><a href="__URL__/{$each.id}">详细信息</a></td>
                     </tr>
                 </volist>
                 </tbody>
             </table>
-            <p><span class="newdata"><a href="{:U('Camera/newone')}">添加摄像头</a></span><span class="page">{$page}</span></p>
+            <p>
+            <php>cs();</php> <span class="newdata"><a href="{:U('Camera/newone')}">添加摄像头</a></span><php>ce();</php>
+            <span class="page">{$page}</span></p>
         </div>
         <include file="Public:footer" />
     </div>

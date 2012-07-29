@@ -5,10 +5,11 @@
         <tr><td>服务名：</td><td>{$data.name}</td></tr>
         <tr><td>消耗点数：</td><td>{$data.cost}</td></tr>
         <tr><td>服务描述：</td><td>{$data.desc}</td></tr>
-
+        <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
                     删除</a>
             </td></tr>
+        <php>ce();</php>
     </table>
 </div>

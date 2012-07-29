@@ -15,9 +15,11 @@
         <tr><td>联系人姓名：</td><td>{$data.contactor}</td></tr>
         <tr><td>联系人电话：</td><td>{$data.telephone}</td></tr>
         <tr><td>备注信息：</td><td>{$data.note}</td></tr>
+        <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
                     删除</a>
             </td></tr>
+        <php>ce();</php>
     </table>
 </div>

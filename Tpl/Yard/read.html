@@ -9,11 +9,13 @@
         <tr><td>建筑年代：</td><td>{$data.building_age}</td></tr>
         <tr><td>建筑面积：</td><td>{$data.area}</td></tr>
         <tr><td>自治组织机构：</td><td>{$data.admin_org}</td></tr>
+         <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
                     删除</a>
             </td></tr>
-        <tr><td><!--  end of yard basic information  --></td></tr> 
+         <php>ce();</php>
+        <tr><td><!--  end of yard basic information  --></td></tr>
 
         <!-- 院落管理情况 begin-->
         <tr><td><strong>院落管理情况：</strong></td><td><span id="addadminright" style="color:red;display: none;">添加成功！</span></td></tr>
@@ -38,7 +40,7 @@
             <td>姓名：<input type="text" name="name"/></td>
             <td>联系电话：<input type="text" name="telephone"/></td>
             <td><input type="button" value="新增" class="addadmin"/></td>
-        </form>   
+        </form>
         </tr>
         <!-- ajax add tr end -->
         <tr><td></td></tr>
@@ -67,7 +69,7 @@
             <td>姓名：<input type="text" name="name"/></td>
             <td>联系电话：<input type="text" name="telephone"/></td>
             <td><input type="button" value="新增" class="addparty"/></td>
-        </form>   
+        </form>
         </tr>
         <!-- ajax add tr end -->
         <tr><td></td></tr>
@@ -96,7 +98,7 @@
             <td>姓名：<input type="text" name="name"/></td>
             <td>联系电话：<input type="text" name="telephone"/></td>
             <td><input type="button" value="新增" class="addclean"/></td>
-        </form>   
+        </form>
         </tr>
         <!-- ajax add tr end -->
         <!-- 环治工作 end -->
@@ -137,7 +139,7 @@
                 <td>{$each.address_other}</td>
                 <td><a href="__APP__/House/{$each.id}">详情</a></td><!--<td> <a href="__APP__/Citizen/inhouse/{$each.id}">添加居民</a></td> -->
             </tr>
-        </volist>    
+        </volist>
         </tbody>
     </table>
     <p><!-- <span class="newdata"><a href="{:U('House/newone')}">添加新房屋信息</a> --></span><span class="page">{$page}</span></p>

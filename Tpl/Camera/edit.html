@@ -1,5 +1,5 @@
 <div id="content">
-    <div id="page_place"><p>当前位置：{$page_place}</p></div> 
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <form action="__URL__/update" method="post">
         <table id="common_table" style="width: auto;clear:both">
             <tr><td>监控点位名称</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
@@ -9,7 +9,7 @@
             <tr><td>通道数</td><td><input type="text" name="channels" value="{$data.channels}"/></td></tr>
             <tr><td>剩余通道数</td><td><input type="text" name="remain" value="{$data.remain}"/></td></tr>
             <tr><td>备注</td><td><input type="textarea" name="comment" value="{$data.comment}"/></td></tr>
-            <tr><td>所属院落</td><td><select name="yard_id">                                   
+            <tr><td>所属院落</td><td><select name="yard_id">
                         <volist name="yardlist" id="yard">
 
                             <eq name="yard.id" value="$data.yard_id">

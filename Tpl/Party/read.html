@@ -9,10 +9,12 @@
         <tr><td>联系电话：</td><td>{$data.telephone}</td></tr>
         <tr><td>邮政编码：</td><td>{$data.postcode}</td></tr>
         <tr><td>单位信息：</td><td>{$data.information}</td></tr>
+        <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
                     删除</a>
             </td></tr>
+        <php>ce();</php>
     </table>
     <br/>
     <p>支部党员列表：</p>

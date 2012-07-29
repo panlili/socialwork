@@ -22,9 +22,11 @@
         <tr><td>户口地址：</td><td>{$data.household}</td></tr>
         <tr><td>联系电话：</td><td>{$data.telephone}</td></tr>
         <tr><td>采集日期：</td><td>{$data.collection_date}</td></tr>
+        <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
                     删除</a>
             </td></tr>
+        <php>ce();</php>
     </table>
 </div>
