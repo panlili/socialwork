@@ -33,13 +33,16 @@ $(function(){
                 case "age":
                     strX='从<input id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>至<input id="sValue'+s2+'-1" name="sValue'+s2+'-1" type="text"></input>岁';
                     $(".skeyvalue"+s2).empty().append(strX);
-                break;
+                    break;
                 case "birthday":
                     strX='从<input class="date-pick" id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>至<input class="date-pick" id="sValue'+s2+'-1" name="sValue'+s2+'-1" type="text"></input>';
                     
                     $(".skeyvalue"+s2).empty().append(strX);
-                    $('.date-pick').datepicker();
-                break;
+                    $('.date-pick').datepicker({
+                        changeMonth: true,
+                        changeYear: true
+                    });
+                    break;
                 case "education":
                     strX='<select name="sValue'+s2+'"><option value="文盲">文盲</option><option value="小学">小学</option><option value="初中">初中</option><option value="高中">高中</option><option value="技校">技校</option><option value="中专">中专</option><option value="大专">大专</option><option value="本科">本科</option><option value="硕士">硕士</option><option value="博士">博士</option><option value="博士后">博士后</option><option value="教授">教授</option><option value="院士">院士</option></select>';
                     //$(".skeyvalue").empty().append(strX);
@@ -104,8 +107,8 @@ $(function(){
         $.post("/socialwork/index.php/search/dosearch",fo,function(data){
             
 
-       $("div#searchResult").html(data);
-          $("div#searchResult").show();
+            $("div#searchResult").html(data);
+            $("div#searchResult").show();
         })
     
     })
