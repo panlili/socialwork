@@ -2,9 +2,17 @@
 body { font-family: "Segoe UI", Frutiger,Tahoma,Helvetica,"Helvetica Neue", Arial, sans-serif; }
 table {  border-collapse: collapse; }
 td, th { 
-   text-align: center; 
-   border: 1px solid #ddd; 
-   padding:2px 5px; 
-   }
-   
+    text-align: center; 
+    border: 1px solid #ddd; 
+    padding:2px 5px; 
+}
+
 caption {margin: 0 0 .5em; font-weight: bold; }
+
+#buttons p{
+    margin:10px;
+}
+#buttons p input{
+    padding:5px;
+    width: 150px;
+}

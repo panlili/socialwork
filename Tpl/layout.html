@@ -3,10 +3,15 @@
     <head>
         <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- common css and js -->
     <css href="__CSS__/common.css,__CSS__/{$Think.MODULE_NAME}.css" />
-    <!-- javascript library: jquery, self-defined library -->
     <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/{$Think.MODULE_NAME}.js" />
-    <!-- end javascript -->
+
+    <!-- import css and js when statistic module -->
+    <eq name="Think.MODULE_NAME" value="Statistic">
+    <css href="__CSS__/statistic/basic.css,__CSS__/statistic/visualize.css,__CSS__/statistic/visualize-light.css" />
+    <js href="__JS__/statistic/visualize.jQuery.js,__JS__/statistic/excanvas.js" />
+    </eq>
 </head>
 <body onload="init();">
     <div id="container">

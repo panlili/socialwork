@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 //检索功能的控制器，包括对居民的检索和对房屋的检索
 class SearchAction extends BaseAction {
 
@@ -20,16 +18,13 @@ class SearchAction extends BaseAction {
     //接收客户端提交的表单，建立查询语句，查询后渲染模版，然后返回html数据
     public function dosearch() {
         $searchkey = $_POST;
-
-        $tmp = "";  //该变量构建了一个sql语句的条件表达式
+        //该变量构建了一个sql语句的条件表达式
+        $tmp = "";
         foreach ($searchkey as $i => $value) {
-
             if (substr($i, 0, 8) == "sKeyName") {
                 $y = "sValue" . substr($i, -1);
-
                 $x = "sKeyRelation" . substr($i, -1);
                 if ($searchkey[$x] !== "") {
-
                     switch ($searchkey[$i]) {
                         case "age":
                             $cunrrentYear = date("Y");
@@ -43,45 +38,33 @@ class SearchAction extends BaseAction {
                         default :
                             $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
                     }
-
-                    //对查询条件为“生日”或者“年龄”进行特别处理
-                } 
-
+                }
             }
         }
-        //dump($tmp);
+
         $citizen = D("Citizen");
-
-
-        //$count=100;
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
 
         $tmp1 = $_SESSION['sCitizenKey'];
-
         $count = $citizen->relation('house')->where($tmp1)->count();  //计算记录总数
-
         import("@.ORG.Pagea");
         $p = new Pagea($count, 50, 'type=1', 'searchResult', 'pages');
         $result = $citizen->relation('house')->where($tmp1)->limit($p->firstRow . ',' . $p->listRows)->select();
-
         $p->setConfig('header', '条数据');
         $p->setConfig('prev', "<");
         $p->setConfig('next', '>');
         $p->setConfig('first', '<<');
         $p->setConfig('last', '>>');
-
-
-
-        $page = $p->show();            //分页的导航条的输出变量
+        $page = $p->show();
         $this->assign("page", $page);
-        $this->assign("list", $result); //数据循环变量
-        header("Content-Type:text/html; charset=utf-8");    //PHP header申明charset为utf8, Apache配置defaultcharst gbk,页面文件编码是utf8
-        
-        if ($this->isAjax()) {//判断ajax请求
+        $this->assign("list", $result);
+        header("Content-Type:text/html; charset=utf-8");
+
+        if ($this->isAjax()) {
             header("Content-Type:text/html; charset=utf-8");
-            exit($this->fetch('_list'));
+            exit($this->fetch('_citizen'));
         }
         $this->display();
     }
@@ -93,9 +76,8 @@ class SearchAction extends BaseAction {
         $where1 = array();
         $map['_logic'] = "or";
         $where1['_logic'] = "or";
-        $tmp = "";  //该变量构建了一个sql语句的条件表达式
+        $tmp = "";
         foreach ($searchkey as $i => $value) {
-
             if (substr($i, 0, 8) == "sKeyName") {
                 $y = "sValue" . substr($i, -1);
                 $x = "sKeyRelation" . substr($i, -1);
@@ -112,9 +94,7 @@ class SearchAction extends BaseAction {
             $_SESSION['sHouseKey'] = $tmp;
         }
         $tmp1 = $_SESSION['sHouseKey'];
-        $count = $house->relation('house')->where($tmp1)->count();  //计算记录总数
-        //$count=100;
-
+        $count = $house->relation('house')->where($tmp1)->count();
 
         import("@.ORG.Pagea");
         $p = new Pagea($count, 50, 'type=1', 'searchResult', 'pages');
@@ -126,18 +106,18 @@ class SearchAction extends BaseAction {
         $p->setConfig('first', '<<');
         $p->setConfig('last', '>>');
 
-        $page = $p->show();            //分页的导航条的输出变量
+        $page = $p->show();
         $this->assign("page", $page);
         header("Content-Type:text/html; charset=utf-8");
-        $this->assign("list", $result); //数据循环变量
-        if ($this->isAjax()) {//判断ajax请求
+        $this->assign("list", $result);
+        if ($this->isAjax()) {
             header("Content-Type:text/html; charset=utf-8");
             exit($this->fetch('_house'));
         }
         $this->display();
     }
 
-    public function housetoexel() {
+    public function htoexcel() {
         $list = D("House")->where($_SESSION['sHouseKey'])->select();
         foreach ($list as &$list2) {
             $list2["id_card"] = "'" . $list2["id_card"];
@@ -145,10 +125,10 @@ class SearchAction extends BaseAction {
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition:attachment;filename=house.xls");
         $this->assign("list", $list);
-        echo $this->fetch();
+        echo $this->fetch("htoexcel");
     }
 
-    public function ctoexel() {
+    public function ctoexcel() {
         $list = D("Citizen")->relation('house')->where($_SESSION['sCitizenKey'])->select();
 
         foreach ($list as &$list2) {
@@ -157,7 +137,7 @@ class SearchAction extends BaseAction {
         header("Content-type:application/vnd.ms-excel");
         header("Content-Disposition:attachment;filename=citizen.xls");
         $this->assign("list", $list);
-        echo $this->fetch();
+        echo $this->fetch("ctoexcel");
     }
 
 }

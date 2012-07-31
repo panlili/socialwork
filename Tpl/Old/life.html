@@ -1,47 +1,29 @@
-{__NOLAYOUT__}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-
-        <css href="__CSS__/common.css,__CSS__/old.css" />
-        <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/Life.js" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
-    <body onload="init();">
-        <div id="container">
-            <include file="Public:header" />
-            <include file="Public:menu" />
-            <div id="content">
-                <div id="page_place"><p>当前位置：{$page_place}</p></div> 
-                <form name="service" method="post" action="">
-                    <div id="p_container">
-                        刷卡认证<input name="idcard" value="请刷二代身份证"></input>
-                        <button id="idok" type="button" >确定</button>
-                        <div id="oldinfo"></div>
-                    </div>
-                    <div id="service">
-                        先选择服务类型，再选服务<select id="service_type" name="service_type">
-                            <option value="0" selected="selected">-----------选择服务类型-----------</option>
-                            <option value="0">其他</option>
-                            <option value="1">餐饮</option>
-                            <option value="2">理发</option>
-                            <option value="3">衣物洗涤</option>
-                            <option value="4">配送</option>
-                            <option value="5">理疗按摩</option>
-                            <option value="6">家政服务</option>
-                            <option value="7">修补皮鞋皮具</option>
-                            <option value="8">心理咨询</option>
-                            <option value="9">陪伴</option>
-                            <option value="10">托管服务</option>
-                        </select>
-                        选择服务<select id="service_item" name="service_item"></select>
-                        <div><button id="expense" type="button">扣除点数</button></div>
-                    </div>
-                </form>
-                <div id="expense_info"></div>
-            </div>
-            <include file="Public:footer" />
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div> 
+    <form name="service" method="post" action="">
+        <div id="p_container">
+            刷卡认证<input name="idcard" value="请刷二代身份证"></input>
+            <button id="idok" type="button" >确定</button>
+            <div id="oldinfo"></div>
         </div>
-    </body>
-</html>
+        <div id="service">
+            先选择服务类型，再选服务<select id="service_type" name="service_type">
+                <option value="0" selected="selected">-----------选择服务类型-----------</option>
+                <option value="0">其他</option>
+                <option value="1">餐饮</option>
+                <option value="2">理发</option>
+                <option value="3">衣物洗涤</option>
+                <option value="4">配送</option>
+                <option value="5">理疗按摩</option>
+                <option value="6">家政服务</option>
+                <option value="7">修补皮鞋皮具</option>
+                <option value="8">心理咨询</option>
+                <option value="9">陪伴</option>
+                <option value="10">托管服务</option>
+            </select>
+            选择服务<select id="service_item" name="service_item"></select>
+            <div><button id="expense" type="button">扣除点数</button></div>
+        </div>
+    </form>
+    <div id="expense_info"></div>
+</div>
