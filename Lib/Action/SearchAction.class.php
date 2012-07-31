@@ -77,7 +77,10 @@ class SearchAction extends BaseAction {
         $page = $p->show();            //分页的导航条的输出变量
         $this->assign("page", $page);
         $this->assign("list", $result); //数据循环变量
+        header("Content-Type:text/html; charset=utf-8");    //PHP header申明charset为utf8, Apache配置defaultcharst gbk,页面文件编码是utf8
+        
         if ($this->isAjax()) {//判断ajax请求
+            header("Content-Type:text/html; charset=utf-8");
             exit($this->fetch('_list'));
         }
         $this->display();
@@ -125,8 +128,10 @@ class SearchAction extends BaseAction {
 
         $page = $p->show();            //分页的导航条的输出变量
         $this->assign("page", $page);
+        header("Content-Type:text/html; charset=utf-8");
         $this->assign("list", $result); //数据循环变量
         if ($this->isAjax()) {//判断ajax请求
+            header("Content-Type:text/html; charset=utf-8");
             exit($this->fetch('_house'));
         }
         $this->display();
