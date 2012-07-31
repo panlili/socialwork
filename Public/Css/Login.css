@@ -1,59 +1,24 @@
-div#loginform{
-    margin: 5% auto;
-    width: 300px;
-    height: 250px;
-    padding-left: 190px;
-    padding-top: 20px;
-    font-family: 黑体,微软雅黑,宋体;
-    font-size: 17px;
-    color: #000;
-    background-image: url('../Image/login1.jpg');
-    background-repeat: no-repeat;
-    background-color:  #EAF2D3;
-    border:1px dashed #006633;
-}
-#loginform p{
-    height: 35px;
-    line-height: 34px;
-    margin-top: 10px;
-}
-#loginform pre{
-    
-    
-    height: 35px;
-    line-height: 34px;
-    margin-top:10px;
-    
-    text-align: center;
-}
-.submit{
-    margin-top: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    width:100px;
-    height: 30px;
-    border: dashed #000 1px;
-    background-color: #95de93;
+body{margin:0; padding:0; font-size:9pt;}
+#login{margin:auto; width:975px; height:368px; margin-top:120px;}
+#top_left{width:691px; height:89px; float:left;}
+#top_left img {margin-left:10px;}
+#top_center{width:248px; height:89px; background:url(../Image/login/login_05.gif); float:left;}
 
-}
-.submit:hover{
-    background-color: #95de00;
-    
-}
-label{
-    clear: both;
-    height: 30px;
-    line-height: 30px;
-    width: 100px;
-    float:left;
-    text-align: right;
-}
-.txtinput{
-    
-    border:0px;
-    border-bottom: 1px dashed #006633;
-    height: 28px;
-    width: 150px;
-    line-height: 28px;
-    background-color:  #EAF2D3;;
-}
+#center_left{width:691px; height:190px; background:url(../Image/login/login_09.gif); float:left;}
+#center_middle{width:248px; height:190px; float:left; background:url(../Image/login/login_13.gif) repeat-y;}
+#center_right{width:36px; height:190px; float:right; background:url(../Image/login/login_11.gif);}
+
+#down_left{width:691px; height:89px; float:left; margin-top:15px;}
+#down_center{width:248px; height:89px; background:url(../Image/login/login_16.gif); float:left;}
+#inf{width:691px; height:38px; background:url(../Image/login/login_18.gif) no-repeat; }
+.inf_text{display:block; width:100px; height:20px; font-size:14px; font-weight:bolder; color:#fff; margin-left:17px; margin-top:12px; float:left;}
+.copyright{display:block; float:left; margin-left:17px; margin-top:15px;}
+
+#user{ margin-left:40px; margin-top:10px; height:25px;}
+#password{margin-left:40px; margin-top:10px; height:25px;}
+#Verify{margin-left:36px; margin-top:10px; height:35px;width:120px;}
+#verify1{margin-left:40px; margin-top:10px; height:70px;}
+input{width:120px; height:18px; border:solid 1px #aca7a7; font-size:9pt;}
+#btn{margin-left:40px; margin-top:10px;height:25px; }
+.submit{display:block;margin-left:36px;height:25px; line-height:25px; background: url(../Image/login/bt_bg.gif); border: solid 1px #b6b6b6; width:120px; color:#000;}
+/*#btn a{display:block; line-height:25px; background: url(bt_bg.gif); border: solid 1px #b6b6b6; width:65px; float:left; margin-left:15px; text-decoration:none; color:#000;}*/

@@ -1,0 +1,32 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
+    <css href="__CSS__/Login.css,__CSS__/common.css"/>
+    <js href="__JS__/jquery-1.7.2.js,__JS__/common.js"/>
+    <script type="text/javascript">
+        function fleshVerify(){ 
+            var timenow = new Date().getTime();
+            $('img#Verify').attr("src","__APP__/Login/verify/"+timenow);
+        };        
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body onload="init();">
+    <include file="Public:header" />
+    <div id="loginform">
+        
+        <form name="loginform" method="post" action="__URL__/checkUser">
+            <p><label>用户名：</label><input type="text" name="username" class="txtinput" /></p>
+            <p><label>密码：</label><input type="password" name="password" class="txtinput"/></p>
+            <p><label>验证码：</label><input type="text" name="verify" class="txtinput"/></p>
+            <p><label></label><img id="Verify" width="155px" height="40px" src="__APP__/Login/verify" onclick="fleshVerify()" title="刷新页面或点击图片更换验证码" style="cursor:pointer"/></p>
+            <p><label></label><input type="submit" value="登录" class="submit" /></p>
+        </form>
+        <pre>{$loginMessage}</pre>
+    </div>
+    
+</body>
+</html>
+

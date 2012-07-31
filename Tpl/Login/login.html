@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-    <css href="__CSS__/Login.css,__CSS__/common.css"/>
+    <css href="__CSS__/Login.css"/>
     <js href="__JS__/jquery-1.7.2.js,__JS__/common.js"/>
     <script type="text/javascript">
         function fleshVerify(){ 
@@ -14,19 +14,45 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body onload="init();">
-    <include file="Public:header" />
-    <div id="loginform">
-        
+    <div id="login">
         <form name="loginform" method="post" action="__URL__/checkUser">
-            <p><label>用户名：</label><input type="text" name="username" class="txtinput" /></p>
-            <p><label>密码：</label><input type="password" name="password" class="txtinput"/></p>
-            <p><label>验证码：</label><input type="text" name="verify" class="txtinput"/></p>
-            <p><label></label><img id="Verify" width="155px" height="40px" src="__APP__/Login/verify" onclick="fleshVerify()" title="刷新页面或点击图片更换验证码" style="cursor:pointer"/></p>
-            <p><label></label><input type="submit" value="登录" class="submit" /></p>
+            <div id="top">
+                <div id="top_left"><img src="__IMAGE__/login/login_03.gif" /></div>
+                <div id="top_center"></div>
+            </div>
+
+            <div id="center">
+                <div id="center_left"></div>
+                <div id="center_middle">
+                    <div id="user">用 户
+                        <input type="text" name="username" />
+                    </div>
+                    <div id="password">密   码
+                        <input type="password" name="password" />
+                    </div>
+                    <div id="verify1">
+                        验证码<input type="text" name="verify"/>
+                        <img id="Verify" src="__APP__/Login/verify" onclick="fleshVerify()" title="刷新页面或点击图片更换验证码" style="cursor:pointer"/>
+                    </div>
+                    
+                    <div id="btn"><input type="submit" value="登录" class="submit" /></div>
+
+                </div>
+                <div id="center_right"></div>		 
+            </div>
+            <div id="down">
+                <div id="down_left">
+                    <div id="inf">
+                        <span class="inf_text">版权信息</span>
+                        <span class="copyright">水井坊街道办事处版权所有</span>
+                    </div>
+                </div>
+                <div id="down_center"><pre>{$loginMessage}</pre></div>		 
+            </div>
         </form>
-        <pre>{$loginMessage}</pre>
     </div>
-    
+
+
 </body>
 </html>
 
