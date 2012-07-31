@@ -66,6 +66,16 @@ class ConvertAction extends BaseAction {
             return null;
         }
     }
+    function getYardIdByOldId($oldid){
+        $yard=D("yard");
+        $result=$yard->where("yard_id='".$oldid."'")->find();
+        if (!is_null($result)) {
+
+            return $result["id"];
+        } else {
+            return null;
+        }
+    }
 
     public function index() {
         //$x= $this->getStreetNameby(280010001);
@@ -97,6 +107,7 @@ class ConvertAction extends BaseAction {
         $yard = D("Yard");
         foreach ($yard1 as $yardtmp) {
             //$data["id"] = $yardtmp["id"];
+            $data["yard_id"]=$yardtmp["yuanluo_id"];
             $data["streed_id"] = $yardtmp["h_address_jlx"];
             $data["name"] = $yardtmp["y_name"];
             $data["building_count"] = $yardtmp["y_ld_count"];
@@ -109,11 +120,27 @@ class ConvertAction extends BaseAction {
             } else {
                 $data["address"] = $this->getStreetNameById((int) ($yardtmp["h_address_jlx"])) . $yardtmp["h_address_mlh"] . "号";
             }
-            dump($data);
+            //dump($data);
             $yard->create($data);
             $yard->add();
         }
         echo "<p>院落表转换，转换yuanluo_base到yard完毕</p>";
+    }
+    public function convertyardstaff(){
+        $stuff1=M("yuanluo_staff_info",null)->select();
+        echo "<p>院落管理信息导入</p>";
+        $stuff=D("yardadmin");
+        foreach($stuff1 as $stufftmp){
+           $data["yard_id"] =  $this->getYardIdByOldId($stufftmp["yuanluo_id"]);
+           $data["job"]=  $this->get_yl_zhiwu($stufftmp["w_zhiwu"]);
+           $data["name"]=  $stufftmp["w_name"];
+           $data["telephone"]=$stufftmp["w_contact_tel"];
+           $data["type"]=  $this->get_yl_w_type($stufftmp["w_type"]);
+           $stuff->create($data);
+           $stuff->add();
+            
+        }
+        echo "<p>院落管理信息导入完毕</p>";
     }
 
     public function convertyoufu() {
@@ -165,7 +192,7 @@ class ConvertAction extends BaseAction {
             $data["status"] = $youfutmp["status"];
             $youfu->create($data);
             $youfu->add();
-            dump($data);
+            //dump($data);
         }
         echo "<p>优抚表转换完成</p>";
     }
@@ -194,7 +221,7 @@ class ConvertAction extends BaseAction {
             $data["is_fit"] = $this->getStrByBool($housetmp["h_perdoor_accord"]);
             $data["is_free"] = $this->getStrByBool($housetmp["h_bidle"]);
             $data["address"] = $this->getYardNameById($data["yard_id"]) . $data["address_1"] . "栋" . $data["address_2"] . "单元" . $data["address_3"] . "楼" . $data["address_4"] . "号";
-            dump($data);
+            //dump($data);
             $house->create($data);
             $house->add();
         }
@@ -224,7 +251,7 @@ class ConvertAction extends BaseAction {
             $data["household"] = $peopletmp["p_huji_address"];
             $data["telephone"] = $peopletmp["p_contact_tel"];
             $data["is_long_live"] = $this->getStrByBool($peopletmp["p_csj"]);
-            dump($data);
+            //dump($data);
             $citizen->create($data);
             $citizen->add();
         }
@@ -458,11 +485,11 @@ class ConvertAction extends BaseAction {
             case "2":
                 return "其他来源";
                 break;
-           
         }
     }
-     function get_stzk($emp){
-      switch ($emp){
+
+    function get_stzk($emp) {
+        switch ($emp) {
             case "1":
                 return "完全自理";
                 break;
@@ -472,11 +499,11 @@ class ConvertAction extends BaseAction {
             case "3":
                 return "依赖照顾";
                 break;
-           
-        }  
+        }
     }
-     function get_ylfs($emp){
-      switch ($emp){
+
+    function get_ylfs($emp) {
+        switch ($emp) {
             case "1":
                 return "居家养老____享受政府购买";
                 break;
@@ -489,9 +516,9 @@ class ConvertAction extends BaseAction {
             case "4":
                 return "机构养老";
                 break;
-            
-        }  
+        }
     }
+
     function get_xuqiu($x) {
         switch ($x) {
             case "1":
@@ -521,11 +548,11 @@ class ConvertAction extends BaseAction {
             case "9":
                 return "其他";
                 break;
-            
         }
     }
-    function get_personal_stat($emp){
-      switch ($emp){
+
+    function get_personal_stat($emp) {
+        switch ($emp) {
             case "1":
                 return "正常";
                 break;
@@ -535,11 +562,11 @@ class ConvertAction extends BaseAction {
             case "3":
                 return "死亡";
                 break;
-           
-        }  
+        }
     }
-     function get_sp_stat($emp){
-      switch ($emp){
+
+    function get_sp_stat($emp) {
+        switch ($emp) {
             case "0":
                 return "不是";
                 break;
@@ -548,6 +575,52 @@ class ConvertAction extends BaseAction {
                 break;
             case "2":
                 return "息诉息访";
+                break;
+        }
+    }
+
+    function get_yl_zhiwu($x) {
+        switch ($x) {
+            case "1":
+                return "书记";
+                break;
+            case "2":
+                return "主任";
+                break;
+            case "3":
+                return "委员";
+                break;
+
+            case "6":
+                return "街道办事处责任人";
+                break;
+            case "7":
+                return "段管民警";
+                break;
+            case "8":
+                return "社区责任人";
+                break;
+            case "9":
+                return "综治维稳责任人";
+                break;
+            case "10":
+                return "门卫保安";
+                break;
+            case "11":
+                return "清洁保洁人员";
+                break;
+        }
+    }
+    function get_yl_w_type($emp){
+      switch ($emp){
+            case "1":
+                return "院落管理";
+                break;
+            case "2":
+                return "院落党支部";
+                break;
+            case "3":
+                return "环治工作";
                 break;
            
         }  
