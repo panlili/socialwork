@@ -12,6 +12,22 @@
     <css href="__CSS__/statistic/basic.css,__CSS__/statistic/visualize.css,__CSS__/statistic/visualize-light.css" />
     <js href="__JS__/statistic/visualize.jQuery.js,__JS__/statistic/excanvas.js" />
     </eq>
+
+    <!-- import css and js when search module citizen action -->
+    <eq name="Think.MODULE_NAME" value="Search">
+    <eq name="Think.ACTION_NAME" value="citizen">
+    <css href="__CSS__/base/jquery.ui.all.css" />
+    <js href="__JS__/search_citizen.js" />
+    <js href="__JS__/jplugin/jquery.ui.core.js,__JS__/jplugin/jquery.ui.datepicker.js,__JS__/jplugin/jquery.ui.datepicker-zh-CN.js" />
+    </eq>
+    </eq>
+
+    <!-- import css and js when search module house action -->
+    <eq name="Think.MODULE_NAME" value="Search">
+    <eq name="Think.ACTION_NAME" value="house">
+    <js href="__JS__/search_house.js" />
+    </eq>
+    </eq>
 </head>
 <body onload="init();">
     <div id="container">

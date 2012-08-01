@@ -25,14 +25,14 @@
 
 #content_middle{
     float: left;
-    width: 28%;
+    width: 60%;
     margin-left: 10px;
 }
-#content_right{
+/*#content_right{
     float: left;
     width: 35%;
     margin-left: 10px;
-}
+}*/
 
 #admininfo{
 
@@ -42,7 +42,7 @@
 
 div#yarddetail{
     border:1px solid black;
-    width:500px;
+    width:100%;
     line-height: 20px;
 }
 p#yardname{
