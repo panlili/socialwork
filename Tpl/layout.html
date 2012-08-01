@@ -18,7 +18,7 @@
     <eq name="Think.ACTION_NAME" value="citizen">
     <css href="__CSS__/base/jquery.ui.all.css" />
     <js href="__JS__/search_citizen.js" />
-    <js href="__JS__/jplugin/jquery.ui.core.js,__JS__/jplugin/jquery.ui.datepicker.js,__JS__/jplugin/jquery.ui.datepicker-zh-CN.js" />
+    <js href="__JS__/jplugin/jquery.ui.core.min.js,__JS__/jplugin/jquery.ui.datepicker.min.js,__JS__/jplugin/jquery.ui.datepicker-zh-CN.js" />
     </eq>
     </eq>
 
@@ -28,17 +28,22 @@
     <js href="__JS__/search_house.js" />
     </eq>
     </eq>
+
+    <!-- import css and js when information action -->
+    <eq name="Think.ACTION_NAME" value="information">
+    <css href="__CSS__/base/jquery.ui.all.css" />
+    <js href="__JS__/jplugin/jquery.ui.core.min.js,__JS__/jplugin/jquery.ui.widget.min.js,__JS__/jplugin/jquery.ui.tabs.min.js" />
+    </eq>
 </head>
 <body onload="init();">
     <div id="container">
         <include file="Public:header" />
         <div id="page_middle">
-        <include file="Public:menu" />
-        {__CONTENT__}
-        <div style="clear:both" />
-         </div>
+            <include file="Public:menu" />
+            {__CONTENT__}
+            <div style="clear:both" />
+        </div>
         <include file="Public:footer" />
-       
     </div>
 </body>
 </html>

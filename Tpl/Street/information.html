@@ -1,29 +1,51 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
-        <div id="content_left">
-            <table id="common_table">
-                <thead>
-                <th>序号</th>
-                <th>街道名</th>
-                <th>院落</th>
-                <th>国家机关</th>
-                <th>企事业单位</th>
-                <th>店铺</th>
-                </thead>
-                <tbody>
-                <volist name="list" id="each">
-                    <tr id="{$each.id}">
-                        <td class="number"></td>
-                        <td>{$each.id|setStreetIcon}{$each.name}</td>
-                        <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
-                        <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
-                        <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
-                        <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
-                    </tr>
-                </volist>
-                </tbody>
-            </table>
+    <div id="content_left">
+        <div id="tabs">
+            <ul>
+                <present name="sjflist"><li><a href="#tabs-1">水井坊社区</a></li></present>
+                <present name="jzlist"><li><a href="#tabs-2">交子社区</a></li></present>
+            </ul>
+            <present name="sjflist">
+                <div id="tabs-1">
+                    <table id="common_table">
+                        <thead><th>序号</th><th>街道名</th><th>院落</th><th>国家机关</th><th>企事业单位</th><th>店铺</th></thead>
+                        <tbody>
+                        <volist name="sjflist" id="each">
+                            <tr id="{$each.id}">
+                                <td class="number"></td>
+                                <td>{$each.id|setStreetIcon}{$each.name}</td>
+                                <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
+                                <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
+                                <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
+                                <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </present>
+            <present name="jzlist">
+                <div id="tabs-2">
+                    <table id="common_table">
+                        <thead><th>序号</th><th>街道名</th><th>院落</th><th>国家机关</th><th>企事业单位</th><th>店铺</th></thead>
+                        <tbody>
+                        <volist name="jzlist" id="each">
+                            <tr id="{$each.id}">
+                                <td class="number"></td>
+                                <td>{$each.id|setStreetIcon}{$each.name}</td>
+                                <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
+                                <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
+                                <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
+                                <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </present>
         </div>
-        <div id="content_middle"></div>
-        <div class="loading" style="display: none;"><img src="__IMAGE__/ajax-loading-biga.gif"></div>
+    </div>
+    <div id="content_middle"></div>
+    <div class="loading" style="display: none;"><img src="__IMAGE__/ajax-loading-biga.gif"></div>
 </div>

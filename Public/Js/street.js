@@ -3,8 +3,8 @@ function delete_street(id) {
         $.post("delete",{
             id:id
         }, function(data){
-            if(1==$.parseJSON(data).status) $('#'+id).fadeOut("slow");            
-        });        
+            if(1==$.parseJSON(data).status) $('#'+id).fadeOut("slow");
+        });
     }
 }
 
@@ -46,30 +46,32 @@ function showStore(streetid) {
 $(function(){
     $("#common_table td").css("height","15px");
 
+    $("#tabs").tabs();
+
     $("div#addstreet").hide();
 
     $(".newdata a").click(function(event){
         event.preventDefault();
         $("div#addstreet").toggle();
-    });   
-    
+    });
+
     //实现ajax修改
     var nameTd=$(".street_name");
-    nameTd.click(function() {	
+    nameTd.click(function() {
         var tdObj = $(this);
         if (tdObj.children("input").length > 0) {
             return false;
         }
-        var text = tdObj.html(); 
+        var text = tdObj.html();
         tdObj.html("");
-		
+
         var inputObj = $("<input type='text'>").css("border-width","0")
         .css("font-size","13px").width(tdObj.width()).css("background-color","yellow").val(text).appendTo(tdObj);
         inputObj.trigger("focus").trigger("select");
         inputObj.click(function() {
             return false;
         });
-		
+
         inputObj.keyup(function(event){
             var keycode = event.which;
             if (keycode == 13) {
@@ -81,29 +83,29 @@ $(function(){
                 },
                 function(data){
                     var dataObj=$.parseJSON(data);
-                    var action_message=$("<div>").css({            
+                    var action_message=$("<div>").css({
                         position: "absolute",
                         "top": "30%",
-                        "left": "30%",    
+                        "left": "30%",
                         "width": "250px",
                         "height": "40px",
-                        "line-height": "40px", 
+                        "line-height": "40px",
                         "z-index": "12",
                         "text-align": "center",
                         "background-color": "orange"
                     });
-                    
+
                     if(1==dataObj.status) {
                         action_message.text(dataObj.info).appendTo("#content").fadeOut(2000);
-                    }       
+                    }
                     if(0==dataObj.status) {
                         action_message.text(dataObj.info).appendTo("#content").fadeOut(2000);
                         tdObj.html(text);
-                    }   
+                    }
                 }
                 );
             }
-			
+
             if (keycode == 27) {
                 tdObj.html(text);
             }

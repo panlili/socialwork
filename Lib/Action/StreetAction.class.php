@@ -83,15 +83,35 @@ class StreetAction extends BaseAction {
     //下面是information使用的ajax方法
     public function information() {
         $org = D("Organization");
-        $street_list = D("Street")->relation(array("yard", "organization", "store"))->select();
-        foreach ($street_list as &$list) {
+
+        //水井坊街道列表
+        $street_list_sjf = D("Street")->relation(array("yard", "organization", "store"))->where("id<280020000")->select();
+        foreach ($street_list_sjf as &$list) {
             $list["govcount"] = $org->where(array("street_id" => $list["id"], "type" => "国家机关"))->count();
 
             $condition["street_id"] = $list["id"];
             $condition["type"] = array("neq", "国家机关");
             $list["other"] = $org->where($condition)->count();
         }
-        $this->assign(array("list" => $street_list, "page_place" => $this->getPagePlace("街道信息总览", self::ACTION_NAME)));
+
+        //交子街道列表
+        $street_list_jz = D("Street")->relation(array("yard", "organization", "store"))->where("id>=280020000")->select();
+        foreach ($street_list_jz as &$list) {
+            $list["govcount"] = $org->where(array("street_id" => $list["id"], "type" => "国家机关"))->count();
+
+            $condition["street_id"] = $list["id"];
+            $condition["type"] = array("neq", "国家机关");
+            $list["other"] = $org->where($condition)->count();
+        }
+
+        if (!empty($street_list_sjf)) {
+            $this->assign("sjflist", $street_list_sjf);
+        }
+
+        if (!empty($street_list_jz)) {
+            $this->assign("jzlist", $street_list_jz);
+        }
+        $this->assign(array("page_place" => $this->getPagePlace("街道信息总览", self::ACTION_NAME)));
         $this->display();
     }
 

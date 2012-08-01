@@ -1,33 +1,60 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="content_left">
-        <table id="common_table">
-            <thead>
-            <th>序号</th>
-            <th>院落名称</th>
-            <th>院落地址</th>
-            <th>楼栋数</th>
-            </thead>
-            <tbody>
-            <volist name="list" id="each">
-                <tr id="{$each.id}">
-                    <td class="number"></td>
-                    <td>
-                        {$each.id|setYardIcon}
-                        <a href="#" onclick="showYardDetail('{$each.id}','has');return false;">{$each.name}</a>
-                    </td>
-                    <td>{$each.address}</td>
-                    <!-- 这个院落下所有房屋的数据
-                    <td><a href="#" onclick="showHouse('{$each.id}');return false;"><php>echo count($each["house"]);</php></a>
-                    <a class="excel" href="__APP__/House/toexcel/{$each.id}"><img src="__IMAGE__/icon_excel.gif" title="点击下载此院落下房屋的excel表格"/></a></td>
-                    -->
-                    <td>
-                        <a href="#"  onclick="showYardDetail('{$each.id}','no');return false;">{$each.address1count}</a>
-                    </td>
-                </tr>
-            </volist>
-            </tbody>
-        </table>
+        <div id="tabs">
+            <ul>
+                <present name="sjflist"><li><a href="#tabs-1">水井坊社区</a></li></present>
+                <present name="jzlist"><li><a href="#tabs-2">交子社区</a></li></present>
+            </ul>
+            <present name="sjflist">
+                <div id="tabs-1">
+                    <table id="common_table">
+                        <thead><th>序号</th><th>院落名称</th><th>院落地址</th><th>楼栋数</th></thead>
+                        <tbody>
+                        <volist name="sjflist" id="each">
+                            <tr id="{$each.id}">
+                                <td class="number"></td>
+                                <td>
+                                    {$each.id|setYardIcon}
+                                    <a href="#" onclick="showYardDetail('{$each.id}','has');return false;">{$each.name}</a>
+                                </td>
+                                <td>{$each.address}</td>
+                                <!-- 这个院落下所有房屋的数据
+                                <td><a href="#" onclick="showHouse('{$each.id}');return false;"><php>echo count($each["house"]);</php></a>
+                                <a class="excel" href="__APP__/House/toexcel/{$each.id}"><img src="__IMAGE__/icon_excel.gif" title="点击下载此院落下房屋的excel表格"/></a></td>
+                                -->
+                                <td>
+                                    <a href="#"  onclick="showYardDetail('{$each.id}','no');return false;">{$each.address1count}</a>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </present>
+            <present name="jzlist">
+                <div id="tabs-2">
+                    <table id="common_table">
+                        <thead><th>序号</th><th>院落名称</th><th>院落地址</th><th>楼栋数</th></thead>
+                        <tbody>
+                        <volist name="jzlist" id="each">
+                            <tr id="{$each.id}">
+                                <td class="number"></td>
+                                <td>
+                                    {$each.id|setYardIcon}
+                                    <a href="#" onclick="showYardDetail('{$each.id}','has');return false;">{$each.name}</a>
+                                </td>
+                                <td>{$each.address}</td>
+                                <td>
+                                    <a href="#"  onclick="showYardDetail('{$each.id}','no');return false;">{$each.address1count}</a>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </present>
+        </div>
     </div>
     <div id="content_middle"></div>
     <!--<div id="content_right"></div>-->
