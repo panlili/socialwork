@@ -37,6 +37,7 @@ function getBirthdayByIdCard($idcard) {
     }
 }
 
+//当街道用户community=0的时候，注释掉添加修改数据操作
 function cs() {
     if (C("DB_PREFIX") === "sum_") {
         echo "<!--";
@@ -49,6 +50,7 @@ function ce() {
     }
 }
 
+//根据用户社区的不同设定不同标题
 function setHeader() {
     if (C("DB_PREFIX") === "sjf_") {
         if ($Think . MODULE_NAME === "Login" || $Think . MODULE_NAME === "Ngo"
@@ -63,6 +65,17 @@ function setHeader() {
     } elseif (C("DB_PREFIX") === "sum_") {
         echo "街道办事处";
     }
+}
+
+//根据数据id的大小判断数据所属的社区，设定不同的图标
+function setStreetIcon($id) {
+    $str = "";
+    if ($id > 280020000) {
+        $str = "<img src=__IMAGE__/jiaozhi.gif />";
+    } else {
+        $str = "<img src=__IMAGE__/shuijingfang.gif />";
+    }
+    return $str;
 }
 
 ?>

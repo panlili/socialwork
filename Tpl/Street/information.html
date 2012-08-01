@@ -15,11 +15,14 @@
                 <volist name="list" id="each">
                     <tr id="{$each.id}">
                         <td class="number"></td>
-                        <td>{$each.name}</td>
-                        <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
-                        <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
-                        <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
-                        <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
+                        <td>
+                    <php>echo setStreetIcon($each.id);</php>
+                    {$each.name}
+                    </td>
+                    <td><a href="#" onclick="showYard('{$each.id}');return false;"><php>echo count($each["yard"]);</php></a></td>
+                    <td><a href="#" onclick="showOrganization('{$each.id}','gov');return false;">{$each.govcount}</a></td>
+                    <td><a href="#" onclick="showOrganization('{$each.id}','other');return false;">{$each.other}</a></td>
+                    <td><a href="#" onclick="showStore('{$each.id}');return false;"><php>echo count($each["store"]);</php></a></td>
                     </tr>
                 </volist>
                 </tbody>

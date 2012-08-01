@@ -12,7 +12,12 @@
             <volist name="list" id="each">
                 <tr id="{$each.id}">
                     <td class="number"><!-- 序号 --></td>
-                    <td><a href="#" onclick="showYardDetail('{$each.id}','has');return false;">{$each.name}</a></td>
+                    <td>
+                        <gt name="each.id" value="2000000"><img src="__IMAGE__/jiaozhi.gif" />
+                    <else/><img src="__IMAGE__/shuijingfang.gif" />
+                    </gt>
+                        <a href="#" onclick="showYardDetail('{$each.id}','has');return false;">{$each.name}</a>
+                    </td>
                     <td>{$each.address}</td>
                     <!-- 这个院落下所有房屋的数据
                     <td><a href="#" onclick="showHouse('{$each.id}');return false;"><php>echo count($each["house"]);</php></a>
