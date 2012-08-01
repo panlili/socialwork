@@ -6,12 +6,12 @@ class SearchAction extends BaseAction {
     const ACTION_NAME = "查询";
 
     public function citizen() {
-        $this->assign("page_place", $this->getPagePlace("居民（人）信息查询", self::ACTION_NAME));
+        $this->assign("page_place", $this->getPagePlace("居民（人）信息查询", self::ACTION_NAME, "citizen"));
         $this->display();
     }
 
     public function house() {
-        $this->assign("page_place", $this->getPagePlace("房屋（户）信息查询", self::ACTION_NAME));
+        $this->assign("page_place", $this->getPagePlace("房屋（户）信息查询", self::ACTION_NAME, "house"));
         $this->display();
     }
 
