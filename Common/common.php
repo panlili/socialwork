@@ -70,12 +70,23 @@ function setHeader() {
 //根据数据id的大小判断数据所属的社区，设定不同的图标
 function setStreetIcon($id) {
     $str = "";
-    if ($id > 280020000) {
+    if ($id >= 280020000) {
         $str = "<img src=__IMAGE__/jiaozhi.gif />";
     } else {
         $str = "<img src=__IMAGE__/shuijingfang.gif />";
     }
-    return $str;
+    return $str . " ";
+}
+
+//根据数据id的大小判断数据所属的社区，设定不同的图标
+function setYardIcon($id) {
+    $str = "";
+    if ($id >= 2000000) {
+        $str = "<img src=__IMAGE__/jiaozhi.gif />";
+    } else {
+        $str = "<img src=__IMAGE__/shuijingfang.gif />";
+    }
+    return $str . " ";
 }
 
 ?>

@@ -20,12 +20,13 @@
 #content_left{
     float:left;
     clear:left;
-    width: 35%;
+    width: 45%;
+    margin-bottom: 15px;
 }
 
 #content_middle{
     float: left;
-    width: 60%;
+    width: 50%;
     margin-left: 10px;
 }
 /*#content_right{
@@ -57,7 +58,7 @@ span.buttons{
 }
 #yarddetail table{
     margin:5px auto 5px auto;
-    border:1px solid graytext;                     
+    border:1px solid graytext;
     border-collapse: collapse;
     width:98%;
     text-align: center;

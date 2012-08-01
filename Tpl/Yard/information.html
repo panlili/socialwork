@@ -1,4 +1,4 @@
-<div id="content">    
+<div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
     <div id="content_left">
         <table id="common_table">
@@ -11,11 +11,9 @@
             <tbody>
             <volist name="list" id="each">
                 <tr id="{$each.id}">
-                    <td class="number"><!-- 序号 --></td>
+                    <td class="number"></td>
                     <td>
-                        <gt name="each.id" value="2000000"><img src="__IMAGE__/jiaozhi.gif" />
-                    <else/><img src="__IMAGE__/shuijingfang.gif" />
-                    </gt>
+                        {$each.id|setYardIcon}
                         <a href="#" onclick="showYardDetail('{$each.id}','has');return false;">{$each.name}</a>
                     </td>
                     <td>{$each.address}</td>
