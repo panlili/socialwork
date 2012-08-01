@@ -145,6 +145,7 @@ class StreetAction extends BaseAction {
         }
     }
 
+    //ajax分页的实验函数
     public function pagea() {
         $Street = D("Street");
         import("@.ORG.Pagea");

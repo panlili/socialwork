@@ -1,12 +1,10 @@
 #searchResult{
-    padding: 20px;
     background-color: #eeeeee;
-    margin: 30px;
-    
+    margin: 10px;
 }
 
 #searchContainer{
-    padding: 20px;
-    border:1px #CCCCCC solid;
+    padding: 10px;
+    /*border:1px #CCCCCC solid;*/
 }
 

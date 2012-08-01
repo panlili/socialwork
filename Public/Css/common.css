@@ -56,7 +56,7 @@ body{
 /*    border-right-style: solid;
     border-right-width: 1px;
     border-right-color: #006600;*/
-    
+
 }
 #menu p{
     font-family:  "黑体","宋体";
@@ -76,7 +76,7 @@ body{
 .main li{
     /*    margin-left: 20px;*/
     margin-left: 3%;
-    
+
     background-color: #fff;
 }
 
@@ -154,7 +154,7 @@ body{
     padding-left: 1%;
     padding-right: 1%;
     padding-top: 10px;
-    background-color: #fff;
+    /*background-color: #fff;*/
 /*    border-left-style: solid;
     border-left-width: 1px;
     border-left-color: #006600;*/
@@ -163,7 +163,7 @@ body{
     margin: 0 auto;
     width: 95%;
     min-width: 1000px;
-    background-color: #EAF2D3;
+    /*background-color: #EAF2D3;*/
 }
 #page_place{
     /* float:left;*/

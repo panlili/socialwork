@@ -19,6 +19,7 @@ body{margin:0; padding:0; font-size:9pt;}
 #Verify{margin-left:36px; margin-top:10px; height:35px;width:120px;}
 #verify1{margin-left:40px; margin-top:10px; height:70px;}
 input{width:120px; height:18px; border:solid 1px #aca7a7; font-size:9pt;}
-#btn{margin-left:40px; margin-top:10px;height:25px; }
+#btn{margin-left:40px; margin-top:10px;
+     /* height:25px;*/ }
 .submit{display:block;margin-left:36px;height:25px; line-height:25px; background: url(../Image/login/bt_bg.gif); border: solid 1px #b6b6b6; width:120px; color:#000;}
 /*#btn a{display:block; line-height:25px; background: url(bt_bg.gif); border: solid 1px #b6b6b6; width:65px; float:left; margin-left:15px; text-decoration:none; color:#000;}*/
