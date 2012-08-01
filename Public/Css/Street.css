@@ -8,10 +8,12 @@
     float:left;
     clear:left;
     width: 45%;
+    min-width: 370px;
 }
 
 #content_middle{
     float: left;
     width: 50%;
     margin-left: 10px;
+    min-width: 370px;
 }
