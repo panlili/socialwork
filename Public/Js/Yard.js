@@ -88,7 +88,7 @@ function showCitizen(houseid){
 //为院落添加管理，党支部等信息的ajax
 $(function(){
     $("#common_table td").css("height","15px");
-  
+    $("#tabs").tabs();
     //添加院落管理信息
     $(".addadmin").click(function(){
         $.post("addAdmin",$("#yardadmin").serialize(),function(data){
@@ -96,7 +96,7 @@ $(function(){
             var trid=$.parseJSON(data).id;
             var status=$.parseJSON(data).status;
             if(1==status){
-                $("#addadminright").show().fadeOut(2000);           
+                $("#addadminright").show().fadeOut(2000);
                 var ht="<tr id='"+trid+"'>";
                 ht+="<td>"+tmp.job+"</td>";
                 ht+="<td>"+tmp.name+"</td>";
@@ -113,7 +113,7 @@ $(function(){
             var trid=$.parseJSON(data).id;
             var status=$.parseJSON(data).status;
             if(1==status){
-                $("#addpartyright").show().fadeOut(2000);               
+                $("#addpartyright").show().fadeOut(2000);
                 var ht="<tr id='"+trid+"'>";
                 ht+="<td>"+tmp.job+"</td>";
                 ht+="<td>"+tmp.name+"</td>";

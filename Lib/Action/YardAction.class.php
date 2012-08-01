@@ -135,12 +135,26 @@ class YardAction extends BaseAction {
 
     //information 页面的ajax操作
     public function information() {
-        $yard_list = D("Yard")->field("id,name,address")->select();
-        foreach ($yard_list as &$y) {
+        //水井坊院落列表
+        $yard_list_sjf = D("Yard")->field("id,name,address")->where("id<2000000")->select();
+        foreach ($yard_list_sjf as &$y) {
             $address1 = D("House")->field("address_1")->where(array("yard_id" => $y["id"]))->group("address_1")->select();
             $y["address1count"] = count($address1);
         }
-        $this->assign(array("list" => $yard_list, "page_place" => $this->getPagePlace("院落信息总览", self::ACTION_NAME)));
+        //交子院落列表
+        $yard_list_jz = D("Yard")->field("id,name,address")->where("id>=2000000")->select();
+        foreach ($yard_list_jz as &$y) {
+            $address1 = D("House")->field("address_1")->where(array("yard_id" => $y["id"]))->group("address_1")->select();
+            $y["address1count"] = count($address1);
+        }
+
+        if (!empty($yard_list_sjf)) {
+            $this->assign("sjflist", $yard_list_sjf);
+        }
+        if (!empty($yard_list_jz)) {
+            $this->assign("jzlist", $yard_list_jz);
+        }
+        $this->assign(array("page_place" => $this->getPagePlace("院落信息总览", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -162,7 +176,7 @@ class YardAction extends BaseAction {
 
             $houselist = D("House")->where("yard_id='$yardid'")->relation("citizen")->order("address_1 asc")
                             ->limit($p->firstRow . ',' . $p->listRows)->select();
-            //no pages 
+            //no pages
             //$houselist = D("House")->where("yard_id='$yardid'")->relation("citizen")->order("address_1 asc")->select();
             $this->assign(array("houselist" => $houselist, "page" => $page));
             $content = $this->fetch("_middle");
