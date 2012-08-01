@@ -218,7 +218,7 @@ class ConvertAction extends BaseAction {
             $data["address_4"] = $housetmp["h_address_mph"];
             $data["contactor"] = $housetmp["h_contact_name"];
             $data["telephone"] = $housetmp["h_contact_tel"];
-            $data["is_fit"] = $this->getStrByBool($housetmp["h_perdoor_accord"]);
+            $data["is_fit"] = $this->getStrByBool($housetmp["h_bperdoor_accord"]);
             $data["is_free"] = $this->getStrByBool($housetmp["h_bidle"]);
             $data["address"] = $this->getYardNameById($data["yard_id"]) . $data["address_1"] . "栋" . $data["address_2"] . "单元" . $data["address_3"] . "楼" . $data["address_4"] . "号";
             //dump($data);

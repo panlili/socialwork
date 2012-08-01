@@ -48,58 +48,61 @@
     <body onload="init();">
         <div id="container">
             <include file="Public:header" />
-            <include file="Public:menu" />
-            <div id="content">
-                <div id="mapcontainer">
-                    <div id="dragmap"></div>
-                    <div id="map"></div>
+            <div id="page_middle">
+                 <include file="Public:menu" />
+                <div id="content">
+                    <div id="mapcontainer">
+                        <div id="dragmap"></div>
+                        <div id="map"></div>
 
-                    <div id="tag">
+                        <div id="tag">
 
-                    </div>
-                    <div id="tip"></div>
-                    <div id="tip1"></div>
-                    <div id="popmenu"><pre id="menu_markyard">标记院落</pre><pre id="menu_markcam">标记监控</pre></div>
-                    <div id="mapcontrol"><table width="100%" border="0">
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td><img id="map_up" src="__IMAGE__/map/map_up.gif" width="32" height="32" alt="up" /></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td><img id="map_left" src="__IMAGE__/map/map_left.gif" width="32" height="32" alt="left" /></td>
-                                <td>&nbsp;</td>
-                                <td><img id="map_right" src="__IMAGE__/map/map_right.gif" width="32" height="32" alt="" /></td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td><img id="map_down" src="__IMAGE__/map/map_down.gif" width="32" height="32" alt="down" /></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div id="addYardMark">
-                        <form action="" id="YardMark">
-                            <input type="hidden" name="x" value=""></input>
-                            <input type="hidden" name="y" value=""></input>
-                            <input type="hidden" name="type" value="1"></input>
-                            选择院落：<br />
-                            <select name="target"></select>
-                            <input id="addyardok" type="button" value="确定" />
-                            <input id="addyardcancel" type="button" value="放弃" />
-                        </form></div>
-                    <div id="addCamMark">
-                        <form action="" id="CamMark">
-                            <input type="hidden" name="x" value=""></input>
-                            <input type="hidden" name="y" value=""></input>
-                            <input type="hidden" name="type" value="3"></input>
-                            选择摄像头：<br />
-                            <select name="target"></select>
-                            <input id="addcamok" type="button" value="确定" />
-                            <input id="addcamcancel" type="button" value="放弃" />
-                        </form>
+                        </div>
+                        <div id="tip"></div>
+                        <div id="tip1"></div>
+                        <div id="popmenu"><pre id="menu_markyard">标记院落</pre><pre id="menu_markcam">标记监控</pre></div>
+                        <div id="mapcontrol"><table width="100%" border="0">
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td><img id="map_up" src="__IMAGE__/map/map_up.gif" width="32" height="32" alt="up" /></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td><img id="map_left" src="__IMAGE__/map/map_left.gif" width="32" height="32" alt="left" /></td>
+                                    <td>&nbsp;</td>
+                                    <td><img id="map_right" src="__IMAGE__/map/map_right.gif" width="32" height="32" alt="" /></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td><img id="map_down" src="__IMAGE__/map/map_down.gif" width="32" height="32" alt="down" /></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="addYardMark">
+                            <form action="" id="YardMark">
+                                <input type="hidden" name="x" value=""></input>
+                                <input type="hidden" name="y" value=""></input>
+                                <input type="hidden" name="type" value="1"></input>
+                                选择院落：<br />
+                                <select name="target"></select>
+                                <input id="addyardok" type="button" value="确定" />
+                                <input id="addyardcancel" type="button" value="放弃" />
+                            </form></div>
+                        <div id="addCamMark">
+                            <form action="" id="CamMark">
+                                <input type="hidden" name="x" value=""></input>
+                                <input type="hidden" name="y" value=""></input>
+                                <input type="hidden" name="type" value="3"></input>
+                                选择摄像头：<br />
+                                <select name="target"></select>
+                                <input id="addcamok" type="button" value="确定" />
+                                <input id="addcamcancel" type="button" value="放弃" />
+                            </form>
+                        </div>
                     </div>
                 </div>
+                <div style="clear:both" />
             </div>
             <include file="Public:footer" />
         </div>

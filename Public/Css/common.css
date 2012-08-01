@@ -21,7 +21,7 @@ body{
     margin: 0 auto;
     /*    width: 1400px;*/
 /*    width: 90%;*/
-    min-width: 1300px;
+    min-width: 1000px;
 }
 
 /*div header*/
@@ -102,11 +102,11 @@ body{
     background-image: url(../Image/menu/haschild3.gif);
     background-position: right bottom;
 }
-.menu_1:hover{
+/*.menu_1:hover{
     background: no-repeat;
     background-image: url(../Image/menu/haschild3.gif);
     background-position: right bottom;
-}
+}*/
 .menu_2{
     background-color:  #A7C942;
 }
@@ -145,7 +145,7 @@ body{
 
 /*div content*/
 #content{
-    width: 83%;
+    width: 80%;
     min-width: 800px;
     float: left;
     margin-left: 0px;
