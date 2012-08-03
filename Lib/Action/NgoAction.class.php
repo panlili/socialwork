@@ -120,6 +120,13 @@ class NgoAction extends BaseAction {
         echo $this->fetch();
     }
 
+    public function test() {
+        $house = D("House");
+        $tmp["is_taishu"]="否";
+        $one = $house->relation("youfu")->where($tmp)->limit(100)->select();
+        dump($one);
+    }
+
 }
 
 ?>
