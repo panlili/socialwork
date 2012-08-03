@@ -257,7 +257,17 @@ class ConvertAction extends BaseAction {
         }
         echo "<p>居民表转换完成</p>";
     }
-
+    function up(){
+        $house1=M("house_base",null)->select();
+        echo "baby";
+        $house=D("house");
+        foreach ($house1 as $hs){
+            $oid=$hs["house_id"];
+            $tmp="house_id='".$oid."'";
+            $data["is_fit"]=  $this->getStrByBool($hs["h_bperdoor_accord"]);
+            $house->where($tmp)->save($data);
+        }
+    }
     function get_guanxi($guanxi) {
         switch ($guanxi) {
             case '1':
