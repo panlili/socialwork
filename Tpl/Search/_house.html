@@ -1,43 +1,100 @@
 {__NOLAYOUT__}
 <meta charset="utf-8" />
-<style type="text/css">
+<!--<style type="text/css">
     table{border:1px solid black;}
     th,td{border:1px solid black;}
-</style>
-<table id="common_table2">
-    <thead>
-        <tr>
-            <th>编号</th>
-            <th>地址</th>
-            <th>人户一致</th>
-            <th>是否空闲</th>
-            <th>是否廉租房</th>
-            <!--<th>是否是平房</th>
-            <th>是否经济适用房</th>-->
-            <th>是否台属</th>
-            <th>是否军属</th>
-            <!--<th>是否燃油补贴</th>-->
-            <th>联系人</th>
-            <th>联系方式</th>
-        </tr>
-    </thead>
-    <tbody>
-    <volist name="list" id="each">
-        <tr>
-            <td>{$each.id}</td>
-            <td>{$each.address}</td>
-            <td>{$each.is_fit}</td>
-            <td>{$each.is_free}</td>
-            <td>{$each.is_lowrent}</td>
-            <!--<td>{$each.is_floor}</td>
-            <td>{$each.is_afford}</td>-->
-            <td>{$each.is_taiwan}</td>
-            <td>{$each.is_army}</td>
-            <!--<td>{$each.is_fuel}</td>-->
-            <td>{$each.contactor}</td>
-            <td>{$each.telephone}</td>
-        </tr>
-    </volist>
-</tbody>
-</table>
- <div class="green-black" id="pages">{$page}</div>
+</style>-->
+<script type="text/javascript">
+    $(function(){
+        $("#tabs").tabs();
+    });
+</script>
+总共{$totalcount|default=0}户
+<div id="tabs">
+    <ul>
+        <present name="sjflist"><li><a href="#tabs-1">水井坊社区</a></li></present>
+        <present name="jzlist"><li><a href="#tabs-2">交子社区</a></li></present>
+    </ul>
+    <present name="sjflist">
+        <div id="tabs-1">
+            <table id="common_table2">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>地址</th>
+                        <th>人户一致</th>
+                        <th>是否空闲</th>
+                        <th>是否廉租房</th>
+                        <!--<th>是否是平房</th>
+                        <th>是否经济适用房</th>-->
+                        <th>是否台属</th>
+                        <th>是否军属</th>
+                        <!--<th>是否燃油补贴</th>-->
+                        <th>联系人</th>
+                        <th>联系方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <volist name="sjflist" id="each">
+                    <tr>
+                        <td>{$each.id}</td>
+                        <td>{$each.id|setYardIcon}{$each.address}</td>
+                        <td>{$each.is_fit}</td>
+                        <td>{$each.is_free}</td>
+                        <td>{$each.is_lowrent}</td>
+                        <!--<td>{$each.is_floor}</td>
+                        <td>{$each.is_afford}</td>-->
+                        <td>{$each.is_taiwan}</td>
+                        <td>{$each.is_army}</td>
+                        <!--<td>{$each.is_fuel}</td>-->
+                        <td>{$each.contactor}</td>
+                        <td>{$each.telephone}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="green-black" id="pages1">{$page1}</div>
+        </div>
+    </present>
+    <present name="jzlist">
+        <div id="tabs-2">
+            <table id="common_table2">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>地址</th>
+                        <th>人户一致</th>
+                        <th>是否空闲</th>
+                        <th>是否廉租房</th>
+                        <!--<th>是否是平房</th>
+                        <th>是否经济适用房</th>-->
+                        <th>是否台属</th>
+                        <th>是否军属</th>
+                        <!--<th>是否燃油补贴</th>-->
+                        <th>联系人</th>
+                        <th>联系方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <volist name="jzlist" id="each">
+                    <tr>
+                        <td>{$each.id}</td>
+                        <td>{$each.id|setYardIcon}{$each.address}</td>
+                        <td>{$each.is_fit}</td>
+                        <td>{$each.is_free}</td>
+                        <td>{$each.is_lowrent}</td>
+                        <!--<td>{$each.is_floor}</td>
+                        <td>{$each.is_afford}</td>-->
+                        <td>{$each.is_taiwan}</td>
+                        <td>{$each.is_army}</td>
+                        <!--<td>{$each.is_fuel}</td>-->
+                        <td>{$each.contactor}</td>
+                        <td>{$each.telephone}</td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="green-black" id="pages2">{$page2}</div>
+        </div>
+    </present>
+</div>

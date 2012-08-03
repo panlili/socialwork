@@ -46,20 +46,41 @@ class SearchAction extends BaseAction {
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
-
-        $tmp1 = $_SESSION['sCitizenKey'];
-        $count = $citizen->relation('house')->where($tmp1)->count();  //计算记录总数
+        
+        $tmp0 = $_SESSION['sCitizenKey'];
+        $count = $citizen->relation('house')->where($tmp0)->count();
+        $this->assign("totalcount", $count);
+       //水井坊社区
+        $tmp1 = $_SESSION['sCitizenKey']." and id<2000000";
+        $count1 = $citizen->relation('house')->where($tmp1)->count();  //计算记录总数
         import("@.ORG.Pagea");
-        $p = new Pagea($count, 50, 'type=1', 'searchResult', 'pages');
-        $result = $citizen->relation('house')->where($tmp1)->limit($p->firstRow . ',' . $p->listRows)->select();
-        $p->setConfig('header', '条数据');
-        $p->setConfig('prev', "<");
-        $p->setConfig('next', '>');
-        $p->setConfig('first', '<<');
-        $p->setConfig('last', '>>');
-        $page = $p->show();
-        $this->assign("page", $page);
-        $this->assign("list", $result);
+        $p1 = new Pagea($count1, 50, 'type=1', 'searchResult', 'pages1');
+        $result1 = $citizen->relation('house')->where($tmp1)->limit($p1->firstRow . ',' . $p1->listRows)->select();
+        $p1->setConfig('header', '人');
+        $p1->setConfig('prev', "<");
+        $p1->setConfig('next', '>');
+        $p1->setConfig('first', '<<');
+        $p1->setConfig('last', '>>');
+        $page1 = $p1->show();
+        $this->assign("page1", $page1);
+       $this->assign("sjflist", $result1);
+
+       //交子社区
+       $tmp2 = $_SESSION['sCitizenKey']." and id>=2000000";
+        $count2 = $citizen->relation('house')->where($tmp2)->count();  //计算记录总数
+        import("@.ORG.Pagea");
+        $p2 = new Pagea($count2, 50, 'type=1', 'searchResult', 'pages2');
+        $result2 = $citizen->relation('house')->where($tmp2)->limit($p2->firstRow . ',' . $p2->listRows)->select();
+        $p2->setConfig('header', '人');
+        $p2->setConfig('prev', "<");
+        $p2->setConfig('next', '>');
+        $p2->setConfig('first', '<<');
+        $p2->setConfig('last', '>>');
+        $page2 = $p2->show();
+        $this->assign("page2", $page2);
+//        $this->assign("list", $result);
+       $this->assign("jzlist", $result2);
+       
         header("Content-Type:text/html; charset=utf-8");
 
         if ($this->isAjax()) {
@@ -93,21 +114,44 @@ class SearchAction extends BaseAction {
         if ($tmp != "") {
             $_SESSION['sHouseKey'] = $tmp;
         }
-        $tmp1 = $_SESSION['sHouseKey'];
-        $count = $house->relation('house')->where($tmp1)->count();
+        $tmp0 = $_SESSION['sHouseKey'];
+        $count = $house->relation('house')->where($tmp0)->count();
+        $this->assign("totalcount", $count);
+        //水井坊社区
+        $tmp1 = $_SESSION['sHouseKey']." and id<2000000";
+        $count1 = $house->relation('house')->where($tmp1)->count();
 
         import("@.ORG.Pagea");
-        $p = new Pagea($count, 50, 'type=1', 'searchResult', 'pages');
-        $result = $house->relation('house')->where($tmp1)->limit($p->firstRow . ',' . $p->listRows)->select();
+        $p1 = new Pagea($count1, 50, 'type=1', 'searchResult', 'pages1');
+        $result1 = $house->relation('house')->where($tmp1)->limit($p1->firstRow . ',' . $p1->listRows)->select();
 
-        $p->setConfig('header', '条数据');
-        $p->setConfig('prev', "<");
-        $p->setConfig('next', '>');
-        $p->setConfig('first', '<<');
-        $p->setConfig('last', '>>');
+        $p1->setConfig('header', '户');
+        $p1->setConfig('prev', "<");
+        $p1->setConfig('next', '>');
+        $p1->setConfig('first', '<<');
+        $p1->setConfig('last', '>>');
 
-        $page = $p->show();
-        $this->assign("page", $page);
+        $page1 = $p1->show();
+        $this->assign("page1", $page1);
+        $this->assign("sjflist", $result1);
+        //交子社区
+        $tmp2 = $_SESSION['sHouseKey']." and id>=2000000";
+        $count2 = $house->relation('house')->where($tmp2)->count();
+
+        import("@.ORG.Pagea");
+        $p2 = new Pagea($count2, 50, 'type=1', 'searchResult', 'pages2');
+        $result2 = $house->relation('house')->where($tmp2)->limit($p2->firstRow . ',' . $p2->listRows)->select();
+
+        $p2->setConfig('header', '户');
+        $p2->setConfig('prev', "<");
+        $p2->setConfig('next', '>');
+        $p2->setConfig('first', '<<');
+        $p2->setConfig('last', '>>');
+
+        $page2 = $p2->show();
+        $this->assign("page2", $page2);
+        $this->assign("jzlist", $result2);
+        
         header("Content-Type:text/html; charset=utf-8");
         $this->assign("list", $result);
         if ($this->isAjax()) {

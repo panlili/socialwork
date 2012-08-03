@@ -108,7 +108,9 @@ $(function(){
             
 
             $("div#searchResult").html(data);
+        
             $("div#searchResult").show();
+            
         })
     
     })

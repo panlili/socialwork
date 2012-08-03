@@ -250,12 +250,13 @@ div#search{
 #common_table
 {
     width:100%;
+    
     border-collapse:collapse;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #common_table td, #common_table th
-{
+{background-color: #fff;
     height: 30px;
     font-size:13px;
     border:1px solid #98bf21;
@@ -274,10 +275,13 @@ div#search{
 
 #common_table tr.alt td
 {
-
+background-color: #fff;
     color:#000000;
-    background-color:#EAF2D3;
+    /*background-color:#EAF2D3;*/
 }
+/*#common_table td{
+    background-color: #fff;
+}*/
 
 #common_table tr:hover
 {
@@ -294,7 +298,7 @@ div#search{
 }
 
 #common_table2 td, #common_table2 th
-{
+{background-color: #fff;
     height: 20px;
     font-size:13px;
     border:1px solid #98bf21;
