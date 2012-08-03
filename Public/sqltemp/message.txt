@@ -1,0 +1,17 @@
+update sjf_youfu set house_id=(SELECT sjf_house.id from sjf_house where sjf_house.youfu_id=sjf_youfu.id);
+
+update sjf_youfu set citizen_id=(SELECT sjf_citizen.id from sjf_citizen where sjf_citizen.youfu_id=sjf_youfu.id);
+
+sjf:
+	youfu citizen_id and house_id is null : 555
+	citizen record number : 7881
+	house record number : 3734
+	youfu record number : 12170
+	
+jz: 
+	youfu citizen_id and house_id is null : 2
+	citizen record number : 13435
+	house record number : 6715
+	youfu record number : 20152
+	
+	
