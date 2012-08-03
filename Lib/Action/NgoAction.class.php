@@ -22,7 +22,7 @@ class NgoAction extends BaseAction {
         $Ngo = D("Ngo");
         import("ORG.Util.Page");
         $count = $Ngo->count();
-        //Records_one_page = 25 
+        //Records_one_page = 25
         $p = new Page($count, self::RECORDS_ONE_PAGE);
         $list = $Ngo->order("id desc")->limit($p->firstRow . ',' . $p->listRows)->select();
         $page = $p->show();
@@ -122,27 +122,31 @@ class NgoAction extends BaseAction {
 
     public function test() {
         header("Content-type:text/html;charset=utf-8");
-//        $house = D("House");
-//        $one = $house->relation("youfu")->limit(1)->select();
-//        $two = $house->relation("youfu")->where(array("is_taishu"=>"否"))->select();
-//        
-//        dump($one);
-//        dump($two);
-        $model=D("House");
-        $data["address"]="test23";
-        $data["youfu"]=array("is_taishu"=>"yes","is_junshu"=>"no");
-        dump($data);
-        $id=$model->relation("youfu")->add($data);
-        echo $id;
-        $d=$model->where("id='$id'")->select();
-        dump($d);
-//        $youfu = D("Youfu");
-//        $data["is_taishu"] = "是";
-//        $data["is_junshu"] = "是";
-//        $data["house"] = array("address" => "test", "address_1" => 9);
-//        dump($data);
-//        $id = $youfu->relation("house")->add($data);
-//        echo $id;
+
+        $house = D("House");
+        $r = $house->relation("youfu")->limit(2)->select();
+
+        foreach ($r as $t) {
+            dump($t);
+        }
+
+        echo "---------------";
+
+        $citizen = D("Citizen");
+        $c = $citizen->relation("youfu")->limit(2)->select();
+
+        foreach ($c as $t) {
+            dump($t);
+        }
+
+        echo "---------------";
+
+        $youfu = D("Youfu");
+        $y = $youfu->relation(true)->limit(5)->select();
+
+        foreach ($y as $t) {
+            dump($t);
+        }
     }
 
 }
