@@ -20,12 +20,12 @@ class HouseModel extends RelationModel {
             "foreign_key" => "house_id",
             "mapping_type" => HAS_MANY,
         ),
-        "Youfu"=>array(
+        "Youfu" => array(
             "class_name" => "Youfu",
             "mapping_name" => "youfu",
             "foreign_key" => "youfu_id",
             "mapping_type" => BELONGS_TO,
-//            "as_fields"=>"is_taishu",
+//            "as_fields" => "is_taishu",
         ),
     );
 

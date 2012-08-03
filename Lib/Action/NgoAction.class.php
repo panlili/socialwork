@@ -121,10 +121,28 @@ class NgoAction extends BaseAction {
     }
 
     public function test() {
-        $house = D("House");
-        $tmp["is_taishu"]="否";
-        $one = $house->relation("youfu")->where($tmp)->limit(100)->select();
-        dump($one);
+        header("Content-type:text/html;charset=utf-8");
+//        $house = D("House");
+//        $one = $house->relation("youfu")->limit(1)->select();
+//        $two = $house->relation("youfu")->where(array("is_taishu"=>"否"))->select();
+//        
+//        dump($one);
+//        dump($two);
+        $model=D("House");
+        $data["address"]="test23";
+        $data["youfu"]=array("is_taishu"=>"yes","is_junshu"=>"no");
+        dump($data);
+        $id=$model->relation("youfu")->add($data);
+        echo $id;
+        $d=$model->where("id='$id'")->select();
+        dump($d);
+//        $youfu = D("Youfu");
+//        $data["is_taishu"] = "是";
+//        $data["is_junshu"] = "是";
+//        $data["house"] = array("address" => "test", "address_1" => 9);
+//        dump($data);
+//        $id = $youfu->relation("house")->add($data);
+//        echo $id;
     }
 
 }
