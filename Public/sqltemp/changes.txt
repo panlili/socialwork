@@ -1,0 +1,20 @@
+0803ChangeYoufuTableAddCitizenAndHouseId.zip
+
+	1.在优抚表添加了citizen_id和house_id，并将这两个字段填充数据：
+		update sjf_youfu set house_id=(SELECT sjf_house.id from sjf_house where sjf_house.youfu_id=sjf_youfu.id);
+	
+		update sjf_youfu set citizen_id=(SELECT sjf_citizen.id from sjf_citizen where sjf_citizen.youfu_id=sjf_youfu.id);
+	
+	2.将house表中原来md5形式的house_id改名为了md5_house_id，避免程序中的干扰
+	
+	3.将yard表中原来md5形式的yard_id改名为了md5_yard_id
+	
+	4.将youfu表中原来md5形式的youfu_id改名为了md5_youfu_id
+
+
+0804AddFieldYard_idToCitizenTable.zip
+	
+	1.在居民表添加yard_id字段，方便后面点选院落时统计居民数据
+		update sjf_citizen set yard_id=(select yard_id from sjf_house where sjf_citizen.house_id=sjf_house.id);
+	
+	
