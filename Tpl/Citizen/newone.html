@@ -3,7 +3,8 @@
 
     <form action="__URL__/add" method="POST">
         <table id="common_table" style="width: auto;clear:both">
-            <present name="house"><td>房屋ID：</td><td><input type="text" name="house_id" value="{$house}" readOnly="true"/></td></present>
+            <present name="house_id"><tr><td>房屋ID：</td><td><input type="text" name="house_id" value="{$house_id}" readOnly="true"/></td></tr></present>
+            <present name="yard_id"><tr><td>院落ID：</td><td><input type="text" name="yard_id" value="{$yard_id}" readOnly="true"/></td></tr></present>
             <tr><td>姓名：</td><td><input type="text" name="name" /></td></tr>
             <tr><td>与户主关系：</td><td>
                     <select name="relation_with_householder">
@@ -89,7 +90,7 @@
                         <option value="基诺族">基诺族</option>
                     </select>
                 </td>
-            </tr>                    
+            </tr>
             <tr><td>是否领取计划生育指标：</td><td><input type="checkbox" name="is_fertility" value="是" /></td></tr>
             <tr><td>是否特殊人群：</td><td><input type="checkbox" name="is_special" value="是" /></td></tr>
             <tr><td>是否低保：</td><td><input type="checkbox" name="is_low_level" value="是" /></td></tr>
