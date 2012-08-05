@@ -32,8 +32,8 @@ class CitizenAction extends BaseAction {
     public function newone() {
         if (is_numeric($this->_get("id"))) {
             $house_id = $this->_get("id");
-            $house = D("House")->where("id='$house_id'")->getField("id");
-            $this->assign(array("house" => $house, "page_place" => $this->getPagePlace("在当前房屋下添加居民", self::ACTION_NAME)));
+            $yard_id = D("House")->where("id='$house_id'")->getField("yard_id");
+            $this->assign(array("house_id" => $house_id, "yard_id" => $yard_id, "page_place" => $this->getPagePlace("在当前房屋下添加居民", self::ACTION_NAME)));
             $this->display();
         } else {
             $this->assign(array("page_place" => $this->getPagePlace("新建居民", self::ACTION_NAME)));
