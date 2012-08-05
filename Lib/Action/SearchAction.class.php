@@ -42,7 +42,8 @@ class SearchAction extends BaseAction {
             }
         }
 
-        $citizen = D("Citizen");
+        //$citizen = D("Citizen");
+        $citizen = D("View_citizen_youfu");
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
@@ -110,7 +111,8 @@ class SearchAction extends BaseAction {
             }
         }
 
-        $house = D("House");
+        //$house = D("House");
+        $house = D("View_house_youfu");
         if ($tmp != "") {
             $_SESSION['sHouseKey'] = $tmp;
         }

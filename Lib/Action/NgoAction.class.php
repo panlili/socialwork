@@ -122,6 +122,13 @@ class NgoAction extends BaseAction {
 
     public function test() {
         header("Content-type:text/html;charset=utf-8");
+        $citizen1=M("jz_view_citizen_youfu",null);
+       // dump($citizen1);
+        $x=$citizen1->limit(2)->select();
+         foreach ($x as $t) {
+            dump($t);
+        }
+        echo "---------------1";
 
         $house = D("House");
         $r = $house->relation("youfu")->limit(2)->select();
