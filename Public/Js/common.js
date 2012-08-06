@@ -32,18 +32,6 @@ function init() {
     setNumber();
     $("#common_table td").css("height","15px");
     
-    //house模块, 是平方是单选按钮不同的反映
-    $(".onefloor").click(function(){
-        if($(this).attr("checked")=="checked"){
-            $(this).attr("value","是");
-            $("#onefloor").show();
-            $(this).parent().parent().nextUntil("#onefloor").hide();
-        }else{
-            $("#onefloor").hide();
-            $(this).parent().parent().nextUntil("#onefloor").show();
-        }        
-    });
-    
     //footer双击隐藏menu的实现
     $("#footer").dblclick(function(){
         $("#menu").toggle();

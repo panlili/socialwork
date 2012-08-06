@@ -24,12 +24,12 @@
                         <option value="侄女" >侄女</option>
                         <option value="非亲属" >非亲属</option>
                         <option value="暂住人口" >流动人口_暂住</option></select></td></tr>
-            <tr><td>身份证号码：</td><td><input type="text" name="id_card" /></td></tr>
-            <tr><td>性别：</td><td>
+            <tr><td>身份证号码：</td><td><input type="text" name="id_card" onblur="checkIdCard($.trim($('input[name=id_card]').val()))"/></td></tr>
+<!--            <tr><td>性别：</td><td>
                     <select name="sex"> <option value="男">男</option>
                         <option value="女">女</option></select>
                 </td></tr>
-            <tr>
+            <tr>-->
                 <td>民族：</td><td>
                     <select name="nation">
                         <option value="汉族">汉族</option>

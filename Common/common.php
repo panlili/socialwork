@@ -37,6 +37,20 @@ function getBirthdayByIdCard($idcard) {
     }
 }
 
+//根据身份证计算性别
+function getSexByIdCard($idcard) {
+    if (!empty($idcard)) {
+        $sex = "";
+        $idcard = trim($idcard);
+        if (18 === strlen($idcard)) {
+            $sex = substr($idcard, -2, 1) % 2 ? "男" : "女";
+        } else if (15 === strlen($idcard)) {
+            $sex = substr($idcard, -1) % 2 ? "男" : "女";
+        }
+        return $sex;
+    }
+}
+
 //当街道用户community=0的时候，注释掉添加修改数据操作
 function cs() {
     if (C("DB_PREFIX") === "sum_") {

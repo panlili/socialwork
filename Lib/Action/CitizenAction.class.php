@@ -44,7 +44,8 @@ class CitizenAction extends BaseAction {
     public function add() {
         $Citizen = D("Citizen");
         if ($newdata = $Citizen->create()) {
-            $newdata["birthday"] = $this->getBirthdayByIdCard(trim($this->_post("id_card")));
+            $newdata["birthday"] = getBirthdayByIdCard(trim($this->_post("id_card")));
+            $newdata["sex"] = getSexByIdCard($this->_post("id_card"));
             $data = $Citizen->add($newdata);
             if (FALSE !== $data) {
                 //all redirect to House, because only add citizen from house page
@@ -97,8 +98,8 @@ class CitizenAction extends BaseAction {
             $newdata['is_low_rent'] = null == $this->_post('is_low_rent') ? '否' : '是';
             $newdata['is_long_live'] = null == $this->_post('is_long_live') ? '否' : '是';
 
-            $newdata["birthday"] = $this->getBirthdayByIdCard(trim($this->_post("id_card")));
-
+            $newdata["birthday"] = getBirthdayByIdCard(trim($this->_post("id_card")));
+            $newdata["sex"] = getSexByIdCard(trim($this->_post("id_card")));
             $data = $Citizen->save($newdata);
             if (false !== $data) {
                 session("action_message", "更新数据成功！");
@@ -110,22 +111,6 @@ class CitizenAction extends BaseAction {
         } else {
             session("action_message", $Citizen->getError());
             $this->redirect("/Citizen/edit/$id");
-        }
-    }
-
-    private function getBirthdayByIdCard($idcard) {
-        if (!empty($idcard)) {
-            $birthday = "";
-            if (18 == strlen($idcard)) {
-                $birthday = substr($idcard, 6, 4);
-                $birthday .= "-" . substr($idcard, 10, 2);
-                $birthday .= "-" . substr($idcard, 12, 2);
-            } else if (15 == strlen($idcard)) {
-                $birthday = "19" . substr($idcard, 6, 2);
-                $birthday .= "-" . substr($idcard, 8, 2);
-                $birthday .= "-" . substr($idcard, 10, 2);
-            }
-            return $birthday;
         }
     }
 
