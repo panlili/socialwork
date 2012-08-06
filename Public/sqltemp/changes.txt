@@ -16,5 +16,8 @@
 	
 	1.在居民表添加yard_id字段，方便后面点选院落时统计居民数据
 		update sjf_citizen set yard_id=(select yard_id from sjf_house where sjf_citizen.house_id=sjf_house.id);
+		
+0805Create6ViewsBetweenCitizenHouseWithYoufu.rar
+	1.创建了6个视图：citizen house -> youfu
 	
 	
