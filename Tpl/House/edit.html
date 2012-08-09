@@ -5,7 +5,7 @@
         <table id="common_table" style="width: auto;clear:both">
             <tr><td>所在院落：</td><td>{$data.yard.id|getYardSelect}</td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="{$data.address}" disabled="disable"/></td></tr>
-            <tr><td>人户是否一直:</td><td><eq name="data.is_fit" value="是"><input type="checkbox" name="is_free" value="是" checked="checked" /><else/><input type="checkbox" name="is_free" value="是" /></eq></td></tr>
+            <tr><td>人户是否一直:</td><td><eq name="data.is_fit" value="是"><input type="checkbox" name="is_fit" value="是" checked="checked" /><else/><input type="checkbox" name="is_fit" value="是" /></eq></td></tr>
             <tr><td>是否空闲:</td><td><eq name="data.is_free" value="是"><input type="checkbox" name="is_free" value="是" checked="checked" /><else/><input type="checkbox" name="is_free" value="是" /></eq></td></tr>
             <tr><td>是否廉租房:</td><td><eq name="data.is_lowrent" value="是"><input type="checkbox" name="is_lowrent" value="是" checked="checked" /><else/><input type="checkbox" name="is_lowrent" value="是" /></eq></td></tr>
             <tr><td>是否购买经济适用房:</td><td><eq name="data.is_afford" value="是"><input type="checkbox" name="is_afford" value="是" checked="checked" /><else/><input type="checkbox" name="is_afford" value="是" /></eq></td></tr>
@@ -14,7 +14,14 @@
             <tr><td>是否领取燃油补贴:</td><td><eq name="data.is_fuel" value="是"><input type="checkbox" name="is_fuel" value="是" checked="checked" /><else/><input type="checkbox" name="is_fuel" value="是" /></eq></td></tr>
             <tr><td>联系人:</td><td><input type="text" name="contactor" value="{$data.contactor}" /></td></tr>
             <tr><td>联系人电话:</td><td><input type="text" name="telephone" value="{$data.telephone}" /></td></tr>
-            <tr><td>是否平房？:</td><td><eq name="data.is_floor" value="是"><input type="checkbox" name="is_floor" value="是" onclick="hideOtherAddress($(this));" checked="checked" /><else/><input type="checkbox" name="is_floor" value="是" onclick="hideOtherAddress($(this));"/></eq></td></tr>
+            <tr><td>是否平房？:</td>
+                <td>
+                    <eq name="data.is_floor" value="是">
+                    <input type="checkbox" name="is_floor" value="是" onclick="hideOtherAddress($(this));" checked="checked" />
+            <else/><input type="checkbox" name="is_floor" value="是" onclick="hideOtherAddress($(this));"/>
+            </eq>
+            </td>
+            </tr>
             <tr><td>楼栋号:</td><td><input type="text" name="address_1" value="{$data.address_1}" /></td></tr>
             <tr><td>单元号:</td><td><input type="text" name="address_2" value="{$data.address_2}" /></td></tr>
             <tr><td>楼层:</td><td><input type="text" name="address_3" value="{$data.address_3}" /></td></tr>
