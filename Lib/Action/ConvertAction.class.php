@@ -149,7 +149,7 @@ class ConvertAction extends BaseAction {
         echo "<p>优抚表转换，转换youfu到youfu……</p>";
         $youfu = D("Youfu");
         foreach ($youfu1 as $youfutmp) {
-            $data["youfu_id"] = $youfutmp["p_youfu_id"];
+            $data["md5_youfu_id"] = $youfutmp["p_youfu_id"];
             $data["is_dibao"] = $this->getStrByBool($youfutmp["p_bdibao"]);
             $data["dibao_jine"] = $youfutmp["p_dibao_jine"];
             $data["dibao_start_date"] = $youfutmp["p_dibao_start_date"];
@@ -203,7 +203,7 @@ class ConvertAction extends BaseAction {
         $house = D("House");
         foreach ($house1 as $housetmp) {
             //$data["id"] = $housetmp["id"];
-            $data["house_id"] = $housetmp["house_id"]; //houseid是增加的一个临时字段
+            $data["md5_house_id"] = $housetmp["house_id"]; //houseid是增加的一个临时字段
             $x = "";
             if ($housetmp["h_address_mlh"] == '0' || $housetmp["h_address_mlh"] == "") {
                 $x = $this->getStreetNameById((int) ($housetmp["h_address_jlx"]));
