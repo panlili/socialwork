@@ -46,7 +46,9 @@ function showStore(streetid) {
 $(function(){
     $("#common_table td").css("height","15px");
 
-    $("#tabs").tabs();
+    if($("#tabs").length>0){
+        $("#tabs").tabs();
+    }
 
     $("div#addstreet").hide();
 

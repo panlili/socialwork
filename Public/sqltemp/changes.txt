@@ -18,6 +18,41 @@
 		update sjf_citizen set yard_id=(select yard_id from sjf_house where sjf_citizen.house_id=sjf_house.id);
 		
 0805Create6ViewsBetweenCitizenHouseWithYoufu.rar
+
 	1.创建了6个视图：citizen house -> youfu
+	
+0809AddTableOwnerAndAddDataToIt.zip
+	
+	1.添加了原系统有的房屋人户不一致时出现的owner表
+	
+	2.将原表owner中的数据倒进来了。
+		
+		update jz_owner set sex='男' where sex=1;
+		update jz_owner set sex='女' where sex=2;
+
+		update jz_owner set marry_info='未婚' where marry_info=1;
+		update jz_owner set marry_info='已婚' where marry_info=2;
+		update jz_owner set marry_info='离异' where marry_info=3;
+		update jz_owner set marry_info='丧偶' where marry_info=4;
+
+		update jz_owner set education='文盲' where education=1;
+		update jz_owner set education='小学' where education=2;
+		update jz_owner set education='初中' where education=3;
+		update jz_owner set education='高中' where education=4;
+		update jz_owner set education='技校' where education=5;
+		update jz_owner set education='中专' where education=6;
+		update jz_owner set education='大专' where education=7;
+		update jz_owner set education='本科' where education=8;
+		update jz_owner set education='硕士' where education=9;
+		update jz_owner set education='博士' where education=10;
+		update jz_owner set education='博士后' where education=11;
+		update jz_owner set education='教授' where education=12;
+		update jz_owner set education='院士' where education=13;
+
+		update jz_owner set house_id=(select id from jz_house where jz_house.md5_house_id=jz_owner.md5_house_id);
+	
+0809AddTableAddon.zip
+	
+	1.添加了附件表sjf_addon
 	
 	

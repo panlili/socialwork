@@ -103,4 +103,40 @@ function setYardIcon($id) {
     return $str . " ";
 }
 
+//获取街道列表,并生成一串html的select
+function getStreets($id = "") {
+    $m_street = D("Street");
+    $streetlist = $m_street->select();
+
+    $html = "<select name='street_id'>";
+    if ("" != $id) {
+        $name = $m_street->where("id=$id")->getField(name);
+        $html.="<option value=$id selected=selected>$name</option>";
+        $html.="<option value=$id>----请重新选择----</option>";
+    }
+
+    foreach ($streetlist as $s) {
+        $html .= "<option value=$s[id]>$s[name]</option>";
+    }
+    return $html;
+}
+
+//获取yard列表,并生成一串html的select
+function getYards($id = "") {
+    $m_yard = D("Yard");
+    $yardlist = $m_yard->select();
+
+    $html = "<select name='yard_id'>";
+    if ("" != $id) {
+        $name = $m_yard->where("id=$id")->getField(name);
+        $html.="<option value=$id selected=selected>$name</option>";
+        $html.="<option value=$id>----请重新选择----</option>";
+    }
+
+    foreach ($yardlist as $y) {
+        $html .= "<option value=$y[id]>$y[name]</option>";
+    }
+    return $html;
+}
+
 ?>

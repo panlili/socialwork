@@ -31,8 +31,7 @@ class StoreAction extends BaseAction {
     }
 
     public function newone() {
-        //如果不是需要获取街道列表，此方法多余
-        $this->assign(array("streetlist" => D("Street")->select(), "page_place" => $this->getPagePlace("添加新数据", self::ACTION_NAME)));
+        $this->assign(array("page_place" => $this->getPagePlace("添加新数据", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -63,8 +62,7 @@ class StoreAction extends BaseAction {
             $this->redirect("Store/index");
         }
 
-        $this->assign(array("streetlist" => D("Street")->select(), "data" => $data,
-            "page_place" => $this->getPagePlace("修改数据", self::ACTION_NAME)));
+        $this->assign(array("data" => $data,"page_place" => $this->getPagePlace("修改数据", self::ACTION_NAME)));
         $this->display();
     }
 

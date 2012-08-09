@@ -3,11 +3,7 @@
 
     <form action="__URL__/add" method="post">
         <table id="common_table" style="width: auto;clear:both">
-            <tr><td>所在院落：</td>
-                <td><select name="yard_id">
-                        <volist name="yardList" id="yard"><option value="{$yard.id}">{$yard.name}</option></volist>                                  </volist>
-                    </select></td>
-            </tr>
+            <tr><td>所在院落：</td><td><php>echo getYards();</php></td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="根据楼栋、单元号等自动生成" disabled="disable" style="width:200px;"/></td></tr>
             <tr><td>人户是否一致:</td><td><input type="checkbox" name="is_fit" value="是"/></td></tr>
             <tr><td>是否空闲:</td><td><input type="checkbox" name="is_free" value="是"/></td></tr>

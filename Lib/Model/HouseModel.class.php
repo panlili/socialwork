@@ -20,6 +20,13 @@ class HouseModel extends RelationModel {
             "foreign_key" => "house_id",
             "mapping_type" => HAS_MANY,
         ),
+        //has one owner
+        "Owner" => array(
+            "mapping_type" => HAS_ONE,
+            "class_name" => "Owner",
+            "foreign_key" => "house_id",
+            "mapping_name" => "owner",
+        ),
         //has one youfu
         "Youfu" => array(
             "class_name" => "Youfu",

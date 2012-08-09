@@ -36,7 +36,7 @@ class HouseAction extends BaseAction {
     }
 
     public function newone() {
-        $this->assign(array("yardList" => D("Yard")->select(), "page_place" => $this->getPagePlace("新建数据", self::ACTION_NAME)));
+        $this->assign(array("page_place" => $this->getPagePlace("新建数据", self::ACTION_NAME)));
         $this->display();
     }
 

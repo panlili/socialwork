@@ -119,43 +119,6 @@ class NgoAction extends BaseAction {
         $this->assign("list", $list);
         echo $this->fetch();
     }
-
-    public function test() {
-        header("Content-type:text/html;charset=utf-8");
-        $citizen1 = M("jz_view_citizen_youfu", null);
-        // dump($citizen1);
-        $x = $citizen1->limit(2)->select();
-        foreach ($x as $t) {
-            dump($t);
-        }
-        echo "---------------1";
-
-        $house = D("House");
-        $r = $house->relation("youfu")->limit(2)->select();
-
-        foreach ($r as $t) {
-            dump($t);
-        }
-
-        echo "---------------";
-
-        $citizen = D("Citizen");
-        $c = $citizen->relation("youfu")->limit(2)->select();
-
-        foreach ($c as $t) {
-            dump($t);
-        }
-
-        echo "---------------";
-
-        $youfu = D("Youfu");
-        $y = $youfu->relation(true)->limit(5)->select();
-
-        foreach ($y as $t) {
-            dump($t);
-        }
-    }
-
 }
 
 ?>

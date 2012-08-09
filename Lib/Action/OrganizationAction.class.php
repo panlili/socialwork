@@ -31,10 +31,7 @@ class OrganizationAction extends BaseAction {
     }
 
     public function newone() {
-        //如果不是需要获取街道列表，此方法多余
-        $Street = D("Street");
-        $list = $Street->select();
-        $this->assign(array("streetlist" => $list, "page_place" => $this->getPagePlace("添加新数据", self::ACTION_NAME)));
+        $this->assign(array("page_place" => $this->getPagePlace("添加新数据", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -67,8 +64,7 @@ class OrganizationAction extends BaseAction {
             session("action_message", "数据不存在！");
             $this->redirect("Organization/index");
         }
-        $this->assign(array("streetlist" => D("Street")->select(), "data" => $data,
-            "page_place" => $this->getPagePlace("编辑数据", self::ACTION_NAME)));
+        $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("编辑数据", self::ACTION_NAME)));
         $this->display();
     }
 

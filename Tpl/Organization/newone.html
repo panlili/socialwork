@@ -3,11 +3,7 @@
 
     <form action="__URL__/add" method="post">
         <table id="common_table" style="width: auto;clear:both">
-            <tr><td>所在街道：</td>
-                <td><select name="street_id">
-                        <volist name="streetlist" id="street"><option value="{$street.id}">{$street.name}</option></volist>                                  </volist>
-                    </select></td>
-            </tr>
+            <tr><td>所在街道：</td><td><php>echo getStreets();</php></td></tr>
             <tr><td>单位名称*：</td><td><input type="text" name="name" /></td></tr>
             <tr><td>单位地址*：</td><td><input type="text" name="address" /><br/>
                     不需要填写所在街道名，直接填写地址如125号</td></tr>

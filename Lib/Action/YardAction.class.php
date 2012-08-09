@@ -54,8 +54,7 @@ class YardAction extends BaseAction {
     }
 
     public function newone() {
-        //如果不是需要获取街道列表，此方法多余
-        $this->assign(array("streetlist" => D("Street")->select(), "page_place" => $this->getPagePlace("新建数据", self::ACTION_NAME)));
+        $this->assign(array("page_place" => $this->getPagePlace("新建数据", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -104,8 +103,7 @@ class YardAction extends BaseAction {
             $this->redirect("Yard/index");
         }
 
-        $this->assign(array("streetlist" => D("Street")->select(), "data" => $data,
-            "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
+        $this->assign(array("data" => $data,"page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 
