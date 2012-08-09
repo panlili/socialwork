@@ -159,6 +159,56 @@ function checkIdCard(idcard) {
     }
     
 }
-/**
- * Comment
- */
+function toggleDibao(element) {
+    if(element.attr("checked")=="checked"){
+        element.attr("value","是");
+        element.parent().after("<td>低保金额：<input type=text />开始享受低保时间：<input type=text /></td>");
+    }else{
+        element.parent().nextUntil("tr").remove();
+    }
+}
+function toggleLianzhu(element) {
+    if(element.attr("checked")=="checked"){
+        element.attr("value","是");
+        element.parent().after("<td>廉租地址：<input type=text /></td>");
+    }else{
+        element.parent().nextUntil("tr").remove();
+    }
+}
+function toggleCanji(element) {
+    if(element.attr("checked")=="checked"){
+        element.attr("value","是");
+//        element.parent().after("<td>残疾：</td><td><input type=text /></td>");
+        $("#canji_ext").show();
+    }else{
+//        element.parent().nextUntil("tr").remove();
+        $("#canji_ext").hide();
+    }
+}
+
+function toggleSp(element){
+     if(element.attr("checked")=="checked"){
+        element.attr("value","是");
+//        element.parent().after("<td>残疾：</td><td><input type=text /></td>");
+        $("#sp_renqun").show();
+    }else{
+//        element.parent().nextUntil("tr").remove();
+        $("#sp_renqun").hide();
+    }
+}
+
+function switch_hide_show(id_name, type)
+{
+  if(type==2){
+    type='block';
+  }else{
+    type='inline';
+  }
+  if(document.getElementById(id_name).style.display==type){
+    document.getElementById(id_name).style.display='none';
+	document.getElementById(id_name).disabled = true;
+  }else{
+    document.getElementById(id_name).style.display=type;
+	document.getElementById(id_name).disabled = false;
+  }
+}
