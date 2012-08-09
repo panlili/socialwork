@@ -1,3 +1,8 @@
+<style type="text/css">
+    .isfit{
+        display: none;
+    }
+</style>
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
@@ -5,9 +10,41 @@
         <table id="common_table" style="width: auto;clear:both">
             <tr><td>所在院落：</td><td><php>echo getYardSelect();</php></td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="根据楼栋、单元号等自动生成" disabled="disable" style="width:200px;"/></td></tr>
-            <tr><td>人户是否一致:</td><td><input type="checkbox" name="is_fit" value="是"/></td></tr>
+
+            <tr><td>是否低保:</td><td><input type="checkbox" name="is_dibao" value="是"  onclick="toggleDibao($(this));"/></td></tr>
+            <tr><td>是否廉租房:</td><td><input type="checkbox" name="is_lowrent" value="是" onclick="toggleLianzhu($(this))"/></td></tr>
+            <tr>
+                <td>人户是否一致:</td><td><input type="checkbox" name="is_fit" value="是" checked="checked" onclick="toggleIsFit($(this))"/></td>
+            </tr>
+            <tr class="isfit">
+                <td></td><td></td><td>产权人姓名：</td><td><input type="text" ></td><td>身份证号：</td><td><input type="text" ></td>
+            </tr>
+            <tr class="isfit">
+                <td></td><td></td><td>婚姻情况：</td><td><select name="marry_info">
+                        <option value="未婚">未婚</option>
+                        <option value="已婚">已婚</option>
+                        <option value="离异">离异</option>
+                        <option value="丧偶">丧偶</option></select></td>
+                <td>文化程度：</td><td><select name="education">
+                        <option value="文盲">文盲</option>
+                        <option value="小学">小学</option>
+                        <option value="初中">初中</option>
+                        <option value="高中">高中</option>
+                        <option value="技校">技校</option>
+                        <option value="中专">中专</option>
+                        <option value="大专">大专</option>
+                        <option value="本科">本科</option>
+                        <option value="硕士">硕士</option>
+                        <option value="博士">博士</option>
+                        <option value="博士后">博士后</option>
+                        <option value="教授">教授</option>
+                        <option value="院士">院士</option></select></td>
+            </tr>
+            <tr class="isfit">
+                <td></td><td></td><td>联系电话：</td><td><input type="text" ></td><td>户籍地址：</td><td><input type="text" ></td>
+            </tr>
             <tr><td>是否空闲:</td><td><input type="checkbox" name="is_free" value="是"/></td></tr>
-            <tr><td>是否廉租房:</td><td><input type="checkbox" name="is_lowrent" value="是"/></td></tr>
+
             <tr><td>是否购买经济适用房:</td><td><input type="checkbox" name="is_afford" value="是"/></td></tr>
             <tr><td>是否台属:</td><td><input type="checkbox" name="is_taiwan" value="是"/></td></tr>
             <tr><td>是否军属:</td><td><input type="checkbox" name="is_army" value="是"/></td></tr>

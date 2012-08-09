@@ -41,18 +41,7 @@ class HouseAction extends BaseAction {
 
     public function add() {
         $House = D("House");
-        $yardid = $this->_post("yard_id");
         if ($House->create()) {
-//            if (!empty($newdata["is_floor"])) {
-//                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
-//                $newdata["address"] .= $newdata["address_other"] ? "附" . $newdata["address_other"] . "号" : "";
-//            } else {
-//                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
-//                $newdata['address'] .= $newdata['address_1'] ? $newdata['address_1'] . "栋" : "";
-//                $newdata['address'] .= $newdata['address_2'] ? $newdata['address_2'] . "单元" : "";
-//                $newdata['address'] .= $newdata['address_3'] ? $newdata['address_3'] . "楼" : "";
-//                $newdata['address'] .= $newdata['address_4'] ? $newdata['address_4'] . "号" : "";
-//            }
             $data = $House->add();
             if (FALSE !== $data) {
                 session("action_message", "添加数据成功");
@@ -89,40 +78,15 @@ class HouseAction extends BaseAction {
             $this->redirect("House/index");
         }
 
-        $this->assign(array("data" => $data,"page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
+        $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 
-    //update方法，用于接收提交的修改信息
     public function update() {
-        //注意修改的表单下面一定要有一个隐藏域提交id，这样save方法才能成功。
         $id = $this->_post("id");
-        $yardid = $this->_post("yard_id");
         $House = D("House");
         if ($newdata = $House->create()) {
-            $newdata['is_free'] = null == $this->_post('is_free') ? '否' : '是';
-            $newdata['is_lowrent'] = null == $this->_post('is_lowrent') ? '否' : '是';
-            $newdata['is_afford'] = null == $this->_post('is_afford') ? '否' : '是';
-            $newdata['is_taiwan'] = null == $this->_post('is_taiwan') ? '否' : '是';
-            $newdata['is_army'] = null == $this->_post('is_army') ? '否' : '是';
-            $newdata['is_fuel'] = null == $this->_post('is_fuel') ? '否' : '是';
-            $newdata['is_fit'] = null == $this->_post('is_fit') ? '否' : '是';
 
-            if (!empty($newdata["is_floor"])) {
-                //if is floor
-                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
-                $newdata["address"] .= $newdata["address_other"] ? "附" . $newdata["address_other"] . "号" : "";
-                $newdata["address_1"] = $newdata["address_2"] = $newdata["address_3"] = $newdata["address_4"] = "";
-            } else {
-                //not floor
-                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
-                $newdata['address'] .= $newdata['address_1'] ? $newdata['address_1'] . "栋" : "";
-                $newdata['address'] .= $newdata['address_2'] ? $newdata['address_2'] . "单元" : "";
-                $newdata['address'] .= $newdata['address_3'] ? $newdata['address_3'] . "楼" : "";
-                $newdata['address'] .= $newdata['address_4'] ? $newdata['address_4'] . "号" : "";
-                $newdata['address_other'] = "";
-                $newdata['is_floor'] = '否';
-            }
             $data = $House->save($newdata);
             if (false !== $data) {
                 session("action_message", "更新数据成功！");
