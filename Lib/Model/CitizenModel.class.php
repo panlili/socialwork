@@ -6,14 +6,8 @@ class CitizenModel extends RelationModel {
         array('collection_date', 'getOnlyDate', Model::MODEL_INSERT, 'function'),
     );
 
-    protected function _before_insert(&$data, $options) {
-        parent::_before_insert($data, $options);
-        $data["birthday"] = getBirthdayByIdCard($data["id_card"]);
-        $data["sex"] = getSexByIdCard($data["id_card"]);
-    }
-
-    protected function _before_update(&$data, $options) {
-        parent::_before_update($data, $options);
+    protected function _before_write(&$data) {
+        parent::_before_write($data);
         $data["birthday"] = getBirthdayByIdCard($data["id_card"]);
         $data["sex"] = getSexByIdCard($data["id_card"]);
     }

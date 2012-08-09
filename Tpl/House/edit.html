@@ -1,22 +1,11 @@
-<div id="content">  
+<div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
     <form action="__URL__/update" method="post">
         <table id="common_table" style="width: auto;clear:both">
-            <tr><td>所在院落：</td>
-                <td><select name="yard_id">                                   
-                        <volist name="yardlist" id="yard">
-                            <eq name="yard.id" value="$data.yard.id">
-                            <option value="{$data.yard.id}" selected="selected">{$data.yard.name}</option>
-                            <else/>
-                            <option value="{$yard.id}">{$yard.name}</option>
-                            </eq>
-                        </volist>
-                    </select></td>
-            </tr>
+            <tr><td>所在院落：</td><td>{$data.yard.id|getYardSelect}</td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="{$data.address}" disabled="disable"/></td></tr>
             <tr><td>人户是否一直:</td><td><eq name="data.is_fit" value="是"><input type="checkbox" name="is_free" value="是" checked="checked" /><else/><input type="checkbox" name="is_free" value="是" /></eq></td></tr>
-
             <tr><td>是否空闲:</td><td><eq name="data.is_free" value="是"><input type="checkbox" name="is_free" value="是" checked="checked" /><else/><input type="checkbox" name="is_free" value="是" /></eq></td></tr>
             <tr><td>是否廉租房:</td><td><eq name="data.is_lowrent" value="是"><input type="checkbox" name="is_lowrent" value="是" checked="checked" /><else/><input type="checkbox" name="is_lowrent" value="是" /></eq></td></tr>
             <tr><td>是否购买经济适用房:</td><td><eq name="data.is_afford" value="是"><input type="checkbox" name="is_afford" value="是" checked="checked" /><else/><input type="checkbox" name="is_afford" value="是" /></eq></td></tr>
@@ -25,13 +14,13 @@
             <tr><td>是否领取燃油补贴:</td><td><eq name="data.is_fuel" value="是"><input type="checkbox" name="is_fuel" value="是" checked="checked" /><else/><input type="checkbox" name="is_fuel" value="是" /></eq></td></tr>
             <tr><td>联系人:</td><td><input type="text" name="contactor" value="{$data.contactor}" /></td></tr>
             <tr><td>联系人电话:</td><td><input type="text" name="telephone" value="{$data.telephone}" /></td></tr>
-            <tr><td>是否平房？:</td><td><eq name="data.is_floor" value="是"><input type="checkbox" name="is_floor" value="是" checked="checked" /><else/><input type="checkbox" name="is_floor" value="是" /></eq></td></tr>
+            <tr><td>是否平房？:</td><td><eq name="data.is_floor" value="是"><input type="checkbox" name="is_floor" value="是" onclick="hideOtherAddress($(this));" checked="checked" /><else/><input type="checkbox" name="is_floor" value="是" onclick="hideOtherAddress($(this));"/></eq></td></tr>
             <tr><td>楼栋号:</td><td><input type="text" name="address_1" value="{$data.address_1}" /></td></tr>
             <tr><td>单元号:</td><td><input type="text" name="address_2" value="{$data.address_2}" /></td></tr>
             <tr><td>楼层:</td><td><input type="text" name="address_3" value="{$data.address_3}" /></td></tr>
             <tr><td>房屋号:</td><td><input type="text" name="address_4" value="{$data.address_4}" /></td></tr>
-            <tr><td>平房（附</td><td><input type="text" name="address_other" value="{$data.address_other}" />号）</td></tr>
+            <tr id="onefloor" style="display: none;"><td>平房（附</td><td><input type="text" name="address_other" value="{$data.address_other}"/>号）</td></tr>
             <tr><td></td><td><input type="submit" value="更新" name="submit" /><input type="reset" value="清空" />
                     <input type="hidden" name="id" value="{$data.id}" /></td></tr>
     </form>
-</div> 
+</div>

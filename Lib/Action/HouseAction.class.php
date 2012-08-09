@@ -25,7 +25,6 @@ class HouseAction extends BaseAction {
             $this->redirect("House/index");
         }
 
-
         //当前房屋下的居民列表
         $Citizen = D("Citizen");
         $list = $Citizen->where(array("house_id" => $id))->order("id desc")->select();
@@ -43,18 +42,18 @@ class HouseAction extends BaseAction {
     public function add() {
         $House = D("House");
         $yardid = $this->_post("yard_id");
-        if ($newdata = $House->create()) {
-            if (!empty($newdata["is_floor"])) {
-                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
-                $newdata["address"] .= $newdata["address_other"] ? "附" . $newdata["address_other"] . "号" : "";
-            } else {
-                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
-                $newdata['address'] .= $newdata['address_1'] ? $newdata['address_1'] . "栋" : "";
-                $newdata['address'] .= $newdata['address_2'] ? $newdata['address_2'] . "单元" : "";
-                $newdata['address'] .= $newdata['address_3'] ? $newdata['address_3'] . "楼" : "";
-                $newdata['address'] .= $newdata['address_4'] ? $newdata['address_4'] . "号" : "";
-            }
-            $data = $House->add($newdata);
+        if ($House->create()) {
+//            if (!empty($newdata["is_floor"])) {
+//                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
+//                $newdata["address"] .= $newdata["address_other"] ? "附" . $newdata["address_other"] . "号" : "";
+//            } else {
+//                $newdata["address"] = D("Yard")->where("id='$yardid'")->getField("name");
+//                $newdata['address'] .= $newdata['address_1'] ? $newdata['address_1'] . "栋" : "";
+//                $newdata['address'] .= $newdata['address_2'] ? $newdata['address_2'] . "单元" : "";
+//                $newdata['address'] .= $newdata['address_3'] ? $newdata['address_3'] . "楼" : "";
+//                $newdata['address'] .= $newdata['address_4'] ? $newdata['address_4'] . "号" : "";
+//            }
+            $data = $House->add();
             if (FALSE !== $data) {
                 session("action_message", "添加数据成功");
                 $this->redirect("House/index");
@@ -90,8 +89,7 @@ class HouseAction extends BaseAction {
             $this->redirect("House/index");
         }
 
-        $this->assign(array("yardlist" => D("Yard")->select(), "data" => $data,
-            "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
+        $this->assign(array("data" => $data,"page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 

@@ -55,4 +55,24 @@
 	
 	1.添加了附件表sjf_addon
 	
+0809AddSomeData.zip
+	
+	1.目前数据存在有些院落无父街道，有些房屋无父院落，有些居民无父房屋。故添加一个统一的 “未知**” 来管理这些数据。方便查询
+		sjf: name     id
+			 未知街道 280010032
+			 未知院落 118
+			 未知院落1栋1单元1楼1号  11264
+			 
+			 update sjf_house set yard_id=118 where yard_id is null;
+			 update sjf_citizen set house_id=11264 where house_id is null;
+			 update sjf_citizen set yard_id=(select yard_id from sjf_house where sjf_citizen.house_id=sjf_house.id) where yard_id is null;
+			 
+		jz:
+			 未知街道  280020021
+			 未知院落  2000186
+			 未知院落1栋1单元1楼11号   2026865
+				
+			 update jz_house set yard_id=2000186 where yard_id is null;
+			 update jz_citizen set house_id=2026865 where house_id is null;
+			 update jz_citizen set yard_id=(select yard_id from jz_house where jz_citizen.house_id=jz_house.id) where yard_id is null;
 	

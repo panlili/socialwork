@@ -22,6 +22,7 @@ function getAge($birthday) {
 
 //通过身份证号码计算生日
 function getBirthdayByIdCard($idcard) {
+    $idcard = trim($idcard);
     if (!empty($idcard)) {
         $birthday = "";
         if (18 == strlen($idcard)) {
@@ -39,6 +40,7 @@ function getBirthdayByIdCard($idcard) {
 
 //根据身份证计算性别
 function getSexByIdCard($idcard) {
+    $idcard = trim($idcard);
     if (!empty($idcard)) {
         $sex = "";
         $idcard = trim($idcard);
@@ -104,7 +106,7 @@ function setYardIcon($id) {
 }
 
 //获取街道列表,并生成一串html的select
-function getStreets($id = "") {
+function getStreetSelect($id = "") {
     $m_street = D("Street");
     $streetlist = $m_street->select();
 
@@ -122,7 +124,7 @@ function getStreets($id = "") {
 }
 
 //获取yard列表,并生成一串html的select
-function getYards($id = "") {
+function getYardSelect($id = "") {
     $m_yard = D("Yard");
     $yardlist = $m_yard->select();
 

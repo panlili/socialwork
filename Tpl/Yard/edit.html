@@ -3,9 +3,7 @@
 
     <form action="__URL__/update" method="post">
         <table id="common_table" style="width: auto;clear:both">
-            <tr><td>所在街道：</td>
-                <td>{$data.street.id|getStreets}</td>
-            </tr>
+            <tr><td>所在街道：</td><td>{$data.street.id|getStreetSelect}</td></tr>
             <tr><td>院落名称*：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
             <tr><td>地址*：</td><td><input type="text" name="address" value="{$data.address}" /><br/>
                     请删除前面对应的街道名，填写对应的地址，如125号</td></tr>

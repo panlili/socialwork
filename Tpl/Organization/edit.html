@@ -3,7 +3,7 @@
 
     <form action="__URL__/update" method="post">
         <table id="common_table" style="width: auto;clear:both">
-            <tr><td>所在街道：</td><td>{$data.street.id|getStreets}</td></tr>
+            <tr><td>所在街道：</td><td>{$data.street.id|getStreetSelect}</td></tr>
             <tr><td>单位名称*：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
             <tr><td>法人代表：</td><td><input type="text" name="chairman"  value="{$data.chairman}"/></td></tr>
             <tr><td>单位地址*：</td><td><input type="text" name="address" value="{$data.address}"/><br/>
