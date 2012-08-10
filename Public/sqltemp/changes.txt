@@ -76,3 +76,6 @@
 			 update jz_citizen set house_id=2026865 where house_id is null;
 			 update jz_citizen set yard_id=(select yard_id from jz_house where jz_citizen.house_id=jz_house.id) where yard_id is null;
 	
+0810AddViewFiles.zip
+	
+	1.不知道什么时候视图文件丢失了，奇怪。这个文件补回来了。
