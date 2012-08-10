@@ -8,6 +8,7 @@
             <tr><td>姓名：</td><td><input type="text" name="name" /></td></tr>
             <tr><td>与户主关系：</td><td>
                     <select name="relation_with_householder">
+                        <option value="">————</option>
                         <option value="户主" >户主</option>
                         <option value="配偶" >配偶</option>
                         <option value="父亲或岳父" >父亲或岳父</option>
@@ -32,6 +33,7 @@
                         <tr>-->
             <td>民族：</td><td>
                 <select name="nation">
+                    <option value="">————</option>
                     <option value="汉族">汉族</option>
                     <option value="蒙古族">蒙古族</option>
                     <option value="彝族">彝族</option>
@@ -102,7 +104,7 @@
                     <div >
                         <ul>
                             <li>
-                                <input type="checkbox" name="sp_xfww"  
+                                <input type="checkbox" name="sp_is_xfww"  
                                        value="1" onclick="switch_hide_show('sp_xfww_desc',1)"/><desword>信访维稳　</desword>
                             <textarea name="sp_xfww_desc" id="sp_xfww_desc"
                                       cols="30" rows="3" value="具体描述" style="display:none"></textarea>
@@ -138,6 +140,7 @@
             <tr><td>是否残疾：</td><td><input type="checkbox" name="is_canji" value="是" onclick="toggleCanji($(this));"/></td>
                 <td id="canji_ext" style="display:none">
                     <select size="1" name="canji_type" id="personal_canji_type">
+                        <option value="">残疾类型</option>
                         <option value="视力">视力</option>
                         <option value="听力语言">听力语言</option>
                         <option value="精神">精神</option>
@@ -146,6 +149,7 @@
                     </select>
                     &nbsp;残疾等级:
                     <select size="1" name="canji_lvl" id="personal_canji_lvl">
+                        <option value="">残疾等级</option>
                         <option value="一级">一级</option>
                         <option value="二级">二级</option>
                         <option value="三级">三级</option>
@@ -163,11 +167,13 @@
             <tr><td>是否廉租房：</td><td><input type="checkbox" name="is_lianzu" value="是" onclick="toggleLianzhu($(this))"/></td></tr>
             <tr><td>是否长寿金：</td><td><input type="checkbox" name="is_long_live" value="是" /></td></tr>
             <tr><td>婚姻情况：</td><td><select name="marry_info">
+                        <option value="">————</option>
                         <option value="未婚">未婚</option>
                         <option value="已婚">已婚</option>
                         <option value="离异">离异</option>
                         <option value="丧偶">丧偶</option></select></td></tr>
             <tr><td>文化程度：</td><td><select name="education">
+                        <option value="">————</option>
                         <option value="文盲">文盲</option>
                         <option value="小学">小学</option>
                         <option value="初中">初中</option>
@@ -182,11 +188,13 @@
                         <option value="教授">教授</option>
                         <option value="院士">院士</option></select></td></tr>
             <tr><td>政治面貌：</td><td><select name="political_status">
+                        <option value="">————</option>
                         <option value="群众">群众</option>
                         <option value="团员">团员</option>
                         <option value="民主人士">民主人士</option>
                         <option value="党员">党员</option></select></td></tr>
             <tr><td>就业情况：</td><td><select name="employee">
+                        <option value="">————</option>
                         <option value="就业">就业</option>
                         <option value="未就业">未就业</option>
                         <option value="灵活就业">灵活就业</option>
