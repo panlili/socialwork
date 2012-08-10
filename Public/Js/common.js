@@ -1,13 +1,13 @@
 //admin管理模块, 删除管理用户
 function delete_user(id) {
     if(window.confirm("Are you Sure?")){
-        $.post("delete", 
+        $.post("delete",
         {
             id:id
-        }, 
+        },
         function(data){
-            if(1==$.parseJSON(data).status) $('#'+id).fadeOut("slow");            
-        });        
+            if(1==$.parseJSON(data).status) $('#'+id).fadeOut("slow");
+        });
     }
 }
 
@@ -30,13 +30,12 @@ function setNumber(parent) {
 //layout.html中一些全局js效果的实现
 function init() {
     setNumber();
-    $("#common_table td").css("height","15px");
-    
+
     //footer双击隐藏menu的实现
     $("#footer").dblclick(function(){
         $("#menu").toggle();
     });
-        
+
     //action_message区块
     if($.trim($("#action_message").text())==""){
         $("#action_message").remove();

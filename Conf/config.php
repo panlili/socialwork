@@ -3,6 +3,7 @@
 return array(
     'LAYOUT_ON' => true,
     'LAYOUT_NAME' => 'layout',
+    'LOAD_EXT_FILE' => 'tpl', //导入tpl中产生固定内容的函数
     //'SHOW_PAGE_TRACE' => true, //开启页面跟踪
     'URL_CASE_INSENSITIVE' => true, //忽略URL中大小写
     'URL_MODEL' => 1, //PATHINFO模式

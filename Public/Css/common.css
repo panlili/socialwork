@@ -20,7 +20,7 @@ body{
     margin-top: 0px;
     margin: 0 auto;
     /*    width: 1400px;*/
-/*    width: 90%;*/
+    /*    width: 90%;*/
     min-width: 1000px;
 }
 
@@ -56,9 +56,9 @@ body{
     min-width: 160px;
     padding: 1%;
     background-color:#EAF2D3;
-/*    border-right-style: solid;
-    border-right-width: 1px;
-    border-right-color: #006600;*/
+    /*    border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: #006600;*/
 
 }
 #menu p{
@@ -86,7 +86,7 @@ body{
 
 #menu a{
     /*    padding-left: 40px;*/
-     font-family: "宋体", "黑体";
+    font-family: "宋体", "黑体";
     padding-left: 18%;
     padding-right: 15%;
     height: 30px;
@@ -158,9 +158,9 @@ body{
     padding-right: 1%;
     padding-top: 10px;
     /*background-color: #fff;*/
-/*    border-left-style: solid;
-    border-left-width: 1px;
-    border-left-color: #006600;*/
+    /*    border-left-style: solid;
+        border-left-width: 1px;
+        border-left-color: #006600;*/
 }
 #page_middle{
     margin: 0 auto;
@@ -252,20 +252,26 @@ div#search{
 /* table css */
 #common_table
 {
+    margin-bottom: 10px;
     width:100%;
-    
     border-collapse:collapse;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-#common_table td, #common_table th
-{background-color: #fff;
+#common_table th{
+    background-color: #fff;
     height: 30px;
     font-size:13px;
     border:1px solid #98bf21;
     padding:3px 7px 2px 7px;
 }
-
+#common_table td{
+    background-color: #fff;
+    height: 15px;
+    font-size:13px;
+    border:1px solid #98bf21;
+    padding:3px 7px 2px 7px;
+}
 #common_table th
 {
     font-size:13px;
@@ -278,17 +284,12 @@ div#search{
 
 #common_table tr.alt td
 {
-background-color: #fff;
-    color:#000000;
-    /*background-color:#EAF2D3;*/
-}
-/*#common_table td{
     background-color: #fff;
-}*/
+    color:#000000;
+}
 
 #common_table tr:hover
 {
-
     color:#000000;
     background-color:#EAF2D3;
 }
@@ -300,8 +301,8 @@ background-color: #fff;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-#common_table2 td, #common_table2 th
-{background-color: #fff;
+#common_table2 td, #common_table2 th{
+    background-color: #fff;
     height: 20px;
     font-size:13px;
     border:1px solid #98bf21;

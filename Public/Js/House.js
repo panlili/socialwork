@@ -9,29 +9,47 @@ function hideOtherAddress(element) {
         element.parent().parent().nextUntil("#onefloor").show();
     }
 }
-
+//是否平房
+function toggleAddress(element) {
+    if(element.attr("value")=="是"){
+        $(".addresspart").hide();
+        $("#onefloor").show();
+    }else{
+        $(".addresspart").show();
+        $("#onefloor").hide();
+    }
+}
+//享受低保
 function toggleDibao(element) {
-    if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-        element.parent().after("<td>低保金额：</td><td><input type=text /></td><td>开始享受低保时间：</td><td><input type=text /></td>");
+    if(element.attr("value")=="是"){
+        $(".dibao").show();
     }else{
-        element.parent().nextUntil("tr").remove();
+        $(".dibao").hide();
     }
 }
-
-function toggleLianzhu(element) {
-    if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-        element.parent().after("<td>廉租地址：</td><td><input type=text /></td>");
+//享受廉租房
+function toggleLianzu(element) {
+    if(element.attr("value")=="是"){
+        $(".lianzu").show();
     }else{
-        element.parent().nextUntil("tr").remove();
+        $(".lianzu").hide();
     }
 }
-
-function toggleIsFit(element){
-    if(element.attr("checked")=="checked"){
+//人户一致
+function toggleIsFit(element) {
+    if(element.attr("value")=="是"){
         $(".isfit").hide();
+        $(".isfree").hide();
     }else{
         $(".isfit").show();
+        $(".isfree").show();
+    }
+}
+//是否空闲
+function toggleIsFree(element) {
+    if(element.attr("value")=="是"){
+        $(".rent").hide();
+    }else{
+        $(".rent").show();
     }
 }

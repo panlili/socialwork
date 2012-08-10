@@ -40,20 +40,21 @@ class HouseAction extends BaseAction {
     }
 
     public function add() {
-        $House = D("House");
-        if ($House->create()) {
-            $data = $House->add();
-            if (FALSE !== $data) {
-                session("action_message", "添加数据成功");
-                $this->redirect("House/index");
-            } else {
-                session("action_message", "添加新数据失败！");
-                $this->redirect("House/newone");
-            }
-        } else {
-            session("action_message", $House->getError());
-            $this->redirect("House/newone");
-        }
+//        $House = D("House");
+//        if ($House->create()) {
+//            $data = $House->add();
+//            if (FALSE !== $data) {
+//                session("action_message", "添加数据成功");
+//                $this->redirect("House/index");
+//            } else {
+//                session("action_message", "添加新数据失败！");
+//                $this->redirect("House/newone");
+//            }
+//        } else {
+//            session("action_message", $House->getError());
+//            $this->redirect("House/newone");
+//        }
+        dump($_POST);
     }
 
     public function delete() {

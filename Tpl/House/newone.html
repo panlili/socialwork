@@ -1,62 +1,119 @@
-<style type="text/css">
-    .isfit{
-        display: none;
-    }
-</style>
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
     <form action="__URL__/add" method="post">
-        <table id="common_table" style="width: auto;clear:both">
+        <table id="common_table" style="width: auto;">
             <tr><td>所在院落：</td><td><php>echo getYardSelect();</php></td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="根据楼栋、单元号等自动生成" disabled="disable" style="width:200px;"/></td></tr>
-
-            <tr><td>是否低保:</td><td><input type="checkbox" name="is_dibao" value="是"  onclick="toggleDibao($(this));"/></td></tr>
-            <tr><td>是否廉租房:</td><td><input type="checkbox" name="is_lowrent" value="是" onclick="toggleLianzhu($(this))"/></td></tr>
-            <tr>
-                <td>人户是否一致:</td><td><input type="checkbox" name="is_fit" value="是" checked="checked" onclick="toggleIsFit($(this))"/></td>
-            </tr>
-            <tr class="isfit">
-                <td></td><td></td><td>产权人姓名：</td><td><input type="text" ></td><td>身份证号：</td><td><input type="text" ></td>
-            </tr>
-            <tr class="isfit">
-                <td></td><td></td><td>婚姻情况：</td><td><select name="marry_info">
-                        <option value="未婚">未婚</option>
-                        <option value="已婚">已婚</option>
-                        <option value="离异">离异</option>
-                        <option value="丧偶">丧偶</option></select></td>
-                <td>文化程度：</td><td><select name="education">
-                        <option value="文盲">文盲</option>
-                        <option value="小学">小学</option>
-                        <option value="初中">初中</option>
-                        <option value="高中">高中</option>
-                        <option value="技校">技校</option>
-                        <option value="中专">中专</option>
-                        <option value="大专">大专</option>
-                        <option value="本科">本科</option>
-                        <option value="硕士">硕士</option>
-                        <option value="博士">博士</option>
-                        <option value="博士后">博士后</option>
-                        <option value="教授">教授</option>
-                        <option value="院士">院士</option></select></td>
-            </tr>
-            <tr class="isfit">
-                <td></td><td></td><td>联系电话：</td><td><input type="text" ></td><td>户籍地址：</td><td><input type="text" ></td>
-            </tr>
-            <tr><td>是否空闲:</td><td><input type="checkbox" name="is_free" value="是"/></td></tr>
-
-            <tr><td>是否购买经济适用房:</td><td><input type="checkbox" name="is_afford" value="是"/></td></tr>
-            <tr><td>是否台属:</td><td><input type="checkbox" name="is_taiwan" value="是"/></td></tr>
-            <tr><td>是否军属:</td><td><input type="checkbox" name="is_army" value="是"/></td></tr>
-            <tr><td>是否领取燃油补贴:</td><td><input type="checkbox" name="is_fuel" value="是"/></td></tr>
             <tr><td>联系人:</td><td><input type="text" name="contactor" /></td></tr>
             <tr><td>联系人电话:</td><td><input type="text" name="telephone" /></td></tr>
-            <tr><td>是否平房?:</td><td><input type="checkbox" name="is_floor" class="onefloor" onclick="hideOtherAddress($(this));"/></td></tr>
-            <tr><td>楼栋号:</td><td><input type="text" name="address_1" /></td></tr>
-            <tr><td>单元号:</td><td><input type="text" name="address_2" /></td></tr>
-            <tr><td>楼层:</td><td><input type="text" name="address_3" /></td></tr>
-            <tr><td>房屋号:</td><td><input type="text" name="address_4" /></td></tr>
+
+            <!-- 是否平房 -->
+            <tr>
+                <td>是否平房?:</td>
+                <td>
+                    <input type="radio" name="is_floor" value="是" onclick="toggleAddress($(this));"/>是
+                    <input type="radio" name="is_floor" value="否" checked="checked" onclick="toggleAddress($(this));"/>否
+                </td>
+            </tr>
+            <tr class="addresspart"><td>楼栋号:</td><td><input type="text" name="address_1" /></td></tr>
+            <tr class="addresspart"><td>单元号:</td><td><input type="text" name="address_2" /></td></tr>
+            <tr class="addresspart"><td>楼层:</td><td><input type="text" name="address_3" /></td></tr>
+            <tr class="addresspart"><td>房屋号:</td><td><input type="text" name="address_4" /></td></tr>
             <tr id="onefloor" style="display: none;"><td>平房（附</td><td><input type="text" name="address_other" />号）</td></tr>
+
+            <!-- 人户是否一致 -->
+            <tr>
+                <td>人户是否一致:</td>
+                <td>
+                    <input type="radio" name="is_fit" value="是" checked="checked" onclick="toggleIsFit($(this))"/>是
+                    <input type="radio" name="is_fit" value="否" onclick="toggleIsFit($(this))"/>否
+                </td>
+            </tr>
+            <tr class="isfit">
+                <td></td><td></td>
+                <td>产权人姓名：</td><td><input type="text" name="owner_name"></td>
+                <td>身份证号：</td><td><input type="text" name="owner_idcard"></td>
+            </tr>
+            <tr class="isfit">
+                <td></td><td></td>
+                <td>婚姻情况：</td><td><php>echo marry_info_select("owner_marry_info");</php></td>
+            <td>文化程度：</td><td><php>echo education_select("owner_education");</php></td>
+            </tr>
+            <tr class="isfit">
+                <td></td><td></td>
+                <td>联系电话：</td><td><input type="text" name="owner_telephone" ></td>
+                <td>现住址：</td><td><input type="text" name="owner_nowaddress"></td>
+            </tr>
+
+            <!-- 是否空闲与人户一直对应，人户一致不会空闲 -->
+            <tr class="isfree">
+                <td>是否空闲:</td>
+                <td>
+                    <input type="radio" name="is_free" value="是" checked="checked" onclick="toggleIsFree($(this));"/>是
+                    <input type="radio" name="is_free" value="否" onclick="toggleIsFree($(this));"/>否
+                </td>
+                <td class="rent">房屋租金：</td><td class="rent"><input type="text" name="rent"/></td>
+                <td class="rent">税金：</td><td class="rent"><input type="text" name="rent_tax"/></td>
+            </tr>
+
+            <!-- 优抚相关信息 -->
+            <tr><td><!-- blank line --></td></tr>
+            <tr><td>优抚相关信息：</td><td></td></tr>
+            <tr>
+                <td>是否低保:</td>
+                <td>
+                    <input type="radio" name="youfu_is_dibao" value="是"  onclick="toggleDibao($(this));"/>是
+                    <input type="radio" name="youfu_is_dibao" value="否" checked="checked" onclick="toggleDibao($(this));"/>否
+                </td>
+                <td class="dibao">低保金额：</td><td class="dibao"><input type="text" name="youfu_dibao_jine" /></td>
+                <td class="dibao">开始享受时间：</td><td class="dibao"><input type="text" name="youfu_dibao_start_date" /></td>
+            </tr>
+
+            <tr>
+                <td>是否购买经济适用房:</td>
+                <td>
+                    <input type="radio" name="youfu_is_jjsyf" value="是"/>是
+                    <input type="radio" name="youfu_is_jjsyf" checked="checked" value="否"/>否
+                </td>
+            </tr>
+
+            <tr>
+                <td>是否台属:</td>
+                <td>
+                    <input type="radio" name="youfu_is_taishu" value="是"/>是
+                    <input type="radio" name="youfu_is_taishu" checked="checked" value="否"/>否
+                </td>
+            </tr>
+
+            <tr>
+                <td>是否军属:</td>
+                <td>
+                    <input type="radio" name="youfu_is_junshu" value="是"/>是
+                    <input type="radio" name="youfu_is_junshu" checked="checked" value="否"/>否
+                </td>
+            </tr>
+
+            <tr>
+                <td>是否领取燃油补贴:</td>
+                <td>
+                    <input type="radio" name="youfu_ranmei" value="是"/>是
+                    <input type="radio" name="youfu_ranmei" checked="checked" value="否"/>否
+                </td>
+            </tr>
+
+            <tr>
+                <td>是否廉租房:</td>
+                <td>
+                    <input type="radio" name="youfu_is_lianzu" value="是" onclick="toggleLianzu($(this))"/>是
+                    <input type="radio" name="youfu_is_lianzu" value="否" checked="checked" onclick="toggleLianzu($(this))"/>否
+                </td>
+                <td class="lianzu">廉租房地址：</td><td class="lianzu"><input type="text" name="youfu_lianzu_address" /></td>
+            </tr>
+
+
+
+
             <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
         </table>
     </form>
