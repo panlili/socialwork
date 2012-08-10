@@ -95,8 +95,8 @@
             <tr><td>是否特殊人群：</td><td><input type="checkbox" name="is_special" value="是" onclick="toggleSp($(this));"/>
                     <select size="1" name="sp_status">
                         <option value="0" selected>请选择</option>
-                        <option value="1">处理中</option>
-                        <option value="2">息诉息访</option>      
+                        <option value="处理中">处理中</option>
+                        <option value="息诉息访">息诉息访</option>      
                     </select></td>
                 <td id="sp_renqun" style="display:none;">
                     <div >
@@ -137,25 +137,25 @@
             <tr><td>是否低保：</td><td><input type="checkbox" name="is_dibao" value="是" onclick="toggleDibao($(this));"/></td></tr>
             <tr><td>是否残疾：</td><td><input type="checkbox" name="is_canji" value="是" onclick="toggleCanji($(this));"/></td>
                 <td id="canji_ext" style="display:none">
-                    <select size="1" name="personal_canji_type" id="personal_canji_type">
-                        <option value="1">视力</option>
-                        <option value="2">听力语言</option>
-                        <option value="3">精神</option>
-                        <option value="4">智力</option>
-                        <option value="5">肢体</option>       
+                    <select size="1" name="canji_type" id="personal_canji_type">
+                        <option value="视力">视力</option>
+                        <option value="听力语言">听力语言</option>
+                        <option value="精神">精神</option>
+                        <option value="智力">智力</option>
+                        <option value="肢体">肢体</option>       
                     </select>
                     &nbsp;残疾等级:
-                    <select size="1" name="personal_canji_lvl" id="personal_canji_lvl">
-                        <option value="1">一级</option>
-                        <option value="2">二级</option>
-                        <option value="3">三级</option>
-                        <option value="4">四级</option>     
+                    <select size="1" name="canji_lvl" id="personal_canji_lvl">
+                        <option value="一级">一级</option>
+                        <option value="二级">二级</option>
+                        <option value="三级">三级</option>
+                        <option value="四级">四级</option>     
                     </select>
                     <br>
                     残疾证号:
-                    <input type="text" name="personal_canji_no" size="20" maxlength="24">
+                    <input type="text" name="canji_no" size="20" maxlength="24">
                     &nbsp;
-                    残疾人特困专项补助: <input type="text" name="personal_canji_jine" size="6" 
+                    残疾人特困专项补助: <input type="text" name="canji_jine" size="6" 
                                       maxlength="6">元
                     <hr>
                 </td></tr>

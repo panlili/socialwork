@@ -162,7 +162,7 @@ function checkIdCard(idcard) {
 function toggleDibao(element) {
     if(element.attr("checked")=="checked"){
         element.attr("value","是");
-        element.parent().after("<td>低保金额：<input type=text />开始享受低保时间：<input type=text /></td>");
+        element.parent().after('<td>低保金额：<input type="text" name="dibao_jine"/>开始享受低保时间：<input type=text name="dibao_start_date"/></td>');
     }else{
         element.parent().nextUntil("tr").remove();
     }
@@ -170,7 +170,7 @@ function toggleDibao(element) {
 function toggleLianzhu(element) {
     if(element.attr("checked")=="checked"){
         element.attr("value","是");
-        element.parent().after("<td>廉租地址：<input type=text /></td>");
+        element.parent().after('<td>廉租地址：<input type=text name="lianzu_address" /></td>');
     }else{
         element.parent().nextUntil("tr").remove();
     }

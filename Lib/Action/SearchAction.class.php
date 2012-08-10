@@ -47,12 +47,12 @@ class SearchAction extends BaseAction {
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
-        
+
         $tmp0 = $_SESSION['sCitizenKey'];
         $count = $citizen->relation('house')->where($tmp0)->count();
         $this->assign("totalcount", $count);
-       //水井坊社区
-        $tmp1 = $_SESSION['sCitizenKey']." and id<2000000";
+        //水井坊社区
+        $tmp1 = $_SESSION['sCitizenKey'] . " and id<2000000";
         $count1 = $citizen->relation('house')->where($tmp1)->count();  //计算记录总数
         import("@.ORG.Pagea");
         $p1 = new Pagea($count1, 50, 'type=1', 'searchResult', 'pages1');
@@ -64,10 +64,10 @@ class SearchAction extends BaseAction {
         $p1->setConfig('last', '>>');
         $page1 = $p1->show();
         $this->assign("page1", $page1);
-       $this->assign("sjflist", $result1);
+        $this->assign("sjflist", $result1);
 
-       //交子社区
-       $tmp2 = $_SESSION['sCitizenKey']." and id>=2000000";
+        //交子社区
+        $tmp2 = $_SESSION['sCitizenKey'] . " and id>=2000000";
         $count2 = $citizen->relation('house')->where($tmp2)->count();  //计算记录总数
         import("@.ORG.Pagea");
         $p2 = new Pagea($count2, 50, 'type=1', 'searchResult', 'pages2');
@@ -80,8 +80,8 @@ class SearchAction extends BaseAction {
         $page2 = $p2->show();
         $this->assign("page2", $page2);
 //        $this->assign("list", $result);
-       $this->assign("jzlist", $result2);
-       
+        $this->assign("jzlist", $result2);
+
         header("Content-Type:text/html; charset=utf-8");
 
         if ($this->isAjax()) {
@@ -120,7 +120,7 @@ class SearchAction extends BaseAction {
         $count = $house->relation('house')->where($tmp0)->count();
         $this->assign("totalcount", $count);
         //水井坊社区
-        $tmp1 = $_SESSION['sHouseKey']." and id<2000000";
+        $tmp1 = $_SESSION['sHouseKey'] . " and id<2000000";
         $count1 = $house->relation('house')->where($tmp1)->count();
 
         import("@.ORG.Pagea");
@@ -137,7 +137,7 @@ class SearchAction extends BaseAction {
         $this->assign("page1", $page1);
         $this->assign("sjflist", $result1);
         //交子社区
-        $tmp2 = $_SESSION['sHouseKey']." and id>=2000000";
+        $tmp2 = $_SESSION['sHouseKey'] . " and id>=2000000";
         $count2 = $house->relation('house')->where($tmp2)->count();
 
         import("@.ORG.Pagea");
@@ -153,7 +153,7 @@ class SearchAction extends BaseAction {
         $page2 = $p2->show();
         $this->assign("page2", $page2);
         $this->assign("jzlist", $result2);
-        
+
         header("Content-Type:text/html; charset=utf-8");
         $this->assign("list", $result);
         if ($this->isAjax()) {
@@ -164,17 +164,23 @@ class SearchAction extends BaseAction {
     }
 
     public function htoexcel() {
-        $list = D("House")->where($_SESSION['sHouseKey'])->select();
-        foreach ($list as &$list2) {
-            $list2["id_card"] = "'" . $list2["id_card"];
+        if ($_SESSION["right"] == "9") {
+            $list = D("House")->where($_SESSION['sHouseKey'])->select();
+            foreach ($list as &$list2) {
+                $list2["id_card"] = "'" . $list2["id_card"];
+            }
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=house.xls");
+            $this->assign("list", $list);
+            echo $this->fetch("htoexcel");
+        }  else {
+             header("Content-Type:text/html; charset=utf-8");
+            echo "你没有权限执行导出操作";
         }
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=house.xls");
-        $this->assign("list", $list);
-        echo $this->fetch("htoexcel");
     }
 
     public function ctoexcel() {
+        if($_SESSION["right"]=="9"){
         $list = D("Citizen")->relation('house')->where($_SESSION['sCitizenKey'])->select();
 
         foreach ($list as &$list2) {
@@ -184,6 +190,11 @@ class SearchAction extends BaseAction {
         header("Content-Disposition:attachment;filename=citizen.xls");
         $this->assign("list", $list);
         echo $this->fetch("ctoexcel");
+        }  else {
+             header("Content-Type:text/html; charset=utf-8");
+            echo "你没有权限执行导出操作";
+        }
+        
     }
 
 }

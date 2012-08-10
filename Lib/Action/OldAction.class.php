@@ -145,7 +145,7 @@ class OldAction extends BaseAction {
         $idcard = $_GET["_URL_"][2];
         $sid = $_GET["_URL_"][3];
         if ($idcard == "" || $sid == "0") {
-           echo '身份证号为空或者没选择对应的服务，刷卡操作未能完成<br>'; 
+            echo '身份证号为空或者没选择对应的服务，刷卡操作未能完成<br>';
         } else {
             $condition1["id"] = array("eq", $sid);
             $result1 = D("service")->where($condition1)->find();
@@ -189,12 +189,17 @@ class OldAction extends BaseAction {
     }
 
     public function toexcel() {
-        $houseid = $this->_get("id");
-        $list = D("Old")->relation(array("house"))->where("house_id='$houseid'")->select();
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=Old_in_house_$houseid.xls");
-        $this->assign("list", $list);
-        echo $this->fetch();
+        if ($_SESSION["right"] == "9") {
+            $houseid = $this->_get("id");
+            $list = D("Old")->relation(array("house"))->where("house_id='$houseid'")->select();
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=Old_in_house_$houseid.xls");
+            $this->assign("list", $list);
+            echo $this->fetch();
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "您没有权限执行导出操作";
+        }
     }
 
 }

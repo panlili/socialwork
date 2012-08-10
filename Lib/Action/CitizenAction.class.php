@@ -43,20 +43,23 @@ class CitizenAction extends BaseAction {
 
     public function add() {
         $Citizen = D("Citizen");
-        if ($newdata = $Citizen->create()) {
-            $data = $Citizen->add($newdata);
-            if (FALSE !== $data) {
-                //all redirect to House, because only add citizen from house page
-                session("action_message", "添加数据成功");
-                $this->redirect("House/index");
-            } else {
-                session("action_message", "添加新数据失败！");
-                $this->redirect("House/index");
-            }
-        } else {
-            session("action_message", $Citizen->getError());
-            $this->redirect("House/newone");
-        }
+        $newdata = $Citizen->relation(true)->create();
+        dump($_POST);
+//        if ($newdata = $Citizen->create()) {
+//            dump($newdata);
+//            //$data = $Citizen->add($newdata);
+//            if (FALSE !== $data) {
+//                //all redirect to House, because only add citizen from house page
+//                session("action_message", "添加数据成功");
+//                $this->redirect("House/index");
+//            } else {
+//                session("action_message", "添加新数据失败！");
+//                $this->redirect("House/index");
+//            }
+//        } else {
+//            session("action_message", $Citizen->getError());
+//            $this->redirect("House/newone");
+//        }
     }
 
     public function delete() {
@@ -111,12 +114,17 @@ class CitizenAction extends BaseAction {
     }
 
     public function toexcel() {
-        $houseid = $this->_get("id");
-        $list = D("Citizen")->relation(array("house"))->where("house_id='$houseid'")->select();
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=citizen_in_house_$houseid.xls");
-        $this->assign("list", $list);
-        echo $this->fetch();
+        if ($_SESSION["right"] == "9") {
+            $houseid = $this->_get("id");
+            $list = D("Citizen")->relation(array("house"))->where("house_id='$houseid'")->select();
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=citizen_in_house_$houseid.xls");
+            $this->assign("list", $list);
+            echo $this->fetch();
+        }  else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "您没有权限执行导出操作";
+        }
     }
 
 }
