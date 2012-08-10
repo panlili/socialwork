@@ -95,13 +95,11 @@ class CitizenAction extends BaseAction {
 
 
         $Citizen = D("Citizen");
-//        $newdata = $Citizen->relation(true)->create();
-        //$newdata[""]=$_POST[""];
-//        $newdata["youfu"]=array(
-//            'is_dibao'=>$_POST[""],
-//        );
-        dump($newdata);
+
+       // dump($newdata);
         $data = $Citizen->relation(true)->add($newdata);
+         session("action_message", "添加数据成功");
+         $this->redirect("House/newone");
 //        if ($newdata = $Citizen->create()) {
 //            dump($newdata);
 //            //$data = $Citizen->add($newdata);
