@@ -148,4 +148,26 @@ function reverseIt($arg) {
         return "是";
 }
 
+//根据残疾号获取残疾等级
+function getCanjiLevel($canji_no) {
+    $last = substr($canji_no, -1);
+
+    switch ($last) {
+        case 1:
+            return "一级";
+            break;
+        case 2:
+            return "二级";
+            break;
+        case 3:
+            return "三级";
+            break;
+        case 4:
+            return "四级";
+            break;
+        default: "不详";
+            break;
+    }
+}
+
 ?>

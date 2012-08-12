@@ -8,7 +8,7 @@ function toggleAddress(element) {
         $("#onefloor").hide();
     }
 }
-//享受低保
+//享受低保，与citizen.js中的重复
 function toggleDibao(element) {
     if(element.attr("value")=="是"){
         $(".dibao").show();

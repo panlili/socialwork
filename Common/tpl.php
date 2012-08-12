@@ -135,4 +135,69 @@ function nation_select($name = "nation", $selected = "") {
     return $html;
 }
 
+function political_select($name = "political_status", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html.='<option value="群众">群众</option>
+                        <option value="团员">团员</option>
+                        <option value="民主人士">民主人士</option>
+                        <option value="党员">党员</option>
+                        </select>';
+    return $html;
+}
+
+function employee_select($name = "employee", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html.='<option value="就业">就业</option>
+                        <option value="未就业">未就业</option>
+                        <option value="灵活就业">灵活就业</option>
+                        <option value="领取失业保证金">领取失业保证金</option>
+                        <option value="在校生">在校生</option>
+                        <option value="低保">低保</option>
+                        <option value="退休">退休</option></select>';
+    return $html;
+}
+
+function disable_select($name = "canji_type", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html.='<option value="视力">视力</option>
+                        <option value="听力语言">听力语言</option>
+                        <option value="精神">精神</option>
+                        <option value="智力">智力</option>
+                        <option value="肢体">肢体</option>
+                    </select>';
+    return $html;
+}
+
+function special_select($name = "sp_status", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html.='<option value="不是">不是</option><option value="处理中">处理中</option>
+                 <option value="息诉息访">息诉息访</option>
+                 </select>';
+    return $html;
+}
+
 ?>

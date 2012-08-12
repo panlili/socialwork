@@ -1,30 +1,152 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-    <table id="common_table" style="width: auto;clear:both">
-        <tr><td>姓名：</td><td>{$data.name}</td></tr>
-        <tr><td>与户主关系：</td><td>{$data.relation_with_householder}</td></tr>
-        <tr><td>身份证号码：</td><td>{$data.id_card}</td></tr>
-        <tr><td>性别：</td><td>{$data.sex}</td></tr>
-        <tr><td>生日：</td><td>{$data.birthday}</td></tr>
-        <tr><td>年龄：</td><td>{$data.birthday|getAge}</td></tr>
-        <tr><td>民族：</td><td>{$data.nation}</td></tr>
-        <tr><td>是否领取计划生育指标：</td><td>{$data.is_fertility}</td></tr>
-        <tr><td>是否特殊人群：</td><td>{$data.is_special}</td></tr>
-        <tr><td>是否低保：</td><td>{$data.is_low_level}</td></tr>
-        <tr><td>是否残疾：</td><td>{$data.is_disability}</td></tr>
-        <tr><td>是否廉租房：</td><td>{$data.is_low_rent}</td></tr>
-        <tr><td>是否长寿金：</td><td>{$data.is_long_live}</td></tr>
-        <tr><td>婚姻情况：</td><td>{$data.marry_info}</td></tr>
-        <tr><td>文化程度：</td><td>{$data.education}</td></tr>
-        <tr><td>政治面貌：</td><td>{$data.political_status}</td></tr>
-        <tr><td>就业情况：</td><td>{$data.employee}</td></tr>
-        <tr><td>户口地址：</td><td>{$data.household}</td></tr>
-        <tr><td>联系电话：</td><td>{$data.telephone}</td></tr>
+    <table id="common_table" style="width: auto;">
+        <tr>
+            <td>姓名：</td>
+            <td>{$data.name}</td>
+            <td>性别：</td>
+            <td>{$data.sex}</td>
+        </tr>
+
+        <tr>
+            <td>身份证号码：</td>
+            <td>{$data.id_card}</td>
+        </tr>
+
+        <tr>
+            <td>出生日期：</td><td>{$data.birthday}</td>
+            <td>年龄：</td><td>{$data.birthday|getAge}</td>
+        </tr>
+
+        <tr>
+            <td>与户主关系：</td>
+            <td>{$data.relation_with_householder}</td>
+            <td>民族：</td>
+            <td>{$data.nation}</td>
+        </tr>
+
+        <tr>
+            <td>婚姻情况：</td><td>{$data.marry_info}</td>
+            <td>文化程度：</td><td>{$data.education}</td>
+        </tr>
+
+        <tr>
+            <td>政治面貌：</td><td>{$data.political_status}</td>
+            <td>就业情况：</td><td>{$data.employee}</td>
+        </tr>
+
+        <tr>
+            <td>是否领取计划生育指标：</td>
+            <td>{$data.is_fertility}</td>
+            <td>是否长寿金：</td>
+            <td>{$data.is_long_live}</td>
+        </tr>
+
+        <tr>
+            <td>户口地址：</td><td>{$data.household}</td>
+            <td>联系电话：</td><td>{$data.telephone}</td>
+        </tr>
+
+        <!-- 优抚相关信息 -->
+        <tr><td><!-- blank line --></td></tr>
+        <tr><td>优抚相关信息：</td><td></td></tr>
+
+        <tr>
+            <td>是否低保：</td>
+            <td>{$data.youfu.is_dibao|default='否'}</td>
+        </tr>
+        <eq name="data.youfu.is_dibao" value="是">
+        <tr>
+            <td></td><td></td>
+            <td>低保金额：</td><td>{$data.youfu.dibao_jine}</td>
+            <td>开始享受时间：</td><td>{$data.youfu.dibao_start_date}</td>
+        </tr>
+        </eq>
+
+        <tr>
+            <td>是否廉租：</td>
+            <td>{$data.youfu.is_lianzu|default='否'}</td>
+        </tr>
+        <eq name="data.youfu.is_lianzu" value="是">
+        <tr>
+            <td></td><td></td>
+            <td>是否廉租补贴：</td><td>{$data.youfu.is_lzbt}</td>
+            <td>廉租补贴金额：</td><td>{$data.youfu.lzbt_jine}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>是否廉租租金：</td><td>{$data.youfu.is_lzzj}</td>
+            <td>廉租租金金额：</td><td>{$data.youfu.lzzj_jine}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>是否实物配租：</td><td>{$data.youfu.is_lianzu_swpz}</td>
+            <td>配租实物：</td><td>{$data.youfu.lianzu_swpz}</td>
+        </tr>
+        </eq>
+
+        <tr>
+            <td>是否残疾：</td>
+            <td>{$data.youfu.is_canji}</td>
+        </tr>
+        <eq name="data.youfu.is_canji" value="是">
+        <tr>
+            <td></td><td></td>
+            <td>残疾类别：</td><td>{$data.youfu.canji_type}</td>
+            <td>残疾级别：</td><td>{$data.youfu.canji_lvl}</td>
+            <td>残疾证号：</td><td>{$data.youfu.canji_no}</td>
+            <td>残疾人特困专项补助：</td><td>{$data.youfu.canji_jine}</td>
+        </tr>
+        </eq>
+
+
+        <tr>
+            <td>是否特殊人群：</td>
+            <td>{$data.youfu.sp_status}</td>
+        </tr>
+        <neq name="data.youfu.sp_status" value="不是">
+        <tr>
+            <td></td><td></td>
+            <td>是否信访维稳：</td>
+            <td>{$data.youfu.sp_is_xfww}</td>
+            <td>信访维稳描述:</td>
+            <td>{$data.youfu_sp_xfww_desc|default='无'}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>是否社区矫正：</td>
+            <td>{$data.youfu.sp_sqjz}</td>
+            <td>社区矫正描述:</td>
+            <td>{$data.youfu.sp_sqjz_desc|default='无'}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>是否刑释解教：</td>
+            <td>{$data.youfu.sp_xsjj}</td>
+            <td>刑释解教描述:</td>
+            <td>{$data.youfu.sp_xsjj_desc|default='无'}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>是否法轮功成员：</td>
+            <td>{$data.youfu.sp_flgcy}</td>
+            <td>法轮功成员描述:</td>
+            <td>{$data.youfu.sp_flgcy_desc|default='无'}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>是否其他成员：</td>
+            <td>{$data.youfu.sp_qtry}</td>
+            <td>其他成员描述:</td>
+            <td>{$data.youfu.sp_qtry_desc|default='无'}</td>
+        </tr>
+        </neq>
+
         <tr><td>采集日期：</td><td>{$data.collection_date}</td></tr>
         <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
-                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('将删除居民及其相关的优抚信息，确定?');">
                     删除</a>
             </td></tr>
         <php>ce();</php>

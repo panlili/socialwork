@@ -44,7 +44,7 @@ class HouseAction extends BaseAction {
         $m_house = D("House");
         $m_youfu = D("Youfu");
 
-        if ($new_house = $m_house->create()) {
+        if ($m_house->create()) {
             if ($new_house_id = $m_house->add()) {
                 //人户不一致时产权人owner表的数据
                 if ($_POST["is_fit"] === "否") {

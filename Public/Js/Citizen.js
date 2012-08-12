@@ -33,9 +33,7 @@ function getSexByIdcard(idCard){
         return null;
     }
 }
-/**
- * Comment
- */
+
 function getBirthdayByIddard(idcard) {
     var birthday = "";
     if (18 == len(idcard)) {
@@ -63,57 +61,38 @@ function len(s) {
     return l;
 }
 
+//残疾
+function toggleDisable(element) {
+    if(element.attr("value")=="是"){
+        $(".canji").show();
+    }else{
+        $(".canji").hide();
+    }
+}
 
+//享受低保,与house.js中的重复
 function toggleDibao(element) {
-    if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-        element.parent().after('<td>低保金额：<input type="text" name="dibao_jine"/>开始享受低保时间：<input type=text name="dibao_start_date"/></td>');
+    if(element.attr("value")=="是"){
+        $(".dibao").show();
     }else{
-        element.parent().nextUntil("tr").remove();
-    }
-}
-function toggleLianzhu(element) {
-    if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-        element.parent().after('<td>廉租地址：<input type=text name="lianzu_address" /></td>');
-    }else{
-        element.parent().nextUntil("tr").remove();
-    }
-}
-function toggleCanji(element) {
-    if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-//        element.parent().after("<td>残疾：</td><td><input type=text /></td>");
-        $("#canji_ext").show();
-    }else{
-//        element.parent().nextUntil("tr").remove();
-        $("#canji_ext").hide();
+        $(".dibao").hide();
     }
 }
 
-function toggleSp(element){
-     if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-//        element.parent().after("<td>残疾：</td><td><input type=text /></td>");
-        $("#sp_renqun").show();
+//享受廉租房,与house.js中的重复
+function toggleLianzu(element) {
+    if(element.attr("value")=="是"){
+        $(".lianzu").show();
     }else{
-//        element.parent().nextUntil("tr").remove();
-        $("#sp_renqun").hide();
+        $(".lianzu").hide();
     }
 }
 
-function switch_hide_show(id_name, type)
-{
-  if(type==2){
-    type='block';
-  }else{
-    type='inline';
-  }
-  if(document.getElementById(id_name).style.display==type){
-    document.getElementById(id_name).style.display='none';
-	document.getElementById(id_name).disabled = true;
-  }else{
-    document.getElementById(id_name).style.display=type;
-	document.getElementById(id_name).disabled = false;
-  }
+//是否特殊人群
+function toggleSpecial(element) {
+    if(element.attr("value")=="是"){
+        $(".special").show();
+    }else{
+        $(".special").hide();
+    }
 }

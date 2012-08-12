@@ -17,6 +17,11 @@ class YoufuModel extends RelationModel {
         ),
     );
 
+    protected function _before_write(&$data) {
+        parent::_before_write($data);
+        $data["canji_lvl"] = getCanjiLevel($data["canji_no"]);
+    }
+
 }
 
 ?>

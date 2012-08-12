@@ -198,6 +198,10 @@ legend {
     text-align:left;
 }
 
+select{
+    min-width:150px;
+}
+
 .loading{
     position: fixed;
     top:5%;
@@ -293,7 +297,7 @@ div#search{
 {
     color:#000000;
     background-color:#EAF2D3;
-    
+
     /*background: #000000;*/
 }
 
