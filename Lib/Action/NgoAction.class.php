@@ -113,12 +113,19 @@ class NgoAction extends BaseAction {
     }
 
     public function toexcel() {
-        $list = D("Ngo")->select();
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=ngo.xls");
-        $this->assign("list", $list);
-        echo $this->fetch();
+        if ($_SESSION["right"] == "9") {
+            $list = D("Ngo")->select();
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=ngo.xls");
+            $this->assign("list", $list);
+            echo $this->fetch();
+        }  else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "你没有权限执行导出操作";
+        }
+        
     }
+
 }
 
 ?>

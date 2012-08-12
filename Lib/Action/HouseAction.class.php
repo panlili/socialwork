@@ -6,28 +6,28 @@ class HouseAction extends BaseAction {
 
     //index方法,展示数据列表
     public function index() {
-        $House = D("House");
+        $m_house = D("House");
         import("ORG.Util.Page");
-        $count = $House->count();
+        $count = $m_house->count();
         $p = new Page($count, self::RECORDS_ONE_PAGE);
         $page = $p->show();
-        $list = $House->relation(array("yard", "citizen"))->order("id desc,yard_id desc")->limit($p->firstRow . ',' . $p->listRows)->select();
+        $list = $m_house->relation(array("yard", "citizen", "youfu"))->order("id desc,yard_id desc")->limit($p->firstRow . ',' . $p->listRows)->select();
         $this->assign(array("page" => $page, "list" => $list, "page_place" => $this->getPagePlace("数据浏览", self::ACTION_NAME)));
         $this->display();
     }
 
     public function read() {
-        $House = D("House");
+        $m_house = D("House");
         $id = $this->_get("id");
-        $data = $House->relation(array("yard", "citizen"))->where(array("id" => $id))->find();
+        $data = $m_house->relation(array("yard", "citizen", "owner", "youfu"))->where(array("id" => $id))->find();
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("House/index");
         }
 
         //当前房屋下的居民列表
-        $Citizen = D("Citizen");
-        $list = $Citizen->where(array("house_id" => $id))->order("id desc")->select();
+        $m_citizen = D("Citizen");
+        $list = $m_citizen->where(array("house_id" => $id))->order("id desc")->select();
         $this->assign(array("list" => $list));
 
         $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("详细信息", self::ACTION_NAME)));
@@ -40,27 +40,40 @@ class HouseAction extends BaseAction {
     }
 
     public function add() {
-//        $House = D("House");
-//        if ($House->create()) {
-//            $data = $House->add();
-//            if (FALSE !== $data) {
-//                session("action_message", "添加数据成功");
-//                $this->redirect("House/index");
-//            } else {
-//                session("action_message", "添加新数据失败！");
-//                $this->redirect("House/newone");
-//            }
-//        } else {
-//            session("action_message", $House->getError());
-//            $this->redirect("House/newone");
-//        }
-        dump($_POST);
+
+        $m_house = D("House");
+        $m_youfu = D("Youfu");
+
+        if ($new_house = $m_house->create()) {
+            if ($new_house_id = $m_house->add()) {
+                //人户不一致时产权人owner表的数据
+                if ($_POST["is_fit"] === "否") {
+                    $m_owner = D("Owner");
+                    $new_owner = $m_owner->create();
+                    $new_owner["house_id"] = $new_house_id;
+                    $m_owner->add($new_owner);
+                }
+                //房屋优抚表的数据
+                $new_youfu = $m_youfu->create();
+                $new_youfu["house_id"] = $new_house_id;
+                $m_youfu->add($new_youfu);
+
+                //所有数据添加正确
+                session("action_message", "添加房屋数据成功！");
+                $this->redirect("House/index");
+            } else {
+                session("action_message", "添加房屋数据失败！");
+                $this->redirect("House/newone");
+            }
+        } else {
+            session("action_message", $m_house->getError());
+            $this->redirect("House/newone");
+        }
     }
 
     public function delete() {
-        $id = $this->_get("id");
-        $House = D("House");
-        if ($House->where(array("id" => $id))->delete()) {
+        $m_house = D("House");
+        if ($m_house->relation(array("youfu", "owner"))->delete($this->_get("id"))) {
             session("action_message", "删除数据成功！");
             $this->redirect("House/index");
         } else {
@@ -71,34 +84,64 @@ class HouseAction extends BaseAction {
 
     //edit方法，显示编辑房屋信息的模板
     public function edit() {
-        $id = $this->_get("id");
-        $House = D("House");
-        $data = $House->relation("yard")->where(array("id" => $id))->find();
+        $m_house = D("House");
+        $data = $m_house->relation(array("yard", "youfu", "owner"))->find($this->_get("id"));
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("House/index");
         }
-
         $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 
     public function update() {
-        $id = $this->_post("id");
-        $House = D("House");
-        if ($newdata = $House->create()) {
+        //关联更新的bug在框架中一直存在，开发者也没有解决这个问题
+        //自己根据逻辑手动关联操作效率更高
+        $house_id = $_POST["id"];
+        $m_house = D("House");
+        $m_owner = D("Owner");
+        $m_youfu = D("Youfu");
+        //house自身数据，13fields
+        $house["yard_id"] = $_POST["yard_id"];
+        $house["contactor"] = $_POST["contactor"];
+        $house["telephone"] = $_POST["telephone"];
+        $house["is_floor"] = $_POST["is_floor"];
+        $house["address_1"] = $_POST["address_1"];
+        $house["address_2"] = $_POST["address_2"];
+        $house["address_3"] = $_POST["address_3"];
+        $house["address_4"] = $_POST["address_4"];
+        $house["address_other"] = $_POST["address_other"];
+        $house["is_fit"] = $_POST["is_fit"];
+        $house["is_free"] = $_POST["is_free"];
+        $house["rent"] = $_POST["rent"];
+        $house["rent_tax"] = $_POST["rent_tax"];
+        //owner表, 6fields
+        $owner["name"] = $_POST["name"];
+        $owner["idcard"] = $_POST["idcard"];
+        $owner["marry_info"] = $_POST["marry_info"];
+        $owner["education"] = $_POST["education"];
+        $owner["mobile"] = $_POST["mobile"];
+        $owner["nowaddress"] = $_POST["nowaddress"];
+        //优抚表, 9fields
+        $youfu["is_dibao"] = $_POST["is_dibao"];
+        $youfu["dibao_jine"] = $_POST["dibao_jine"];
+        $youfu["dibao_start_date"] = $_POST["dibao_start_date"];
+        $youfu["is_jjsyf"] = $_POST["is_jjsyf"];
+        $youfu["is_taishu"] = $_POST["is_taishu"];
+        $youfu["is_junshu"] = $_POST["is_junshu"];
+        $youfu["ranmei"] = $_POST["ranmei"];
+        $youfu["is_lianzu"] = $_POST["is_lianzu"];
+        $youfu["lianzu_address"] = $_POST["lianzu_address"];
 
-            $data = $House->save($newdata);
-            if (false !== $data) {
-                session("action_message", "更新数据成功！");
-                $this->redirect("House/$newdata[id]");
-            } else {
-                session("action_message", "更新数据时保存失败！");
-                $this->redirect("/House/edit/$newdata[id]");
-            }
+        $result1 = $m_house->where("id=$house_id")->save($house);
+        $result2 = $m_owner->where("house_id=$house_id")->save($owner);
+        $result3 = $m_youfu->where("house_id=$house_id")->save($youfu);
+        if ($result1 !== false && $result2 !== false && $result3 !== false) {
+            session("action_message", "更新数据成功！");
+            $this->redirect("House/$house_id");
         } else {
-            session("action_message", $House->getError());
-            $this->redirect("/House/edit/$id");
+            session("action_message", "更新数据失败！");
+            $this->redirect("House/$house_id");
         }
     }
 

@@ -282,16 +282,19 @@ div#search{
     color:#ffffff;
 }
 
-#common_table tr.alt td
+#common_table tr
 {
-    background-color: #fff;
+
     color:#000000;
+/*    background-color:#EAF2D3;*/
 }
 
 #common_table tr:hover
 {
     color:#000000;
     background-color:#EAF2D3;
+    
+    /*background: #000000;*/
 }
 
 #common_table2

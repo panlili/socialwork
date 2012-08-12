@@ -83,3 +83,6 @@
 0810ChangeIsFitDefaultValue.zip
 	
 	1.把三个house表的人户是否一致的默认值改为了"是"
+	2.将youfu表的低保金额字段设为可以为空。
+	3.将house的address_1...的类型改为了varchar
+	4.更改owner表的telephone为mobile避免与House的telephone重名从而创建对象时数据对不上。

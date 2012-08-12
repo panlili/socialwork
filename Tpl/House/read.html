@@ -4,17 +4,61 @@
     <table id="common_table" style="width: auto;clear:both">
         <tr><td>房屋地址:</td><td>{$data.address}</td></tr>
         <tr><td>所在院落:</td><td>{$data.yard.name}</td></tr>
-        <tr><td>人户是否一致:</td><td>{$data.is_free}</td></tr>
+
+        <tr>
+            <td>人户是否一致:</td><td>{$data.is_fit}</td>
+        </tr>
+        <eq name="data.is_fit" value="否">
+        <tr>
+            <td></td><td></td>
+            <td>产权人姓名:{$data.owner.name}<td>身份证号码:{$data.owner.idcard}</td><td>性别:{$data.owner.sex}</td>
+            <td>出生日期:{$data.owner.birthday}</td><td>年龄:{$data.owner.birthday|getAge}</td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>婚姻及学历:{$data.owner.marry_info},{$data.owner.education}</td>
+            <td>联系电话:{$data.owner.mobile}</td><td>现住址：{$data.owner.nowaddress|default="数据不详"}</td>
+        </tr>
+        </eq>
+
+        <!-- 当人户不一致的时候才会考虑是否空闲的问题 -->
+        <eq name="data.is_fit" value="否">
         <tr><td>是否空闲:</td><td>{$data.is_free}</td></tr>
-        <tr><td>是否平房:</td><td>{$data.is_floor}</td></tr>
-        <tr><td>是否廉租房:</td><td>{$data.is_lowrent}</td></tr>
-        <tr><td>是否购买经济适用房:</td><td>{$data.is_afford}</td></tr>
-        <tr><td>是否台属:</td><td>{$data.is_taiwan}</td></tr>
-        <tr><td>是否军属:</td><td>{$data.is_army}</td></tr>
-        <tr><td>是否领取燃油补贴:</td><td>{$data.is_fuel}</td></tr>
+        <eq name="data.is_free" value="否">
+        <tr>
+            <td></td><td></td>
+            <td>房屋租金：{$data.rent}</td>
+            <td>税金：{$data.rent_tax}</td>
+        </tr>
+        </eq>
+        </eq>
+
+        <tr><td>是否廉租房:</td><td>{$data.youfu.is_lianzu}</td></tr>
+        <eq name="data.youfu.is_lianzu" value="是">
+        <tr>
+            <td></td><td></td>
+            <td>廉租房地址：{$data.youfu.lianzu_address}</td>
+        </tr>
+        </eq>
+
+        <tr><td>是否购买经济适用房:</td><td>{$data.youfu.is_jjsyf}</td></tr>
+        <tr><td>是否台属:</td><td>{$data.youfu.is_taishu}</td></tr>
+        <tr><td>是否军属:</td><td>{$data.youfu.is_junshu}</td></tr>
+        <tr><td>是否领取燃油补贴:</td><td>{$data.youfu.ranmei}</td></tr>
+
+        <tr><td>是否低保:</td><td>{$data.youfu.is_dibao}</td></tr>
+        <eq name="data.youfu.is_dibao" value="是">
+        <tr>
+            <td></td><td></td>
+            <td>低保金额：{$data.youfu.dibao_jine}</td><td>开始享受低保时间：{$data.youfu.dibao_start_date}</td>
+        </tr>
+        </eq>
+
         <tr><td>家庭人口数:</td><td><php>echo count($data['citizen'])</php></td></tr>
         <tr><td>联系人:</td><td>{$data.contactor}</td></tr>
         <tr><td>联系人电话:</td><td>{$data.telephone}</td></tr>
+
+        <tr><td>是否平房:</td><td>{$data.is_floor}</td></tr>
         <tr><td>楼栋号:</td><td>{$data.address_1}</td></tr>
         <tr><td>单元号:</td><td>{$data.address_2}</td></tr>
         <tr><td>楼层:</td><td>{$data.address_3}</td></tr>
@@ -22,11 +66,13 @@
         <tr><td>平房（附:</td><td>{$data.address_other}号）</td></tr>
         <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
-                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('Are you Sure?');">
+                <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('将同时删除产权人与优抚相关信息，确定?');">
                     删除</a>
             </td></tr>
         <php>ce();</php>
     </table>
+
+    <!-- 房屋下居民列表 -->
     <br/><hr/>
     <table id="common_table">
         <caption style="text-align: left;font-size: 15px;">此房屋下居民列表：</caption>

@@ -55,7 +55,8 @@
         <li class="main">
             <a href="#" class="menu_1"><img src="__IMAGE__/menu/menu_system.png"/>系统功能</a>
             <ul class="menu_2">                
-                <li><a href="{:U('Map/mapset')}">1.地图参数设置</a></li>
+                <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Map/mapset">1.地图参数设置</a></li>'; ?>
+                
                  <li><a href="{:U('Admin/edit')}">2.修改个人信息</a></li>
                 <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">3.用户管理</a></li>'; ?>
                

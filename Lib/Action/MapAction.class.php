@@ -27,7 +27,7 @@ class MapAction extends BaseAction {
     public function addMapMark() {
         $MapMark = D("map_mark");
         if ($MapMark->create()) {
-            $data = $MapMark->add();
+//            $data = $MapMark->add();
             if (FALSE !== $data) {
                 //session("action_message", "添加数据成功");
                 //$this->redirect("map/index");
@@ -122,10 +122,15 @@ class MapAction extends BaseAction {
     }
 
     public function setupdate() {
-        $mapset = D("map_set");
-        $data = $mapset->create();
-        $mapset->save();
-        $this->redirect("map/mapset");
+        if ($_SESSION["right"] == "9") {
+            $mapset = D("map_set");
+            $data = $mapset->create();
+            $mapset->save();
+            $this->redirect("map/mapset");
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "您没有权限执行导出操作";
+        }
     }
 
     public function getmapset() {

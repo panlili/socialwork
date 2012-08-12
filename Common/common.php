@@ -141,4 +141,11 @@ function getYardSelect($id = "") {
     return $html;
 }
 
+function reverseIt($arg) {
+    if ($arg === "是")
+        return "否";
+    if ($arg === "否")
+        return "是";
+}
+
 ?>

@@ -1,14 +1,3 @@
-//点击是平房选项框时隐藏其他地址输入栏
-function hideOtherAddress(element) {
-    if(element.attr("checked")=="checked"){
-        element.attr("value","是");
-        $("#onefloor").show();
-        element.parent().parent().nextUntil("#onefloor").hide();
-    }else{
-        $("#onefloor").hide();
-        element.parent().parent().nextUntil("#onefloor").show();
-    }
-}
 //是否平房
 function toggleAddress(element) {
     if(element.attr("value")=="是"){
@@ -40,6 +29,7 @@ function toggleIsFit(element) {
     if(element.attr("value")=="是"){
         $(".isfit").hide();
         $(".isfree").hide();
+        $(".isfree2").hide();
     }else{
         $(".isfit").show();
         $(".isfree").show();
@@ -48,8 +38,8 @@ function toggleIsFit(element) {
 //是否空闲
 function toggleIsFree(element) {
     if(element.attr("value")=="是"){
-        $(".rent").hide();
+        $(".isfree2").hide();
     }else{
-        $(".rent").show();
+        $(".isfree2").show();
     }
 }

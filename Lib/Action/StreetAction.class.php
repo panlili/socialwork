@@ -187,11 +187,6 @@ class StreetAction extends BaseAction {
         $this->display();
     }
 
-     public function test() {
-        header("Content-type:text/html;charset=utf-8");
-        echo getYardSelect();
-    }
-
 }
 
 ?>

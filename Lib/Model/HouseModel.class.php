@@ -6,10 +6,10 @@ class HouseModel extends RelationModel {
         array('collection_date', 'getOnlyDate', Model::MODEL_INSERT, 'function'),
     );
 
-    protected function _before_insert(&$data) {
-        parent::_before_insert($data);
+    protected function _before_insert(&$data, $options) {
+        parent::_before_insert($data, $options);
 
-        if (!empty($data["is_floor"])) {
+        if ($data["is_floor"] === "是") {
             $data["address"] = D("Yard")->where("id='$data[yard_id]'")->getField('name');
             $data["address"] .= $data["address_other"] ? "附" . $data["address_other"] . "号" : "";
         } else {
@@ -23,15 +23,8 @@ class HouseModel extends RelationModel {
 
     protected function _before_update(&$data, $options) {
         parent::_before_update($data, $options);
-        $data['is_free'] = null == $data['is_free'] ? '否' : '是';
-        $data['is_lowrent'] = null == $data['is_lowrent'] ? '否' : '是';
-        $data['is_afford'] = null == $data['is_afford'] ? '否' : '是';
-        $data['is_taiwan'] = null == $data['is_taiwan'] ? '否' : '是';
-        $data['is_army'] = null == $data['is_army'] ? '否' : '是';
-        $data['is_fuel'] = null == $data['is_fuel'] ? '否' : '是';
-        $data['is_fit'] = null == $data['is_fit'] ? '否' : '是';
 
-        if (!empty($data["is_floor"])) {
+        if ($data["is_floor"] === "是") {
             //if is floor
             $data["address"] = D("Yard")->where("id='$data[yard_id]'")->getField('name');
             $data["address"] .= $data["address_other"] ? "附" . $data["address_other"] . "号" : "";
@@ -44,7 +37,6 @@ class HouseModel extends RelationModel {
             $data['address'] .= $data['address_3'] ? $data['address_3'] . "楼" : "";
             $data['address'] .= $data['address_4'] ? $data['address_4'] . "号" : "";
             $data['address_other'] = "";
-            $data['is_floor'] = '否';
         }
     }
 
@@ -76,6 +68,8 @@ class HouseModel extends RelationModel {
             "mapping_name" => "youfu",
             "foreign_key" => "house_id",
             "mapping_type" => HAS_ONE,
+            "mapping_fields" => "is_dibao,dibao_jine,dibao_start_date,is_lianzu,lianzu_address,is_jjsyf,is_taishu,
+                is_junshu,ranmei",
         ),
     );
 

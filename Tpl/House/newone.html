@@ -32,18 +32,18 @@
             </tr>
             <tr class="isfit">
                 <td></td><td></td>
-                <td>产权人姓名：</td><td><input type="text" name="owner_name"></td>
-                <td>身份证号：</td><td><input type="text" name="owner_idcard"></td>
+                <td>产权人姓名：</td><td><input type="text" name="name"></td>
+                <td>身份证号：</td><td><input type="text" name="idcard" onblur="checkIdCard($.trim($('input[name=idcard]').val()));"></td>
             </tr>
             <tr class="isfit">
                 <td></td><td></td>
-                <td>婚姻情况：</td><td><php>echo marry_info_select("owner_marry_info");</php></td>
-            <td>文化程度：</td><td><php>echo education_select("owner_education");</php></td>
+                <td>婚姻情况：</td><td><php>echo marry_info_select("marry_info");</php></td>
+            <td>文化程度：</td><td><php>echo education_select("education");</php></td>
             </tr>
             <tr class="isfit">
                 <td></td><td></td>
-                <td>联系电话：</td><td><input type="text" name="owner_telephone" ></td>
-                <td>现住址：</td><td><input type="text" name="owner_nowaddress"></td>
+                <td>联系电话：</td><td><input type="text" name="mobile" ></td>
+                <td>现住址：</td><td><input type="text" name="nowaddress"></td>
             </tr>
 
             <!-- 是否空闲与人户一直对应，人户一致不会空闲 -->
@@ -53,8 +53,11 @@
                     <input type="radio" name="is_free" value="是" checked="checked" onclick="toggleIsFree($(this));"/>是
                     <input type="radio" name="is_free" value="否" onclick="toggleIsFree($(this));"/>否
                 </td>
-                <td class="rent">房屋租金：</td><td class="rent"><input type="text" name="rent"/></td>
-                <td class="rent">税金：</td><td class="rent"><input type="text" name="rent_tax"/></td>
+            </tr>
+            <tr class="isfree2">
+                <td></td><td></td>
+                <td>房屋租金：</td><td><input type="text" name="rent"/></td>
+                <td>税金：</td><td><input type="text" name="rent_tax"/></td>
             </tr>
 
             <!-- 优抚相关信息 -->
@@ -63,56 +66,59 @@
             <tr>
                 <td>是否低保:</td>
                 <td>
-                    <input type="radio" name="youfu_is_dibao" value="是"  onclick="toggleDibao($(this));"/>是
-                    <input type="radio" name="youfu_is_dibao" value="否" checked="checked" onclick="toggleDibao($(this));"/>否
+                    <input type="radio" name="is_dibao" value="是"  onclick="toggleDibao($(this));"/>是
+                    <input type="radio" name="is_dibao" value="否" checked="checked" onclick="toggleDibao($(this));"/>否
                 </td>
-                <td class="dibao">低保金额：</td><td class="dibao"><input type="text" name="youfu_dibao_jine" /></td>
-                <td class="dibao">开始享受时间：</td><td class="dibao"><input type="text" name="youfu_dibao_start_date" /></td>
+            </tr>
+            <tr class="dibao">
+                <td></td><td></td>
+                <td>低保金额：</td><td><input type="text" name="dibao_jine" /></td>
+                <td>开始享受时间：</td><td><input type="text" name="dibao_start_date" /></td>
             </tr>
 
             <tr>
                 <td>是否购买经济适用房:</td>
                 <td>
-                    <input type="radio" name="youfu_is_jjsyf" value="是"/>是
-                    <input type="radio" name="youfu_is_jjsyf" checked="checked" value="否"/>否
+                    <input type="radio" name="is_jjsyf" value="是"/>是
+                    <input type="radio" name="is_jjsyf" checked="checked" value="否"/>否
                 </td>
             </tr>
 
             <tr>
                 <td>是否台属:</td>
                 <td>
-                    <input type="radio" name="youfu_is_taishu" value="是"/>是
-                    <input type="radio" name="youfu_is_taishu" checked="checked" value="否"/>否
+                    <input type="radio" name="is_taishu" value="是"/>是
+                    <input type="radio" name="is_taishu" checked="checked" value="否"/>否
                 </td>
             </tr>
 
             <tr>
                 <td>是否军属:</td>
                 <td>
-                    <input type="radio" name="youfu_is_junshu" value="是"/>是
-                    <input type="radio" name="youfu_is_junshu" checked="checked" value="否"/>否
+                    <input type="radio" name="is_junshu" value="是"/>是
+                    <input type="radio" name="is_junshu" checked="checked" value="否"/>否
                 </td>
             </tr>
 
             <tr>
                 <td>是否领取燃油补贴:</td>
                 <td>
-                    <input type="radio" name="youfu_ranmei" value="是"/>是
-                    <input type="radio" name="youfu_ranmei" checked="checked" value="否"/>否
+                    <input type="radio" name="ranmei" value="是"/>是
+                    <input type="radio" name="ranmei" checked="checked" value="否"/>否
                 </td>
             </tr>
 
             <tr>
                 <td>是否廉租房:</td>
                 <td>
-                    <input type="radio" name="youfu_is_lianzu" value="是" onclick="toggleLianzu($(this))"/>是
-                    <input type="radio" name="youfu_is_lianzu" value="否" checked="checked" onclick="toggleLianzu($(this))"/>否
+                    <input type="radio" name="is_lianzu" value="是" onclick="toggleLianzu($(this))"/>是
+                    <input type="radio" name="is_lianzu" value="否" checked="checked" onclick="toggleLianzu($(this))"/>否
                 </td>
-                <td class="lianzu">廉租房地址：</td><td class="lianzu"><input type="text" name="youfu_lianzu_address" /></td>
             </tr>
-
-
-
+            <tr class="lianzu">
+                <td></td><td></td>
+                <td>廉租房地址：</td><td><input type="text" name="lianzu_address" /></td>
+            </tr>
 
             <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
         </table>

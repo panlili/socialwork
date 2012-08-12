@@ -1,19 +1,30 @@
 <?php
 
-//放一些模版中不带数据库功能的函数,可以传递元素的name属性
-function marry_info_select($name = "marry_info") {
-    $html = '<select name=' . $name . '>
-                        <option value="未婚">未婚</option>
-                        <option value="已婚">已婚</option>
-                        <option value="离异">离异</option>
-                        <option value="丧偶">丧偶</option></select>';
+//放一些模版中不带数据库功能的函数,可以传递元素的name属性和默认的已经被选择了的元素。
+function marry_info_select($name = "marry_info", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
 
+    $html .= '<option value="未婚">未婚</option>
+              <option value="已婚">已婚</option>
+              <option value="离异">离异</option>
+              <option value="丧偶">丧偶</option></select>';
     return $html;
 }
 
-function education_select($name = "education") {
-    $html = '<select name=' . $name . '>
-                    <option value="文盲">文盲</option>
+function education_select($name = "education", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html .= '<option value="文盲">文盲</option>
                     <option value="小学">小学</option>
                     <option value="初中">初中</option>
                     <option value="高中">高中</option>
@@ -29,9 +40,15 @@ function education_select($name = "education") {
     return $html;
 }
 
-function relation_with_householder_select($name = "relation_with_householder") {
-    $html = '<select name=' . $name . '>
-                        <option value="户主" >户主</option>
+function relation_with_householder_select($name = "relation_with_householder", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html .= '<option value="户主" >户主</option>
                         <option value="配偶" >配偶</option>
                         <option value="父亲或岳父" >父亲或岳父</option>
                         <option value="母亲或岳母" >母亲或岳母</option>
@@ -50,9 +67,15 @@ function relation_with_householder_select($name = "relation_with_householder") {
     return $html;
 }
 
-function nation_select($name = "nation") {
-    $html = '<select name=' . $name . '>
-                    <option value="汉族">汉族</option>
+function nation_select($name = "nation", $selected = "") {
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html .= '<option value="汉族">汉族</option>
                     <option value="蒙古族">蒙古族</option>
                     <option value="彝族">彝族</option>
                     <option value="侗族">侗族</option>
