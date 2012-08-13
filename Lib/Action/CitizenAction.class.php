@@ -172,7 +172,11 @@ class CitizenAction extends BaseAction {
                 $new_addon = $m_addon->create();
 
                 $new_addon["filepath"] = "citizen/" . $info[0]['savename'];    //文件路径
-                $m_addon->where("citizen_id=" . $id)->save($new_addon);
+                $result4=$m_addon->where("citizen_id=" . $id)->save($new_addon);
+                if ($result4 === 0) {
+                $new_addon["citizen_id"] = $id;
+                $m_addon->add($new_addon);
+            }
             }
 
 

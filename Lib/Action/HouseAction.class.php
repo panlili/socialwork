@@ -119,7 +119,7 @@ class HouseAction extends BaseAction {
     //edit方法，显示编辑房屋信息的模板
     public function edit() {
         $m_house = D("House");
-        $id=$this->_get("id");
+        $id = $this->_get("id");
         $data = $m_house->relation(array("yard", "youfu", "owner"))->find($this->_get("id"));
         if (empty($data)) {
             session("action_message", "数据不存在！");
@@ -199,9 +199,14 @@ class HouseAction extends BaseAction {
                 $info = $upload->getUploadFileInfo();
             }
             $new_addon = $m_addon->create();
-            
+
             $new_addon["filepath"] = "house/" . $info[0]['savename'];    //文件路径
-            $m_addon->where("house_id=".$house_id)->save($new_addon);
+            $result4 = $m_addon->where("house_id=" . $house_id)->save($new_addon);
+            //dump($result4);
+            if ($result4 === 0) {
+                $new_addon["house_id"] = $house_id;
+                $m_addon->add($new_addon);
+            }
         }
 
         if ($result1 !== false && $result2 !== false && $result3 !== false) {
