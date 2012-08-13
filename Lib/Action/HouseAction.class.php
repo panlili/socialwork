@@ -30,6 +30,10 @@ class HouseAction extends BaseAction {
         $list = $m_citizen->where(array("house_id" => $id))->order("id desc")->select();
         $this->assign(array("list" => $list));
 
+        $m_addon = D("Addon");
+        $addon = $m_addon->where("house_id=" . $id)->find();
+        $this->assign("photo", $addon["filepath"]);
+
         $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("详细信息", self::ACTION_NAME)));
         $this->display();
     }
@@ -43,6 +47,7 @@ class HouseAction extends BaseAction {
 
         $m_house = D("House");
         $m_youfu = D("Youfu");
+        $m_addon = D("Addon");
 
         if ($m_house->create()) {
             if ($new_house_id = $m_house->add()) {
@@ -57,6 +62,32 @@ class HouseAction extends BaseAction {
                 $new_youfu = $m_youfu->create();
                 $new_youfu["house_id"] = $new_house_id;
                 $m_youfu->add($new_youfu);
+                if ($_FILES["addon"]["name"] != NULL) {
+                    //添加附件数据
+                    //导入图片上传类   
+                    import("ORG.Net.UploadFile");
+                    //实例化上传类   
+                    $upload = new UploadFile();
+                    $upload->maxSize = 3145728;
+                    //设置文件上传类型   
+                    $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
+                    //设置文件上传位置   
+                    $upload->savePath = "./Public/Uploads/house/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹   
+                    //设置文件上传名(按照时间)   
+                    $upload->saveRule = "time";
+                    if (!$upload->upload()) {
+                        $this->error($upload->getErrorMsg());
+                    } else {
+                        //上传成功，获取上传信息   
+                        $info = $upload->getUploadFileInfo();
+                    }
+                    $new_addon = $m_addon->create();
+                    $new_addon["house_id"] = $new_house_id;
+                    $new_addon["yard_id"] = null;
+                    $new_addon["citizen_id"] = null;
+                    $new_addon["filepath"] = "house/" . $info[0]['savename'];    //文件路径
+                    $m_addon->add($new_addon);
+                }
 
                 //所有数据添加正确
                 session("action_message", "添加房屋数据成功！");
@@ -73,7 +104,10 @@ class HouseAction extends BaseAction {
 
     public function delete() {
         $m_house = D("House");
+        $m_addon = D("Addon");
+        $id = $this->_get("id");
         if ($m_house->relation(array("youfu", "owner"))->delete($this->_get("id"))) {
+            $m_addon->where("house_id=" . $id)->delete();
             session("action_message", "删除数据成功！");
             $this->redirect("House/index");
         } else {
@@ -85,11 +119,15 @@ class HouseAction extends BaseAction {
     //edit方法，显示编辑房屋信息的模板
     public function edit() {
         $m_house = D("House");
+        $id=$this->_get("id");
         $data = $m_house->relation(array("yard", "youfu", "owner"))->find($this->_get("id"));
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("House/index");
         }
+        $m_addon = D("Addon");
+        $addon = $m_addon->where("house_id=" . $id)->find();
+        $this->assign("photo", $addon["filepath"]);
         $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
@@ -101,6 +139,7 @@ class HouseAction extends BaseAction {
         $m_house = D("House");
         $m_owner = D("Owner");
         $m_youfu = D("Youfu");
+        $m_addon = D("Addon");
         //house自身数据，13fields
         $house["yard_id"] = $_POST["yard_id"];
         $house["contactor"] = $_POST["contactor"];
@@ -133,9 +172,38 @@ class HouseAction extends BaseAction {
         $youfu["is_lianzu"] = $_POST["is_lianzu"];
         $youfu["lianzu_address"] = $_POST["lianzu_address"];
 
+
+
         $result1 = $m_house->where("id=$house_id")->save($house);
         $result2 = $m_owner->where("house_id=$house_id")->save($owner);
         $result3 = $m_youfu->where("house_id=$house_id")->save($youfu);
+        //dump($_FILES["addon"]["name"]);
+        //if下面是判断提交上的文件是否是空，如果不为空就新传一个文件，同时在数据库中更新附件路径
+        if ($_FILES["addon"]["name"] != NULL) {
+            //添加附件数据
+            //导入图片上传类   
+            import("ORG.Net.UploadFile");
+            //实例化上传类   
+            $upload = new UploadFile();
+            $upload->maxSize = 3145728;
+            //设置文件上传类型   
+            $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
+            //设置文件上传位置   
+            $upload->savePath = "./Public/Uploads/house/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹   
+            //设置文件上传名(按照时间)   
+            $upload->saveRule = "time";
+            if (!$upload->upload()) {
+                $this->error($upload->getErrorMsg());
+            } else {
+                //上传成功，获取上传信息   
+                $info = $upload->getUploadFileInfo();
+            }
+            $new_addon = $m_addon->create();
+            
+            $new_addon["filepath"] = "house/" . $info[0]['savename'];    //文件路径
+            $m_addon->where("house_id=".$house_id)->save($new_addon);
+        }
+
         if ($result1 !== false && $result2 !== false && $result3 !== false) {
             session("action_message", "更新数据成功！");
             $this->redirect("House/$house_id");

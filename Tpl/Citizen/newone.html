@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-    <form action="__URL__/add" method="POST">
+    <form action="__URL__/add" method="POST" enctype="multipart/form-data">
         <table id="common_table" style="width: auto;">
             <!--居民本表的相关信息-->
             <tr>
@@ -193,6 +193,9 @@
                 <td>其他成员描述:</td>
                 <td><input type="textarea" name="sp_qtry_desc" /></td>
             </tr>
+            <!-- 上传附件 -->
+            <tr><td><!-- blank line --></td></tr>
+            <tr><td>上传照片（小于3M）：</td><td><input type="file" name="addon" /></td></tr>
 
             <tr><td></td><td><input type="submit" value="添加" /><input type="reset" value="清空" /></td></tr>
         </table>

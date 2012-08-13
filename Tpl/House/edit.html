@@ -1,8 +1,8 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-    <form action="__URL__/update" method="post">
-        <table id="common_table" style="width: auto;">
+    <form action="__URL__/update" method="post" enctype="multipart/form-data">
+        <table id="common_table" style="width: auto;" >
             <tr><td>所在院落：</td><td>{$data.yard.id|getYardSelect}</td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="{$data.address}" disabled="disable"/></td></tr>
             <tr><td>联系人:</td><td><input type="text" name="contactor" value="{$data.contactor}" /></td></tr>
@@ -117,6 +117,10 @@
                 <td></td><td></td>
                 <td>廉租房地址：</td><td><input type="text" name="lianzu_address" value="{$data.youfu.lianzu_address}"/></td>
             </tr>
+            <tr><td>相关照片:</td><td><present name="photo"><img style="width: 100px;height: 120px;float:left;margin-left: 5px;border:1px solid #98bf21;padding:2px;" src="__UPLOADS__/{$photo}"/></present></td></tr>
+             <!-- 上传附件 -->
+            <tr><td><!-- blank line --></td></tr>
+            <tr><td>上传照片（小于3M）：</td><td><input type="file" name="addon" /></td></tr>
 
             <tr><td></td><td><input type="submit" value="更新" name="submit" /><input type="reset" value="清空" />
                     <input type="hidden" name="id" value="{$data.id}" /></td></tr>

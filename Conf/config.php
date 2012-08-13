@@ -25,6 +25,7 @@ return array(
         //项目目录下的Public存放image,css,js
         //css取名以控制器+操作为规范，如Admin_index.css
         //js同样如此
+        '__UPLOADS__'=>'/socialwork/Public/Uploads',
         '__JS__' => '/socialwork/Public/Js',
         '__CSS__' => '/socialwork/Public/Css',
         '__IMAGE__' => '/socialwork/Public/Image',

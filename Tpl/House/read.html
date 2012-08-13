@@ -64,6 +64,7 @@
         <tr><td>楼层:</td><td>{$data.address_3}</td></tr>
         <tr><td>房屋号:</td><td>{$data.address_4}</td></tr>
         <tr><td>平房（附:</td><td>{$data.address_other}号）</td></tr>
+        <tr><td>相关照片:</td><td><present name="photo"><img style="width: 100px;height: 120px;float:left;margin-left: 5px;border:1px solid #98bf21;padding:2px;" src="__UPLOADS__/{$photo}"/></present></td></tr>
         <php>cs();</php>
         <tr><td></td><td><a href="__URL__/edit/{$data.id}">修改</a>
                 <a href="__URL__/delete/{$data.id}" onclick="return window.confirm('将同时删除产权人与优抚相关信息，确定?');">

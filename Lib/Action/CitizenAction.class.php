@@ -20,11 +20,16 @@ class CitizenAction extends BaseAction {
     public function read() {
         $m_citizen = D("Citizen");
         $id = $this->_get("id");
-        $data = $m_citizen->relation(array("house","youfu"))->where(array("id" => $id))->find();
+        $data = $m_citizen->relation(array("house", "youfu"))->where(array("id" => $id))->find();
+
+        $m_addon = D("Addon");
+        $addon = $m_addon->where("citizen_id=" . $id)->find();
+
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("Citizen/index");
         }
+        $this->assign("photo", $addon["filepath"]);
         $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("详细信息", self::ACTION_NAME)));
         $this->display();
     }
@@ -46,8 +51,10 @@ class CitizenAction extends BaseAction {
     }
 
     public function add() {
+
         $m_citizen = D("Citizen");
         $m_youfu = D("Youfu");
+        $m_addon = D("Addon");
         $house_id = $_POST["house_id"];
         if ($m_citizen->create()) {
             if ($new_citizen_id = $m_citizen->add()) {
@@ -57,6 +64,32 @@ class CitizenAction extends BaseAction {
                 $new_youfu["house_id"] = null;
                 $new_youfu["citizen_id"] = $new_citizen_id;
                 $m_youfu->add($new_youfu);
+                if ($_FILES["addon"]["name"] != NULL) {
+                    //添加附件数据
+                    //导入图片上传类   
+                    import("ORG.Net.UploadFile");
+                    //实例化上传类   
+                    $upload = new UploadFile();
+                    $upload->maxSize = 3145728;
+                    //设置文件上传类型   
+                    $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
+                    //设置文件上传位置   
+                    $upload->savePath = "./Public/Uploads/citizen/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹   
+                    //设置文件上传名(按照时间)   
+                    $upload->saveRule = "time";
+                    if (!$upload->upload()) {
+                        $this->error($upload->getErrorMsg());
+                    } else {
+                        //上传成功，获取上传信息   
+                        $info = $upload->getUploadFileInfo();
+                    }
+                    $new_addon = $m_addon->create();
+                    $new_addon["citizen_id"] = $new_citizen_id;
+                    $new_addon["yard_id"] = null;
+                    $new_addon["house_id"] = null;
+                    $new_addon["filepath"] = "citizen/" . $info[0]['savename'];    //文件路径
+                    $m_addon->add($new_addon);
+                }
 
                 session("action_message", "添加居民成功！");
                 $this->redirect("House/$house_id");
@@ -72,7 +105,10 @@ class CitizenAction extends BaseAction {
 
     public function delete() {
         $m_citizen = D("Citizen");
+        $m_addon = D("Addon");
+        $id = $this->_get("id");
         if ($m_citizen->relation("youfu")->delete($this->_get("id"))) {
+            $m_addon->where("citizen_id=" . $id)->delete();
             session("action_message", "删除数据成功！");
             $this->redirect("Citizen/index");
         } else {
@@ -85,10 +121,13 @@ class CitizenAction extends BaseAction {
         $id = $this->_get("id");
         $Citizen = D("Citizen");
         $data = $Citizen->where(array("id" => $id))->find();
+        $m_addon = D("Addon");
+        $addon = $m_addon->where("citizen_id=" . $id)->find();
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("Citizen/index");
         }
+        $this->assign("photo", $addon["filepath"]);
         $this->assign(array("data" => $data,
             "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
@@ -107,6 +146,37 @@ class CitizenAction extends BaseAction {
             $newdata['is_long_live'] = null == $this->_post('is_long_live') ? '否' : '是';
 
             $data = $Citizen->save($newdata);
+            
+            //俊，图像更新的代码我也弄过来了。
+            //if下面是判断提交上的文件是否是空，如果不为空就新传一个文件，同时在数据库中更新附件路径
+            if ($_FILES["addon"]["name"] != NULL) {
+                 $m_addon=D("Addon");
+                //添加附件数据
+                //导入图片上传类   
+                import("ORG.Net.UploadFile");
+                //实例化上传类   
+                $upload = new UploadFile();
+                $upload->maxSize = 3145728;
+                //设置文件上传类型   
+                $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
+                //设置文件上传位置   
+                $upload->savePath = "./Public/Uploads/citizen/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹   
+                //设置文件上传名(按照时间)   
+                $upload->saveRule = "time";
+                if (!$upload->upload()) {
+                    $this->error($upload->getErrorMsg());
+                } else {
+                    //上传成功，获取上传信息   
+                    $info = $upload->getUploadFileInfo();
+                }
+                $new_addon = $m_addon->create();
+
+                $new_addon["filepath"] = "citizen/" . $info[0]['savename'];    //文件路径
+                $m_addon->where("citizen_id=" . $id)->save($new_addon);
+            }
+
+
+
             if (false !== $data) {
                 session("action_message", "更新数据成功！");
                 $this->redirect("Citizen/$newdata[id]");

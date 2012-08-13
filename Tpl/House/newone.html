@@ -1,7 +1,7 @@
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
-    <form action="__URL__/add" method="post">
+    <form action="__URL__/add" method="post" enctype="multipart/form-data">
         <table id="common_table" style="width: auto;">
             <tr><td>所在院落：</td><td><php>echo getYardSelect();</php></td></tr>
             <tr><td>房屋地址:</td><td><input type="text" name="address" value="根据楼栋、单元号等自动生成" disabled="disable" style="width:200px;"/></td></tr>
@@ -119,7 +119,10 @@
                 <td></td><td></td>
                 <td>廉租房地址：</td><td><input type="text" name="lianzu_address" /></td>
             </tr>
-
+             <!-- 上传附件 -->
+            <tr><td><!-- blank line --></td></tr>
+            <tr><td>上传照片（小于3M）：</td><td><input type="file" name="addon" /></td></tr>
+            
             <tr><td></td><td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
         </table>
     </form>
