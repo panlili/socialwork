@@ -1,0 +1,37 @@
+{__NOLAYOUT__}
+<!-- 居民实时统计 -->
+<table>
+    <tr>
+        <td rowspan="8" style="width:20%;">实施统计：<br><strong>{$scope}</strong></td><td>现有住户</td><td>现有居民</td><td>暂住人口</td>
+        <td>党员</td><td>低保人员</td><td>享受廉租福利</td>
+    </tr>
+    <tr>
+        <td>{$tongji.housenumber}</td><td>{$tongji.citizensum}</td><td>{$tongji.citizenzhanzhu}</td>
+        <td>{$tongji.citizenparty}</td><td>{$tongji.citizendibao}</td><td>{$tongji.houseislowrent}</td>
+    </tr>
+
+    <tr>
+        <td>享受燃煤补贴</td><td>享受长寿金</td><td>残疾人</td><td>特殊人员</td>
+        <td>台属</td><td>军属</td>
+    </tr>
+    <tr>
+        <td>{$tongji.houseisfuel}</td><td>{$tongji.citizenislonglive}</td><td>{$tongji.citizendisable}</td><td>{$tongji.citizenspecial}</td>
+        <td>{$tongji.housetaiwan}</td><td>{$tongji.housearmy}</td>
+    </tr>
+</table>
+
+<present name="address_2">
+    <span class="buttons">
+        <volist name="address_2" id="each">
+            <input type="button" value="{$each.address_2}单元" onclick="statisticsByAddress2('{$yardid}','{$address_1}','{$each.address_2}','http://localhost/socialwork/index.php/Interface/')"/>&nbsp;
+        </volist>
+    </span>
+</present>
+
+<present name="address_3">
+    <span class="buttons">
+        <volist name="address_3" id="each">
+            <input type="button" value="{$each.address_3}楼" onclick="statisticsByAddress3('{$yardid}','{$address_1}','{$address_2}','{$each.address_3}','http://localhost/socialwork/index.php/Interface/')"/>&nbsp;
+        </volist>
+    </span>
+</present>

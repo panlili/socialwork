@@ -187,9 +187,6 @@ class StreetAction extends BaseAction {
         $this->display();
     }
 
-    public function test(){
-        $this->display();
-    }
 }
 
 ?>
