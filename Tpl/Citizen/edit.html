@@ -2,166 +2,217 @@
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
 
     <form action="__URL__/update" method="POST" enctype="multipart/form-data">
-        <table id="common_table" style="width: auto;clear:both">
-            <tr><td>姓名：</td><td><input type="text" name="name" value="{$data.name}"/></td></tr>
-            <tr><td>与户主关系：</td><td>
-                    <select name="relation_with_householder">
-                        <option value="{$data.relation_with_householder}" selected="selected">{$data.relation_with_householder}</option>
-                        <option value="{$data.relation_with_householder}">--修改请选择其他--</option>
-                        <option value="户主" >户主</option>
-                        <option value="配偶" >配偶</option>
-                        <option value="父亲或岳父" >父亲或岳父</option>
-                        <option value="母亲或岳母" >母亲或岳母</option>
-                        <option value="儿子" >儿子</option>
-                        <option value="女儿" >女儿</option>
-                        <option value="儿媳" >儿媳</option>
-                        <option value="女婿" >女婿</option>
-                        <option value="孙子" >孙子</option>
-                        <option value="孙女" >孙女</option>
-                        <option value="兄弟" >兄弟</option>
-                        <option value="姐妹" >姐妹</option>
-                        <option value="侄儿" >侄儿</option>
-                        <option value="侄女" >侄女</option>
-                        <option value="非亲属" >非亲属</option>
-                        <option value="暂住人口" >流动人口_暂住</option></select></td></tr>
-            <tr><td>身份证号码：</td><td><input type="text" name="id_card" value="{$data.id_card}" onblur="checkIdCard($.trim($('input[name=id_card]').val()))"/></td></tr>
-            <!--            <tr><td>性别：</td><td>
-                                <select name="sex">
-                                    <option value="{$data.sex}" selected="selected">{$data.sex}</option>
-                                    <option value="{$data.sex}">--修改请选择其他--</option>
-                                    <option value="男">男</option>
-                                    <option value="女">女</option></select>
-                            </td></tr>
-                        <tr>-->
-            <td>民族：</td><td>
-                <select name="nation">
-                    <option value="{$data.nation}" selected="selected">{$data.nation}</option>
-                    <option value="{$data.nation}">--修改请选择其他--</option>
-                    <option value="汉族">汉族</option>
-                    <option value="蒙古族">蒙古族</option>
-                    <option value="彝族">彝族</option>
-                    <option value="侗族">侗族</option>
-                    <option value="哈萨克族">哈萨克族</option>
-                    <option value="畲族">畲族</option>
-                    <option value="纳西族">纳西族</option>
-                    <option value="仫佬族">仫佬族</option>
-                    <option value="仡佬族">仡佬族</option>
-                    <option value="怒族">怒族</option>
-                    <option value="保安族">保安族</option>
-                    <option value="鄂伦春族">鄂伦春族</option>
-                    <option value="回族">回族</option>
-                    <option value="壮族">壮族</option>
-                    <option value="瑶族">瑶族</option>
-                    <option value="傣族">傣族</option>
-                    <option value="高山族">高山族</option>
-                    <option value="景颇族">景颇族</option>
-                    <option value="羌族">羌族</option>
-                    <option value="锡伯族">锡伯族</option>
-                    <option value="乌孜别克族">乌孜别克族</option>
-                    <option value="裕固族">裕固族</option>
-                    <option value="赫哲族">赫哲族</option>
-                    <option value="藏族">藏族</option>
-                    <option value="布依族">布依族</option>
-                    <option value="白族">白族</option>
-                    <option value="黎族">黎族</option>
-                    <option value="拉祜族">拉祜族</option>
-                    <option value="柯尔克孜族">柯尔克孜族</option>
-                    <option value="布朗族">布朗族</option>
-                    <option value="阿昌族">阿昌族</option>
-                    <option value="俄罗斯族">俄罗斯族</option>
-                    <option value="京族">京族</option>
-                    <option value="门巴族">门巴族</option>
-                    <option value="维吾尔族">维吾尔族</option>
-                    <option value="朝鲜族">朝鲜族</option>
-                    <option value="土家族">土家族</option>
-                    <option value="傈僳族">傈僳族</option>
-                    <option value="水族">水族</option>
-                    <option value="土族">土族</option>
-                    <option value="撒拉族">撒拉族</option>
-                    <option value="普米族">普米族</option>
-                    <option value="鄂温克族">鄂温克族</option>
-                    <option value="塔塔尔族">塔塔尔族</option>
-                    <option value="珞巴族">珞巴族</option>
-                    <option value="苗族">苗族</option>
-                    <option value="满族">满族</option>
-                    <option value="哈尼族">哈尼族</option>
-                    <option value="佤族">佤族</option>
-                    <option value="东乡族">东乡族</option>
-                    <option value="达斡尔族">达斡尔族</option>
-                    <option value="毛南族">毛南族</option>
-                    <option value="塔吉克族">塔吉克族</option>
-                    <option value="德昂族">德昂族</option>
-                    <option value="独龙族">独龙族</option>
-                    <option value="基诺族">基诺族</option>
-                </select>
-            </td>
-            </tr>             
-            <tr><td>是否领取计划生育指标：</td><td><eq name="data.is_fertility" value="是">
-            <input type="checkbox" name="is_fertility" value="是" checked="checked" /><else/>
-            <input type="checkbox" name="is_fertility" value="是" /></eq></td>
+        <table id="common_table" style="width: auto;">
+            <tr>
+                <td>姓名：</td>
+                <td><input type="text" name="name" value="{$data.name}"/></td>
             </tr>
-            <tr><td>是否特殊人群：</td><td><eq name="data.is_special" value="是">
-            <input type="checkbox" name="is_special" value="是" checked="checked" /><else/>
-            <input type="checkbox" name="is_special" value="是" /></eq></td>
+
+            <tr>
+                <td>身份证号码：</td>
+                <td>
+                    <input type="text" name="id_card" value="{$data.id_card}" onblur="checkIdCard($.trim($('input[name=id_card]').val()))"/>
+                </td>
             </tr>
-            <tr><td>是否低保：</td><td><eq name="data.is_low_level" value="是"><input type="checkbox" name="is_low_level" value="是" checked="checked"/><else/>
-            <input type="checkbox" name="is_low_level" value="是"/></eq></td>
+
+            <tr>
+                <td>与户主关系：</td>
+                <td>{$data.relation_with_householder|relation_with_householder_select=relation_with_householder,###}</td>
+
+                <td>民族：</td>
+                <td>{$data.nation|nation_select=nation,###}</td>
             </tr>
-            <tr><td>是否残疾：</td><td><eq name="data.is_disability" value="是"><input type="checkbox" name="is_disability" value="是" checked="checked"/><else/>
-            <input type="checkbox" name="is_disability" value="是"/></eq></td>
+
+            <tr>
+                <td>婚姻情况：</td>
+                <td>{$data.marry_info|marry_info_select=marry_info,###}</td>
+                <td>文化程度：</td>
+                <td>{$data.education|education_select=education,###}</td>
             </tr>
-            <tr><td>是否廉租房：</td><td><eq name="data.is_low_rent" value="是"><input type="checkbox" name="is_low_rent" value="是" checked="checked"/><else/>
-            <input type="checkbox" name="is_low_rent" value="是"/></eq></td>
+
+            <tr>
+                <td>政治面貌：</td>
+                <td>{$data.political_status|political_select=political_status,###}</td>
+                <td>就业情况：</td>
+                <td>{$data.employee|employee_select=employee,###}</td>
             </tr>
-            <tr><td>是否长寿金：</td><td><eq name="data.is_long_live" value="是"><input type="checkbox" name="is_long_live" value="是" checked="checked"/><else/>
-            <input type="checkbox" name="is_long_live" value="是"/></eq></td>
+
+            <tr>
+                <td>是否领取计划生育指标：</td>
+                <td>
+                    <input type="radio" name="is_fertility" value="{$data.is_fertility}" checked="checked"/>{$data.is_fertility}
+                    <input type="radio" name="is_fertility" value="{$data.is_fertility|reverseIt}"/>{$data.is_fertility|reverseIt}
+                </td>
             </tr>
-            <tr><td>婚姻情况：</td><td><select name="marry_info">
-                        <option value="{$data.marry_info}" selected="selected">{$data.marry_info}</option>
-                        <option value="{$data.marry_info}">--修改请选择其他--</option>
-                        <option value="未婚">未婚</option>
-                        <option value="已婚">已婚</option>
-                        <option value="离异">离异</option>
-                        <option value="丧偶">丧偶</option></select></td></tr>
-            <tr><td>文化程度：</td><td><select name="education">
-                        <option value="{$data.education}" selected="selected">{$data.education}</option>
-                        <option value="{$data.education}">--修改请选择其他--</option>
-                        <option value="文盲">文盲</option>
-                        <option value="小学">小学</option>
-                        <option value="初中">初中</option>
-                        <option value="高中">高中</option>
-                        <option value="技校">技校</option>
-                        <option value="中专">中专</option>
-                        <option value="大专">大专</option>
-                        <option value="本科">本科</option>
-                        <option value="硕士">硕士</option>
-                        <option value="博士">博士</option>
-                        <option value="博士后">博士后</option>
-                        <option value="教授">教授</option>
-                        <option value="院士">院士</option></select></td></tr>
-            <tr><td>政治面貌：</td><td><select name="political_status">
-                        <option value="{$data.political_status}" selected="selected">{$data.political_status}</option>
-                        <option value="{$data.political_status}">--修改请选择其他--</option>
-                        <option value="群众">群众</option>
-                        <option value="团员">团员</option>
-                        <option value="民主人士">民主人士</option>
-                        <option value="党员">党员</option></select></td></tr>
-            <tr><td>就业情况：</td><td><select name="employee">
-                        <option value="{$data.employee}" selected="selected">{$data.employee}</option>
-                        <option value="{$data.employee}">--修改请选择其他--</option>
-                        <option value="就业">就业</option>
-                        <option value="未就业">未就业</option>
-                        <option value="灵活就业">灵活就业</option>
-                        <option value="领取失业保证金">领取失业保证金</option>
-                        <option value="在校生">在校生</option>
-                        <option value="低保">低保</option>
-                        <option value="退休">退休</option></select></td></tr>
-            <tr><td>户口地址：</td><td><input type="text" name="household" value="{$data.household}" /></td></tr>
-            <tr><td>联系电话：</td><td><input type="text" name="telephone" value="{$data.telephone}" /></td></tr>
+
+            <tr>
+                <td>是否长寿金：</td>
+                <td>
+                    <input type="radio" name="is_long_live" value="{$data.is_long_live}"  checked="checked" />{$data.is_long_live}
+                    <input type="radio" name="is_long_live" value="{$data.is_long_live|reverseIt}" />{$data.is_long_live|reverseIt}
+                </td>
+            </tr>
+
+            <tr>
+                <td>户口地址：</td>
+                <td><input type="text" name="household" value="{$data.household}" /></td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td><input type="text" name="telephone" value="{$data.telephone}" /></td>
+            </tr>
+
+            <!-- 优抚相关信息 -->
+            <tr><td><!-- blank line --></td></tr>
+            <tr><td>优抚相关信息：</td><td></td></tr>
+
+            <!-- 只有当所属房屋是低保时才能编辑自身是否是低保 -->
+            <eq name="house_is_dibao" value="是">
+            <tr>
+                <td>是否低保:</td>
+                <td>
+                    <input type="radio" name="is_dibao" value="{$data.youfu.is_dibao}" checked="checked" onclick="toggleDibao($(this))";/>{$data.youfu.is_dibao}
+                    <input type="radio" name="is_dibao" value="{$data.youfu.is_dibao|reverseIt}" onclick="toggleDibao($(this));"/>{$data.youfu.is_dibao|reverseIt}
+                </td>
+            </tr>
+            <tr class="dibao">
+                <td></td><td></td>
+                <td>低保金额：</td><td><input type="text" name="dibao_jine" value="{$data.youfu.dibao_jine}" /></td>
+                <td>开始享受时间：</td><td><input type="text" name="dibao_start_date" value="{$data.youfu.dibao_start_date}" /></td>
+            </tr>
+            </eq>
+
+            <!-- 只有当所属房屋是廉租时才能编辑自身是否是廉租 -->
+            <eq name="house_is_lianzu" value="是">
+            <tr>
+                <td>是否廉租:</td>
+                <td>
+                    <input type="radio" name="is_lianzu" value="{$data.youfu.is_lianzu}" checked="checked" onclick="toggleLianzu($(this))";/>{$data.youfu.is_lianzu}
+                    <input type="radio" name="is_lianzu" value="{$data.youfu.is_lianzu|reverseIt}" onclick="toggleLianzu($(this));"/>{$data.youfu.is_lianzu|reverseIt}
+                </td>
+            </tr>
+            <tr class="lianzu">
+                <td></td><td></td>
+                <td>是否廉租补贴：</td>
+                <td>
+                    <input type="radio" name="is_lzbt" value="{$data.youfu.is_lzbt}" checked="checked"/>{$data.youfu.is_lzbt}
+                    <input type="radio" name="is_lzbt" value="{$data.youfu.is_lzbt|reverseIt}"/>{$data.youfu.is_lzbt|reverseIt}
+                </td>
+                <td>廉租补贴金额:</td>
+                <td><input type="text" name="lzbt_jine" value="{$data.youfu.lzbt_jine}" /></td>
+            </tr>
+            <tr class="lianzu">
+                <td></td><td></td>
+                <td>是否廉租租金：</td>
+                <td>
+                    <input type="radio" name="is_lzzj" value="{$data.youfu.is_lzzj}" checked="checked"/>{$data.youfu.is_lzzj}
+                    <input type="radio" name="is_lzzj" value="{$data.youfu.is_lzzj|reverseIt}"/>{$data.youfu.is_lzzj|reverseIt}
+                </td>
+                <td>廉租租金金额:</td>
+                <td><input type="text" name="lzzj_jine" value="{$data.youfu.lzzj_jine}" /></td>
+            </tr>
+            <tr class="lianzu">
+                <td></td><td></td>
+                <td>是否实物配租：</td>
+                <td>
+                    <input type="radio" name="is_lianzu_swpz" value="{$data.youfu.is_lianzu_swpz}" checked="checked"/>{$data.youfu.is_lianzu_swpz}
+                    <input type="radio" name="is_lianzu_swpz" value="{$data.youfu.is_lianzu_swpz|reverseIt}"/>{$data.youfu.is_lianzu_swpz|reverseIt}
+                </td>
+                <td>配租实物：</td>
+                <td><input type="text" name="lianzu_swpz" value="{$data.youfu.lianzu_swpz}" /></td>
+            </tr>
+            </eq>
+
+            <tr>
+                <td>是否残疾：</td>
+                <td>
+                    <input type="radio" name="is_canji" value="{$data.youfu.is_canji}" checked="checked" onclick="toggleDisable($(this));" />{$data.youfu.is_canji}
+                    <input type="radio" name="is_canji" value="{$data.youfu.is_canji|reverseIt}" onclick="toggleDisable($(this));" />{$data.youfu.is_canji|reverseIt}
+                </td>
+            </tr>
+            <tr class="canji" style="display: table-row">
+                <td></td><td></td>
+                <!--残疾等级根据残疾证号的最后一位自动获取，在youfu模型自动处理-->
+                <td>残疾类别：</td><td>{$data.youfu.canji_type|disable_select=canji_type,###}</td>
+                <td>残疾证号：</td><td><input type="text" name="canji_no" value="{$data.youfu.canji_no}" /></td>
+            </tr>
+            <tr class="canji" style="display: table-row">
+                <td></td><td></td>
+                <td>残疾人特困专项补助：</td><td><input type="text" name="canji_jine" value="{$data.youfu.canji_jine}"/></td>
+            </tr>
+
+            <tr>
+                <td>是否特殊人群：</td>
+                <td>
+                    <!--没有相关的布尔字段 -->
+                    <input type="radio" name="nosuchdbfield" value="是" onclick="toggleSpecial($(this))"/>是
+                    <input type="radio" name="nosuchdbfield" value="否" checked="checked" onclick="toggleSpecial($(this))"/>否
+                </td>
+                <td class="special" style="display: table-row">{$data.youfu.sp_status|special_select=sp_status,###}</td>
+            </tr>
+            <tr class="special" style="display: table-row">
+                <td></td><td></td>
+                <td>是否信访维稳：</td>
+                <td>
+                    <input type="radio" name="sp_is_xfww" value="{$data.youfu.sp_is_xfww}" checked="checked" />{$data.youfu.sp_is_xfww}
+                    <input type="radio" name="sp_is_xfww" value="{$data.youfu.sp_is_xfww|reverseIt}" />{$data.youfu.sp_is_xfww|reverseIt}
+                </td>
+                <td>信访维稳描述:</td>
+                <td><input type="textarea" name="sp_xfww_desc" value="{$data.youfu.sp_xfww_desc}"/></td>
+            </tr>
+            <tr class="special" style="display: table-row">
+                <td></td><td></td>
+                <td>是否社区矫正：</td>
+                <td>
+                    <input type="radio" name="sp_sqjz" value="{$data.youfu.sp_sqjz}" checked="checked"/>{$data.youfu.sp_sqjz}
+                    <input type="radio" name="sp_sqjz" value="{$data.youfu.sp_sqjz|reverseIt}" />{$data.youfu.sp_sqjz|reverseIt}
+                </td>
+                <td>社区矫正描述:</td>
+                <td><input type="textarea" name="sp_sqjz_desc" value="{$data.youfu.sp_sqjz_desc}" /></td>
+            </tr>
+            <tr class="special" style="display: table-row">
+                <td></td><td></td>
+                <td>是否刑释解教：</td>
+                <td>
+                    <input type="radio" name="sp_xsjj" value="{$data.youfu.sp_xsjj}" checked="checked"/>{$data.youfu.sp_xsjj}
+                    <input type="radio" name="sp_xsjj" value="{$data.youfu.sp_xsjj|reverseIt}"/>{$data.youfu.sp_xsjj|reverseIt}
+                </td>
+                <td>刑释解教描述:</td>
+                <td><input type="textarea" name="sp_xsjj_desc" value="{$data.youfu.sp_xsjj_desc}"/></td>
+            </tr>
+            <tr class="special" style="display: table-row">
+                <td></td><td></td>
+                <td>是否法轮功成员：</td>
+                <td>
+                    <input type="radio" name="sp_flgcy" value="{$data.youfu.sp_flgcy}" checked="checked"/>{$data.youfu.sp_flgcy}
+                    <input type="radio" name="sp_flgcy" value="{$data.youfu.sp_flgcy|reverseIt}"/>{$data.youfu.sp_flgcy|reverseIt}
+                </td>
+                <td>法轮功成员描述:</td>
+                <td><input type="textarea" name="sp_flgcy_desc" value="{$data.sp_flgcy_desc}" /></td>
+            </tr>
+            <tr class="special" style="display: table-row">
+                <td></td><td></td>
+                <td>其他成员：</td>
+                <td>
+                    <input type="radio" name="sp_qtry" value="{$data.youfu.sp_qtry}" checked="checked"/>{$data.youfu.sp_qtry}
+                    <input type="radio" name="sp_qtry" value="{$data.youfu.sp_qtry|reverseIt}" />{$data.youfu.sp_qtry|reverseIt}
+                </td>
+                <td>其他成员描述:</td>
+                <td><input type="textarea" name="sp_qtry_desc" value="{$data.youfu.sp_qtry_desc}"/></td>
+            </tr>
+
+
             <tr><td>相关照片:</td><td><present name="photo"><img style="width: 100px;height: 120px;float:left;margin-left: 5px;border:1px solid #98bf21;padding:2px;" src="__UPLOADS__/{$photo}"/></present></td></tr>
             <tr><td>重新上传照片（小于3M）：</td><td><input type="file" name="addon" /></td></tr>
-            <tr><td></td><td><input type="submit" value="更新" /><input type="reset" value="清空" />
-                    <input type="hidden" name="id" value="{$data.id}" /></td></tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="更新" /><input type="reset" value="清空" />
+                    <input type="hidden" name="id" value="{$data.id}" />
+                    <input type="hidden" name="youfu_id" value="{$youfu_id}" />
+                </td>
+            </tr>
         </table>
     </form>
 </div>

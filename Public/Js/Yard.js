@@ -88,7 +88,8 @@ function showCitizen(houseid){
 //为院落添加管理，党支部等信息的ajax
 $(function(){
     $("#common_table td").css("height","15px");
-    $("#tabs").tabs();
+    if($("#tabs").length >0)
+        $("#tabs").tabs();
     //添加院落管理信息
     $(".addadmin").click(function(){
         $.post("addAdmin",$("#yardadmin").serialize(),function(data){

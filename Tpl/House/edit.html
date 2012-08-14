@@ -51,7 +51,7 @@
                     <input type="radio" name="is_free" value="{$data.is_free|reverseIt}" onclick="toggleIsFree($(this));"/>{$data.is_free|reverseIt}
                 </td>
             </tr>
-            <tr class="isfree2">
+            <tr class="isfree2" style="display:table-row">
                 <td></td><td></td>
                 <td>房屋租金：</td><td><input type="text" name="rent" value="{$data.rent}"/></td>
                 <td>税金：</td><td><input type="text" name="rent_tax" value="{$data.rent_tax}"/></td>
@@ -117,12 +117,27 @@
                 <td></td><td></td>
                 <td>廉租房地址：</td><td><input type="text" name="lianzu_address" value="{$data.youfu.lianzu_address}"/></td>
             </tr>
-            <tr><td>相关照片:</td><td><present name="photo"><img style="width: 100px;height: 120px;float:left;margin-left: 5px;border:1px solid #98bf21;padding:2px;" src="__UPLOADS__/{$photo}"/></present></td></tr>
-             <!-- 上传附件 -->
+
+            <tr>
+                <td>相关照片:</td>
+                <td>
+            <present name="photo">
+                <img style="width: 100px;height: 120px;float:left;margin-left: 5px;border:1px solid #98bf21;padding:2px;" src="__UPLOADS__/{$photo}"/>
+            </present>
+            </td>
+            </tr>
+            <!-- 上传附件 -->
             <tr><td><!-- blank line --></td></tr>
             <tr><td>上传照片（小于3M）：</td><td><input type="file" name="addon" /></td></tr>
 
-            <tr><td></td><td><input type="submit" value="更新" name="submit" /><input type="reset" value="清空" />
-                    <input type="hidden" name="id" value="{$data.id}" /></td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="更新" name="submit" /><input type="reset" value="清空" />
+                    <input type="hidden" name="id" value="{$data.id}" />
+                    <input type="hidden" name="youfu_id" value="{$youfu_id}" />
+                    <input type="hidden" name="owner_id" value="{$owner_id}" />
+                </td>
+            </tr>
     </form>
 </div>

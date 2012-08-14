@@ -64,21 +64,21 @@ class HouseAction extends BaseAction {
                 $m_youfu->add($new_youfu);
                 if ($_FILES["addon"]["name"] != NULL) {
                     //添加附件数据
-                    //导入图片上传类   
+                    //导入图片上传类
                     import("ORG.Net.UploadFile");
-                    //实例化上传类   
+                    //实例化上传类
                     $upload = new UploadFile();
                     $upload->maxSize = 3145728;
-                    //设置文件上传类型   
+                    //设置文件上传类型
                     $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
-                    //设置文件上传位置   
-                    $upload->savePath = "./Public/Uploads/house/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹   
-                    //设置文件上传名(按照时间)   
+                    //设置文件上传位置
+                    $upload->savePath = "./Public/Uploads/house/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹
+                    //设置文件上传名(按照时间)
                     $upload->saveRule = "time";
                     if (!$upload->upload()) {
                         $this->error($upload->getErrorMsg());
                     } else {
-                        //上传成功，获取上传信息   
+                        //上传成功，获取上传信息
                         $info = $upload->getUploadFileInfo();
                     }
                     $new_addon = $m_addon->create();
@@ -118,84 +118,76 @@ class HouseAction extends BaseAction {
 
     //edit方法，显示编辑房屋信息的模板
     public function edit() {
-        $m_house = D("House");
+
         $id = $this->_get("id");
-        $data = $m_house->relation(array("yard", "youfu", "owner"))->find($this->_get("id"));
+        $m_house = D("House");
+
+        $data = $m_house->relation(array("yard", "youfu", "owner"))->find($id);
         if (empty($data)) {
             session("action_message", "数据不存在！");
             $this->redirect("House/index");
         }
+
+        //取得与此房屋相关的owner and youfu数据的主id,在edit.html中赋予表单才能在update中直接创建owner和youfu对象后更新
+        $m_youfu = D("Youfu");
+        $m_owner = D("Owner");
+        $youfu_id = $m_youfu->where("house_id=$id")->getField("id");
+        $owner_id = $m_owner->where("house_id=$id")->getField("id");
+        //只有有对应产权人记录才赋值
+
         $m_addon = D("Addon");
         $addon = $m_addon->where("house_id=" . $id)->find();
         $this->assign("photo", $addon["filepath"]);
-        $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
+        $this->assign(array("data" => $data, "youfu_id" => $youfu_id,
+            "owner_id" => $owner_id, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 
     public function update() {
-        //关联更新的bug在框架中一直存在，开发者也没有解决这个问题
-        //自己根据逻辑手动关联操作效率更高
         $house_id = $_POST["id"];
+
         $m_house = D("House");
         $m_owner = D("Owner");
         $m_youfu = D("Youfu");
         $m_addon = D("Addon");
-        //house自身数据，13fields
-        $house["yard_id"] = $_POST["yard_id"];
-        $house["contactor"] = $_POST["contactor"];
-        $house["telephone"] = $_POST["telephone"];
-        $house["is_floor"] = $_POST["is_floor"];
-        $house["address_1"] = $_POST["address_1"];
-        $house["address_2"] = $_POST["address_2"];
-        $house["address_3"] = $_POST["address_3"];
-        $house["address_4"] = $_POST["address_4"];
-        $house["address_other"] = $_POST["address_other"];
-        $house["is_fit"] = $_POST["is_fit"];
-        $house["is_free"] = $_POST["is_free"];
-        $house["rent"] = $_POST["rent"];
-        $house["rent_tax"] = $_POST["rent_tax"];
-        //owner表, 6fields
-        $owner["name"] = $_POST["name"];
-        $owner["idcard"] = $_POST["idcard"];
-        $owner["marry_info"] = $_POST["marry_info"];
-        $owner["education"] = $_POST["education"];
-        $owner["mobile"] = $_POST["mobile"];
-        $owner["nowaddress"] = $_POST["nowaddress"];
-        //优抚表, 9fields
-        $youfu["is_dibao"] = $_POST["is_dibao"];
-        $youfu["dibao_jine"] = $_POST["dibao_jine"];
-        $youfu["dibao_start_date"] = $_POST["dibao_start_date"];
-        $youfu["is_jjsyf"] = $_POST["is_jjsyf"];
-        $youfu["is_taishu"] = $_POST["is_taishu"];
-        $youfu["is_junshu"] = $_POST["is_junshu"];
-        $youfu["ranmei"] = $_POST["ranmei"];
-        $youfu["is_lianzu"] = $_POST["is_lianzu"];
-        $youfu["lianzu_address"] = $_POST["lianzu_address"];
 
+        $new_house = $m_house->create();
+        $new_youfu = $m_youfu->create();
+        $new_youfu["id"] = $_POST["youfu_id"];
+        //当新增house时is_fit选得否，owner_id表单数据存在，修改时is_fit选得否更新owner表,选是则不用管owner表
+        if (!empty($_POST["owner_id"]) && $_POST["is_fit"] === "否") {
+            $new_owner = $m_owner->create();
+            $new_owner["id"] = $_POST["owner_id"];
+            $result2 = $m_owner->where("house_id=$house_id")->save($new_owner);
+        }
+        //当新增house时is_fit选得是是，那么owner_id表单数据为空，那么如果修改是is_fit仍为是则owner数据不用管，如为否则需要新增一条owner数据
+        if (empty($_POST["owner_id"]) && $_POST["is_fit"] === "否") {
+            $new_owner = $m_owner->create();
+            $new_owner["house_id"] = $house_id;
+            $result2 = $m_owner->add($new_owner);
+        }
 
+        $result1 = $m_house->where("id=$house_id")->save($new_house);
+        $result3 = $m_youfu->where("house_id=$house_id")->save($new_youfu);
 
-        $result1 = $m_house->where("id=$house_id")->save($house);
-        $result2 = $m_owner->where("house_id=$house_id")->save($owner);
-        $result3 = $m_youfu->where("house_id=$house_id")->save($youfu);
-        //dump($_FILES["addon"]["name"]);
         //if下面是判断提交上的文件是否是空，如果不为空就新传一个文件，同时在数据库中更新附件路径
         if ($_FILES["addon"]["name"] != NULL) {
             //添加附件数据
-            //导入图片上传类   
+            //导入图片上传类
             import("ORG.Net.UploadFile");
-            //实例化上传类   
+            //实例化上传类
             $upload = new UploadFile();
             $upload->maxSize = 3145728;
-            //设置文件上传类型   
+            //设置文件上传类型
             $upload->allowExts = array('jpg', 'gif', 'png', 'jpeg');
-            //设置文件上传位置   
-            $upload->savePath = "./Public/Uploads/house/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹   
-            //设置文件上传名(按照时间)   
+            //设置文件上传位置
+            $upload->savePath = "./Public/Uploads/house/"; //这里说明一下，由于ThinkPHP是有入口文件的，所以这里的./Public是指网站根目录下的Public文件夹
+            //设置文件上传名(按照时间)
             $upload->saveRule = "time";
             if (!$upload->upload()) {
                 $this->error($upload->getErrorMsg());
             } else {
-                //上传成功，获取上传信息   
+                //上传成功，获取上传信息
                 $info = $upload->getUploadFileInfo();
             }
             $new_addon = $m_addon->create();
