@@ -1,3 +1,6 @@
-.special,.canji{
+.special,.canji,.jhsy{
+    display: none;
+}
+#is_jhsy{
     display: none;
 }

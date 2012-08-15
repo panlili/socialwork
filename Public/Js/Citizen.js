@@ -34,7 +34,7 @@ function getSexByIdcard(idCard){
     }
 }
 
-function getBirthdayByIddard(idcard) {
+function getBirthdayByIdcard(idcard) {
     var birthday = "";
     if (18 == len(idcard)) {
         birthday = idcard.substring(6,10);
@@ -95,4 +95,27 @@ function toggleSpecial(element) {
     }else{
         $(".special").hide();
     }
+}
+//是否特殊人群
+function toggleJhsy(element) {
+    if(element.attr("value")=="是"){
+        $(".jhsy").show();
+    }else{
+        $(".jhsy").hide();
+    }
+}
+
+function checkIdCard(idcard) {
+    var message="";
+    message=vertifyIdCard(idcard);
+    if("验证通过!"!=message){
+        alert(message);
+    }else{
+        
+        if(getAgeByIdcard(idcard)<56 || getAgeByIdcard(idcard)>17 || getSexByIdcard(idcard)=="女"){
+            $("#is_jhsy").show(); 
+                
+        }
+    }
+        
 }

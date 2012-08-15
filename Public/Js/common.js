@@ -67,13 +67,7 @@ function checkpassword(){
     }
 }
 //身份证号码验证程序
-function checkIdCard(idcard) {
-    var message="";
-    message=vertifyIdCard(idcard);
-    if("验证通过!"!=message){
-        alert(message);
-    }
-}
+
 
 function vertifyIdCard(idcard){
     var Errors=new Array("验证通过!","身份证号码位数不对!","身份证号码出生日期超出范围或含有非法字符!","身份证号码校验错误!","身份证地区非法!");
