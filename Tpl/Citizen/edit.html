@@ -37,12 +37,16 @@
                 <td>{$data.employee|employee_select=employee,###}</td>
             </tr>
 
-            <tr>
+            <tr >
                 <td>是否领取计划生育指标：</td>
                 <td>
-                    <input type="radio" name="is_fertility" value="{$data.is_fertility}" checked="checked"/>{$data.is_fertility}
-                    <input type="radio" name="is_fertility" value="{$data.is_fertility|reverseIt}"/>{$data.is_fertility|reverseIt}
+                    <input type="radio" name="is_syzb" value="{$data.is_syzb}" checked="checked" onclick="toggleJhsy($(this));"/>{$data.is_syzb}
+                    <input type="radio" name="is_syzb" value="{$data.is_syzb|reverseIt}" onclick="toggleJhsy($(this));"/>{$data.is_syzb|reverseIt}
                 </td>
+            </tr>
+            <tr class="jhsy">
+                <td></td><td></td>
+                <td>计划生育证号<input type="text" name="syzb_number" /></td><td>新生儿出生日期<input type="text" name="baby_birthday" /></td>
             </tr>
 
             <tr>
