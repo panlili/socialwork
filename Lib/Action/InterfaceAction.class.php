@@ -10,25 +10,24 @@ class InterfaceAction extends Action {
 
         $this->display();
     }
-    public function getCamlistByYardid(){
-        if ($this->isAjax()){
+
+    public function getCamlistByYardid() {
+        if ($this->isAjax()) {
             $yardid = $_GET["yardid"];
-            $m_cam=D("Camera");
-            $m_camlist=$m_cam->where("yard_id=".$yardid)->select();
-            $camlist="";
-            foreach ($m_camlist as $camvalue){
-                $camnumber=$camvalue["channels"]-$camvalue["remain"]; 
-                                    $camlist=$camlist."<p>";
-                                    for($i=1;$i<=$camnumber;$i++){
-                                        $camitem='<a href="/socialwork/index.php/camera/opencam/'.$camvalue["id"].'/'.$i.'" title="通道'.$i.'" target="_blank"><img id="camera"'.$i.'" src="/socialwork/public/image/map/camera1.jpg'.'"></img></a>';
-                                        $camlist=$camlist.$camitem;
-                                    }
-                                    $camlist=$camlist."</p>";
+            $m_cam = D("Camera");
+            $m_camlist = $m_cam->where("yard_id=" . $yardid)->select();
+            $camlist = "";
+            foreach ($m_camlist as $camvalue) {
+                $camnumber = $camvalue["channels"] - $camvalue["remain"];
+                $camlist = $camlist . "<p>";
+                for ($i = 1; $i <= $camnumber; $i++) {
+                    $camitem = '<a href="/socialwork/index.php/camera/opencam/' . $camvalue["id"] . '/' . $i . '" title="通道' . $i . '" target="_blank"><img id="camera"' . $i . '" src="/socialwork/public/image/map/camera1.jpg' . '"></img></a>';
+                    $camlist = $camlist . $camitem;
+                }
+                $camlist = $camlist . "</p>";
             }
             echo $camlist;
-//            echo "baby";
-            
-        }else {
+        } else {
             echo "请用ajax调用方法";
         }
     }

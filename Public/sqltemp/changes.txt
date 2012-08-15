@@ -86,3 +86,17 @@
 	2.将youfu表的低保金额字段设为可以为空。
 	3.将house的address_1...的类型改为了varchar
 	4.更改owner表的telephone为mobile避免与House的telephone重名从而创建对象时数据对不上。
+	
+0815AddJHSYfields.zip
+	1.增加居民的计生指标 
+		是否生育指标 is_syzb (p_syzb) ->女居民，年龄18-50岁之间
+		生育指标号码 syzb_number (p_js_no)
+		新生儿生日   baby_birthday  (p_new_birthday)
+		
+		如果房屋不一致且空闲，居民即为流动暂住人口 生育指标为 is_ldrksyzb (p_tp_ldrkhyz)
+		
+	2.增加居民status字段
+		1=正常
+		3=删除/迁出
+		4=死亡
+		
