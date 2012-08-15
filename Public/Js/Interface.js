@@ -6,6 +6,14 @@ function getBasic(yardid,path) {
         $("#getbasic").html(data);
     });
 }
+//根据院落id获取摄像头列表
+function getCamlistByYardid(yardid,path) {
+    $.get(path+"getCamlistByYardid",{
+        yardid:yardid
+    },function(data){
+        $("#getCamlistByYardid").html(data);
+    });
+}
 
 function showTable(table_id){
     $("#"+table_id).siblings().hide();
