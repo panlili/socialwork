@@ -21,7 +21,7 @@ function showTable(table_id){
 }
 
 function statisticsByAddress1(yardid,address1,path){
-    $.get("addressone",{
+    $.get(path+"addressone",{
         yardid:yardid,
         address_1:address1
     },function(data){
