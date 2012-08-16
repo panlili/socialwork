@@ -37,12 +37,23 @@ class CitizenAction extends BaseAction {
     public function newone() {
         $house_id = $this->_get("id");
         if (isset($house_id)) {
-            $yard_id = D("House")->where("id=$house_id")->getField("yard_id");
+            $m_house = D("House");
+            $m_youfu = D("Youfu");
+            $yard_id = $m_house->where("id=$house_id")->getField("yard_id");
             //取得房屋的低保，廉租信息，只有房屋低保廉租了，居民才有低保廉租选项
-            $is_dibao = D("Youfu")->where("house_id=$house_id")->getField("is_dibao");
-            $is_lianzu = D("Youfu")->where("house_id=$house_id")->getField("is_lianzu");
+            $is_dibao = $m_youfu->where("house_id=$house_id")->getField("is_dibao");
+            $is_lianzu = $m_youfu->where("house_id=$house_id")->getField("is_lianzu");
+            //取得房屋人户是否一致，是否空闲，如果两个都为否，这人口的计划生育指标为流动人口生育指标选项
+            $is_fit = $m_house->where("id=$house_id")->getField("is_fit");
+            $is_free = $m_house->where("id=$house_id")->getField("is_free");
+            $use_ldrksyzb = "no";
+            if ($is_fit === "否" && $is_free === "否") {
+                $use_ldrksyzb = "yes";
+            }
+
             $this->assign(array("house_id" => $house_id, "yard_id" => $yard_id,
-                "is_dibao" => $is_dibao, "is_lianzu" => $is_lianzu, "page_place" => $this->getPagePlace("在当前房屋下添加居民", self::ACTION_NAME)));
+                "is_dibao" => $is_dibao, "is_lianzu" => $is_lianzu, "use_ldrksyzb" => $use_ldrksyzb,
+                "page_place" => $this->getPagePlace("在当前房屋下添加居民", self::ACTION_NAME)));
             $this->display();
         } else {
             session("action_message", "请在房屋下添加居民");

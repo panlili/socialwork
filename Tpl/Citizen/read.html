@@ -37,15 +37,30 @@
         </tr>
 
         <tr>
-            <td>是否领取计划生育指标：</td>
-            <td>{$data.is_fertility}</td>
+            <td>户口地址：</td><td>{$data.household}</td>
+            <td>联系电话：</td><td>{$data.telephone}</td>
+        </tr>
+
+        <tr>
             <td>是否长寿金：</td>
             <td>{$data.is_long_live}</td>
         </tr>
 
         <tr>
-            <td>户口地址：</td><td>{$data.household}</td>
-            <td>联系电话：</td><td>{$data.telephone}</td>
+            <td>是否领取计划生育指标：</td>
+            <td>{$data.is_syzb}</td>
+        </tr>
+        <eq name="data.is_syzb" value="是">
+        <tr>
+            <td></td><td></td>
+            <td>计划生育证号：</td><td>{$data.syzb_number}</td>
+            <td>新生儿出生日期：</td><td>{$data.baby_birthday}</td>
+        </tr>
+        </eq>
+
+        <tr>
+            <td>当前状态:</td>
+            <td>{$data.status}</td>
         </tr>
 
         <!-- 优抚相关信息 -->

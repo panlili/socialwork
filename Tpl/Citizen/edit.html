@@ -37,6 +37,15 @@
                 <td>{$data.employee|employee_select=employee,###}</td>
             </tr>
 
+            <tr>
+                <td>户口地址：</td>
+                <td><input type="text" name="household" value="{$data.household}" /></td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td><input type="text" name="telephone" value="{$data.telephone}" /></td>
+            </tr>
+
             <tr >
                 <td>是否领取计划生育指标：</td>
                 <td>
@@ -44,9 +53,10 @@
                     <input type="radio" name="is_syzb" value="{$data.is_syzb|reverseIt}" onclick="toggleJhsy($(this));"/>{$data.is_syzb|reverseIt}
                 </td>
             </tr>
-            <tr class="jhsy">
+            <tr class="jhsy" style="display: table-row">
                 <td></td><td></td>
-                <td>计划生育证号<input type="text" name="syzb_number" /></td><td>新生儿出生日期<input type="text" name="baby_birthday" /></td>
+                <td>计划生育证号:</td><td><input type="text" name="syzb_number" value="{$data.syzb_number}"/></td>
+                <td>新生儿出生日期:</td><td><input type="text" name="baby_birthday" value="{$data.baby_birthday}"/></td>
             </tr>
 
             <tr>
@@ -58,12 +68,8 @@
             </tr>
 
             <tr>
-                <td>户口地址：</td>
-                <td><input type="text" name="household" value="{$data.household}" /></td>
-            </tr>
-            <tr>
-                <td>联系电话：</td>
-                <td><input type="text" name="telephone" value="{$data.telephone}" /></td>
+                <td>当前状态:</td>
+                <td>{$data.status|status_select=status,###}</td>
             </tr>
 
             <!-- 优抚相关信息 -->

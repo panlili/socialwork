@@ -27,34 +27,7 @@ function setNumber(parent) {
     }
 }
 
-//layout.html中一些全局js效果的实现
-function init() {
-    setNumber();
-
-    //footer双击隐藏menu的实现
-    $("#footer").dblclick(function(){
-        $("#menu").toggle();
-    });
-
-    //action_message区块
-    if($.trim($("#action_message").text())==""){
-        $("#action_message").remove();
-    }else{
-        $("#action_message").fadeOut(2500,function(){
-            $(this).remove();
-        });
-    }
-
-    //menu的收缩
-    $(".main >a").click(function(event){
-        if($(this).siblings("ul").length>0){
-            event.preventDefault();
-            var ulNode=$(this).next("ul");
-            ulNode.slideToggle();
-        }
-    });
-}
-
+//用户修改资料时检查两次密码是否一致
 function checkpassword(){
     var pass1=$("#pass1").val().trim();
     var pass2=$("#pass2").val().trim();
@@ -66,9 +39,8 @@ function checkpassword(){
         return true;
     }
 }
+
 //身份证号码验证程序
-
-
 function vertifyIdCard(idcard){
     var Errors=new Array("验证通过!","身份证号码位数不对!","身份证号码出生日期超出范围或含有非法字符!","身份证号码校验错误!","身份证地区非法!");
     var area={
@@ -128,10 +100,10 @@ function vertifyIdCard(idcard){
             break;
         case 18:
             if( parseInt(idcard.substr(6,4)) % 4 == 0 || ( parseInt(idcard.substr(6,4)) % 100 == 0 && parseInt(idcard.substr(6,4))%4 == 0 )){
-                ereg = /^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$/;//闰年出生日期的合法性正则表达式
+                ereg = /^[1-9][0-9]{5}[1-2](0|9)[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$/;//闰年出生日期的合法性正则表达式
             }
             else{
-                ereg = /^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$/;//平年出生日期的合法性正则表达式
+                ereg = /^[1-9][0-9]{5}[1-2](0|9)[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$/;//平年出生日期的合法性正则表达式
             }
             if(ereg.test(idcard)){
                 S = (parseInt(idcard_array[0]) + parseInt(idcard_array[10])) * 7 + (parseInt(idcard_array[1]) + parseInt(idcard_array[11])) * 9 + (parseInt(idcard_array[2]) + parseInt(idcard_array[12])) * 10 + (parseInt(idcard_array[3]) + parseInt(idcard_array[13])) * 5 + (parseInt(idcard_array[4]) + parseInt(idcard_array[14])) * 8 + (parseInt(idcard_array[5]) + parseInt(idcard_array[15])) * 4 + (parseInt(idcard_array[6]) + parseInt(idcard_array[16])) * 2 + parseInt(idcard_array[7]) * 1 + parseInt(idcard_array[8]) * 6 + parseInt(idcard_array[9]) * 3 ;
@@ -144,11 +116,40 @@ function vertifyIdCard(idcard){
                 else
                     return Errors[3];
             }
-            else
+            else{
                 return Errors[2];
+            }
             break;
         default:
             return Errors[1];
             break;
     }
+}
+
+//layout.html中一些全局js效果的实现
+function init() {
+    setNumber();
+
+    //footer双击隐藏menu的实现
+    $("#footer").dblclick(function(){
+        $("#menu").toggle();
+    });
+
+    //action_message区块
+    if($.trim($("#action_message").text())==""){
+        $("#action_message").remove();
+    }else{
+        $("#action_message").fadeOut(2500,function(){
+            $(this).remove();
+        });
+    }
+
+    //menu的收缩
+    $(".main >a").click(function(event){
+        if($(this).siblings("ul").length>0){
+            event.preventDefault();
+            var ulNode=$(this).next("ul");
+            ulNode.slideToggle();
+        }
+    });
 }

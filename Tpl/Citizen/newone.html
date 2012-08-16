@@ -36,18 +36,30 @@
             <td>就业情况：</td><td><php>echo employee_select();</php></td>
             </tr>
 
-            <tr id="is_jhsy">
+            <!--如果房屋人户不一致且为空闲，使用流动人口生育指标，否则正常使用is_syzb-->
+            <eq name="use_ldrksyzb" value="no">
+            <tr class="is_jhsy">
                 <td>是否领取计划生育指标：</td>
                 <td>
                     <input type="radio" name="is_syzb" value="是" onclick="toggleJhsy($(this));"/>是
                     <input type="radio" name="is_syzb" value="否" checked="checked" onclick="toggleJhsy($(this));"/>否
                 </td>
-                
+
             </tr>
             <tr class="jhsy">
                 <td></td><td></td>
-                <td>计划生育证号<input type="text" name="syzb_number" /></td><td>新生儿出生日期<input type="text" name="baby_birthday" /></td>
+                <td>计划生育证号：<input type="text" name="syzb_number" /></td>
+                <td>新生儿出生日期：<input type="text" name="baby_birthday" /></td>
             </tr>
+            <else/>
+            <tr class="is_jhsy">
+                <td>领取流动人口生育指标？：</td>
+                <td>
+                    <input type="radio" name="is_ldrksyzb" value="是" />是
+                    <input type="radio" name="is_ldrksyzb" value="否" checked="checked" />否
+                </td>
+            </tr>
+            </eq>
 
             <tr>
                 <td>是否长寿金：</td>

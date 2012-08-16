@@ -43,3 +43,12 @@ function toggleIsFree(element) {
         $(".isfree2").show();
     }
 }
+
+//新添房屋信息时如果人户不一致检查owner身份证，调用common.js中的函数
+function checkIdCard(idcard) {
+    var message="";
+    message=vertifyIdCard(idcard);
+    if("验证通过!"!=message){
+        alert(message);
+    }
+}

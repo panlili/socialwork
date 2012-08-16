@@ -119,7 +119,7 @@ class InterfaceAction extends Action {
             //因为看数据需要权限，地图不集成在系统，点连接需要登陆，故放弃之
             echo $tongjitable;
         } else {
-            $this->redirect("information");
+            echo "请用ajax调用方法";
         }
     }
 

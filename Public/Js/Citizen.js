@@ -1,66 +1,3 @@
-function getAgeByBirthday(birthday) {
-    var   now=new   Date();
-    var   old=new   Date(birthday);
-    var age=now.getFullYear()-old.getFullYear();
-    return age;
-
-}
-
-function getAgeByIdcard(idcard) {
-    var birthday=getBirthdayByIdcard(idcard);
-    var   now=new   Date();
-    var   old=new   Date(birthday);
-    var age=now.getFullYear()-old.getFullYear();
-    return age;
-
-}
-
-function getSexByIdcard(idCard){
-    idCard = trim(idCard.replace(/ /g, ""));// 对身份证号码做处理。包括字符间有空格。
-    if(len(idCard)==15){
-        if(idCard.substring(14,15)%2==0){
-            return '女';
-        }else{
-            return '男';
-        }
-    }else if(len(idCard) ==18){
-        if(idCard.substring(14,17)%2==0){
-            return '女';
-        }else{
-            return '男';
-        }
-    }else{
-        return null;
-    }
-}
-
-function getBirthdayByIdcard(idcard) {
-    var birthday = "";
-    if (18 == len(idcard)) {
-        birthday = idcard.substring(6,10);
-        birthday += "-" +idcard.substring(10,12);
-        birthday += "-" + idcard.substring(12,14);
-    } else if (15 == len(idcard)) {
-        birthday = "19" + idcard.substring(6,8);
-        birthday += "-" + idcard.substring(8,10);
-        birthday += "-" + idcard.substring(10,12);
-    }
-    return birthday;
-
-}
-function len(s) {
-    var l = 0;
-    var a = s.split("");
-    for (var i=0;i<a.length;i++) {
-        if (a[i].charCodeAt(0)<299) {
-            l++;
-        } else {
-            l+=2;
-        }
-    }
-    return l;
-}
-
 //残疾
 function toggleDisable(element) {
     if(element.attr("value")=="是"){
@@ -96,7 +33,8 @@ function toggleSpecial(element) {
         $(".special").hide();
     }
 }
-//是否特殊人群
+
+//是否计生指标
 function toggleJhsy(element) {
     if(element.attr("value")=="是"){
         $(".jhsy").show();
@@ -105,17 +43,61 @@ function toggleJhsy(element) {
     }
 }
 
+//新添居民信息时检查身份证
 function checkIdCard(idcard) {
     var message="";
+    //调用common.js中的函数
     message=vertifyIdCard(idcard);
     if("验证通过!"!=message){
         alert(message);
     }else{
-        
-        if(getAgeByIdcard(idcard)<56 || getAgeByIdcard(idcard)>17 || getSexByIdcard(idcard)=="女"){
-            $("#is_jhsy").show(); 
-                
+        //年龄18-55且为女出现计划生育按钮
+        if(getAgeByIdcard(idcard)<56 && getAgeByIdcard(idcard)>17 && getSexByIdcard(idcard)=="女"){
+            $(".is_jhsy").show();
         }
     }
-        
 }
+
+//根据身份证获取年龄
+function getAgeByIdcard(idcard) {
+    var birthday=getBirthdayByIdcard(idcard);
+    var now=new Date();
+    var old=new Date(birthday);
+    var age=now.getFullYear()-old.getFullYear();
+    return age;
+}
+
+//根据身份证获取生日
+function getBirthdayByIdcard(idcard) {
+    var birthday = "";
+    if (18 == idcard.length) {
+        birthday = idcard.substring(6,10);
+        birthday += "-" +idcard.substring(10,12);
+        birthday += "-" + idcard.substring(12,14);
+    } else if (15 == idcard.length) {
+        birthday = "19" + idcard.substring(6,8);
+        birthday += "-" + idcard.substring(8,10);
+        birthday += "-" + idcard.substring(10,12);
+    }
+    return birthday;
+}
+
+//根据身份证获取性别
+function getSexByIdcard(idCard){
+    if(idCard.length==15){
+        if(idCard.substr(14,1)%2==0){
+            return '女';
+        }else{
+            return '男';
+        }
+    }else if(idCard.length ==18){
+        if(idCard.substr(16,1)%2==0){
+            return '女';
+        }else{
+            return '男';
+        }
+    }else{
+        return "未知";
+    }
+}
+

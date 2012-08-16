@@ -200,4 +200,16 @@ function special_select($name = "sp_status", $selected = "") {
     return $html;
 }
 
+function status_select($name = "status", $selected = ""){
+    if ("" !== $selected) {
+        $html = '<select name=' . $name . '><option value=' . $selected .
+                '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
+    } else {
+        $html = '<select name=' . $name . '>';
+    }
+
+    $html .='<option value="正常">正常</option><option value="删除/迁出">删除/迁出</option><option value="死亡">死亡</option>';
+    return $html;
+}
+
 ?>

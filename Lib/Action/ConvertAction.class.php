@@ -66,9 +66,10 @@ class ConvertAction extends BaseAction {
             return null;
         }
     }
-    function getYardIdByOldId($oldid){
-        $yard=D("yard");
-        $result=$yard->where("yard_id='".$oldid."'")->find();
+
+    function getYardIdByOldId($oldid) {
+        $yard = D("yard");
+        $result = $yard->where("yard_id='" . $oldid . "'")->find();
         if (!is_null($result)) {
 
             return $result["id"];
@@ -107,7 +108,7 @@ class ConvertAction extends BaseAction {
         $yard = D("Yard");
         foreach ($yard1 as $yardtmp) {
             //$data["id"] = $yardtmp["id"];
-            $data["yard_id"]=$yardtmp["yuanluo_id"];
+            $data["yard_id"] = $yardtmp["yuanluo_id"];
             $data["streed_id"] = $yardtmp["h_address_jlx"];
             $data["name"] = $yardtmp["y_name"];
             $data["building_count"] = $yardtmp["y_ld_count"];
@@ -126,19 +127,19 @@ class ConvertAction extends BaseAction {
         }
         echo "<p>院落表转换，转换yuanluo_base到yard完毕</p>";
     }
-    public function convertyardstaff(){
-        $stuff1=M("yuanluo_staff_info",null)->select();
+
+    public function convertyardstaff() {
+        $stuff1 = M("yuanluo_staff_info", null)->select();
         echo "<p>院落管理信息导入</p>";
-        $stuff=D("yardadmin");
-        foreach($stuff1 as $stufftmp){
-           $data["yard_id"] =  $this->getYardIdByOldId($stufftmp["yuanluo_id"]);
-           $data["job"]=  $this->get_yl_zhiwu($stufftmp["w_zhiwu"]);
-           $data["name"]=  $stufftmp["w_name"];
-           $data["telephone"]=$stufftmp["w_contact_tel"];
-           $data["type"]=  $this->get_yl_w_type($stufftmp["w_type"]);
-           $stuff->create($data);
-           $stuff->add();
-            
+        $stuff = D("yardadmin");
+        foreach ($stuff1 as $stufftmp) {
+            $data["yard_id"] = $this->getYardIdByOldId($stufftmp["yuanluo_id"]);
+            $data["job"] = $this->get_yl_zhiwu($stufftmp["w_zhiwu"]);
+            $data["name"] = $stufftmp["w_name"];
+            $data["telephone"] = $stufftmp["w_contact_tel"];
+            $data["type"] = $this->get_yl_w_type($stufftmp["w_type"]);
+            $stuff->create($data);
+            $stuff->add();
         }
         echo "<p>院落管理信息导入完毕</p>";
     }
@@ -257,17 +258,19 @@ class ConvertAction extends BaseAction {
         }
         echo "<p>居民表转换完成</p>";
     }
-    function up(){
-        $house1=M("house_base",null)->select();
+
+    function up() {
+        $house1 = M("house_base", null)->select();
         echo "baby";
-        $house=D("house");
-        foreach ($house1 as $hs){
-            $oid=$hs["house_id"];
-            $tmp="house_id='".$oid."'";
-            $data["is_fit"]=  $this->getStrByBool($hs["h_bperdoor_accord"]);
+        $house = D("house");
+        foreach ($house1 as $hs) {
+            $oid = $hs["house_id"];
+            $tmp = "house_id='" . $oid . "'";
+            $data["is_fit"] = $this->getStrByBool($hs["h_bperdoor_accord"]);
             $house->where($tmp)->save($data);
         }
     }
+
     function get_guanxi($guanxi) {
         switch ($guanxi) {
             case '1':
@@ -621,8 +624,9 @@ class ConvertAction extends BaseAction {
                 break;
         }
     }
-    function get_yl_w_type($emp){
-      switch ($emp){
+
+    function get_yl_w_type($emp) {
+        switch ($emp) {
             case "1":
                 return "院落管理";
                 break;
@@ -632,8 +636,31 @@ class ConvertAction extends BaseAction {
             case "3":
                 return "环治工作";
                 break;
-           
-        }  
+        }
+    }
+
+    //导入原数据库居民的status
+    public function citizenstatus() {
+        $m_old_citizen = M("People", null);
+        $m_citizen = M("Citizen");
+        //status=4,意味此居民已死亡
+        $old_citizen4 = $m_old_citizen->where("status=4")->select();
+        foreach ($old_citizen4 as $old) {
+            $sfz = $old["p_sfzid"];
+            $new_citizen = $m_citizen->where("id_card=$sfz")->find();
+            $new_citizen["status"] = "死亡";
+            $m_citizen->save($new_citizen);
+        }
+
+        //status=3,意味居民删除或迁出
+        $old_citizen3=$m_old_citizen->where("status=3")->select();
+        foreach ($old_citizen3 as $old) {
+            $sfz = $old["p_sfzid"];
+            $new_citizen = $m_citizen->where("id_card=$sfz")->find();
+            $new_citizen["status"] = "删除/迁出";
+            $m_citizen->save($new_citizen);
+        }
+
     }
 
 }
