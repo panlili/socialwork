@@ -7,10 +7,11 @@
     <js href="__JS__/jquery-1.7.2.js,__JS__/Interface.js" />
 </head>
 <body>
+    <p>数据是本机localhost上的数据，浏览器不允许跨站调用www.jjsqxxpt.com:8181上的数据</p>
     <div>
-        <a href="#"  onclick="getBasic(92,'http://www.jjsqxxpt.com;8181/socialwork/index.php/Interface/');return false;">get basic 92院落</a>
-        <a href="#"  onclick="statisticsByAddress1(92,2,'http://www.jjsqxxpt.com;8181/socialwork/index.php/Interface/');return false;">get detail 92院落 2栋</a>
-        <a href="#"  onclick="getCamlistByYardid(93,'http://www.jjsqxxpt.com;8181/socialwork/index.php/Interface/');return false;">get basic 92cam</a>
+        <a href="#"  onclick="getBasic(92,'http://localhost/socialwork/index.php/Interface/');return false;">get basic 92院落</a>
+        <a href="#"  onclick="statisticsByAddress1(92,2,'http://localhost/socialwork/index.php/Interface/');return false;">get detail 92院落 2栋</a>
+        <a href="#"  onclick="getCamlistByYardid(92,'http://localhost/socialwork/index.php/Interface/');return false;">get basic 92cam</a>
     </div>
     <div id="getCamlistByYardid"></div>
     <div id="getbasic"></div>
