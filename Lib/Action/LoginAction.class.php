@@ -40,6 +40,7 @@ class LoginAction extends Action {
         $condition["_logic"] = "AND";
         $result = $User->where($condition)->find();
         if ($result) {
+            session("username", $result["username"]);
             session("truename", $result["truename"]);
             session("right", $result["right"]);
             session("community", $result["community"]);

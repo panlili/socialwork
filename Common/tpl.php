@@ -200,7 +200,7 @@ function special_select($name = "sp_status", $selected = "") {
     return $html;
 }
 
-function status_select($name = "status", $selected = ""){
+function status_select($name = "status", $selected = "") {
     if ("" !== $selected) {
         $html = '<select name=' . $name . '><option value=' . $selected .
                 '>' . $selected . '</option><option value=' . $selected . '>--请重选--</option>';
@@ -210,6 +210,47 @@ function status_select($name = "status", $selected = ""){
 
     $html .='<option value="正常">正常</option><option value="删除/迁出">删除/迁出</option><option value="死亡">死亡</option>';
     return $html;
+}
+
+//yardwork中根据work_type的数字返回字符
+function get_type_name($work_type) {
+    switch ($work_type) {
+        case 1:
+            return "日常事务";
+            break;
+        case 20:
+            return "其他";
+            break;
+    }
+}
+
+//yardwork中获取status=1,2,3的option，因为要用ajax onchange方法，故不能直接返回select
+function get_status_option($status) {
+
+    $html1 = "<option value=1>发现问题</option>
+        <option value=2>处理中</option>
+        <option value=3>处理完毕</option>";
+    $html2 = "<option value=2>处理中</option>
+        <option value=1>发现问题</option>
+        <option value=3>处理完毕</option>";
+    $html3 = "<option value=3>处理完毕</option>
+        <option value=1>发现问题</option>
+        <option value=2>处理中</option>";
+
+    switch ($status) {
+        case 1:
+            return $html1;
+            break;
+        case 2:
+            return $html2;
+            break;
+        case 3:
+            return $html3;
+            break;
+        default:
+            return $html1;
+            break;
+    }
 }
 
 ?>

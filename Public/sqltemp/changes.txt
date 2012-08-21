@@ -103,3 +103,7 @@
 0816FinishSyzbAndStatus.zip
 	1.完善了生育指标与流动人口生育指标的添加修改，并将元数据库的数据导入
 	2.添加了status，并导入了元数据库的相关数据
+	
+0821AddYardworkTable.zip
+	1. 院落工作日志和问题提交的数据表yardwork建立
+	2. 建立相应的curd页面。

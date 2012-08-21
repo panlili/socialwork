@@ -40,7 +40,10 @@
                 <td>{$each.area}</td>
                 <td>{$each.admin_org}</td>
                 <!--  <td>{$each.admin_name}</td>-->
-                <td><a href="__URL__/{$each.id}">详细信息</a></td>
+                <td>
+                    <a href="__URL__/{$each.id}">详情</a>
+            <php>cs();</php><a href="__URL__/yardwork/{$each.id}">工作</a><php>ce();</php>
+            </td>
             </tr>
         </volist>
         </tbody>

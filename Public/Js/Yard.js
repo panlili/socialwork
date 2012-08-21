@@ -85,6 +85,15 @@ function showCitizen(houseid){
     });
 }
 
+function changeYardworkStatus(path,yardworkid,value){
+    $.get(path+"changeYardworkStatus", {
+        yardworkid:yardworkid,
+        new_status:value
+    },function(){
+        alert("修改状态完成！")
+    });
+}
+
 //为院落添加管理，党支部等信息的ajax
 $(function(){
     $("#common_table td").css("height","15px");

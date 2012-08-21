@@ -103,7 +103,7 @@ class YardAction extends BaseAction {
             $this->redirect("Yard/index");
         }
 
-        $this->assign(array("data" => $data,"page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
+        $this->assign(array("data" => $data, "page_place" => $this->getPagePlace("数据编辑", self::ACTION_NAME)));
         $this->display();
     }
 
@@ -128,6 +128,66 @@ class YardAction extends BaseAction {
         } else {
             session("action_message", $Yard->getError());
             $this->redirect("/Yard/edit/$id"); //必须有第一个斜杠, i was confused!!!
+        }
+    }
+
+    //院落日常工作页面
+    public function yardwork() {
+
+        $yardid = $_GET["id"];
+        $yardname = D("Yard")->where("id=$yardid")->getField("name");
+
+        $m_yardwork = D("Yardwork");
+        $worknormal = $m_yardwork->where(array("yard_id" => $yardid, "status" => 4))->order("into_date desc")->select();
+
+        $map["status"] = array("neq", 4);
+        $map["yard_id"] = $yardid;
+        $workproblem = $m_yardwork->where($map)->order("into_date desc")->select();
+
+        $this->assign("worknormal", $worknormal);
+        $this->assign("workproblem", $workproblem);
+        $this->assign(array("yardname" => $yardname, "yardid" => $yardid,
+            "page_place" => $this->getPagePlace("院落工作数据", self::ACTION_NAME)));
+        $this->display();
+    }
+
+    public function addwork() {
+        $m_yardwork = D("Yardwork");
+        $log_type = $_POST["log_type"];
+        $yard_id = $_POST["yard_id"];
+
+        if ($new_yardwork = $m_yardwork->create()) {
+            if ($log_type === '1') {
+                $new_yardwork["status"] = 4;
+            } else {
+                $new_yardwork["status"] = 1;
+            }
+
+            $new_yardwork["work_name"] = $_SESSION["truename"];
+            $new_yardwork["work_uid"] = $_SESSION["username"];
+            if (false !== $m_yardwork->add($new_yardwork)) {
+                session("action_message", "添加数据成功！");
+                $this->redirect("/Yard/yardwork/$yard_id");
+            } else {
+                session("action_message", "数据库写入失败！");
+                $this->redirect("/Yard/yardwork/$yard_id");
+            }
+        } else {
+            session("action_message", $m_yardwork->getError());
+            $this->redirect("Yard/index");
+        }
+    }
+
+    //ajax动态修改问题的状态
+    public function changeYardworkStatus() {
+        //yardworkid:yardworkid,
+        //new_status:new_status
+        if ($this->isAjax()) {
+            $workid = $_GET["yardworkid"];
+            $new_status = $_GET["new_status"];
+            M("Yardwork")->where("id=$workid")->setField("status", $new_status);
+        } else {
+            $this->redirect("Yard/index");
         }
     }
 

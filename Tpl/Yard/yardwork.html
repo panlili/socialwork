@@ -1,0 +1,93 @@
+<script type="text/javascript">
+    $(function(){
+        $("input[name=into_date]").datepicker();
+    });
+</script>
+
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+
+    <form action="__URL__/addwork" method="post">
+        <table id="common_table" style="width: auto;">
+            <tr>
+                <td>院落ID及院落名：</td>
+                <td>{$yardid},{$yardname}</td>
+            </tr>
+            <tr>
+                <td>日志类型：</td>
+                <td>
+                    <select name="log_type">
+                        <option value="1">日常工作</option>
+                        <option value="2">提交问题</option>
+                        </selec>
+                </td>
+            </tr>
+            <tr>
+                <td>工作类别：</td>
+                <td>
+                    <select name="work_type">
+                        <option value="1">日常事务</option>
+                        <option value="20">其他</option>
+                        </selec>
+                </td>
+            </tr>
+            <tr>
+                <td>入院时间：</td>
+                <td><input type="text" name="into_date"/></td>
+            </tr>
+            <tr>
+                <td>详细描述：</td>
+                <td>
+                    <textarea cols="30" rows="5" name="work_event"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><input name="yard_id" value="{$yardid}" hidden="true"/></td>
+                <td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
+        </table>
+    </form>
+
+    <p>此院落日常工作：</p>
+    <table id="common_table2" style= "word-break:break-all">
+        <tr>
+            <th>状态</th>
+            <th>入院时间</th>
+            <th>工作类型</th>
+            <th>工作人员</th>
+            <th>日志及问题</th>
+        </tr>
+        <volist name="worknormal" id="each">
+            <tr>
+                <td>日常工作</td>
+                <td>{$each.into_date}</td>
+                <td>{$each.work_type|get_type_name}</td><!-- tpl.php 函数中处理 -->
+                <td>{$each.work_name}，{$each.work_uid}</td>
+                <td>{$each.work_event}</td>
+            </tr>
+        </volist>
+    </table>
+
+    <p style="margin-top: 5px;">此院落问题：</p>
+    <table id="common_table" style= "word-break:break-all">
+        <tr>
+
+            <th>入院时间</th>
+            <th>工作类型</th>
+            <th>工作人员</th>
+            <th>日志及问题</th><th>状态(重选修改)</th>
+        </tr>
+        <volist name="workproblem" id="each">
+            <tr>
+
+                <td>{$each.into_date}</td>
+                <td>{$each.work_type|get_type_name}</td><!-- tpl.php 函数中处理 -->
+                <td>{$each.work_name}，{$each.work_uid}</td>
+                <td>{$each.work_event}</td> <td>
+                    <select name="status" onchange="changeYardworkStatus('__APP__/Yard/','{$each.id}',$(this).val());">
+                        {$each.status|get_status_option}
+                    </select>
+                </td>
+            </tr>
+        </volist>
+    </table>
+</div>

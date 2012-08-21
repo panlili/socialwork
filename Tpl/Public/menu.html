@@ -1,6 +1,6 @@
 <div id="menu">
     <p>系统导航</p>
-    <ul> 
+    <ul>
         <li class="main">
             <a href="{:U('Map/index')}"><img src="__IMAGE__/menu/menu_map.png"/>3D地图导航</a>
         </li>
@@ -19,6 +19,16 @@
                 <li><a href="#">4.发展党员</a></li>
             </ul>
         </li>
+        <li class="main">
+            <a href="#" class="menu_1"><img src="__IMAGE__/menu/menu_help.png"/>公共安全</a>
+            <ul class="menu_2">
+                <li><a href="#">1.应急预案</a></li>
+                <li><a href="#">2.消防栓位置</a></li>
+                <li><a href="#">3.应急避难点</a></li>
+                <li><a href="#">4.安全员</a></li>
+            </ul>
+        </li>
+
         <li class="main">
             <a href="{:U('Ngo/index')}"><img src="__IMAGE__/menu/menu_org.png"/>社会组织</a>
         </li>
@@ -54,13 +64,13 @@
         </li>
         <li class="main">
             <a href="#" class="menu_1"><img src="__IMAGE__/menu/menu_system.png"/>系统功能</a>
-            <ul class="menu_2">                
+            <ul class="menu_2">
                 <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Map/mapset">1.地图参数设置</a></li>'; ?>
-                
-                 <li><a href="{:U('Admin/edit')}">2.修改个人信息</a></li>
+
+                <li><a href="{:U('Admin/edit')}">2.修改个人信息</a></li>
                 <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">3.用户管理</a></li>'; ?>
-               
+
             </ul>
-        </li>        
-    </ul>   
+        </li>
+    </ul>
 </div>
