@@ -57,7 +57,7 @@ class SearchAction extends BaseAction {
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
-        echo $tmp;
+        //echo $tmp;
         $tmp0 = $_SESSION['sCitizenKey'];
         $count = $citizen->relation('house')->where($tmp0)->count();
         $this->assign("totalcount", $count);
