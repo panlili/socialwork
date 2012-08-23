@@ -11,9 +11,9 @@ $(function(){
         var option1='<option value="AND">并且</option><option value="OR">或者</option>';
         var sKeyRelation='<select id="sKeyRelation'+s1+'" name="sKeyRelation'+s1+'">'+option1+'</select>';
         s1=s1+1;
-        var option2='<option value="name">姓名</option><option value="sex">性别</option><option value="id_card">身份证号</option><option value="birthday">出生日期</option><option value="age">年龄</option><option value="education">文化程度#</option><option value="political_status">政治面貌#</option><option value="marry_info">婚姻状况#</option><option value="employee">就业情况#</option><option value="relation_with_householder">与户主关系#</option><option value="is_fertility">是否领取计划生育指标@</option><option value="is_special">是否特殊人群@</option><option value="is_dibao">是否低保@</option><option value="is_canji">是否残疾@</option><option value="is_lianzu">是否廉租房@</option><option value="is_long_live">是否长寿金@</option>';
+        var option2='<option value="">请选择检索条件</option><option value="name">姓名</option><option value="address">地址</option><option value="is_fit">人户一致@</option><option value="sex">性别</option><option value="id_card">身份证号</option><option value="birthday">出生日期</option><option value="age">年龄</option><option value="education">文化程度#</option><option value="political_status">政治面貌#</option><option value="marry_info">婚姻状况#</option><option value="employee">就业情况#</option><option value="relation_with_householder">与户主关系#</option><option value="is_fertility">是否领取计划生育指标@</option><option value="is_special">是否特殊人群@</option><option value="is_dibao">是否低保@</option><option value="is_canji">是否残疾@</option><option value="is_lianzu">是否廉租房@</option><option value="is_long_live">是否长寿金@</option><option value="status">人员状态</option>';
         var sKeyName='<select id="sKeyName'+s1+'" name="sKeyName'+s1+'" class="skeyname">'+option2+'</select>';
-        var sKeyValue='<input id="sValue'+s1+'" name="sValue'+s1+'" type="text"></input>';
+        var sKeyValue='';
         var strHtml='<tr>'+'<td>'+sKeyRelation+'</td>'+'<td>'+sKeyName+'</td>'+'<td class="skeyvalue'+s1+'">'+sKeyValue+'</td>'+'</tr>';
         $("table#common_table").append(strHtml);
         addoption();
@@ -30,6 +30,30 @@ $(function(){
             s2=$(this).attr("name").charAt(8);
             var strX;
             switch(sKey){
+                case "address":
+                    //                    strX='<input type="text" id="sValue'+s2+'" name="sValue'+s2+'"></input>';
+                    
+                    $.get("/socialwork/index.php/search/getStreetSelect", function(data){
+                        //alert("Data Loaded: " + data);
+                        strX='街道<select name="sValue'+s2+'">';
+                        strX+=data;
+                        strX+='</select>';
+                        strX+='门牌号<input type="text" size="5" id="sValue'+s2+'-1" name="sValue'+s2+'-1"></input><br>';
+                        strX+='楼栋号<input type="text" size="5" id="sValue'+s2+'-2" name="sValue'+s2+'-2"></input>';
+                        strX+='单元号<input type="text" size="5" id="sValue'+s2+'-3" name="sValue'+s2+'-3"></input>';
+                        strX+='楼层<input type="text" size="5" id="sValue'+s2+'-4" name="sValue'+s2+'-4"></input>';
+                        strX+='房屋号<input type="text" size="5" id="sValue'+s2+'-5" name="sValue'+s2+'-5"></input>';
+                        strX+='附号（平房）<input type="text" size="5" id="sValue'+s2+'-6" name="sValue'+s2+'-6"></input>';
+                        $(".skeyvalue"+s2).empty().append(strX);
+                    });
+                   
+                    //$(".skeyvalue").empty().append(strX);
+                    
+                    break;
+                case "is_fit":
+                    strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
                 case "age":
                     strX='从<input id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>至<input id="sValue'+s2+'-1" name="sValue'+s2+'-1" type="text"></input>岁';
                     $(".skeyvalue"+s2).empty().append(strX);
@@ -86,6 +110,10 @@ $(function(){
                     break;
                 case "is_long_live":
                     strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "status":
+                    strX='<select name="sValue'+s2+'"><option value="正常">正常</option><option value="删除/迁出">删除/迁出</option><option value="死亡">死亡</option></select>';
                     $(".skeyvalue"+s2).empty().append(strX);
                     break;
                 default:

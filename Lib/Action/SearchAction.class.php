@@ -27,14 +27,14 @@ class SearchAction extends BaseAction {
                 if ($searchkey[$x] !== "") {
                     switch ($searchkey[$i]) {
                         case "address":
-                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "" : "";
-                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "号" : "";
-                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "栋" : "";
-                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "单元" : "";
-                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "楼" : "";
-                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "号" : "";
-                            $new_address .= $searchkey[$y] ? "附" . $searchkey[$y] . "号" : "";
-                            $tmp = $tmp . $searchkey[$i] . " like '%" . $new_address . "%' " . $searchkey[$x] . " ";
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "%" : "";
+                            $new_address .= $searchkey[$y . "-1"] ? $searchkey[$y . "-1"] . "号%" : "";
+                            $new_address .= $searchkey[$y . "-2"] ? $searchkey[$y . "-2"] . "栋%" : "";
+                            $new_address .= $searchkey[$y . "-3"] ? $searchkey[$y . "-3"] . "单元%" : "";
+                            $new_address .= $searchkey[$y . "-4"] ? $searchkey[$y . "-4"] . "楼%" : "";
+                            $new_address .= $searchkey[$y . "-5"] ? $searchkey[$y . "-5"] . "号%" : "";
+                            $new_address .= $searchkey[$y . "-6"] ? "附" . $searchkey[$y . "-6"] . "号%" : "";
+                            $tmp = $tmp. $searchkey[$i] . " like '%" . $new_address . "' " . $searchkey[$x] . " ";
                             break;
                         case "age":
                             $cunrrentYear = date("Y");
@@ -57,7 +57,7 @@ class SearchAction extends BaseAction {
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
-//echo $tmp;
+        echo $tmp;
         $tmp0 = $_SESSION['sCitizenKey'];
         $count = $citizen->relation('house')->where($tmp0)->count();
         $this->assign("totalcount", $count);
@@ -100,6 +100,7 @@ class SearchAction extends BaseAction {
         }
         $this->display();
     }
+
 //搜索房屋
     public function housesearch() {
         $searchkey = $_POST;
@@ -117,14 +118,14 @@ class SearchAction extends BaseAction {
                     switch ($searchkey[$i]) {
                         case "address":
                             $new_address .= $searchkey[$y] ? $searchkey[$y] . "%" : "";
-                            $new_address .= $searchkey[$y."-1"] ? $searchkey[$y."-1"] . "号%" : "";
-                            $new_address .= $searchkey[$y."-2"] ? $searchkey[$y."-2"] . "栋%" : "";
-                            $new_address .= $searchkey[$y."-3"] ? $searchkey[$y."-3"] . "单元%" : "";
-                            $new_address .= $searchkey[$y."-4"] ? $searchkey[$y."-4"] . "楼%" : "";
-                            $new_address .= $searchkey[$y."-5"] ? $searchkey[$y."-5"] . "号%" : "";
-                            $new_address .= $searchkey[$y."-6"] ? "附" . $searchkey[$y."-6"] . "号%" : "";
-                            $tmp = $tmp . $searchkey[$i] . " like '%" . $new_address . "' " . $searchkey[$x] . " ";                            
-                            break;                        
+                            $new_address .= $searchkey[$y . "-1"] ? $searchkey[$y . "-1"] . "号%" : "";
+                            $new_address .= $searchkey[$y . "-2"] ? $searchkey[$y . "-2"] . "栋%" : "";
+                            $new_address .= $searchkey[$y . "-3"] ? $searchkey[$y . "-3"] . "单元%" : "";
+                            $new_address .= $searchkey[$y . "-4"] ? $searchkey[$y . "-4"] . "楼%" : "";
+                            $new_address .= $searchkey[$y . "-5"] ? $searchkey[$y . "-5"] . "号%" : "";
+                            $new_address .= $searchkey[$y . "-6"] ? "附" . $searchkey[$y . "-6"] . "号%" : "";
+                            $tmp = $tmp . $searchkey[$i] . " like '%" . $new_address . "' " . $searchkey[$x] . " ";
+                            break;
                         default :
                             $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
                     }
@@ -132,7 +133,6 @@ class SearchAction extends BaseAction {
             }
         }
         //echo $tmp;
-
         //$house = D("House");
         $house = D("View_house_youfu");
         if ($tmp != "") {
