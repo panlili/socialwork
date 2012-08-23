@@ -108,5 +108,8 @@
 	1. 院落工作日志和问题提交的数据表yardwork建立
 	2. 建立相应的curd页面。
 
-0823ChangeAddressInHouse
+0823ChangeAddressInHouse.rar
     1.更改了house表的address字段，以便于用地址查询。
+	
+0823AddCellphoneToCitizen.zip
+	1. 为居民表添加了cellphone字段，即手机号码。
