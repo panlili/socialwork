@@ -229,6 +229,33 @@ class ConvertAction extends BaseAction {
         echo "<p>房屋表转换完成</p>";
     }
 
+    public function uphouse_addr() {
+        //如果有大量数据的循环，最好不要将实例模型的方法M或D放在循环里面
+        //否则每次循环都会生成一个对象，效率会异常低下
+        $m_house = M("House");
+        $m_yard = M("Yard");
+        $i = 0;
+
+        $list = $m_house->select();
+        foreach ($list as $data) {
+            $id = $data["id"];
+            $new_address = "";
+            if ($data["is_floor"] === "是") {
+                $new_address = $m_yard->where("id=$data[yard_id]")->getField('address');
+                $new_address .= $data["address_other"] ? "附" . $data["address_other"] . "号" : "";
+            } else {
+                $new_address = $m_yard->where("id=$data[yard_id]")->getField("address");
+                $new_address .= $data['address_1'] !== '0' ? $data['address_1'] . "栋" : "";
+                $new_address .= $data['address_2'] !== '0' ? $data['address_2'] . "单元" : "";
+                $new_address .= $data['address_3'] !== '0' ? $data['address_3'] . "楼" : "";
+                $new_address .= $data['address_4'] !== '0' ? $data['address_4'] . "号" : "";
+            }
+            $m_house->where("id=$id")->setField("address", $new_address);
+            $i++;
+        }
+        echo $i . "条数据转换完成！";
+    }
+
     public function convertcitizen() {
         $people1 = M("people", null)->select();
         echo "<p>居民表转换，转换people到citizen";
@@ -653,14 +680,13 @@ class ConvertAction extends BaseAction {
         }
 
         //status=3,意味居民删除或迁出
-        $old_citizen3=$m_old_citizen->where("status=3")->select();
+        $old_citizen3 = $m_old_citizen->where("status=3")->select();
         foreach ($old_citizen3 as $old) {
             $sfz = $old["p_sfzid"];
             $new_citizen = $m_citizen->where("id_card=$sfz")->find();
             $new_citizen["status"] = "删除/迁出";
             $m_citizen->save($new_citizen);
         }
-
     }
 
 }

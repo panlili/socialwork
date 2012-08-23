@@ -15,9 +15,24 @@ $(function(){
             var strX;
             switch(sKey){
                 case "address":
-                    strX='<input type="text" id="sValue'+s2+'" name="sValue'+s2+'"></input>';
+                    //                    strX='<input type="text" id="sValue'+s2+'" name="sValue'+s2+'"></input>';
+                    
+                    $.get("/socialwork/index.php/search/getStreetSelect", function(data){
+                        //alert("Data Loaded: " + data);
+                        strX='街道<select name="sValue'+s2+'">';
+                        strX+=data;
+                        strX+='</select>';
+                        strX+='门牌号<input type="text" size="5" id="sValue'+s2+'-1" name="sValue'+s2+'-1"></input><br>';
+                        strX+='楼栋号<input type="text" size="5" id="sValue'+s2+'-2" name="sValue'+s2+'-2"></input>';
+                        strX+='单元号<input type="text" size="5" id="sValue'+s2+'-3" name="sValue'+s2+'-3"></input>';
+                        strX+='楼层<input type="text" size="5" id="sValue'+s2+'-4" name="sValue'+s2+'-4"></input>';
+                        strX+='房屋号<input type="text" size="5" id="sValue'+s2+'-5" name="sValue'+s2+'-5"></input>';
+                        strX+='附号（平房）<input type="text" size="5" id="sValue'+s2+'-6" name="sValue'+s2+'-6"></input>';
+                        $(".skeyvalue"+s2).empty().append(strX);
+                    });
+                   
                     //$(".skeyvalue").empty().append(strX);
-                    $(".skeyvalue"+s2).empty().append(strX);
+                    
                     break;
                 case "is_fit":
                     strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
@@ -53,8 +68,8 @@ $(function(){
                     break;
                 
                 default:
-                    strX='<input id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>';
-                    $(".skeyvalue"+s2).empty().append(strX);
+            //                    strX='<input id="sValue'+s2+'" name="sValue'+s2+'" type="text"></input>';
+            //                    $(".skeyvalue"+s2).empty().append(strX);
             }
         })
     }
@@ -65,9 +80,9 @@ $(function(){
         var option1='<option value="AND">并且</option><option value="OR">或者</option>';
         var sKeyRelation='<select id="sKeyRelation'+s1+'" name="sKeyRelation'+s1+'">'+option1+'</select>';
         s1=s1+1;
-        var option2='<option value="address">地址</option><option value="is_fit">人户一致@</option><option value="is_free">是否空闲@</option><option value="is_lianzu">是否廉租房@</option><option value="is_floor">是否是平房@</option><option value="is_jjsyf">是否经济适用房@</option><option value="is_taishu">是否台属@</option><option value="is_junshu">是否军属@</option><option value="is_ranmei">是否燃油补贴@</option><option value="contactor">联系人</option><option value="telephone">联系方式</option></select>';
+        var option2='<option value="">请选择查询条件</option><option value="address">地址</option><option value="is_fit">人户一致@</option><option value="is_free">是否空闲@</option><option value="is_lianzu">是否廉租房@</option><option value="is_floor">是否是平房@</option><option value="is_jjsyf">是否经济适用房@</option><option value="is_taishu">是否台属@</option><option value="is_junshu">是否军属@</option><option value="is_ranmei">是否燃油补贴@</option><option value="contactor">联系人</option><option value="telephone">联系方式</option></select>';
         var sKeyName='<select id="sKeyName'+s1+'" class="skeyname" name="sKeyName'+s1+'">'+option2+'</select>';
-        var sKeyValue='<input id="sValue'+s1+'" name="sValue'+s1+'" type="text"></input>';
+        var sKeyValue='';
         var strHtml='<tr>'+'<td>'+sKeyRelation+'</td>'+'<td>'+sKeyName+'</td>'+'<td class="skeyvalue'+s1+'">'+sKeyValue+'</td>'+'</tr>';
         $("table#common_table").append(strHtml);
         addoption();

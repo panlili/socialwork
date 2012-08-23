@@ -15,7 +15,7 @@ class SearchAction extends BaseAction {
         $this->display();
     }
 
-    //接收客户端提交的表单，建立查询语句，查询后渲染模版，然后返回html数据
+    //搜索居民表，接收客户端提交的表单，建立查询语句，查询后渲染模版，然后返回html数据
     public function dosearch() {
         $searchkey = $_POST;
         //该变量构建了一个sql语句的条件表达式
@@ -26,6 +26,16 @@ class SearchAction extends BaseAction {
                 $x = "sKeyRelation" . substr($i, -1);
                 if ($searchkey[$x] !== "") {
                     switch ($searchkey[$i]) {
+                        case "address":
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "" : "";
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "号" : "";
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "栋" : "";
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "单元" : "";
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "楼" : "";
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "号" : "";
+                            $new_address .= $searchkey[$y] ? "附" . $searchkey[$y] . "号" : "";
+                            $tmp = $tmp . $searchkey[$i] . " like '%" . $new_address . "%' " . $searchkey[$x] . " ";
+                            break;
                         case "age":
                             $cunrrentYear = date("Y");
                             $b1 = $cunrrentYear - $searchkey[$y];
@@ -47,7 +57,7 @@ class SearchAction extends BaseAction {
         if ($tmp != "") {
             $_SESSION['sCitizenKey'] = $tmp;
         }
-
+//echo $tmp;
         $tmp0 = $_SESSION['sCitizenKey'];
         $count = $citizen->relation('house')->where($tmp0)->count();
         $this->assign("totalcount", $count);
@@ -90,7 +100,7 @@ class SearchAction extends BaseAction {
         }
         $this->display();
     }
-
+//搜索房屋
     public function housesearch() {
         $searchkey = $_POST;
         $orflag = 0;
@@ -103,13 +113,25 @@ class SearchAction extends BaseAction {
             if (substr($i, 0, 8) == "sKeyName") {
                 $y = "sValue" . substr($i, -1);
                 $x = "sKeyRelation" . substr($i, -1);
-                if ($searchkey[$x] == "AND" || $searchkey[$x] == "OR") {
-                    $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
-                } else {
-                    $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' ";
+                if ($searchkey[$x] !== "") {
+                    switch ($searchkey[$i]) {
+                        case "address":
+                            $new_address .= $searchkey[$y] ? $searchkey[$y] . "%" : "";
+                            $new_address .= $searchkey[$y."-1"] ? $searchkey[$y."-1"] . "号%" : "";
+                            $new_address .= $searchkey[$y."-2"] ? $searchkey[$y."-2"] . "栋%" : "";
+                            $new_address .= $searchkey[$y."-3"] ? $searchkey[$y."-3"] . "单元%" : "";
+                            $new_address .= $searchkey[$y."-4"] ? $searchkey[$y."-4"] . "楼%" : "";
+                            $new_address .= $searchkey[$y."-5"] ? $searchkey[$y."-5"] . "号%" : "";
+                            $new_address .= $searchkey[$y."-6"] ? "附" . $searchkey[$y."-6"] . "号%" : "";
+                            $tmp = $tmp . $searchkey[$i] . " like '%" . $new_address . "' " . $searchkey[$x] . " ";                            
+                            break;                        
+                        default :
+                            $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
+                    }
                 }
             }
         }
+        //echo $tmp;
 
         //$house = D("House");
         $house = D("View_house_youfu");
@@ -173,28 +195,39 @@ class SearchAction extends BaseAction {
             header("Content-Disposition:attachment;filename=house.xls");
             $this->assign("list", $list);
             echo $this->fetch("htoexcel");
-        }  else {
-             header("Content-Type:text/html; charset=utf-8");
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
             echo "你没有权限执行导出操作";
         }
     }
 
     public function ctoexcel() {
-        if($_SESSION["right"]=="9"){
-        $list = D("Citizen")->relation('house')->where($_SESSION['sCitizenKey'])->select();
+        if ($_SESSION["right"] == "9") {
+            $list = D("Citizen")->relation('house')->where($_SESSION['sCitizenKey'])->select();
 
-        foreach ($list as &$list2) {
-            $list2["id_card"] = "'" . $list2["id_card"];
-        }
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=citizen.xls");
-        $this->assign("list", $list);
-        echo $this->fetch("ctoexcel");
-        }  else {
-             header("Content-Type:text/html; charset=utf-8");
+            foreach ($list as &$list2) {
+                $list2["id_card"] = "'" . $list2["id_card"];
+            }
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=citizen.xls");
+            $this->assign("list", $list);
+            echo $this->fetch("ctoexcel");
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
             echo "你没有权限执行导出操作";
         }
-        
+    }
+
+    public function getStreetSelect() {
+        $m_street = D("Street");
+        $streetlist = $m_street->select();
+
+        $html = '<option value="">----请选择----</option>';
+
+        foreach ($streetlist as $y) {
+            $html .= '<option value=' . $y[name] . '>' . $y[name] . '</option>';
+        }
+        echo $html;
     }
 
 }
