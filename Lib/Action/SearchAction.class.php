@@ -227,6 +227,7 @@ class SearchAction extends BaseAction {
         foreach ($streetlist as $y) {
             $html .= '<option value=' . $y[name] . '>' . $y[name] . '</option>';
         }
+        header("Content-Type:text/html; charset=utf-8");
         echo $html;
     }
 
