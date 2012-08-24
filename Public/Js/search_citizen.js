@@ -11,7 +11,7 @@ $(function(){
         var option1='<option value="AND">并且</option><option value="OR">或者</option>';
         var sKeyRelation='<select id="sKeyRelation'+s1+'" name="sKeyRelation'+s1+'">'+option1+'</select>';
         s1=s1+1;
-        var option2='<option value="">请选择检索条件</option><option value="name">姓名</option><option value="address">地址</option><option value="is_fit">人户一致@</option><option value="sex">性别</option><option value="id_card">身份证号</option><option value="birthday">出生日期</option><option value="age">年龄</option><option value="education">文化程度#</option><option value="political_status">政治面貌#</option><option value="marry_info">婚姻状况#</option><option value="employee">就业情况#</option><option value="relation_with_householder">与户主关系#</option><option value="is_fertility">是否领取计划生育指标@</option><option value="is_special">是否特殊人群@</option><option value="is_dibao">是否低保@</option><option value="is_canji">是否残疾@</option><option value="is_lianzu">是否廉租房@</option><option value="is_long_live">是否长寿金@</option><option value="status">人员状态</option>';
+        var option2='<option value="">请选择检索条件</option><option value="name">姓名</option><option value="address">地址</option><option value="is_fit">人户一致@</option><option value="sex">性别</option><option value="id_card">身份证号</option><option value="birthday">出生日期</option><option value="age">年龄</option><option value="education">文化程度#</option><option value="political_status">政治面貌#</option><option value="marry_info">婚姻状况#</option><option value="employee">就业情况#</option><option value="relation_with_householder">与户主关系#</option><option value="is_fertility">是否领取计划生育指标@</option><option value="is_dibao">是否低保@</option><option value="is_canji">是否残疾@</option><option value="is_lianzu">是否廉租房@</option><option value="is_long_live">是否长寿金@</option><option value="status">人员状态</option><option value="telephone">座机电话</option><option value="cellphone">手机电话</option><option value="sp_status">特殊人群#</option><option value="sp_is_xfww">——信访维稳@</option><option value="sp_sqjz">——社区矫正@</option><option value="sp_xsjj">——刑释解教@</option><option value="sp_flgcy">——法轮功成员@</option><option value="sp_qtry">——其他人员@</option>';
         var sKeyName='<select id="sKeyName'+s1+'" name="sKeyName'+s1+'" class="skeyname">'+option2+'</select>';
         var sKeyValue='';
         var strHtml='<tr>'+'<td>'+sKeyRelation+'</td>'+'<td>'+sKeyName+'</td>'+'<td class="skeyvalue'+s1+'">'+sKeyValue+'</td>'+'</tr>';
@@ -114,6 +114,30 @@ $(function(){
                     break;
                 case "status":
                     strX='<select name="sValue'+s2+'"><option value="正常">正常</option><option value="删除/迁出">删除/迁出</option><option value="死亡">死亡</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "sp_status":
+                    strX='<select name="sValue'+s2+'"><option value="不是">不是</option><option value="处理中">处理中</option><option value="息诉息访">息诉息访</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "sp_is_xfww":
+                    strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "sp_sqjz":
+                    strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "sp_xsjj":
+                    strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "sp_flgcy":
+                    strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
+                    $(".skeyvalue"+s2).empty().append(strX);
+                    break;
+                case "sp_qtry":
+                    strX='<select name="sValue'+s2+'"><option value="是">是</option><option value="否">否</option></select>';
                     $(".skeyvalue"+s2).empty().append(strX);
                     break;
                 default:
