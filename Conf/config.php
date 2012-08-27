@@ -35,6 +35,9 @@ return array(
     'URL_ROUTE_RULES' => array(
         //controller: Street
         'Street/edit/:id\d' => 'Street/edit',
+        //controller: Safe
+        'Safe/delete/:id\d' =>'Safe/delete',
+        'Safe/download/:id\d' =>'Safe/download',
         //controller: Yard
         'Yard/:id\d' => 'Yard/read',
         'Yard/edit/:id\d' => 'Yard/edit',

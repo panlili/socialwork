@@ -113,5 +113,10 @@
 	
 0823AddCellphoneToCitizen.zip
 	1. 为居民表添加了cellphone字段，即手机号码。
+	
 0823changeCitizenView.rar
     1.更改了有关citizen的视图，和house连接，让可以根据address字段查询
+	
+0827ChangeAddonTableStructure.zip
+	1.为附件表添加了几个字段，使得在公共安全模块能够上传文件
+	2.以后备份数据库，只备份修改的表
