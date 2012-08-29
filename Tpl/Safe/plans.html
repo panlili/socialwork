@@ -5,7 +5,7 @@
         <thead>
         <th>序号</th>
         <th>文件名</th>
-        <th>上传日期</th>
+        <th>发布日期</th>
         <th>上传人</th>
         <th>说明</th>
         <th colspan="2">操作</th>
@@ -15,7 +15,7 @@
             <tr>
                 <td class="number"></td>
                 <td>{$each.filename}</td>
-                <td>{$each.uptime|date="Y-m-d",###}</td>
+                <td>{$each.releasedate}</td>
                 <td>{$each.upuser}</td>
                 <td>{$each.filenote}</td>
                 <td><a href="__URL__/download/{$each.id}">下载</a></td>
@@ -30,6 +30,7 @@
                 <td>上传新文件【word xls pdf jpeg gif png jpg】</td>
                 <td>
                     <input name="uploadFile" type="file" />
+                    <input name="releasedate" type="text"  value="预案发布时间" onfocus="javascript:$(this).val('')" />
                     <input type="text" name="filenote" value="文件相关说明" onfocus="javascript:$(this).val('')"/>
                     <input type="submit" value="提交" />
                 </td>

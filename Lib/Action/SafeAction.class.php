@@ -48,6 +48,7 @@ class SafeAction extends BaseAction {
         $data['filenote'] = $_POST["filenote"];
         $data['filepath'] = $filepath;
         $data['uptime'] = time();
+        $data["releasedate"] = $_POST["releasedate"];
         $data['status'] = 1;
         $data['upuser'] = $_SESSION["truename"];
         $list = $model->add($data);

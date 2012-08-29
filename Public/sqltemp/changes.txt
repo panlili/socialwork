@@ -120,3 +120,6 @@
 0827ChangeAddonTableStructure.zip
 	1.为附件表添加了几个字段，使得在公共安全模块能够上传文件
 	2.以后备份数据库，只备份修改的表
+	
+0829AddReleasedateToAddonTable.zip
+	1.为addon表添加了releasedate,手工记录安全预案发布时间
