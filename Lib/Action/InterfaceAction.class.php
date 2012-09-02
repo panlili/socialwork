@@ -4,6 +4,7 @@ class InterfaceAction extends Action {
 
     public function _initialize() {
         header("content-type:text/html;charset=utf-8");
+        C("DB_PREFIX", "sum_");
     }
 
     public function test() {
