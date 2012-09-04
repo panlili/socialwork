@@ -6,7 +6,7 @@
 
 <div id="content">
     <div id="page_place"><p>当前位置：{$page_place}</p></div>
-
+    <php>cs();</php>
     <form action="__URL__/addwork" method="post">
         <table id="common_table" style="width: auto;">
             <tr>
@@ -42,11 +42,11 @@
                 </td>
             </tr>
             <tr>
-                <td><input name="yard_id" value="{$yardid}" hidden="true"/></td>
+                <td><input name="yard_id" value="{$yardid}" type="hidden"/></td>
                 <td><input type="submit" value="添加" name="submit" /><input type="reset" value="清空" /></td></tr>
         </table>
     </form>
-
+    <php>ce();</php>
     <p>此院落日常工作：</p>
     <table id="common_table2" style= "word-break:break-all">
         <tr>
@@ -74,7 +74,10 @@
             <th>入院时间</th>
             <th>工作类型</th>
             <th>工作人员</th>
-            <th>日志及问题</th><th>状态(重选修改)</th>
+            <th>日志及问题</th>
+        <php>cs();</php>
+        <th>状态(重选修改)</th>
+        <php>ce();</php>
         </tr>
         <volist name="workproblem" id="each">
             <tr>
@@ -82,11 +85,13 @@
                 <td>{$each.into_date}</td>
                 <td>{$each.work_type|get_type_name}</td><!-- tpl.php 函数中处理 -->
                 <td>{$each.work_name}，{$each.work_uid}</td>
-                <td>{$each.work_event}</td> <td>
-                    <select name="status" onchange="changeYardworkStatus('__APP__/Yard/','{$each.id}',$(this).val());">
-                        {$each.status|get_status_option}
-                    </select>
-                </td>
+                <td>{$each.work_event}</td>
+            <php>cs();</php><td>
+                <select name="status" onchange="changeYardworkStatus('__APP__/Yard/','{$each.id}',$(this).val());">
+                    {$each.status|get_status_option}
+                </select>
+            </td>
+            <php>ce();</php>
             </tr>
         </volist>
     </table>

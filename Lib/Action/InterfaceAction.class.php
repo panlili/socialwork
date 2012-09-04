@@ -1,10 +1,10 @@
 <?php
 
-class InterfaceAction extends Action {
+class InterfaceAction extends BaseAction {
 
     public function _initialize() {
+        parent::_initialize();
         header("content-type:text/html;charset=utf-8");
-        C("DB_PREFIX", "sum_");
     }
 
     public function test() {
