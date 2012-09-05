@@ -17,13 +17,7 @@ class YardModel extends RelationModel {
             "foreign_key" => "yard_id",
             "mapping_type" => HAS_MANY,
         ),
-        //has one map mark
-        "MapMark" => array(
-            "class_name" => "MapMark",
-            "mapping_name" => "mapmark",
-            "foreign_key" => "target",
-            "mapping_type" => HAS_ONE,
-        ),
+       
          //has many yardadmin
         "Yardadmin" => array(
             "class_name" => "Yardadmin",
