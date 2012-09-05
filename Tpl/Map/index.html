@@ -1,110 +1,14 @@
-{__NOLAYOUT__}
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>{$Think.MODULE_NAME}:{$Think.ACTION_NAME}</title>
-        <script type="text/javascript">
-            var mapWidth={$mapset['mapWidth']};                    //地图原始图宽
-            var mapHeight={$mapset['mapHeight']};                  //地图原始图高
-            var mapAreaHeight={$mapset['mapAreaHeight']};                //地图区域高度
-            var mapAreaWidth={$mapset['mapAreaWidth']};                 //地图区域宽度
-            var pieceHeight={$mapset['pieceHeight']};                  //地图切片高度
-            var pieceWidth={$mapset['pieceWidth']};                   //地图切片宽度
-            var piecePath='{$mapset['piecePath']}';            //地图切片在服务器的路径
-            var methodeAddress='{$mapset['methodeAddress']}';       //地图方法的完整地址
-            var mapbaseX={$mapset['mapbaseX']};                       //地图基准X值
-            var mapbaseY={$mapset['mapbaseY']};                       //地图基准Y值
-        </script>
-        <css href="__CSS__/common.css,__CSS__/map.css" />
-        <js href="__JS__/jquery-1.7.2.js,__JS__/common.js,__JS__/Map.js,__JS__/jplugin/jquery.mousewheel.min.js" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <style type="text/css">
-            #mapcontainer{
-                background-color: gray;
-                height: {$mapset['mapAreaHeight']}px;
-            width:{$mapset['mapAreaWidth']}px;
-            overflow: hidden;
-            }
-            #map{
-                position: relative;
-                height: {$mapset['mapAreaHeight']}px;
-            width:{$mapset['mapAreaWidth']}px;
-            top:0;
-            left:0;
-            z-index: 2;
-            }
-            #dragmap{
-                background-image: url('../Image/drag-back.png');
-                position: absolute;
-                height: {$mapset['mapAreaHeight']}px;
-            width:{$mapset['mapAreaWidth']}px;
-            top:0;
-            left: 0;
-            z-index: 999;
-            cursor: pointer;
-            }
-        </style>
-    </head>
-    <body onload="init();">
-        <div id="container">
-            <include file="Public:header" />
-            <div id="page_middle">
-                 <include file="Public:menu" />
-                <div id="content">
-                    <div id="mapcontainer">
-                        <div id="dragmap"></div>
-                        <div id="map"></div>
-
-                        <div id="tag">
-
-                        </div>
-                        <div id="tip"></div>
-                        <div id="tip1"></div>
-                        <div id="popmenu"><pre id="menu_markyard">标记院落</pre><pre id="menu_markcam">标记监控</pre></div>
-                        <div id="mapcontrol"><table width="100%" border="0">
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td><img id="map_up" src="__IMAGE__/map/map_up.gif" width="32" height="32" alt="up" /></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td><img id="map_left" src="__IMAGE__/map/map_left.gif" width="32" height="32" alt="left" /></td>
-                                    <td>&nbsp;</td>
-                                    <td><img id="map_right" src="__IMAGE__/map/map_right.gif" width="32" height="32" alt="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td><img id="map_down" src="__IMAGE__/map/map_down.gif" width="32" height="32" alt="down" /></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div id="addYardMark">
-                            <form action="" id="YardMark">
-                                <input type="hidden" name="x" value=""></input>
-                                <input type="hidden" name="y" value=""></input>
-                                <input type="hidden" name="type" value="1"></input>
-                                选择院落：<br />
-                                <select name="target"></select>
-                                <input id="addyardok" type="button" value="确定" />
-                                <input id="addyardcancel" type="button" value="放弃" />
-                            </form></div>
-                        <div id="addCamMark">
-                            <form action="" id="CamMark">
-                                <input type="hidden" name="x" value=""></input>
-                                <input type="hidden" name="y" value=""></input>
-                                <input type="hidden" name="type" value="3"></input>
-                                选择摄像头：<br />
-                                <select name="target"></select>
-                                <input id="addcamok" type="button" value="确定" />
-                                <input id="addcamcancel" type="button" value="放弃" />
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div style="clear:both" />
-            </div>
-            <include file="Public:footer" />
-        </div>
-    </body>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+<head>
+<title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="google" value="notranslate" />         
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/map/Scripts/jquery-1.7.2.js"></script>
+<link rel="stylesheet" type="text/css" href="/map/Content/Yard.css" />
+<body> 
+<center><a href="/map/" target="_blank"><img src="\map\map_preview.jpg" border=0></a></center>
+</body>
+   
 </html>
