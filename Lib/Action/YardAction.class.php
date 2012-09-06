@@ -18,10 +18,6 @@ class YardAction extends BaseAction {
         $this->display();
     }
 
-    public function map() {
-        $this->display();
-    }
-
     public function read() {
         $Yard = D("Yard");
         $Yardadmin = D("Yardadmin");
@@ -194,15 +190,16 @@ class YardAction extends BaseAction {
     //information 页面的ajax操作
     public function information() {
         //水井坊院落列表
+        $m_house = D("House");
         $yard_list_sjf = D("Yard")->field("id,name,address")->where("id<2000000")->select();
         foreach ($yard_list_sjf as &$y) {
-            $address1 = D("House")->field("address_1")->where(array("yard_id" => $y["id"]))->group("address_1")->select();
+            $address1 = $m_house->field("address_1")->where(array("yard_id" => $y["id"]))->group("address_1")->select();
             $y["address1count"] = count($address1);
         }
         //交子院落列表
         $yard_list_jz = D("Yard")->field("id,name,address")->where("id>=2000000")->select();
         foreach ($yard_list_jz as &$y) {
-            $address1 = D("House")->field("address_1")->where(array("yard_id" => $y["id"]))->group("address_1")->select();
+            $address1 = $m_house->field("address_1")->where(array("yard_id" => $y["id"]))->group("address_1")->select();
             $y["address1count"] = count($address1);
         }
 
@@ -214,49 +211,6 @@ class YardAction extends BaseAction {
         }
         $this->assign(array("page_place" => $this->getPagePlace("院落信息总览", self::ACTION_NAME)));
         $this->display();
-    }
-
-    //无用了
-    public function showHouse() {
-        if ($this->isAjax()) {
-            $yardid = $this->_get("id");
-
-            import("@.ORG.Page");
-            $count = D("House")->where("yard_id='$yardid'")->count();
-            //lib、org下修改过的分页类，可实现ajax分页。在文件的157行注入了setNumber方法，避免翻页后无序号的问题。
-            $p = new Page($count, 30, 'type=1', 'content_middle', 'pages');
-            $p->setConfig('header', '条');
-            $p->setConfig('prev', "<");
-            $p->setConfig('next', '>');
-            $p->setConfig('first', '<<');
-            $p->setConfig('last', '>>');
-            $page = $p->show();
-
-            $houselist = D("House")->where("yard_id='$yardid'")->relation("citizen")->order("address_1 asc")
-                            ->limit($p->firstRow . ',' . $p->listRows)->select();
-            //no pages
-            //$houselist = D("House")->where("yard_id='$yardid'")->relation("citizen")->order("address_1 asc")->select();
-            $this->assign(array("houselist" => $houselist, "page" => $page));
-            $content = $this->fetch("_middle");
-            header("content-type:text/html;charset=utf-8");
-            echo $content;
-        } else {
-            $this->redirect("information");
-        }
-    }
-
-    //无用了
-    public function showCitizen() {
-        if ($this->isAjax()) {
-            $houseid = $this->_get("id");
-            $citizenlist = D("Citizen")->where("house_id='$houseid'")->select();
-            $this->assign("citizenlist", $citizenlist);
-            $content = $this->fetch("_middle");
-            header("content-type:text/html;charset=utf-8");
-            echo $content;
-        } else {
-            $this->redirect("information");
-        }
     }
 
     //添加管理信息,对应的数据插入到yardadmin表，与此表多对一关系
@@ -305,8 +259,7 @@ class YardAction extends BaseAction {
             }
             //detail页面直接显示院落的统计表，下面层次的需要点击button动态统计加载
             $address1 = $this->hasCollection($yardid);
-            $houses = $this->houseCollection($yardid);
-            $tongjitable = $this->statistics($houses, $yardid, $address1, "", "", $yard["name"]);
+            $tongjitable = $this->statistics($yardid, $address1, "", "", $yard["name"]);
 
             //最后一步，返回完整html给调用的js函数showYardDetail
             if ($header == "has") {
@@ -330,8 +283,7 @@ class YardAction extends BaseAction {
             $address_1 = $this->_get("address_1");
 
             $address_2 = $this->hasCollection($yardid, $address_1);
-            $houses = $this->houseCollection($yardid, $address_1);
-            $tongjitable = $this->statistics($houses, $yardid, $address_1, $address_2, "", $address_1 . "栋");
+            $tongjitable = $this->statistics($yardid, $address_1, $address_2, "", $address_1 . "栋");
             header("content-type:text/html;charset=utf-8");
             echo $tongjitable;
         } else {
@@ -346,8 +298,7 @@ class YardAction extends BaseAction {
             $address_2 = $this->_get("address_2");
 
             $address_3 = $this->hasCollection($yardid, $address_1, $address_2);
-            $houses = $this->houseCollection($yardid, $address_1, $address_2);
-            $tongjitable = $this->statistics($houses, $yardid, $address_1, $address_2, $address_3, $address_2 . "单元");
+            $tongjitable = $this->statistics($yardid, $address_1, $address_2, $address_3, $address_2 . "单元");
             header("content-type:text/html;charset=utf-8");
             echo $tongjitable;
         } else {
@@ -362,8 +313,9 @@ class YardAction extends BaseAction {
             $address_2 = $this->_get("address_2");
             $address_3 = $this->_get("address_3");
 
+            //只有这个地方调用了一次houseCollection函数
             $houses = $this->houseCollection($yardid, $address_1, $address_2, $address_3);
-            $tongjitable = $this->statistics($houses, $yardid, $address_1, $address_2, $address_3, $address_3 . "楼");
+            $tongjitable = $this->statistics($yardid, $address_1, $address_2, $address_3, $address_3 . "楼");
             $url = __APP__ . "/House";
             $html = "";
             foreach ($houses as $house) {
@@ -380,7 +332,58 @@ class YardAction extends BaseAction {
         }
     }
 
-    //根据范围获取house集合
+    //从sjf_house_youfu,sjf_citizen_youfu表中进行统计
+    protected function statistics($yardid, $address_1 = "", $address_2 = "", $address_3 = "", $scope = "") {
+        $tongjiarray = array();
+        $v_house_youfu = M("HouseYoufu");
+        $v_citizen_youfu = M("CitizenYoufu");
+
+        $query = "yard_id=$yardid";
+        //如果address_1是数组，说明是返回hasCollection的集合，当前查询是院落层次
+        if (!is_array($address_1)) {
+            $query .= " AND address_1=$address_1";
+            if (!is_array($address_2)) {
+                $query.=" AND address_2=$address_2";
+                if (!is_array($address_3)) {
+                    $query.=" AND address_3=$address_3";
+                }
+            }
+        }
+
+        //第一行，房屋相关统计
+        $tongjiarray["housenumber"] = $v_house_youfu->where($query)->count();
+        $tongjiarray["houseislianzu"] = $v_house_youfu->where($query . " AND is_lianzu='是'")->count();
+        $tongjiarray["houseisdibao"] = $v_house_youfu->where($query . " AND is_dibao='是'")->count();
+        $tongjiarray["houseranmei"] = $v_house_youfu->where($query . " AND ranmei='是'")->count();
+        $tongjiarray["houseistaishu"] = $v_house_youfu->where($query . " AND is_taishu='是'")->count();
+        $tongjiarray["houseisjunshu"] = $v_house_youfu->where($query . " AND is_junshu='是'")->count();
+        $tongjiarray["houseisjjsyf"] = $v_house_youfu->where($query . " AND is_jjsyf='是'")->count();
+
+        //第二行，居民相关统计
+        $tongjiarray["citizensum"] = $v_citizen_youfu->where($query)->count();
+        $tongjiarray["citizenzhanzhu"] = $v_citizen_youfu->where($query . " AND relation_with_householder='流动人口_暂住'")->count();
+        $tongjiarray["citizenparty"] = $v_citizen_youfu->where($query . " AND political_status='党员'")->count();
+        $tongjiarray["citizenislonglive"] = $v_citizen_youfu->where($query . " AND is_long_live='是'")->count();
+        $tongjiarray["citizenisdibao"] = $v_citizen_youfu->where($query . " AND is_dibao='是'")->count();
+        $tongjiarray["citizeniscanji"] = $v_citizen_youfu->where($query . " AND is_canji='是'")->count();
+        $tongjiarray["citizenspecial"] = $v_citizen_youfu->where($query . " AND sp_status!='不是'")->count();
+
+        //栋数的buttons
+        if ("" == $address_3 && "" == $address_2 && "" != $address_1 && "" != $yardid)
+            $this->assign(array("yardid" => $yardid, "address_1" => $address_1));
+        //单元的buttons
+        if ("" == $address_3 && "" != $address_2 && "" != $address_1 && "" != $yardid)
+            $this->assign(array("yardid" => $yardid, "address_1" => $address_1, "address_2" => $address_2));
+        //楼层的buttons
+        if ("" != $address_3 && "" != $address_2 && "" != $address_1 && "" != $yardid)
+            $this->assign(array("yardid" => $yardid, "address_1" => $address_1, "address_2" => $address_2, "address_3" => $address_3));
+
+        $this->assign(array("tongji" => $tongjiarray, "scope" => $scope));
+        $content = $this->fetch("_statistics");
+        return $content;
+    }
+
+    //根据范围获取house集合，只在最后一级，及addressthree中使用一次
     protected function houseCollection($yardid, $address_1 = "", $address_2 = "", $address_3 = "") {
         $model = D("House");
         if ("" == $address_3) {
@@ -420,112 +423,6 @@ class YardAction extends BaseAction {
             return $model->field("address_3")->where(array("yard_id" => $yardid, "address_1" => $address_1,
                         "address_2" => $address_2))->group("address_3")->select();
         }
-    }
-
-    //传递房屋的列表，统计与居民和房屋信息相关的12个统计项的table html+下一层的buttons
-    protected function statistics($houses, $yardid, $address_1 = "", $address_2 = "", $address_3 = "", $scope = "") {
-        $tongjiarray = array();
-
-        //获取此院落下居民人数, 暂住人口, 现有住户, 党员
-        $citizensum = 0;
-        $citizenzhanzhu = 0;
-        $housenumber = 0;
-        $citizenparty = 0;
-        //低保, 享受廉租房(house中的is_lowrent), 享受燃煤补贴(house中的is_fuel), 享受长寿金
-        $citizendibao = 0;
-        $houseislowrent = 0;
-        $houseisfuel = 0;
-        $citizenislonglive = 0;
-        //残疾人,特殊人员,台属,军属
-        $citizendisable = 0;
-        $citizenspecial = 0;
-        $housetaiwan = 0;
-        $housearmy = 0;
-
-        $housenumber = count($houses);
-        $citizen = D("Citizen");
-        foreach ($houses as $house) {
-            $house_id = $house["id"];
-            $citizensum+=$citizen->where(array("house_id" => $house_id))->count();
-            $citizenzhanzhu+=$citizen->where(array("house_id" => $house_id, "relation_with_householder" => "暂住人口"))->count();
-            $citizenparty+=$citizen->where(array("house_id" => $house_id, "political_status" => "党员"))->count();
-            $citizendibao+=$citizen->where(array("house_id" => $house_id, "is_low_level" => "是"))->count();
-            $citizenislonglive+=$citizen->where(array("house_id" => $house_id, "is_long_live" => "是"))->count();
-            $citizendisable+=$citizen->where(array("house_id" => $house_id, "is_disability" => "是"))->count();
-            $citizenspecial+=$citizen->where(array("house_id" => $house_id, "is_special" => "是"))->count();
-
-            $houseislowrent+=$house["is_lowrent"] == "是" ? 1 : 0;
-            $houseisfuel+=$house["is_fuel"] == "是" ? 1 : 0;
-            $housetaiwan+=$house["is_taiwan"] == "是" ? 1 : 0;
-            $housearmy+=$house["is_army"] == "是" ? 1 : 0;
-        }
-
-        //各个层次房屋总数的链接
-        $tongjiarray["housenumber"] = $this->link($housenumber, "table", $yardid, $address_1, $address_2, $address_3);
-
-        //各层次享受廉租福利
-        $tongjiarray["houseislowrent"] = $this->link($houseislowrent, "table/lowrent", $yardid, $address_1, $address_2, $address_3);
-
-        //各层次享受燃油补贴
-        $tongjiarray["houseisfuel"] = $this->link($houseisfuel, "table/fuel", $yardid, $address_1, $address_2, $address_3);
-
-        //各层次台属
-        $tongjiarray["housetaiwan"] = $this->link($housetaiwan, "table/taiwan", $yardid, $address_1, $address_2, $address_3);
-
-        //各层次军属
-        $tongjiarray["housearmy"] = $this->link($housearmy, "table/army", $yardid, $address_1, $address_2, $address_3);
-
-        //各层次居民
-        $tongjiarray["citizensum"] = $this->link($citizensum, "ctable", $yardid, $address_1, $address_2, $address_3);
-
-        //居民是否是党员那些，因为可以导出excel，一下就能筛选，就不做了。
-        $tongjiarray["citizenzhanzhu"] = $citizenzhanzhu;
-        $tongjiarray["citizenparty"] = $citizenparty;
-        $tongjiarray["citizendibao"] = $citizendibao;
-        $tongjiarray["citizenislonglive"] = $citizenislonglive;
-        $tongjiarray["citizendisable"] = $citizendisable;
-        $tongjiarray["citizenspecial"] = $citizenspecial;
-
-        //栋数的buttons
-        if ("" == $address_3 && "" == $address_2 && "" != $address_1 && "" != $yardid)
-            $this->assign(array("yardid" => $yardid, "address_1" => $address_1));
-        //单元的buttons
-        if ("" == $address_3 && "" != $address_2 && "" != $address_1 && "" != $yardid)
-            $this->assign(array("yardid" => $yardid, "address_1" => $address_1, "address_2" => $address_2));
-        //楼层的buttons
-        if ("" != $address_3 && "" != $address_2 && "" != $address_1 && "" != $yardid)
-            $this->assign(array("yardid" => $yardid, "address_1" => $address_1, "address_2" => $address_2, "address_3" => $address_3));
-
-        $this->assign(array("tongji" => $tongjiarray, "scope" => $scope));
-        $content = $this->fetch("_statistics");
-        return $content;
-    }
-
-    protected function link($item, $action, $yardid, $address_1, $address_2, $address_3) {
-        $link = "";
-        if ($item != 0) {
-            if (is_array($address_1)) {
-                //院落链接
-                //$link = <a target=_blank href="__APP__/House/$action_$yardid_$address1_$address2_address3>$item</a>
-                $link = "<a target=_blank href=__APP__/House/" . $action . "_" . $yardid . ">" . $item . "</a>";
-            } else {
-                if (is_array($address_2)) {
-                    //楼栋链接
-                    $link = "<a target=_blank href=__APP__/House/" . $action . "_" . $yardid . "_" . $address_1 . ">" . $item . "</a>";
-                } else {
-                    if (is_array($address_3)) {
-                        //单元链接
-                        $link = "<a target=_blank href=__APP__/House/" . $action . "_" . $yardid . "_" . $address_1 . "_" . $address_2 . ">" . $item . "</a>";
-                    } else {
-                        //楼层链接
-                        $link = "<a target=_blank href=__APP__/House/" . $action . "_" . $yardid . "_" . $address_1 . "_" . $address_2 . "_" . $address_3 . ">" . $item . "</a>";
-                    }
-                }
-            }
-        } else {
-            $link = "<a href='#' onclick='javascript:return false'>0</a>";
-        }
-        return $link;
     }
 
 }
