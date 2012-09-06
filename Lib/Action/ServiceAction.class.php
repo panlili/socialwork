@@ -4,8 +4,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-class ServiceAction extends BaseAction{
-     const ACTION_NAME = "服务信息";
+
+class ServiceAction extends BaseAction {
+
+    const ACTION_NAME = "服务信息";
 
     //index方法,展示数据列表
     public function index() {
@@ -34,7 +36,7 @@ class ServiceAction extends BaseAction{
 
     public function newone() {
         if (is_numeric($this->_get("id"))) {
-         
+
             $this->display();
         } else {
             $this->assign(array("page_place" => $this->getPagePlace("添加服务信息", self::ACTION_NAME)));
@@ -45,9 +47,9 @@ class ServiceAction extends BaseAction{
     public function add() {
         $Service = D("Service");
         if ($newdata = $Service->create()) {
-            $newdata["district"]="锦江区";
-            $newdata["street_office"]="水井坊街道办事处";
-            $newdata["community"]="水井坊社区";
+            $newdata["district"] = "锦江区";
+            $newdata["street_office"] = "水井坊街道办事处";
+            $newdata["community"] = "水井坊社区";
             $data = $Service->add($newdata);
             if (FALSE !== $data) {
                 //all redirect to House, because only add Service from house page
@@ -92,9 +94,9 @@ class ServiceAction extends BaseAction{
         $id = $this->_post("id");
         $Service = D("Service");
         if ($newdata = $Service->create()) {
-           $newdata["district"]="锦江区";
-            $newdata["street_office"]="水井坊街道办事处";
-            $newdata["community"]="水井坊社区";
+            $newdata["district"] = "锦江区";
+            $newdata["street_office"] = "水井坊街道办事处";
+            $newdata["community"] = "水井坊社区";
             $data = $Service->save($newdata);
             if (false !== $data) {
                 session("action_message", "更新数据成功！");
@@ -110,12 +112,19 @@ class ServiceAction extends BaseAction{
     }
 
     public function toexcel() {
-        $houseid = $this->_get("id");
-        $list = D("Old")->relation(array("house"))->where("house_id='$houseid'")->select();
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=Old_in_house_$houseid.xls");
-        $this->assign("list", $list);
-        echo $this->fetch();
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
+            $houseid = $this->_get("id");
+            $list = D("Old")->relation(array("house"))->where("house_id='$houseid'")->select();
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=Old_in_house_$houseid.xls");
+            $this->assign("list", $list);
+            echo $this->fetch();
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "你没有权限执行导出操作";
+        }
     }
+
 }
+
 ?>

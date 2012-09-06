@@ -211,7 +211,7 @@ class CitizenAction extends BaseAction {
     }
 
     public function toexcel() {
-        if ($_SESSION["right"] == "9") {
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
             $houseid = $this->_get("id");
             $list = D("Citizen")->relation(array("house"))->where("house_id='$houseid'")->select();
             header("Content-type:application/vnd.ms-excel");

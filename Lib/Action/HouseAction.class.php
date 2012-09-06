@@ -346,10 +346,15 @@ class HouseAction extends BaseAction {
     public function toexcel() {
         //$yardid = $this->_get("id");
         //$list = D("House")->relation(array("yard", "citizen"))->where("yard_id='$yardid'")->select();
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=houses.xls");
-        $this->assign("list", session("list"));
-        echo $this->fetch();
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=houses.xls");
+            $this->assign("list", session("list"));
+            echo $this->fetch();
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "您没有权限执行导出操作";
+        }
     }
 
     public function ctable() {
@@ -373,10 +378,15 @@ class HouseAction extends BaseAction {
 
     //统计表格中不同层次居民的列表
     public function toexcel2() {
-        header("Content-type:application/vnd.ms-excel");
-        header("Content-Disposition:attachment;filename=citizens.xls");
-        $this->assign("list", session("clist"));
-        echo $this->fetch();
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
+            header("Content-type:application/vnd.ms-excel");
+            header("Content-Disposition:attachment;filename=citizens.xls");
+            $this->assign("list", session("clist"));
+            echo $this->fetch();
+        } else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "您没有权限执行导出操作";
+        }
     }
 
 }

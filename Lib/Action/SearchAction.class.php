@@ -186,7 +186,7 @@ class SearchAction extends BaseAction {
     }
 
     public function htoexcel() {
-        if ($_SESSION["right"] == "9") {
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
             $list = D("House")->where($_SESSION['sHouseKey'])->select();
             foreach ($list as &$list2) {
                 $list2["id_card"] = "'" . $list2["id_card"];
@@ -202,7 +202,7 @@ class SearchAction extends BaseAction {
     }
 
     public function ctoexcel() {
-        if ($_SESSION["right"] == "9") {
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
             $list = D("Citizen")->relation('house')->where($_SESSION['sCitizenKey'])->select();
 
             foreach ($list as &$list2) {

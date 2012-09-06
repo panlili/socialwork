@@ -113,7 +113,7 @@ class NgoAction extends BaseAction {
     }
 
     public function toexcel() {
-        if ($_SESSION["right"] == "9") {
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
             $list = D("Ngo")->select();
             header("Content-type:application/vnd.ms-excel");
             header("Content-Disposition:attachment;filename=ngo.xls");

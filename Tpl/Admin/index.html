@@ -5,7 +5,7 @@
             <tr id="{$each.id}">
                 <td class="number"></td>
                 <td>{$each.username}</td>
-                <td><if condition="$each.right eq 1">超级用户<else/>一般用户</if></td>
+                <td><if condition="$each.right eq 1">领导<else/>一般工作人员</if></td>
             <td>{$each.truename}</td>
             <td>
             <switch name="each.community">
@@ -24,7 +24,7 @@
             <tr><td>用户名*:</td><td><input type="text" name="username" /></td></tr>
             <tr><td>密码*:</td><td><input type="password" name="password" /></td></tr>
             <tr><td>用户权限:</td><td><select name="right">
-                        <option value="1">超级用户</option><option value="0">一般用户</option>
+                        <option value="1">领导</option><option value="0">一般工作人员</option>
                     </select></td></tr>
             <tr><td>姓名*:</td><td><input type="text" name="truename" value="" /></td></tr>
             <tr><td>所属单位:</td><td>

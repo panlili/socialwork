@@ -44,7 +44,7 @@ class OldAction extends BaseAction {
     public function add() {
         $Old = D("Old");
         if ($newdata = $Old->create()) {
-            $newdata["birthday"] = $this->getBirthdayByIdCard(trim($this->_post("id_card")));
+            //$newdata["birthday"] = $this->getBirthdayByIdCard(trim($this->_post("id_card")));
             $data = $Old->add($newdata);
             if (FALSE !== $data) {
                 //all redirect to House, because only add Old from house page
@@ -189,7 +189,7 @@ class OldAction extends BaseAction {
     }
 
     public function toexcel() {
-        if ($_SESSION["right"] == "9") {
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
             $houseid = $this->_get("id");
             $list = D("Old")->relation(array("house"))->where("house_id='$houseid'")->select();
             header("Content-type:application/vnd.ms-excel");
