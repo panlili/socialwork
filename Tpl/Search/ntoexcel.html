@@ -1,0 +1,36 @@
+{__NOLAYOUT__}
+<meta charset="utf-8" />
+<style type="text/css">
+    table{border:1px solid black;}
+    th,td{border:1px solid black;}
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>社会组织名称</th>
+            <th>负责人</th>
+            <th>联系电话</th>
+            <th>成立日期</th>
+            <th>登记备案机关</th>
+            <th>业务内容</th>
+            <th>简介</th>
+            <th>数据录入时间</th>
+        </tr>
+    </thead>
+    <tbody>
+    <volist name="list" id="each">
+        <tr>
+            <td>{$each.id}</td>
+            <td>{$each.name}</td>
+            <td>{$each.chairman}</td>
+            <td>{$each.telephone}</td>
+            <td>{$each.register_date}</td>
+            <td>{$each.registerplace}</td>
+            <td>{$each.scope}</td>
+            <td>{$each.introduce}</td>
+            <td>{$each.create_time}</td>
+        </tr>
+    </volist>
+</tbody>
+</table>

@@ -46,7 +46,8 @@
             <ul class="menu_2">
                 <li><a href="{:U('Search/citizen')}">1.居民（人）信息</a></li>
                 <li><a href="{:U('Search/house')}">2.房屋（户）信息</a></li>
-                <li><a href="{:U('Statistic/index')}">3.民生民情统计</a></li>
+                <li><a href="{:U('Search/ngo')}">3.社会组织信息</a></li>
+                <li><a href="{:U('Statistic/index')}">4.民生民情统计</a></li>
             </ul>
         </li>
         <li class="main">
@@ -66,8 +67,8 @@
             <a href="#" class="menu_1"><img src="__IMAGE__/menu/menu_system.png"/>系统功能</a>
             <ul class="menu_2">               
 
-                <li><a href="{:U('Admin/edit')}">2.修改个人信息</a></li>
-                <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">3.用户管理</a></li>'; ?>
+                <li><a href="{:U('Admin/edit')}">1.修改个人信息</a></li>
+                <?php if(9==$_SESSION["right"]) echo '<li><a href="__APP__/Admin/index">2.用户管理</a></li>'; ?>
 
             </ul>
         </li>

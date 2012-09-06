@@ -1,0 +1,24 @@
+<div id="content">
+    <div id="page_place"><p>当前位置：{$page_place}</p></div>
+    <div id="searchContainer">
+        <form id="searchKey" action="" method="post">
+            <table width="100%" border="0" id="common_table">
+                <tr>
+                    <th width="15%">条件连接方式</th>
+                    <th width="25%">查询条件</th>
+                    <th>查询词输入</th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><select class="skeyname" name="sKeyName0" ><option value="">请选择查询条件</option><option value="name">组织名称</option><option value="chairman">负责人</option><option value="telephone">负责人电话</option><option value="register_date">成立日期</option><option value="registerplace">登记备案机关</option><option value="scope">业务内容</option><option value="introduce">简介</option></select></td>
+                    <td class="skeyvalue0"></td>
+                </tr>
+            </table>
+            <input type="button" id="addSearchKey" value="添加搜索条件"></input>
+            <input type="button" id="delSearchKey" value="删除搜索条件"></input>
+            <input type="button" id="dosearch" value="搜索"></input>
+            <a href="__URL__/ntoexcel"><img src="__IMAGE__/icon_excel.gif"></img>导出Excel</a>
+        </form>
+    </div>
+    <div id="searchResult"></div>
+</div>

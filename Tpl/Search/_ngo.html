@@ -1,0 +1,92 @@
+{__NOLAYOUT__}
+<meta charset="utf-8" />
+<!--<style type="text/css">
+    table{border:1px solid black;}
+    th,td{border:1px solid black;}
+</style>-->
+<script type="text/javascript">
+    $(function(){
+        $("#tabs").tabs();
+    });
+</script>
+总共{$totalcount|default=0}个
+<div id="tabs">
+    <ul>
+        <present name="sjflist"><li><a href="#tabs-1">水井坊社区</a></li></present>
+        <present name="jzlist"><li><a href="#tabs-2">交子社区</a></li></present>
+    </ul>
+    <present name="sjflist">
+        <div id="tabs-1">
+            <table id="common_table2">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>社会组织名称</th>
+                        <th>负责人</th>
+                        <th>联系电话</th>
+                        <th>成立日期</th>
+                        <th>登记备案机关</th>
+                        <th>业务内容</th>
+                        <th>简介</th>
+                        <th>数据录入时间</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <volist name="sjflist" id="each">
+                    <tr>
+                        <td>{$each.id}</td>
+                        <td>{$each.name}</td>
+                        <td>{$each.chairman}</td>
+                        <td>{$each.telephone}</td>
+                        <td>{$each.register_date}</td>
+                        <td>{$each.registerplace}</td>
+                        <td>{$each.scope}</td>
+                        <td>{$each.introduce}</td>
+                        <td>{$each.create_time}</td>
+                        <td><a href="__APP__/house/{$each.id}">详细信息</a></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="green-black" id="pages1">{$page1}</div>
+        </div>
+    </present>
+    <present name="jzlist">
+        <div id="tabs-2">
+            <table id="common_table2">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>社会组织名称</th>
+                        <th>负责人</th>
+                        <th>联系电话</th>
+                        <th>成立日期</th>
+                        <th>登记备案机关</th>
+                        <th>业务内容</th>
+                        <th>简介</th>
+                        <th>数据录入时间</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <volist name="jzlist" id="each">
+                    <tr>
+                        <td>{$each.id}</td>
+                        <td>{$each.name}</td>
+                        <td>{$each.chairman}</td>
+                        <td>{$each.telephone}</td>
+                        <td>{$each.register_date}</td>
+                        <td>{$each.registerplace}</td>
+                        <td>{$each.scope}</td>
+                        <td>{$each.introduce}</td>
+                        <td>{$each.create_time}</td>
+                        <td><a href="__APP__/house/{$each.id}">详细信息</a></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+            <div class="green-black" id="pages2">{$page2}</div>
+        </div>
+    </present>
+</div>
