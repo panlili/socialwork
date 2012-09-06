@@ -4,20 +4,6 @@ class NgoAction extends BaseAction {
 
     const ACTION_NAME = "社会组织";
 
-    public function _initialize() {
-        if (!session("?truename"))
-            $this->redirect("Login/login");
-
-        switch ($this->_session("community")) {
-            case 0: C("DB_PREFIX", "sum_");
-                break;
-            case 1: C("DB_PREFIX", "sjf_");
-                break;
-            case 2: C("DB_PREFIX", "sjf_");
-                break;
-        }
-    }
-
     public function index() {
         $Ngo = D("Ngo");
         import("ORG.Util.Page");
@@ -123,7 +109,7 @@ class NgoAction extends BaseAction {
             header("Content-Type:text/html; charset=utf-8");
             echo "你没有权限执行导出操作";
         }
-        
+
     }
 
 }

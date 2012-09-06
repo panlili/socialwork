@@ -69,8 +69,7 @@ function ce() {
 //根据用户社区的不同设定不同标题
 function setHeader() {
     if (C("DB_PREFIX") === "sjf_") {
-        if ($Think . MODULE_NAME === "Login" || $Think . MODULE_NAME === "Ngo"
-                || $Think . MODULE_NAME === "Party" || $Think . MODULE_NAME === "Parter"
+        if ($Think . MODULE_NAME === "Login" || $Think . MODULE_NAME === "Party" || $Think . MODULE_NAME === "Parter"
                 || $Think . MODULE_NAME === "Admin" || $Think . MODULE_NAME == "Safe") {
             echo "街道办事处";
         } else {

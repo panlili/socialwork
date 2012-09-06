@@ -126,3 +126,6 @@
 	
 0906AddSixViewForStatisticTable.zip
 	1.为yard information的统计表格增加了6个视图，改变统计表格的数据源
+	
+0907AddJzNgoTable.zip
+	1.新建了jz_ngo的table,ngo还是要分社区干了。
