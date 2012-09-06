@@ -123,3 +123,6 @@
 	
 0829AddReleasedateToAddonTable.zip
 	1.为addon表添加了releasedate,手工记录安全预案发布时间
+	
+0906AddSixViewForStatisticTable.zip
+	1.为yard information的统计表格增加了6个视图，改变统计表格的数据源
