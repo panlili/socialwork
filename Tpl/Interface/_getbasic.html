@@ -3,9 +3,9 @@
 <table>
     <tr><td rowspan="6" style="width:20%;">基本情况</td><td style="width:20%;">院落地址</td><td>{$data_yard.address}</td></tr>
     <tr><td>院落名称</td><td>{$data_yard.name}</td></tr>
-    <tr><td>房屋栋数</td><td>{$data_yard.building_count}栋</td></tr>
-    <tr><td>建筑年代</td><td>{$data_yard.building_age}年</td></tr>
-    <tr><td>建筑面积</td><td>{$data_yard.area}平米</td></tr>
+    <tr><td>房屋栋数</td><td>{$data_yard.building_count}</td></tr>
+    <tr><td>建筑年代</td><td>{$data_yard.building_age} 年</td></tr>
+    <tr><td>建筑面积</td><td>{$data_yard.area}㎡</td></tr>
     <tr><td>自治组织机构</td><td>{$data_yard.admin_org}</td></tr>
 </table>
 
@@ -14,7 +14,7 @@
     <input type="button" value="院落管理情况" onclick="showTable('admintable')"/>
     <input type="button" value="院落党支部" onclick="showTable('partytable')"/>
     <input type="button" value="环治工作" onclick="showTable('cleantable')"/>
-    <a href="/socialwork/index.php/Yard/yardwork/{$data_yard.id}" target="_blank">院落工作</a>
+    <input type="button" value="院落工作" onclick="window.open('/socialwork/index.php/Yard/yardwork/{$data_yard.id}')"/>
 </span>
 <div>
     <table id="admintable" style="display:none;">

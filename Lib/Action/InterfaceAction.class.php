@@ -248,17 +248,21 @@ class InterfaceAction extends BaseAction {
 					
 					//累加到一起
 					$Alltongjiarray['housenumber']+=$tongjiarray['housenumber'];
+					$Alltongjiarray['houseislianzu']+=$tongjiarray['houseislianzu'];
+					$Alltongjiarray['houseisdibao']+=$tongjiarray['houseisdibao'];
+					$Alltongjiarray['houseranmei']+=$tongjiarray['houseranmei'];
+					$Alltongjiarray['houseistaishu']+=$tongjiarray['houseistaishu'];
+					$Alltongjiarray['houseisjunshu']+=$tongjiarray['houseisjunshu'];
+					$Alltongjiarray['houseisjjsyf']+=$tongjiarray['houseisjjsyf'];
+					
 					$Alltongjiarray['citizensum']+=$tongjiarray['citizensum'];
 					$Alltongjiarray['citizenzhanzhu']+=$tongjiarray['citizenzhanzhu'];
 					$Alltongjiarray['citizenparty']+=$tongjiarray['citizenparty'];
-					$Alltongjiarray['citizendibao']+=$tongjiarray['citizendibao'];
-					$Alltongjiarray['houseislowrent']+=$tongjiarray['houseislowrent'];
-					$Alltongjiarray['houseisfuel']+=$tongjiarray['houseisfuel'];
 					$Alltongjiarray['citizenislonglive']+=$tongjiarray['citizenislonglive'];
-					$Alltongjiarray['citizendisable']+=$tongjiarray['citizendisable'];
+					$Alltongjiarray['citizenisdibao']+=$tongjiarray['citizenisdibao'];
+					$Alltongjiarray['citizeniscanji']+=$tongjiarray['citizeniscanji'];
 					$Alltongjiarray['citizenspecial']+=$tongjiarray['citizenspecial'];
-					$Alltongjiarray['housetaiwan']+=$tongjiarray['housetaiwan'];
-					$Alltongjiarray['housearmy']+=$tongjiarray['housearmy'];
+					
 					
 				} else {
 					echo "<br>无此id的院落";
@@ -278,65 +282,38 @@ class InterfaceAction extends BaseAction {
 	//为Getmore返回统计数组
     protected function statistics_getmore($houses, $yardid, $address_1 = "", $address_2 = "", $address_3 = "", $scope = "") {
         $tongjiarray = array();
+        $v_house_youfu = M("HouseYoufu");
+        $v_citizen_youfu = M("CitizenYoufu");
 
-        //获取此院落下居民人数, 暂住人口, 现有住户, 党员
-        $citizensum = 0;
-        $citizenzhanzhu = 0;
-        $housenumber = count($houses);
-        $citizenparty = 0;
-        //低保, 享受廉租房(house中的is_lowrent), 享受燃煤补贴(house中的is_fuel), 享受长寿金
-        $citizendibao = 0;
-        $houseislowrent = 0;
-        $houseisfuel = 0;
-        $citizenislonglive = 0;
-        //残疾人,特殊人员,台属,军属
-        $citizendisable = 0;
-        $citizenspecial = 0;
-        $housetaiwan = 0;
-        $housearmy = 0;
-
-        $citizen = D("Citizen");
-        foreach ($houses as $house) {
-            $house_id = $house["id"];
-            $citizensum+=$citizen->where(array("house_id" => $house_id))->count();
-            $citizenzhanzhu+=$citizen->where(array("house_id" => $house_id, "relation_with_householder" => "暂住人口"))->count();
-            $citizenparty+=$citizen->where(array("house_id" => $house_id, "political_status" => "党员"))->count();
-            $citizendibao+=$citizen->where(array("house_id" => $house_id, "is_low_level" => "是"))->count();
-            $citizenislonglive+=$citizen->where(array("house_id" => $house_id, "is_long_live" => "是"))->count();
-            $citizendisable+=$citizen->where(array("house_id" => $house_id, "is_disability" => "是"))->count();
-            $citizenspecial+=$citizen->where(array("house_id" => $house_id, "is_special" => "是"))->count();
-
-            $houseislowrent+=$house["is_lowrent"] == "是" ? 1 : 0;
-            $houseisfuel+=$house["is_fuel"] == "是" ? 1 : 0;
-            $housetaiwan+=$house["is_taiwan"] == "是" ? 1 : 0;
-            $housearmy+=$house["is_army"] == "是" ? 1 : 0;
+        $query = "yard_id=$yardid";
+        //如果address_1是数组，说明是返回hasCollection的集合，当前查询是院落层次
+        if (!is_array($address_1)) {
+            $query .= " AND address_1=$address_1";
+            if (!is_array($address_2)) {
+                $query.=" AND address_2=$address_2";
+                if (!is_array($address_3)) {
+                    $query.=" AND address_3=$address_3";
+                }
+            }
         }
 
-        //各个层次房屋总数的链接
-        $tongjiarray["housenumber"] = $housenumber;
+        //第一行，房屋相关统计
+        $tongjiarray["housenumber"] = $v_house_youfu->where($query)->count();
+        $tongjiarray["houseislianzu"] = $v_house_youfu->where($query . " AND is_lianzu='是'")->count();
+        $tongjiarray["houseisdibao"] = $v_house_youfu->where($query . " AND is_dibao='是'")->count();
+        $tongjiarray["houseranmei"] = $v_house_youfu->where($query . " AND ranmei='是'")->count();
+        $tongjiarray["houseistaishu"] = $v_house_youfu->where($query . " AND is_taishu='是'")->count();
+        $tongjiarray["houseisjunshu"] = $v_house_youfu->where($query . " AND is_junshu='是'")->count();
+        $tongjiarray["houseisjjsyf"] = $v_house_youfu->where($query . " AND is_jjsyf='是'")->count();
 
-        //各层次享受廉租福利
-        $tongjiarray["houseislowrent"] = $houseislowrent;
-
-        //各层次享受燃油补贴
-        $tongjiarray["houseisfuel"] = $houseisfuel;
-
-        //各层次台属
-        $tongjiarray["housetaiwan"] = $housetaiwan;
-
-        //各层次军属
-        $tongjiarray["housearmy"] = $housearmy;
-
-        //各层次居民
-        $tongjiarray["citizensum"] = $citizensum;
-
-        //居民是否是党员那些，因为可以导出excel，一下就能筛选，就不做了。
-        $tongjiarray["citizenzhanzhu"] = $citizenzhanzhu;
-        $tongjiarray["citizenparty"] = $citizenparty;
-        $tongjiarray["citizendibao"] = $citizendibao;
-        $tongjiarray["citizenislonglive"] = $citizenislonglive;
-        $tongjiarray["citizendisable"] = $citizendisable;
-        $tongjiarray["citizenspecial"] = $citizenspecial;
+        //第二行，居民相关统计
+        $tongjiarray["citizensum"] = $v_citizen_youfu->where($query)->count();
+        $tongjiarray["citizenzhanzhu"] = $v_citizen_youfu->where($query . " AND relation_with_householder='流动人口_暂住'")->count();
+        $tongjiarray["citizenparty"] = $v_citizen_youfu->where($query . " AND political_status='党员'")->count();
+        $tongjiarray["citizenislonglive"] = $v_citizen_youfu->where($query . " AND is_long_live='是'")->count();
+        $tongjiarray["citizenisdibao"] = $v_citizen_youfu->where($query . " AND is_dibao='是'")->count();
+        $tongjiarray["citizeniscanji"] = $v_citizen_youfu->where($query . " AND is_canji='是'")->count();
+        $tongjiarray["citizenspecial"] = $v_citizen_youfu->where($query . " AND sp_status!='不是'")->count();
 
         //栋数的buttons
         if ("" == $address_3 && "" == $address_2 && "" != $address_1 && "" != $yardid)
@@ -347,7 +324,6 @@ class InterfaceAction extends BaseAction {
         //楼层的buttons
         if ("" != $address_3 && "" != $address_2 && "" != $address_1 && "" != $yardid)
             $this->assign(array("yardid" => $yardid, "address_1" => $address_1, "address_2" => $address_2, "address_3" => $address_3));
-
         
         return $tongjiarray;
     }
