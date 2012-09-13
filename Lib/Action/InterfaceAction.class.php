@@ -14,25 +14,25 @@ class InterfaceAction extends BaseAction {
 
     public function getCamlistByYardid() {
         if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
-        if ($this->isAjax()) {
-            $yardid = $_GET["yardid"];
-            $m_cam = D("Camera");
-            $m_camlist = $m_cam->where("yard_id=" . $yardid)->select();
-            $camlist = "";
-            foreach ($m_camlist as $camvalue) {
-                $camnumber = $camvalue["channels"] - $camvalue["remain"];
-                $camlist = $camlist . "<p>";
-                for ($i = 1; $i <= $camnumber; $i++) {
-                    $camitem = '<a href="/socialwork/index.php/camera/opencam/' . $camvalue["id"] . '/' . $i . '" title="通道' . $i . '" target="_blank"><img id="camera"' . $i . '" src="/socialwork/public/image/map/camera1.jpg' . '"></img></a>';
-                    $camlist = $camlist . $camitem;
+            if ($this->isAjax()) {
+                $yardid = $_GET["yardid"];
+                $m_cam = D("Camera");
+                $m_camlist = $m_cam->where("yard_id=" . $yardid)->select();
+                $camlist = "";
+                foreach ($m_camlist as $camvalue) {
+                    $camnumber = $camvalue["channels"] - $camvalue["remain"];
+                    $camlist = $camlist . "<p>";
+                    for ($i = 1; $i <= $camnumber; $i++) {
+                        $camitem = '<a href="/socialwork/index.php/camera/opencam/' . $camvalue["id"] . '/' . $i . '" title="通道' . $i . '" target="_blank"><img id="camera"' . $i . '" src="/socialwork/public/image/map/camera1.jpg' . '"></img></a>';
+                        $camlist = $camlist . $camitem;
+                    }
+                    $camlist = $camlist . "</p>";
                 }
-                $camlist = $camlist . "</p>";
+                echo $camlist;
+            } else {
+                echo "请用ajax调用方法";
             }
-            echo $camlist;
         } else {
-            echo "请用ajax调用方法";
-        }
-        }else {
             header("Content-Type:text/html; charset=utf-8");
             echo "您没有权限查看监控";
         }
@@ -216,75 +216,73 @@ class InterfaceAction extends BaseAction {
         $content = $this->fetch("_statistics");
         return $content;
     }
-    
-    //根据多个yardid, address_1 统计总数，输出列表
-	public function Getmore(){
-		if($_SESSION['right'] != '9'){
-			exit("无权限");
-		}
-		
-		if ($this->isAjax()) {
-            //解析json数据到数组
-			$yardid_array=json_decode($_POST['query_id'], true);
-			//$yardid_array=json_decode($aaa, true);
-			//exit(print_r($yardid_array));	
-            $m_yard = D("yard");
-			
-			$Alltongjiarray=array();	
-			$scope=''; $elm_sum=count($yardid_array);
-			for($i=0; $i<$elm_sum; $i++){
-				$yardid=$yardid_array[$i]['yard_id'];
-				$name=$yardid_array[$i]['name'];
-				$address_1=$yardid_array[$i]['address_1'];
-				
-				$data_yard = $m_yard->find($yardid);
-				
-				$dot=$j++!=0?'<br>':'';
-				if($i<25){ //防止输出过长信息
-					$scope.=$dot.$name;
-				}elseif($i==25){
-					$scope.=$dot.$name."<br>...省略";
-				}
-				
-				if (!empty($data_yard)) {
-					$address_2 = $this->hasCollection($yardid, $address_1);
-					$houses = $this->houseCollection($yardid, $address_1);
-					$tongjiarray = $this->statistics_getmore($houses, $yardid, $address_1, $address_2, "", $address_1 . "栋");
-					
-					//累加到一起
-					$Alltongjiarray['housenumber']+=$tongjiarray['housenumber'];
-					$Alltongjiarray['houseislianzu']+=$tongjiarray['houseislianzu'];
-					$Alltongjiarray['houseisdibao']+=$tongjiarray['houseisdibao'];
-					$Alltongjiarray['houseranmei']+=$tongjiarray['houseranmei'];
-					$Alltongjiarray['houseistaishu']+=$tongjiarray['houseistaishu'];
-					$Alltongjiarray['houseisjunshu']+=$tongjiarray['houseisjunshu'];
-					$Alltongjiarray['houseisjjsyf']+=$tongjiarray['houseisjjsyf'];
-					
-					$Alltongjiarray['citizensum']+=$tongjiarray['citizensum'];
-					$Alltongjiarray['citizenzhanzhu']+=$tongjiarray['citizenzhanzhu'];
-					$Alltongjiarray['citizenparty']+=$tongjiarray['citizenparty'];
-					$Alltongjiarray['citizenislonglive']+=$tongjiarray['citizenislonglive'];
-					$Alltongjiarray['citizenisdibao']+=$tongjiarray['citizenisdibao'];
-					$Alltongjiarray['citizeniscanji']+=$tongjiarray['citizeniscanji'];
-					$Alltongjiarray['citizenspecial']+=$tongjiarray['citizenspecial'];
-					
-					
-				} else {
-					echo "<br>无此id的院落";
-				}
-			
-			}
 
-			$this->assign(array("tongji" => $Alltongjiarray, "scope" => $scope, "elm_sum" => $elm_sum));
-			$content = $this->fetch("_getmore");
-			echo $content;			
-			return $content;
-        } else {
-           echo "请用ajax调用方法";
+    //根据多个yardid, address_1 统计总数，输出列表
+    public function Getmore() {
+        if ($_SESSION['right'] != '9') {
+            exit("无权限");
         }
-	}
-	
-	//为Getmore返回统计数组
+
+        if ($this->isAjax()) {
+            //解析json数据到数组
+            $yardid_array = json_decode($_POST['query_id'], true);
+            //$yardid_array=json_decode($aaa, true);
+            //exit(print_r($yardid_array));	
+            $m_yard = D("yard");
+
+            $Alltongjiarray = array();
+            $scope = '';
+            $elm_sum = count($yardid_array);
+            for ($i = 0; $i < $elm_sum; $i++) {
+                $yardid = $yardid_array[$i]['yard_id'];
+                $name = $yardid_array[$i]['name'];
+                $address_1 = $yardid_array[$i]['address_1'];
+
+                $data_yard = $m_yard->find($yardid);
+
+                $dot = $j++ != 0 ? '<br>' : '';
+                if ($i < 25) { //防止输出过长信息
+                    $scope.=$dot . $name;
+                } elseif ($i == 25) {
+                    $scope.=$dot . $name . "<br>...省略";
+                }
+
+                if (!empty($data_yard)) {
+                    $address_2 = $this->hasCollection($yardid, $address_1);
+                    $houses = $this->houseCollection($yardid, $address_1);
+                    $tongjiarray = $this->statistics_getmore($houses, $yardid, $address_1, $address_2, "", $address_1 . "栋");
+
+                    //累加到一起
+                    $Alltongjiarray['housenumber']+=$tongjiarray['housenumber'];
+                    $Alltongjiarray['houseislianzu']+=$tongjiarray['houseislianzu'];
+                    $Alltongjiarray['houseisdibao']+=$tongjiarray['houseisdibao'];
+                    $Alltongjiarray['houseranmei']+=$tongjiarray['houseranmei'];
+                    $Alltongjiarray['houseistaishu']+=$tongjiarray['houseistaishu'];
+                    $Alltongjiarray['houseisjunshu']+=$tongjiarray['houseisjunshu'];
+                    $Alltongjiarray['houseisjjsyf']+=$tongjiarray['houseisjjsyf'];
+
+                    $Alltongjiarray['citizensum']+=$tongjiarray['citizensum'];
+                    $Alltongjiarray['citizenzhanzhu']+=$tongjiarray['citizenzhanzhu'];
+                    $Alltongjiarray['citizenparty']+=$tongjiarray['citizenparty'];
+                    $Alltongjiarray['citizenislonglive']+=$tongjiarray['citizenislonglive'];
+                    $Alltongjiarray['citizenisdibao']+=$tongjiarray['citizenisdibao'];
+                    $Alltongjiarray['citizeniscanji']+=$tongjiarray['citizeniscanji'];
+                    $Alltongjiarray['citizenspecial']+=$tongjiarray['citizenspecial'];
+                } else {
+                    echo "<br>无此id的院落";
+                }
+            }
+
+            $this->assign(array("tongji" => $Alltongjiarray, "scope" => $scope, "elm_sum" => $elm_sum));
+            $content = $this->fetch("_getmore");
+            echo $content;
+            return $content;
+        } else {
+            echo "请用ajax调用方法";
+        }
+    }
+
+    //为Getmore返回统计数组
     protected function statistics_getmore($houses, $yardid, $address_1 = "", $address_2 = "", $address_3 = "", $scope = "") {
         $tongjiarray = array();
         $v_house_youfu = M("HouseYoufu");
@@ -329,7 +327,7 @@ class InterfaceAction extends BaseAction {
         //楼层的buttons
         if ("" != $address_3 && "" != $address_2 && "" != $address_1 && "" != $yardid)
             $this->assign(array("yardid" => $yardid, "address_1" => $address_1, "address_2" => $address_2, "address_3" => $address_3));
-        
+
         return $tongjiarray;
     }
 
