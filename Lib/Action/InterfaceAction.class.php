@@ -13,6 +13,7 @@ class InterfaceAction extends BaseAction {
     }
 
     public function getCamlistByYardid() {
+        if ($_SESSION["right"] == "9" || $_SESSION["right"] == "1") {
         if ($this->isAjax()) {
             $yardid = $_GET["yardid"];
             $m_cam = D("Camera");
@@ -30,6 +31,10 @@ class InterfaceAction extends BaseAction {
             echo $camlist;
         } else {
             echo "请用ajax调用方法";
+        }
+        }else {
+            header("Content-Type:text/html; charset=utf-8");
+            echo "您没有权限查看监控";
         }
     }
 
