@@ -49,6 +49,13 @@ class SearchAction extends BaseAction {
                         case "birthday":
                             $tmp = $tmp . $searchkey[$i] . " between '" . $searchkey[$y] . "' and '" . $searchkey[$y . '-1'] . "' " . $searchkey[$x] . " ";
                             break;
+                        case "cellphone":
+                            if($searchkey[$y]==""){
+                                $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " or cellphone is null";
+                            }  else {
+                                $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
+                            }
+                            break;
                         default :
                             $tmp = $tmp . $searchkey[$i] . " like '%" . $searchkey[$y] . "%' " . $searchkey[$x] . " ";
                     }
