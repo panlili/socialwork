@@ -119,7 +119,7 @@
 	
 0827ChangeAddonTableStructure.zip
 	1.为附件表添加了几个字段，使得在公共安全模块能够上传文件
-	2.以后备份数据库，只备份修改的表
+	2.以后备份数据库，只备份修改的表，因为他们服务器上的数据开始更新，不能全覆盖。
 	
 0829AddReleasedateToAddonTable.zip
 	1.为addon表添加了releasedate,手工记录安全预案发布时间
@@ -129,3 +129,6 @@
 	
 0907AddJzNgoTable.zip
 	1.新建了jz_ngo的table,ngo还是要分社区干了。
+
+socialwork database in 20121017.rar
+	1. 把他们服务器上的数据库备份下来了，不然自己重新搭环境的时候麻烦。
