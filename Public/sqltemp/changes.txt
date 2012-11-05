@@ -132,3 +132,6 @@
 
 socialwork database in 20121017.rar
 	1. 把他们服务器上的数据库备份下来了，不然自己重新搭环境的时候麻烦。
+
+socialwork1107.rar
+	1.为yard表添加了yinjiman, yinjiphone, yinjinumber三个字段
