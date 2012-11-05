@@ -24,7 +24,7 @@ class StatisticAction extends BaseAction {
                 $i+= $arr[$t['marry_info']];
             }
             if (0 != intval($citizen->count()) - $i) {
-                $arr["不详"] = intval($citizen->count()) - $i;
+            //    $arr["不详"] = intval($citizen->count()) - $i;
             }
             $this->assign("marryinfo", $arr);
             header("content-type:text/html;charset=utf-8");
@@ -48,7 +48,7 @@ class StatisticAction extends BaseAction {
                 $i+= $arr[$t['sex']];
             }
             if (0 != intval($citizen->count()) - $i) {
-                $arr["不详"] = intval($citizen->count()) - $i;
+            //    $arr["不详"] = intval($citizen->count()) - $i;
             }
             $this->assign("sexinfo", $arr);
             header("content-type:text/html;charset=utf-8");
@@ -72,7 +72,7 @@ class StatisticAction extends BaseAction {
                 $i+= $arr[$t['nation']];
             }
             if (0 != intval($citizen->count()) - $i) {
-                $arr["不详"] = intval($citizen->count()) - $i;
+            //    $arr["不详"] = intval($citizen->count()) - $i;
             }
             $this->assign("nationinfo", $arr);
             header("content-type:text/html;charset=utf-8");
@@ -96,7 +96,7 @@ class StatisticAction extends BaseAction {
                 $i+= $arr[$t['education']];
             }
             if (0 != intval($citizen->count()) - $i) {
-                $arr["不详"] = intval($citizen->count()) - $i;
+            //    $arr["不详"] = intval($citizen->count()) - $i;
             }
             $this->assign("educationinfo", $arr);
             header("content-type:text/html;charset=utf-8");
@@ -120,7 +120,7 @@ class StatisticAction extends BaseAction {
                 $i+= $arr[$t['political_status']];
             }
             if (0 != intval($citizen->count()) - $i) {
-                $arr["不详"] = intval($citizen->count()) - $i;
+            //    $arr["不详"] = intval($citizen->count()) - $i;
             }
             $this->assign("politicalinfo", $arr);
             header("content-type:text/html;charset=utf-8");
@@ -144,7 +144,7 @@ class StatisticAction extends BaseAction {
                 $i+= $arr[$t['employee']];
             }
             if (0 != intval($citizen->count()) - $i) {
-                $arr["不详"] = intval($citizen->count()) - $i;
+            //    $arr["不详"] = intval($citizen->count()) - $i;
             }
             $this->assign("employeeinfo", $arr);
             header("content-type:text/html;charset=utf-8");

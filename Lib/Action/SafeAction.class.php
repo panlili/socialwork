@@ -4,6 +4,10 @@ class SafeAction extends BaseAction {
 
     const ACTION_NAME = "公共安全";
 
+    public function index(){
+        $this->redirect("plans");
+    }
+
     public function hydrant() {
         $this->assign("page_place", $this->getPagePlace("消防栓位置示意图", self::ACTION_NAME));
         $this->display();
